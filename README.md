@@ -4,7 +4,9 @@ assets, you can find that on the discord server (https://discord.gg/dKfhvFj). Th
 and talk to other people using the randomizer. I have attempted to comment my code clearly, but if any questions arise, discord will
 be the easiest way to contact me.
 
-This program is written in C# using Microsoft Visual Studio. With this randomizer, you can:
+This program is written in C# using Microsoft Visual Studio. You can view the code in Form1.cs
+
+With this randomizer, you can:
 - Randomize class and starting items of all playable characters other than BK
 - Choose from a variety of randomizing templates, including but not limited to laguz-only, magic-only, and flying-only
 - Randomize transformation gauges for laguz characters
