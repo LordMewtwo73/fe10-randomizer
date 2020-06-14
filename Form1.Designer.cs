@@ -28,13 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.cbxSkillRand = new System.Windows.Forms.CheckBox();
 			this.cbxClassRand = new System.Windows.Forms.CheckBox();
 			this.cbxGrowthRand = new System.Windows.Forms.CheckBox();
 			this.cbxGaugeRand = new System.Windows.Forms.CheckBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.numericLaguzMin = new System.Windows.Forms.NumericUpDown();
 			this.numericLaguzMax = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
@@ -71,10 +71,24 @@
 			this.cbxStatCaps = new System.Windows.Forms.CheckBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.numericSeed = new System.Windows.Forms.NumericUpDown();
-			this.numericStatCap = new System.Windows.Forms.NumericUpDown();
+			this.numericStatCap1 = new System.Windows.Forms.NumericUpDown();
 			this.cbxAffinity = new System.Windows.Forms.CheckBox();
 			this.cbxBio = new System.Windows.Forms.CheckBox();
 			this.cbxEventItems = new System.Windows.Forms.CheckBox();
+			this.numericStatCap2 = new System.Windows.Forms.NumericUpDown();
+			this.numericStatCap3 = new System.Windows.Forms.NumericUpDown();
+			this.label16 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cbxRandRecr = new System.Windows.Forms.CheckBox();
+			this.cbxRandBases = new System.Windows.Forms.CheckBox();
+			this.numericBaseRand = new System.Windows.Forms.NumericUpDown();
+			this.label19 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.cbxEnemyGrowth = new System.Windows.Forms.CheckBox();
+			this.numericEnemyGrowth = new System.Windows.Forms.NumericUpDown();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).BeginInit();
@@ -89,15 +103,19 @@
 			this.panelGrowths.SuspendLayout();
 			this.panelClass.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericSeed)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericStatCap)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericStatCap1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericStatCap2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericStatCap3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericBaseRand)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericEnemyGrowth)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// button1
 			// 
 			this.button1.Enabled = false;
-			this.button1.Location = new System.Drawing.Point(82, 419);
+			this.button1.Location = new System.Drawing.Point(119, 488);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(624, 51);
+			this.button1.Size = new System.Drawing.Size(599, 51);
 			this.button1.TabIndex = 0;
 			this.button1.Text = "Randomize";
 			this.button1.UseVisualStyleBackColor = true;
@@ -106,15 +124,15 @@
 			// textBox1
 			// 
 			this.textBox1.Enabled = false;
-			this.textBox1.Location = new System.Drawing.Point(33, 491);
+			this.textBox1.Location = new System.Drawing.Point(78, 548);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(724, 22);
+			this.textBox1.Size = new System.Drawing.Size(689, 22);
 			this.textBox1.TabIndex = 1;
 			// 
 			// cbxSkillRand
 			// 
 			this.cbxSkillRand.AutoSize = true;
-			this.cbxSkillRand.Location = new System.Drawing.Point(27, 362);
+			this.cbxSkillRand.Location = new System.Drawing.Point(27, 359);
 			this.cbxSkillRand.Name = "cbxSkillRand";
 			this.cbxSkillRand.Size = new System.Drawing.Size(137, 21);
 			this.cbxSkillRand.TabIndex = 2;
@@ -135,7 +153,7 @@
 			// cbxGrowthRand
 			// 
 			this.cbxGrowthRand.AutoSize = true;
-			this.cbxGrowthRand.Location = new System.Drawing.Point(508, 124);
+			this.cbxGrowthRand.Location = new System.Drawing.Point(508, 79);
 			this.cbxGrowthRand.Name = "cbxGrowthRand";
 			this.cbxGrowthRand.Size = new System.Drawing.Size(157, 21);
 			this.cbxGrowthRand.TabIndex = 3;
@@ -152,16 +170,6 @@
 			this.cbxGaugeRand.TabIndex = 3;
 			this.cbxGaugeRand.Text = "Random Laguz Gauges";
 			this.cbxGaugeRand.UseVisualStyleBackColor = true;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(52, 6);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(735, 29);
-			this.label1.TabIndex = 4;
-			this.label1.Text = "PLEASE READ README.TXT TO PROPERLY USE RANDOMIZER";
 			// 
 			// numericLaguzMin
 			// 
@@ -258,7 +266,7 @@
 			this.numericGrowth.Size = new System.Drawing.Size(60, 22);
 			this.numericGrowth.TabIndex = 10;
 			this.numericGrowth.Value = new decimal(new int[] {
-            20,
+            25,
             0,
             0,
             0});
@@ -275,7 +283,7 @@
 			this.numericHP.Size = new System.Drawing.Size(70, 22);
 			this.numericHP.TabIndex = 11;
 			this.numericHP.Value = new decimal(new int[] {
-            10,
+            15,
             0,
             0,
             0});
@@ -292,7 +300,7 @@
 			this.numericSPD.Size = new System.Drawing.Size(69, 22);
 			this.numericSPD.TabIndex = 12;
 			this.numericSPD.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -309,7 +317,7 @@
 			this.numericATK.Size = new System.Drawing.Size(70, 22);
 			this.numericATK.TabIndex = 13;
 			this.numericATK.Value = new decimal(new int[] {
-            5,
+            15,
             0,
             0,
             0});
@@ -343,7 +351,7 @@
 			this.numericDEF.Size = new System.Drawing.Size(70, 22);
 			this.numericDEF.TabIndex = 15;
 			this.numericDEF.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -360,7 +368,7 @@
 			this.numericMAG.Size = new System.Drawing.Size(70, 22);
 			this.numericMAG.TabIndex = 16;
 			this.numericMAG.Value = new decimal(new int[] {
-            5,
+            15,
             0,
             0,
             0});
@@ -394,7 +402,7 @@
 			this.numericRES.Size = new System.Drawing.Size(70, 22);
 			this.numericRES.TabIndex = 18;
 			this.numericRES.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -421,7 +429,7 @@
 			this.panelGrowths.Controls.Add(this.numericSPD);
 			this.panelGrowths.Controls.Add(this.numericHP);
 			this.panelGrowths.Enabled = false;
-			this.panelGrowths.Location = new System.Drawing.Point(507, 147);
+			this.panelGrowths.Location = new System.Drawing.Point(507, 102);
 			this.panelGrowths.Name = "panelGrowths";
 			this.panelGrowths.Size = new System.Drawing.Size(311, 190);
 			this.panelGrowths.TabIndex = 19;
@@ -574,7 +582,7 @@
 			// cbxZeroGrowths
 			// 
 			this.cbxZeroGrowths.AutoSize = true;
-			this.cbxZeroGrowths.Location = new System.Drawing.Point(508, 342);
+			this.cbxZeroGrowths.Location = new System.Drawing.Point(508, 297);
 			this.cbxZeroGrowths.Name = "cbxZeroGrowths";
 			this.cbxZeroGrowths.Size = new System.Drawing.Size(106, 21);
 			this.cbxZeroGrowths.TabIndex = 22;
@@ -595,7 +603,7 @@
 			// cbxStatCaps
 			// 
 			this.cbxStatCaps.AutoSize = true;
-			this.cbxStatCaps.Location = new System.Drawing.Point(508, 373);
+			this.cbxStatCaps.Location = new System.Drawing.Point(508, 328);
 			this.cbxStatCaps.Name = "cbxStatCaps";
 			this.cbxStatCaps.Size = new System.Drawing.Size(235, 21);
 			this.cbxStatCaps.TabIndex = 24;
@@ -624,24 +632,24 @@
 			this.numericSeed.TabIndex = 27;
 			this.numericSeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
-			// numericStatCap
+			// numericStatCap1
 			// 
-			this.numericStatCap.Location = new System.Drawing.Point(747, 372);
-			this.numericStatCap.Maximum = new decimal(new int[] {
+			this.numericStatCap1.Location = new System.Drawing.Point(544, 352);
+			this.numericStatCap1.Maximum = new decimal(new int[] {
             127,
             0,
             0,
             0});
-			this.numericStatCap.Minimum = new decimal(new int[] {
+			this.numericStatCap1.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-			this.numericStatCap.Name = "numericStatCap";
-			this.numericStatCap.Size = new System.Drawing.Size(56, 22);
-			this.numericStatCap.TabIndex = 28;
-			this.numericStatCap.Value = new decimal(new int[] {
-            50,
+			this.numericStatCap1.Name = "numericStatCap1";
+			this.numericStatCap1.Size = new System.Drawing.Size(56, 22);
+			this.numericStatCap1.TabIndex = 28;
+			this.numericStatCap1.Value = new decimal(new int[] {
+            30,
             0,
             0,
             0});
@@ -659,7 +667,7 @@
 			// cbxBio
 			// 
 			this.cbxBio.AutoSize = true;
-			this.cbxBio.Location = new System.Drawing.Point(293, 362);
+			this.cbxBio.Location = new System.Drawing.Point(293, 359);
 			this.cbxBio.Name = "cbxBio";
 			this.cbxBio.Size = new System.Drawing.Size(168, 21);
 			this.cbxBio.TabIndex = 30;
@@ -669,22 +677,207 @@
 			// cbxEventItems
 			// 
 			this.cbxEventItems.AutoSize = true;
-			this.cbxEventItems.Location = new System.Drawing.Point(27, 389);
+			this.cbxEventItems.Location = new System.Drawing.Point(26, 383);
 			this.cbxEventItems.Name = "cbxEventItems";
 			this.cbxEventItems.Size = new System.Drawing.Size(376, 21);
 			this.cbxEventItems.TabIndex = 31;
 			this.cbxEventItems.Text = "Randomize Event Items (base convos, chests, villages)";
 			this.cbxEventItems.UseVisualStyleBackColor = true;
 			// 
+			// numericStatCap2
+			// 
+			this.numericStatCap2.Location = new System.Drawing.Point(544, 376);
+			this.numericStatCap2.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+			this.numericStatCap2.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.numericStatCap2.Name = "numericStatCap2";
+			this.numericStatCap2.Size = new System.Drawing.Size(56, 22);
+			this.numericStatCap2.TabIndex = 32;
+			this.numericStatCap2.Value = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+			// 
+			// numericStatCap3
+			// 
+			this.numericStatCap3.Location = new System.Drawing.Point(544, 400);
+			this.numericStatCap3.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+			this.numericStatCap3.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.numericStatCap3.Name = "numericStatCap3";
+			this.numericStatCap3.Size = new System.Drawing.Size(56, 22);
+			this.numericStatCap3.TabIndex = 33;
+			this.numericStatCap3.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Location = new System.Drawing.Point(606, 354);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(45, 17);
+			this.label16.TabIndex = 34;
+			this.label16.Text = "Tier 1";
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Location = new System.Drawing.Point(606, 378);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(186, 17);
+			this.label17.TabIndex = 35;
+			this.label17.Text = "Tier 2/Untransformed Laguz";
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(606, 403);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(173, 17);
+			this.label18.TabIndex = 36;
+			this.label18.Text = "Tier 3/Transformed Laguz";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(8, 9);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(696, 25);
+			this.label1.TabIndex = 4;
+			this.label1.Text = "US FE10 ISO ONLY. RANDOMIZER DOES NOT WORK WITH EASY MODE.";
+			// 
+			// cbxRandRecr
+			// 
+			this.cbxRandRecr.AutoSize = true;
+			this.cbxRandRecr.Location = new System.Drawing.Point(26, 409);
+			this.cbxRandRecr.Name = "cbxRandRecr";
+			this.cbxRandRecr.Size = new System.Drawing.Size(222, 21);
+			this.cbxRandRecr.TabIndex = 37;
+			this.cbxRandRecr.Text = "Randomize Recruitment Order";
+			this.cbxRandRecr.UseVisualStyleBackColor = true;
+			// 
+			// cbxRandBases
+			// 
+			this.cbxRandBases.AutoSize = true;
+			this.cbxRandBases.Location = new System.Drawing.Point(27, 434);
+			this.cbxRandBases.Name = "cbxRandBases";
+			this.cbxRandBases.Size = new System.Drawing.Size(173, 21);
+			this.cbxRandBases.TabIndex = 38;
+			this.cbxRandBases.Text = "Randomize Base Stats";
+			this.cbxRandBases.UseVisualStyleBackColor = true;
+			// 
+			// numericBaseRand
+			// 
+			this.numericBaseRand.Location = new System.Drawing.Point(152, 456);
+			this.numericBaseRand.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.numericBaseRand.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericBaseRand.Name = "numericBaseRand";
+			this.numericBaseRand.Size = new System.Drawing.Size(72, 22);
+			this.numericBaseRand.TabIndex = 39;
+			this.numericBaseRand.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(48, 457);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(100, 17);
+			this.label19.TabIndex = 40;
+			this.label19.Text = "Max Deviation:";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(541, 456);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(99, 17);
+			this.label20.TabIndex = 41;
+			this.label20.Text = "Max Increase: ";
+			// 
+			// cbxEnemyGrowth
+			// 
+			this.cbxEnemyGrowth.AutoSize = true;
+			this.cbxEnemyGrowth.Location = new System.Drawing.Point(508, 432);
+			this.cbxEnemyGrowth.Name = "cbxEnemyGrowth";
+			this.cbxEnemyGrowth.Size = new System.Drawing.Size(344, 21);
+			this.cbxEnemyGrowth.TabIndex = 42;
+			this.cbxEnemyGrowth.Text = "Increase Enemy Growths (does not affect bosses)";
+			this.cbxEnemyGrowth.UseVisualStyleBackColor = true;
+			// 
+			// numericEnemyGrowth
+			// 
+			this.numericEnemyGrowth.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+			this.numericEnemyGrowth.Location = new System.Drawing.Point(644, 455);
+			this.numericEnemyGrowth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericEnemyGrowth.Name = "numericEnemyGrowth";
+			this.numericEnemyGrowth.Size = new System.Drawing.Size(67, 22);
+			this.numericEnemyGrowth.TabIndex = 43;
+			this.numericEnemyGrowth.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(830, 545);
+			this.ClientSize = new System.Drawing.Size(871, 580);
+			this.Controls.Add(this.numericEnemyGrowth);
+			this.Controls.Add(this.cbxEnemyGrowth);
+			this.Controls.Add(this.label20);
+			this.Controls.Add(this.label19);
+			this.Controls.Add(this.numericBaseRand);
+			this.Controls.Add(this.cbxRandBases);
+			this.Controls.Add(this.cbxRandRecr);
+			this.Controls.Add(this.label18);
+			this.Controls.Add(this.label17);
+			this.Controls.Add(this.label16);
+			this.Controls.Add(this.numericStatCap3);
+			this.Controls.Add(this.numericStatCap2);
 			this.Controls.Add(this.cbxEventItems);
 			this.Controls.Add(this.cbxBio);
 			this.Controls.Add(this.cbxAffinity);
-			this.Controls.Add(this.numericStatCap);
+			this.Controls.Add(this.numericStatCap1);
 			this.Controls.Add(this.numericSeed);
 			this.Controls.Add(this.label14);
 			this.Controls.Add(this.cbxStatCaps);
@@ -701,7 +894,7 @@
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.button1);
 			this.Name = "Form1";
-			this.Text = "LordMewtwo\'s FE 10 Randomizer v1.3.0 - 05/26/2020";
+			this.Text = "LordMewtwo\'s FE 10 Randomizer v1.4.0 - 06/14/2020";
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).EndInit();
@@ -718,7 +911,11 @@
 			this.panelClass.ResumeLayout(false);
 			this.panelClass.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericSeed)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericStatCap)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericStatCap1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericStatCap2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericStatCap3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericBaseRand)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericEnemyGrowth)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -732,7 +929,6 @@
 		private System.Windows.Forms.CheckBox cbxClassRand;
 		private System.Windows.Forms.CheckBox cbxGrowthRand;
 		private System.Windows.Forms.CheckBox cbxGaugeRand;
-		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.NumericUpDown numericLaguzMin;
 		private System.Windows.Forms.NumericUpDown numericLaguzMax;
 		private System.Windows.Forms.Label label2;
@@ -766,13 +962,27 @@
 		private System.Windows.Forms.CheckBox cbxStatCaps;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.NumericUpDown numericSeed;
-		private System.Windows.Forms.NumericUpDown numericStatCap;
+		private System.Windows.Forms.NumericUpDown numericStatCap1;
 		private System.Windows.Forms.ComboBox comboClassOptions;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.CheckBox cbxHerons;
 		private System.Windows.Forms.CheckBox cbxAffinity;
 		private System.Windows.Forms.CheckBox cbxBio;
 		private System.Windows.Forms.CheckBox cbxEventItems;
+		private System.Windows.Forms.NumericUpDown numericStatCap2;
+		private System.Windows.Forms.NumericUpDown numericStatCap3;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.CheckBox cbxRandRecr;
+		private System.Windows.Forms.CheckBox cbxRandBases;
+		private System.Windows.Forms.NumericUpDown numericBaseRand;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.CheckBox cbxEnemyGrowth;
+		private System.Windows.Forms.NumericUpDown numericEnemyGrowth;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }
 

@@ -52,13 +52,18 @@ namespace FE10Randomizer_v0._1
 		int[] charSkillNum = new int[72];
 		int[] charGauge = new int[72];
 		int[] charGrowth = new int[72];
+		int[] charBases = new int[72];
 		int[] charWeapNum = new int[72];
 		int[] charLevLoc = new int[72];
 		int[] charPID = new int[72];
 		int[] charBio = new int[72];
 
+		// arrays that hold new character data
 		string[] newRace = new string[72];
 		int[] newClass = new int[72];
+		int[] newRecr = new int[69];
+		int[] recrInverse = new int[69];
+
 		public Form1()
 		{
 			string line;
@@ -95,6 +100,8 @@ namespace FE10Randomizer_v0._1
 				charGauge[i] = Convert.ToInt32(values[9]);
 				// location of character's growth rates in big Data file
 				charGrowth[i] = Convert.ToInt32(values[10]);
+				// location of character's base stats
+				charBases[i] = Convert.ToInt32(values[11]);
 				// number of weapons in character's starting inventory
 				charWeapNum[i] = Convert.ToInt32(values[12]);
 				// location of characters level in chapter data
@@ -106,9 +113,13 @@ namespace FE10Randomizer_v0._1
 			}
 			InitializeComponent();
 
+			//toolTip1.SetToolTip(cbxGrowthRand, "test1");
+			//toolTip1.SetToolTip(cbxClassRand, "test2");
+
 			comboClassOptions.SelectedIndex = 0;
 			numericSeed.Value = seedGenerator.Next();
 		}
+
 
 		private void button1_Click(object sender, EventArgs e)
 		{
@@ -121,23 +132,10 @@ namespace FE10Randomizer_v0._1
 			errorflag = 0;
 
 			// disable components so user can't change properties during randomization
-			cbxSkillRand.Enabled = false;
-			cbxGrowthRand.Enabled = false;
-			cbxClassRand.Enabled = false;
-			cbxGaugeRand.Enabled = false;
-			cbxHerons.Enabled = false;
-			panelClass.Enabled = false;
-			cbxZeroGrowths.Enabled = false;
-			numericLaguzMax.Enabled = false;
-			numericLaguzMin.Enabled = false;
-			numericSeed.Enabled = false;
-			numericStatCap.Enabled = false;
-			cbxRandShop.Enabled = false;
-			cbxStatCaps.Enabled = false;
-			button1.Enabled = false;
+			Form1.ActiveForm.Enabled = false;
 
 			// set number of units to change
-			if (cbxHerons.Checked == true)
+			if (cbxClassRand.Checked == true & cbxHerons.Checked == true)
 				totalUnitNumber = 72;
 			else
 				totalUnitNumber = 69;
@@ -146,18 +144,99 @@ namespace FE10Randomizer_v0._1
 			random = new Random(Convert.ToInt32(numericSeed.Value));
 
 			// initialize output log
+			string logheader = "seed:," + numericSeed.Value.ToString();
+			if (cbxClassRand.Checked == true)
+			{
+				switch (comboClassOptions.SelectedIndex)
+				{
+					case 0:
+						logheader += ",classRand = Basic";
+						break;
+					case 1:
+						logheader += ",classRand = Full";
+						break;
+					case 2:
+						logheader += ",classRand = Beorc";
+						break;
+					case 3:
+						logheader += ",classRand = Laguz";
+						break;
+					case 4:
+						logheader += ",classRand = Classic";
+						break;
+					case 5:
+						logheader += ",classRand = Magic";
+						break;
+					case 6:
+						logheader += ",classRand = Horse";
+						break;
+					case 7:
+						logheader += ",classRand = Armor";
+						break;
+					case 8:
+						logheader += ",classRand = Flying";
+						break;
+					case 9:
+						logheader += ",classRand = Beast";
+						break;
+					case 10:
+						logheader += ",classRand = Beauty";
+						break;
+					default:
+						break;
+				}
+				if (cbxHerons.Checked == true)
+					logheader += ",heronRand";
+				if (cbxGaugeRand.Checked == true)
+					logheader += ",transGauge Min=" + numericLaguzMin.Value.ToString() + " Max=" + numericLaguzMax.Value.ToString();
+			}
+
+			if (cbxGrowthRand.Checked == true)
+			{
+				logheader += ",growthRand Dev=" + numericGrowth.Value.ToString();
+				logheader += ",hpMin=" + numericHP.Value.ToString();
+				logheader += ",atkMin=" + numericATK.Value.ToString();
+				logheader += ",magMin=" + numericMAG.Value.ToString();
+				logheader += ",sklMin=" + numericSKL.Value.ToString();
+				logheader += ",spdMin=" + numericSPD.Value.ToString();
+				logheader += ",lckMin=" + numericLCK.Value.ToString();
+				logheader += ",defMin=" + numericDEF.Value.ToString();
+				logheader += ",resMin=" + numericRES.Value.ToString();
+			}
+
+			if (cbxRandBases.Checked == true)
+				logheader += ",randBaseStats-MaxDev=" + numericBaseRand.Value.ToString();
+			if (cbxEnemyGrowth.Checked == true)
+				logheader += ",enemyGrowth-MaxIncrease=" + numericEnemyGrowth.Value.ToString();
+			if (cbxRandShop.Checked == true)
+				logheader += ",randShop";
+			if (cbxAffinity.Checked == true)
+				logheader += ",randAffinity";
+			if (cbxBio.Checked == true)
+				logheader += ",randBio";
+			if (cbxSkillRand.Checked == true)
+				logheader += ",randSkill";
+			if (cbxEventItems.Checked == true)
+				logheader += ",randEventItems";
+			if (cbxRandRecr.Checked == true)
+				logheader += ",randRecruitment";
+			if (cbxZeroGrowths.Checked == true)
+				logheader += ",zeroGrowth";
+			if (cbxStatCaps.Checked == true)
+			{
+				logheader += ",statCaps:";
+				logheader += " T1=" + numericStatCap1.Value.ToString();
+				logheader += " T2=" + numericStatCap2.Value.ToString();
+				logheader += " T3=" + numericStatCap3.Value.ToString();
+			}
+
 			try
 			{
 				dataWriter = new System.IO.StreamWriter(file + "\\outputlog.csv");
-				if(cbxGrowthRand.Checked == true)
-				dataWriter.WriteLine("Name,Race,Class,LGaugeTurn,LGaugeBattle,LGaugeTurn,LGaugeBattle," +
-					"Skills1,Skills2,Skills3,Skills4,Growths(Deviation {0}):HP(min {1}),STR(min {2}),MAG(min {3})," +
-					"SKL(min {4}),SPD(min {5}),LCK(min {6}),DEF(min {7}),RES(min {8}),seed:,{9}", 
-					numericGrowth.Value, numericHP.Value, numericATK.Value, numericMAG.Value, numericSKL.Value,
-					numericSPD.Value, numericLCK.Value, numericDEF.Value, numericRES.Value, numericSeed.Value);
-				else
-					dataWriter.WriteLine("Name,Race,Class,LGaugeTurn,LGaugeBattle,LGaugeTurn,LGaugeBattle," +
-					"Skills1,Skills2,Skills3,Skills4,Growths:HP,STR,MAG,SKL,SPD,LCK,DEF,RES,seed:,{0}",numericSeed.Value);
+				dataWriter.WriteLine(logheader);
+
+				dataWriter.WriteLine("Name,NewName,Race,Class,LGaugeTurn,LGaugeBattle,LGaugeTurn,LGaugeBattle," +
+					"Skills1,Skills2,Skills3,Skills4,Growths:HP,STR,MAG,SKL,SPD,LCK,DEF,RES");
 			}
 			catch
 			{
@@ -172,29 +251,53 @@ namespace FE10Randomizer_v0._1
 			// move some edited files
 			fileOrganizer();
 
-			if (cbxClassRand.Checked == true & errorflag == 0)
+			// select order of random recruitment
+			if (cbxRandRecr.Checked == true & errorflag == 0)
+			{
+				recruitmentOrderRando();
+				// record new names of characters
+				for (int i = 0; i < totalUnitNumber; i++)
+					charChanges[i] += "," + charName[i];
+			}
+			else
+			{
+				// record no changes for recruitment
+				for (int i = 0; i < totalUnitNumber; i++)
+					charChanges[i] += ",-";
+			}
+
+
+			// modify character classes/weapons
+			if ((cbxClassRand.Checked == true | cbxRandRecr.Checked == true) & errorflag == 0)
 			{
 				
 				// randomize class for each character
 				for (charNum = 0; charNum < totalUnitNumber; charNum++)
 				{
-					classRandomizer();
+					classChanger();
 				}
-				// change animations to new randomized classes
-				animationChanger();
+
 				// change laguz gauges for new classes
 				laguzModifications();
 				// changes that prevent bugs due to race-changing
 				generalChanges();
-				// uhh yes very important
-				if (comboClassOptions.SelectedIndex == 10)
-					veryImportantFunction();
+
+				if (cbxClassRand.Checked == true)
+				{
+					// change animations to new randomized classes
+					animationChanger();
+					// base stat modifications
+					baseStatChanges();
+					// uhh yes very important
+					if (comboClassOptions.SelectedIndex == 10)
+						veryImportantFunction();
+				}
 			}
 			else
 			{
 				// record no changes for race,class,and laguz gauge
 				for (int i = 0; i < totalUnitNumber; i++)
-					charChanges[i] += ",null,null,null,null,null,null";
+					charChanges[i] += ",-,-,-,-,-,-";
 			}
 
 			if (cbxSkillRand.Checked == true & errorflag == 0)
@@ -203,9 +306,9 @@ namespace FE10Randomizer_v0._1
 			}
 			else
 			{
-				// record no changes for race,class,and laguz gauge
+				// record no changes for skills
 				for (int i = 0; i < totalUnitNumber; i++)
-					charChanges[i] += ",null,null,null,null";
+					charChanges[i] += ",-,-,-,-";
 			}
 
 			if (((cbxGrowthRand.Checked == true & Convert.ToInt32(numericGrowth.Value) != 0) | cbxZeroGrowths.Checked == true) & errorflag == 0)
@@ -214,9 +317,24 @@ namespace FE10Randomizer_v0._1
 			}
 			else
 			{
-				// record no changes for race,class,and laguz gauge
+				// record no changes for growths
 				for (int i = 0; i < totalUnitNumber; i++)
-					charChanges[i] += ",null,null,null,null,null,null,null,null";
+					charChanges[i] += ",-,-,-,-,-,-,-,-";
+			}
+
+			if (cbxRandBases.Checked == true & errorflag == 0)
+			{
+				randBaseStats();
+			}
+
+			if (cbxAffinity.Checked == true & errorflag == 0)
+			{
+				affinityRandomizer();
+			}
+
+			if (cbxEnemyGrowth.Checked == true & errorflag == 0)
+			{
+				enemyGrowthModifier();
 			}
 
 			if (cbxRandShop.Checked == true & errorflag == 0)
@@ -227,11 +345,6 @@ namespace FE10Randomizer_v0._1
 			if (cbxStatCaps.Checked == true & errorflag == 0)
 			{
 				removeStatCaps();
-			}
-
-			if (cbxAffinity.Checked == true & errorflag == 0)
-			{
-				affinityRandomizer();
 			}
 
 			if (cbxBio.Checked == true & errorflag == 0)
@@ -252,26 +365,13 @@ namespace FE10Randomizer_v0._1
 
 			dataWriter.Close();
 
-			cbxSkillRand.Enabled = true;
-			cbxGrowthRand.Enabled = true;
-			cbxClassRand.Enabled = true;
-			cbxGaugeRand.Enabled = true;
-			cbxHerons.Enabled = true;
-			panelClass.Enabled = true;
-			cbxZeroGrowths.Enabled = true;
-			numericLaguzMax.Enabled = true;
-			numericLaguzMin.Enabled = true;
-			numericSeed.Enabled = true;
-			numericStatCap.Enabled = true;
-			cbxRandShop.Enabled = true;
-			cbxStatCaps.Enabled = true;
-			button1.Enabled = true;
+			Form1.ActiveForm.Enabled = true;
 
 		}
 
 		private void fileOrganizer()
 		{
-			if (cbxClassRand.Checked == true)
+			if (cbxClassRand.Checked == true | cbxRandRecr.Checked == true)
 			{
 				// moves edited dispos_h files to proper folders
 				string sourcePath = file + "\\assets\\chapterdata\\";
@@ -350,18 +450,22 @@ namespace FE10Randomizer_v0._1
 					sourcefile = sourcePath + "dispos_h4_7e.bin";
 					targetfile = targetPath + "bmap0407e\\dispos_h.bin";
 					System.IO.File.Copy(sourcefile, targetfile, true);
+
+					sourcefile = file + "\\assets\\scriptdata\\C0405.cmb";
+					targetfile = dataLocation + "\\Scripts\\C0405.cmb";
+					System.IO.File.Copy(sourcefile, targetfile, true);
 				}
 			}
 
 			if (cbxEventItems.Checked == true)
 			{
-				// moves edited dispos_h files to proper folders
+				// moves edited script files to proper folders
 				string sourcePath = file + "\\assets\\scriptdata\\";
 				string targetPath = dataLocation + "\\Scripts\\";
 				string sourcefile, targetfile;
 
 				// part 1
-				for (int i = 2; i < 12; i++)
+				for (int i = 2; i < 11; i++)
 				{
 					if (i < 10)
 					{
@@ -437,7 +541,7 @@ namespace FE10Randomizer_v0._1
 
 			if (cbxRandShop.Checked == true)
 			{
-				// moves edited dispos_h files to proper folders
+				// moves edited shop files to proper folders
 				string sourcePath = file + "\\assets\\shopdata\\";
 				string targetPath = dataLocation + "\\Shop\\";
 				string sourcefile, targetfile;
@@ -460,7 +564,132 @@ namespace FE10Randomizer_v0._1
 			}
 		}
 
-		private void classRandomizer() // Randomize me daddy
+		private void recruitmentOrderRando()
+		{
+			string line;
+			string[] values;
+
+			string[] recrName = new string[69];
+			int[] recrLoc = new int[69];
+			int[] recrLoc2 = new int[69];
+			int[,] recrClass = new int[69, 4];
+			int[] recrLevel = new int[69];
+			int[,] recrPID = new int[69, 4];
+			int[,] recrBases = new int[69, 8];
+
+			System.IO.StreamReader dataReader;
+			// initialize character information
+			//if (cbxClassRand.Checked == true)
+				dataReader = new System.IO.StreamReader(file + "\\assets\\RecruitmentInfo-BaseModified.csv");
+			//else
+			//	dataReader = new System.IO.StreamReader(file + "\\assets\\RecruitmentInfo-Clean.csv");
+
+			// skip header line
+			line = dataReader.ReadLine();
+			// loop through all 69
+			for (int i = 0; i < 69; i++)
+			{
+				line = dataReader.ReadLine();
+				values = line.Split(',');
+				// character name
+				recrName[i] = values[0];
+				// location of beginning of character data
+				recrLoc[i] = Convert.ToInt32(values[1]);
+				// location of end of character data
+				recrLoc2[i] = Convert.ToInt32(values[2]);
+				// classes for character
+				recrClass[i,0] = Convert.ToInt32(values[4]);
+				// tier b class for character
+				recrClass[i,1] = Convert.ToInt32(values[5]);
+				// tier c class for character
+				recrClass[i,2] = Convert.ToInt32(values[6]);
+				// tier d class for character
+				recrClass[i,3] = Convert.ToInt32(values[7]);
+				// initial level of character
+				recrLevel[i] = Convert.ToInt32(values[8]);
+				// PID pointer
+				recrPID[i,0] = Convert.ToInt32(values[9]);
+				recrPID[i,1] = Convert.ToInt32(values[10]);
+				recrPID[i,2] = Convert.ToInt32(values[11]);
+				recrPID[i,3] = Convert.ToInt32(values[12]);
+				// new bases
+				recrBases[i,0] = Convert.ToInt32(values[13]);
+				recrBases[i,1] = Convert.ToInt32(values[14]);
+				recrBases[i,2] = Convert.ToInt32(values[15]);
+				recrBases[i,3] = Convert.ToInt32(values[16]);
+				recrBases[i,4] = Convert.ToInt32(values[17]);
+				recrBases[i,5] = Convert.ToInt32(values[18]);
+				recrBases[i,6] = Convert.ToInt32(values[19]);
+				recrBases[i,7] = Convert.ToInt32(values[20]);
+			}
+
+			newRecr = Enumerable.Range(0, 69).ToArray();
+
+			// randomize recruitment order
+			for (int i = 0; i < 69; i++)
+			{
+				int j = random.Next(i, 69);
+				recrInverse[newRecr[i]] = j;
+				recrInverse[newRecr[j]] = i;
+				int temp = newRecr[i];
+				newRecr[i] = newRecr[j];
+				newRecr[j] = temp;
+			}
+
+			// go into data file and move things around
+			string dataFile = dataLocation + "\\FE10Data.cms.decompressed";
+
+			try
+			{
+				// open data file
+				using (var stream = new System.IO.FileStream(dataFile, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					for (int charNum = 0; charNum < 69; charNum++)
+					{
+						// level
+						stream.Position = recrLoc[newRecr[charNum]] - 2;		
+						stream.WriteByte(Convert.ToByte(recrLevel[charNum]));
+						// pid
+						stream.Position += 1;
+						for (int j = 0; j < 4; j++)
+						{
+							stream.WriteByte(Convert.ToByte(recrPID[charNum,j]));
+						}
+						// bases
+						stream.Position = recrLoc2[newRecr[charNum]] - 23;
+						for (int j = 0; j < 8; j++)
+						{
+							stream.WriteByte(Convert.ToByte(recrBases[charNum, j]));
+						}
+					}
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 18: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
+				errorflag = 1;
+			}
+
+			// save new character and class
+			for (int charNum = 0; charNum < 69; charNum++)
+			{
+				if (charTier[charNum] == "a")
+					newClass[charNum] = recrClass[newRecr[charNum],0];
+				else if (charTier[charNum] == "b")
+					newClass[charNum] = recrClass[newRecr[charNum], 1];
+				else if (charTier[charNum] == "c")
+					newClass[charNum] = recrClass[newRecr[charNum], 2];
+				else 
+					newClass[charNum] = recrClass[newRecr[charNum], 3];
+
+				charName[charNum] = recrName[newRecr[charNum]];
+				charPID[charNum] = recrLoc[newRecr[charNum]];
+			}
+
+		}
+
+		private void classChanger()
 		{
 			byte[] classname = new byte[20];
 			byte[] weaponone = new byte[20];
@@ -477,6 +706,370 @@ namespace FE10Randomizer_v0._1
 			int classPointerOffset, classListOffset;
 			int newLevel = charLevel[charNum];
 
+			// if only rand recruitment, use those classes
+			if (cbxClassRand.Checked == false & charNum < 69)
+				randClass = newClass[charNum];
+			// otherwise randomize
+			else
+				randClass = chooseRandClass();
+
+			// store new race & new class & add heron number &
+			// set class pointer offset in classlist.bin
+			classPointerOffset = randClass;
+			if (charTier[charNum] == "a")
+			{
+				classListOffset = 0;
+				if (randClass < 19)
+					newRace[charNum] = "B";
+				else
+					newRace[charNum] = "L";
+
+				newClass[charNum] = classPointerOffset;
+
+				if (randClass == 25)
+					heronNumber += 1;
+			}
+			else if (charTier[charNum] == "b")
+			{
+				classListOffset = 640;
+				if (randClass < 23)
+				{
+					newRace[charNum] = "B";
+					// if laguz was randomized into beorc, level decreases by 10
+					if (charRace[charNum] == "L")
+						newLevel = newLevel - 10;
+					if (newLevel < 1)
+						newLevel = 1;
+					// coerce to 18 due to game not allowing exp to units of 19? unsure why this occurs
+					if (newLevel > 18)
+						newLevel = 18;
+				}
+				else
+				{
+					newRace[charNum] = "L";
+					// if beorc was randomized into laguz, level increases by 10
+					if (charRace[charNum] == "B")
+						newLevel = newLevel + 10;
+				}
+
+				newClass[charNum] = classPointerOffset + 30;
+
+				if (randClass == 29)
+					heronNumber += 1;
+			}
+			else if (charTier[charNum] == "c")
+			{
+				classListOffset = 1376;
+				if (randClass < 27)
+				{
+					newRace[charNum] = "B";
+					// if laguz was randomized into beorc, level decreases by 20
+					if (charRace[charNum] == "L")
+						newLevel = newLevel - 20;
+					if (newLevel < 1)
+						newLevel = 1;
+				}
+				else
+				{
+					newRace[charNum] = "L";
+					// if beorc was randomized into laguz, level increases by 20
+					if (charRace[charNum] == "B")
+						newLevel = newLevel + 20;
+				}
+
+				newClass[charNum] = classPointerOffset + 66;
+			}
+			else
+			{
+				classListOffset = 2080;
+				if (randClass < 27)
+				{
+					newRace[charNum] = "B";
+					// if laguz was randomized into beorc, level decreases by 20
+					if (charRace[charNum] == "L")
+						newLevel = newLevel - 20;
+					if (newLevel < 1)
+						newLevel = 1;
+				}
+				else
+				{
+					newRace[charNum] = "L";
+				}
+
+				newClass[charNum] = classPointerOffset + 100;
+
+				if (randClass == 33)
+					heronNumber += 1;
+			}
+
+			classListOffset += classPointerOffset * 20;
+
+			try
+			{
+				// open classlist.bin
+				using (var stream = new System.IO.FileStream(file + "\\assets\\classlist.bin", System.IO.FileMode.Open,
+						System.IO.FileAccess.Read))
+				{
+					stream.Position = classListOffset;
+					for (int i = 0; i < 20; i++)
+						classname[i] = Convert.ToByte(stream.ReadByte());
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 01: Asset files not found! Abandoning Randomization...";
+				errorflag = 1;
+			}
+
+			// time to change inventory
+			int weapononeOffset = 0;
+			int weapontwoOffset = 0;
+			int weaponthreeOffset = 0;
+
+			if (charWeapNum[charNum] > 0 & // only change inventory if there's an inventory to change
+						(charName[charNum] != "nasir" | newRace[charNum] == "B")) // only change nasir's inventory if he's beorc
+			{
+				// get offset of first weapon
+				if (charTier[charNum] == "a")
+				{
+					weapononeOffset = TierOneWeaponOne(randClass);
+					// each weapon takes up 20 slots
+					weapononeOffset *= 20;
+				}
+				else if (charTier[charNum] == "b")
+				{
+					weapononeOffset = TierTwoWeaponOne(randClass);
+					// each weapon takes up 20 slots
+					weapononeOffset *= 20;
+					//tier two weapons start here
+					weapononeOffset += 528;
+				}
+				else // tier c and d
+				{
+					weapononeOffset = TierThreeWeaponOne(randClass);
+					// each weapon takes up 20 slots
+					weapononeOffset *= 20;
+					//tier three weapons start here
+					weapononeOffset += 1408;
+				}
+
+
+				if (charWeapNum[charNum] > 1) // only change inventory if there's an inventory to change
+				{
+					// get offset of first weapon
+					if (charTier[charNum] == "a")
+					{
+						weapontwoOffset = TierOneWeaponTwo(randClass);
+						// each weapon takes up 20 slots
+						weapontwoOffset *= 20;
+					}
+					else if (charTier[charNum] == "b")
+					{
+						weapontwoOffset = TierTwoWeaponTwo(randClass);
+						// each weapon takes up 20 slots
+						weapontwoOffset *= 20;
+						//tier two weapons start here
+						weapontwoOffset += 528;
+					}
+					else // tier c and d
+					{
+						weapontwoOffset = TierThreeWeaponTwo(randClass);
+						// each weapon takes up 20 slots
+						weapontwoOffset *= 20;
+						//tier three weapons start here
+						weapontwoOffset += 1408;
+					}
+
+
+					if (charWeapNum[charNum] == 3) //third weapon if necessary
+					{
+						// get offset of third weapon
+						if (charTier[charNum] == "b")
+						{
+							weaponthreeOffset = TierTwoWeaponThree(randClass);
+							// each weapon takes up 20 slots
+							weaponthreeOffset *= 20;
+							//tier two weapons start here
+							weaponthreeOffset += 528;
+						}
+						else // tier c and d
+						{
+							weaponthreeOffset = TierThreeWeaponThree(randClass);
+							// each weapon takes up 20 slots
+							weaponthreeOffset *= 20;
+							//tier three weapons start here
+							weaponthreeOffset += 1408;
+						}
+					}
+				}
+			}
+
+			try
+			{
+				// open weaponlist.bin
+				using (var stream = new System.IO.FileStream(file + "\\assets\\weaponlist.bin", System.IO.FileMode.Open,
+						System.IO.FileAccess.Read))
+				{
+					if (charWeapNum[charNum] > 0 & // only change inventory if there's an inventory to change
+						(charName[charNum] != "nasir" | newRace[charNum] == "B")) // only change nasir's inventory if he's beorc
+					{
+						stream.Position = weapononeOffset;
+						for (int i = 0; i < 20; i++)
+							weaponone[i] = Convert.ToByte(stream.ReadByte());
+					}
+
+					if (charWeapNum[charNum] > 1)
+					{
+						stream.Position = weapontwoOffset;
+						for (int i = 0; i < 20; i++)
+							weapontwo[i] = Convert.ToByte(stream.ReadByte());
+					}
+
+					if (charWeapNum[charNum] > 2)
+					{
+						stream.Position = weaponthreeOffset;
+						for (int i = 0; i < 20; i++)
+							weaponthree[i] = Convert.ToByte(stream.ReadByte());
+					}
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 01: Asset files not found! Abandoning Randomization...";
+				errorflag = 1;
+			}
+
+
+			try
+			{
+				// open chapter file
+				using (var stream = new System.IO.FileStream(chapterFile, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					// change position to location of character in chapterFile
+					stream.Position = (long)Convert.ToDouble(charLocation[charNum]);
+					// write class
+					for (int i = 0; i < 20; i++)
+						stream.WriteByte(classname[i]);
+
+					// write inventory
+					if (charWeapNum[charNum] > 0 & // only change inventory if there's an inventory to change
+						(charName[charNum] != "nasir" | newRace[charNum] == "B")) // only change nasir's inventory if he's beorc
+					{
+						// write first weapon
+						for (int i = 0; i < 20; i++)
+							stream.WriteByte(weaponone[i]);
+
+						if (charWeapNum[charNum] > 1) // only change inventory if there's an inventory to change
+						{
+							// write second weapon
+							for (int i = 0; i < 20; i++)
+								stream.WriteByte(weapontwo[i]);
+
+							if (charWeapNum[charNum] == 3) //third weapon if necessary
+							{
+								// write third weapon
+								for (int i = 0; i < 20; i++)
+									stream.WriteByte(weaponthree[i]);
+							}
+						}
+					}
+
+					// write level
+					stream.Position = (long)Convert.ToDouble(charLevLoc[charNum]);
+					stream.WriteByte(Convert.ToByte(newLevel));
+
+					// fill laguz gauge if non-royal laguz, zero out otherwise
+					stream.Position += 1;
+					if (newRace[charNum] == "L" & charTier[charNum] != "c")
+						stream.WriteByte(30);
+					else
+						stream.WriteByte(0);
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 02: Game files not found! Abandoning Randomization...";
+				errorflag = 1;
+			}
+
+
+			try
+			{
+				// change tormod, vika, maurim inventories in part 4
+				if (charName[charNum] == "tormod")
+				{
+					using (var stream = new System.IO.FileStream(dataLocation + "\\Scripts\\C0405.cmb", System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+					{
+						// change position to location of character in chapterFile
+						stream.Position = 11260;
+						// write class
+						for (int i = 0; i < 20; i++)
+							stream.WriteByte(weaponone[i]);
+
+						for (int i = 0; i < 20; i++)
+							stream.WriteByte(weapontwo[i]);
+					}
+				}
+				else if (charName[charNum] == "vika")
+				{
+					using (var stream = new System.IO.FileStream(dataLocation + "\\Scripts\\C0405.cmb", System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+					{
+						// change position to location of character in chapterFile
+						stream.Position = 11300;
+						// write class
+						for (int i = 0; i < 20; i++)
+							stream.WriteByte(weaponone[i]);
+					}
+				}
+				else if (charName[charNum] == "maurim")
+				{
+					using (var stream = new System.IO.FileStream(dataLocation + "\\Scripts\\C0405.cmb", System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+					{
+						// change position to location of character in chapterFile
+						stream.Position = 11320;
+						// write class
+						for (int i = 0; i < 20; i++)
+							stream.WriteByte(weaponone[i]);
+					}
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 16: Script files not found! Abandoning Randomization...";
+				errorflag = 1;
+			}
+
+			// change level in data file
+			try
+			{
+				// open data file
+				using (var stream = new System.IO.FileStream(dataLocation + "\\FE10Data.cms.decompressed", System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					stream.Position = charPID[charNum] - 2;
+					stream.WriteByte(Convert.ToByte(newLevel));
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 17: Data file not found! Abandoning Randomization...";
+				errorflag = 1;
+			}
+
+			// input class list
+			string[] classList = System.IO.File.ReadAllLines(file +
+				"\\assets\\classnames.txt");
+			// save new race and class for outputlog
+			charChanges[charNum] += "," + newRace[charNum] + "," + classList[newClass[charNum]];
+		}
+
+		private int chooseRandClass()
+		{
+			int randClass;
 			// generate a random class
 			if (comboClassOptions.SelectedIndex == 0) // no race-mixing
 			{
@@ -557,7 +1150,7 @@ namespace FE10Randomizer_v0._1
 					{
 						// no heron class
 						randClass = random.Next(25);
-						while (charName[charNum] == "edward" & newClass[0] == 18 & 
+						while (charName[charNum] == "edward" & newClass[0] == 18 &
 							randClass == 18) //if micaiah is priest,do not allow edward to be priest
 							randClass = random.Next(25);
 					}
@@ -659,7 +1252,7 @@ namespace FE10Randomizer_v0._1
 					while (charName[charNum] == "nephenee" & newClass[22] == 59 & randClass == 29)
 						//if brom is heron,do not allow nephenee to be heron
 						randClass = random.Next(23, 33);
-					while ((cbxHerons.Checked == false | heronNumber == 3 | charName[charNum] == "ike") & 
+					while ((cbxHerons.Checked == false | heronNumber == 3 | charName[charNum] == "ike") &
 						randClass == 29) // keep randomizing until no heron
 						randClass = random.Next(23, 33);
 				}
@@ -844,7 +1437,7 @@ namespace FE10Randomizer_v0._1
 					if (charName[charNum] == "micaiah")
 						randClass = 17;
 					else
-						randClass = random.Next(17,19);
+						randClass = random.Next(17, 19);
 				}
 				else if (charTier[charNum] == "b")
 				{
@@ -858,7 +1451,7 @@ namespace FE10Randomizer_v0._1
 				}
 				else if (charTier[charNum] == "c")
 				{
-					randClass = random.Next(21,23);
+					randClass = random.Next(21, 23);
 				}
 				else // kurth, ena, giffca, gareth, nasir
 				{
@@ -866,287 +1459,7 @@ namespace FE10Randomizer_v0._1
 				}
 			}
 
-
-			// store new race & new class & add heron number &
-			// set class pointer offset in classlist.bin
-			classPointerOffset = randClass;
-			if (charTier[charNum] == "a")
-			{
-				classListOffset = 0;
-				if (randClass < 19)
-					newRace[charNum] = "B";
-				else
-					newRace[charNum] = "L";
-
-				newClass[charNum] = classPointerOffset;
-
-				if (randClass == 25)
-					heronNumber += 1;
-			}
-			else if (charTier[charNum] == "b")
-			{
-				classListOffset = 640;
-				if (randClass < 23)
-				{
-					newRace[charNum] = "B";
-					// if laguz was randomized into beorc, level decreases by 10
-					if (charRace[charNum] == "L")
-						newLevel = newLevel - 10;
-					if (newLevel < 1)
-						newLevel = 1;
-					// coerce to 18 due to game not allowing exp to units of 19? unsure why this occurs
-					if (newLevel > 18)
-						newLevel = 18;
-				}
-				else
-				{
-					newRace[charNum] = "L";
-					// if beorc was randomized into laguz, level increases by 10
-					if (charRace[charNum] == "B")
-						newLevel = newLevel + 10;
-				}
-
-				newClass[charNum] = classPointerOffset + 30;
-
-				if (randClass == 29)
-					heronNumber += 1;
-			}
-			else if (charTier[charNum] == "c")
-			{
-				classListOffset = 1376;
-				if (randClass < 27)
-				{
-					newRace[charNum] = "B";
-					// if laguz was randomized into beorc, level decreases by 20
-					if (charRace[charNum] == "L")
-						newLevel = newLevel - 20;
-					if (newLevel < 1)
-						newLevel = 1;	
-				}
-				else
-				{
-					newRace[charNum] = "L";
-					// if beorc was randomized into laguz, level increases by 20
-					if (charRace[charNum] == "B")
-						newLevel = newLevel + 20;
-				}
-
-				newClass[charNum] = classPointerOffset + 66;
-			}
-			else
-			{
-				classListOffset = 2080;
-				if (randClass < 27)
-				{
-					newRace[charNum] = "B";
-					// if laguz was randomized into beorc, level decreases by 20
-					if (charRace[charNum] == "L")
-						newLevel = newLevel - 20;
-					if (newLevel < 1)
-						newLevel = 1;
-				}
-				else
-				{
-					newRace[charNum] = "L";
-				}
-
-				newClass[charNum] = classPointerOffset + 100;
-
-				if (randClass == 33)
-					heronNumber += 1;
-			}
-			
-			classListOffset += classPointerOffset * 20;
-
-			try
-			{
-				// open classlist.bin
-				using (var stream = new System.IO.FileStream(file + "\\assets\\classlist.bin", System.IO.FileMode.Open,
-						System.IO.FileAccess.Read))
-				{
-					stream.Position = classListOffset;
-					for (int i = 0; i < 20; i++)
-						classname[i] = Convert.ToByte(stream.ReadByte());
-				}
-			}
-			catch
-			{
-				textBox1.Text = "Error 01: Asset files not found! Abandoning Randomization...";
-				errorflag = 1;
-			}
-
-			// time to change inventory
-			int weapononeOffset = 0;
-			int weapontwoOffset = 0;
-			int weaponthreeOffset = 0;
-
-			if (charWeapNum[charNum] > 0 & // only change inventory if there's an inventory to change
-						(charName[charNum] != "nasir" | newRace[charNum] == "B")) // only change nasir's inventory if he's beorc
-			{
-				// get offset of first weapon
-				if (charTier[charNum] == "a")
-				{
-					weapononeOffset = TierOneWeaponOne(randClass);
-					// each weapon takes up 20 slots
-					weapononeOffset *= 20;
-				}
-				else if (charTier[charNum] == "b")
-				{
-					weapononeOffset = TierTwoWeaponOne(randClass);
-					// each weapon takes up 20 slots
-					weapononeOffset *= 20;
-					//tier two weapons start here
-					weapononeOffset += 528;
-				}
-				else // tier c and d
-				{
-					weapononeOffset = TierThreeWeaponOne(randClass);
-					// each weapon takes up 20 slots
-					weapononeOffset *= 20;
-					//tier three weapons start here
-					weapononeOffset += 1408;
-				}
-
-
-				if (charWeapNum[charNum] > 1) // only change inventory if there's an inventory to change
-				{
-					// get offset of first weapon
-					if (charTier[charNum] == "a")
-					{
-						weapontwoOffset = TierOneWeaponTwo(randClass);
-						// each weapon takes up 20 slots
-						weapontwoOffset *= 20;
-					}
-					else if (charTier[charNum] == "b")
-					{
-						weapontwoOffset = TierTwoWeaponTwo(randClass);
-						// each weapon takes up 20 slots
-						weapontwoOffset *= 20;
-						//tier two weapons start here
-						weapontwoOffset += 528;
-					}
-					else // tier c and d
-					{
-						weapontwoOffset = TierThreeWeaponTwo(randClass);
-						// each weapon takes up 20 slots
-						weapontwoOffset *= 20;
-						//tier three weapons start here
-						weapontwoOffset += 1408;
-					}
-
-
-					if (charWeapNum[charNum] == 3) //third weapon if necessary
-					{
-						// get offset of third weapon
-						if (charTier[charNum] == "b")
-						{
-							weaponthreeOffset = TierTwoWeaponThree(randClass);
-							// each weapon takes up 20 slots
-							weaponthreeOffset *= 20;
-							//tier two weapons start here
-							weaponthreeOffset += 528;
-						}
-						else // tier c and d
-						{
-							weaponthreeOffset = TierThreeWeaponThree(randClass);
-							// each weapon takes up 20 slots
-							weaponthreeOffset *= 20;
-							//tier three weapons start here
-							weaponthreeOffset += 1408;
-						}
-					}
-				}
-			}
-
-			try
-			{
-				// open weaponlist.bin
-				using (var stream = new System.IO.FileStream(file + "\\assets\\weaponlist.bin", System.IO.FileMode.Open,
-						System.IO.FileAccess.Read))
-				{
-					if (charWeapNum[charNum] > 0 & // only change inventory if there's an inventory to change
-						(charName[charNum] != "nasir" | newRace[charNum] == "B")) // only change nasir's inventory if he's beorc
-					{
-						stream.Position = weapononeOffset;
-						for (int i = 0; i < 20; i++)
-							weaponone[i] = Convert.ToByte(stream.ReadByte());
-					}
-
-					if (charWeapNum[charNum] > 1)
-					{
-						stream.Position = weapontwoOffset;
-						for (int i = 0; i < 20; i++)
-							weapontwo[i] = Convert.ToByte(stream.ReadByte());
-					}
-
-					if (charWeapNum[charNum] > 2)
-					{
-						stream.Position = weaponthreeOffset;
-						for (int i = 0; i < 20; i++)
-							weaponthree[i] = Convert.ToByte(stream.ReadByte());
-					}
-				}
-			}
-			catch
-			{
-				textBox1.Text = "Error 01: Asset files not found! Abandoning Randomization...";
-				errorflag = 1;
-			}
-
-
-
-			try
-			{
-				// open chapter file
-				using (var stream = new System.IO.FileStream(chapterFile, System.IO.FileMode.Open,
-						System.IO.FileAccess.ReadWrite))
-				{
-					// change position to location of character in chapterFile
-					stream.Position = (long)Convert.ToDouble(charLocation[charNum]);
-					// write class
-					for (int i = 0; i < 20; i++)
-						stream.WriteByte(classname[i]);
-
-					// write inventory
-					if (charWeapNum[charNum] > 0 & // only change inventory if there's an inventory to change
-						(charName[charNum] != "nasir" | newRace[charNum] == "B")) // only change nasir's inventory if he's beorc
-					{
-						// write first weapon
-						for (int i = 0; i < 20; i++)
-							stream.WriteByte(weaponone[i]);
-
-						if (charWeapNum[charNum] > 1) // only change inventory if there's an inventory to change
-						{
-							// write second weapon
-							for (int i = 0; i < 20; i++)
-								stream.WriteByte(weapontwo[i]);
-
-							if (charWeapNum[charNum] == 3) //third weapon if necessary
-							{
-								// write third weapon
-								for (int i = 0; i < 20; i++)
-									stream.WriteByte(weaponthree[i]);
-							}
-						}
-					}
-
-					// write level
-					stream.Position = (long)Convert.ToDouble(charLevLoc[charNum]);
-					stream.WriteByte(Convert.ToByte(newLevel));
-
-					// fill laguz gauge if non-royal laguz, zero out otherwise
-					stream.Position += 1;
-					if (newRace[charNum] == "L" & charTier[charNum] != "c")
-						stream.WriteByte(30);
-					else
-						stream.WriteByte(0);
-				}
-			}
-			catch
-			{
-				textBox1.Text = "Error 02: Game files not found! Abandoning Randomization...";
-				errorflag = 1;
-			}
+			return randClass;
 		}
 
 		private int TierOneWeaponOne(int randClass)
@@ -1892,10 +2205,6 @@ namespace FE10Randomizer_v0._1
 		{
 			// changes animations of randomized units
 
-			// input class list
-			string[] classList = System.IO.File.ReadAllLines(file +
-				"\\assets\\classnames.txt");
-
 			// input animation pointers
 			string[] pointerList = System.IO.File.ReadAllLines(file +
 				"\\assets\\animationPointers.txt");
@@ -1910,8 +2219,7 @@ namespace FE10Randomizer_v0._1
 				{
 					for (int charNum = 0; charNum < totalUnitNumber; charNum++)
 					{
-						// save new race and class for outputlog
-						charChanges[charNum] += "," + newRace[charNum] + "," + classList[newClass[charNum]];
+						
 
 						// line offset from the myrmidon in animationPointers.txt
 						int animationOffset = 0;
@@ -2186,7 +2494,10 @@ namespace FE10Randomizer_v0._1
 
 
 						// change position to location of character animation in dataFile
-						stream.Position = (long)Convert.ToDouble(charAnimation[charNum]);
+						if (cbxRandRecr.Checked == true & charNum < 69) // go to new randomized character location instead
+							stream.Position = (long)Convert.ToDouble(charAnimation[newRecr[charNum]]);
+						else
+							stream.Position = (long)Convert.ToDouble(charAnimation[charNum]);
 						string outByte;
 
 						// write the 12 bytes for animations
@@ -2221,10 +2532,12 @@ namespace FE10Randomizer_v0._1
 					// loop through characters
 					for (int charNum = 0; charNum < totalUnitNumber; charNum++)
 					{
-						// change position to location of character laguz gauge in dataFile
-						stream.Position = (long)Convert.ToDouble(charGauge[charNum]);
+						if (cbxRandRecr.Checked == true & charNum < 69) // go to new randomized character location instead
+							stream.Position = (long)Convert.ToDouble(charGauge[newRecr[charNum]]);
+						else
+							stream.Position = (long)Convert.ToDouble(charGauge[charNum]);
 
-						if (newRace[charNum] == "L")
+						if (newRace[charNum] == "L" & charTier[charNum] != "c")
 						{
 							int outByte1, outByte2, outByte3, outByte4;
 
@@ -2354,13 +2667,173 @@ namespace FE10Randomizer_v0._1
 
 						}
 						else
-							charChanges[charNum] += ",null,null,null,null";
+							charChanges[charNum] += ",-,-,-,-";
 					}
 				}
 			}
 			catch
 			{
 				textBox1.Text = "Error 04: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
+				errorflag = 1;
+			}
+		}
+
+		private void baseStatChanges()
+		{
+			int[,] inputMatrix = new int[82, 9];
+
+			string line;
+			string[] values;
+
+			string dataFile = dataLocation + "\\FE10Data.cms.decompressed";
+			System.IO.StreamReader dataReader = new System.IO.StreamReader(file + "\\assets\\NewBases.csv");
+
+			// skip header line
+			line = dataReader.ReadLine();
+
+			for (int i = 0; i < 82; i++)
+			{
+				line = dataReader.ReadLine();
+				values = line.Split(',');
+				inputMatrix[i, 0] = Convert.ToInt32(values[1]);
+				inputMatrix[i, 1] = Convert.ToInt32(values[2]);
+				inputMatrix[i, 2] = Convert.ToInt32(values[3]);
+				inputMatrix[i, 3] = Convert.ToInt32(values[4]);
+				inputMatrix[i, 4] = Convert.ToInt32(values[5]);
+				inputMatrix[i, 5] = Convert.ToInt32(values[6]);
+				inputMatrix[i, 6] = Convert.ToInt32(values[7]);
+				inputMatrix[i, 7] = Convert.ToInt32(values[8]);
+				inputMatrix[i, 8] = Convert.ToInt32(values[9]);
+			}
+
+			// randomized recruitment already changes personal bases, so only need to change class bases
+			int number;
+			if (cbxRandRecr.Checked == true)
+				number = 46;
+			else
+				number = 82;
+
+				try
+				{
+					using (var stream = new System.IO.FileStream(dataFile, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+					{
+						for (int i = 0; i < number; i++)
+						{
+							stream.Position = inputMatrix[i, 0];
+							for (int j = 1; j < 9; j++)
+							{
+								stream.WriteByte(Convert.ToByte(inputMatrix[i, j]));
+							}
+						}
+					}
+				}
+				catch
+				{
+					textBox1.Text = "Error 15: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
+					errorflag = 1;
+				}
+
+		}
+
+		private void enemyGrowthModifier()
+		{
+			int[] enemyGrowthLoc = new int[263];
+
+			string line;
+			string[] values;
+
+			string dataFile = dataLocation + "\\FE10Data.cms.decompressed";
+			System.IO.StreamReader dataReader = new System.IO.StreamReader(file + "\\assets\\EnemyGrowthData.csv");
+
+			// skip header line
+			line = dataReader.ReadLine();
+
+			for (int i = 0; i < enemyGrowthLoc.Length; i++)
+			{
+				line = dataReader.ReadLine();
+				values = line.Split(',');
+				enemyGrowthLoc[i] = Convert.ToInt32(values[1]);
+			}
+
+			dataReader.Close();
+
+			try
+			{
+				// open data file
+				using (var stream = new System.IO.FileStream(dataFile, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					int enemyGrowth;
+					int randGrowth;
+
+					for (int i = 0; i < enemyGrowthLoc.Length; i++)
+					{
+						// go to first growth
+						stream.Position = enemyGrowthLoc[i];
+						for (int k = 0; k < 8; k++)
+						{
+							// read growth rate
+							enemyGrowth = stream.ReadByte();
+
+							randGrowth = enemyGrowth + random.Next(Convert.ToInt32(numericEnemyGrowth.Value) + 1);
+
+							// write new base to game
+							stream.Position = stream.Position - 1;
+							stream.WriteByte(Convert.ToByte(randGrowth));
+						}
+					}
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 20: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
+				errorflag = 1;
+			}
+		}
+
+		private void randBaseStats()
+		{
+			string dataFile = dataLocation + "\\FE10Data.cms.decompressed";
+
+			try
+			{
+				// open data file
+				using (var stream = new System.IO.FileStream(dataFile, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					int basestat;
+					int randstat;
+					for (int charNum = 0; charNum < totalUnitNumber; charNum++)
+					{
+						// go to first stat
+						stream.Position = charBases[charNum];
+						for (int k = 0; k < 8; k++)
+						{
+							// read growth rate
+							basestat = stream.ReadByte();
+							// change from signed to decimal
+							if (basestat > 127)
+								basestat -= 256;
+							int minbase = basestat - Convert.ToInt32(numericBaseRand.Value);
+							int maxbase = basestat + Convert.ToInt32(numericBaseRand.Value);
+
+							randstat = random.Next(minbase, maxbase + 1);
+
+							// change from decimal to signed
+							if (randstat < 0)
+								randstat += 256;
+
+							// write new base to game
+							stream.Position = stream.Position - 1;
+							stream.WriteByte(Convert.ToByte(randstat));
+						}
+					}
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 19: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
 				errorflag = 1;
 			}
 		}
@@ -2478,7 +2951,10 @@ namespace FE10Randomizer_v0._1
 							stream.Position = stream.Position - 1;
 							stream.WriteByte(Convert.ToByte(randgrowth));
 							// write to output log
-							charChanges[charNum] += "," + randgrowth.ToString();
+							if (cbxRandRecr.Checked == true & charNum < 69)
+								charChanges[recrInverse[charNum]] += "," + randgrowth.ToString();
+							else
+								charChanges[charNum] += "," + randgrowth.ToString();
 						}
 					}
 				}
@@ -2539,11 +3015,20 @@ namespace FE10Randomizer_v0._1
 							stream.WriteByte(Convert.ToByte(secondByte[randSkill]));
 							stream.WriteByte(Convert.ToByte(thirdByte[randSkill]));
 							// write to output log
-							charChanges[charNum] += "," + skillName[randSkill];
+							if (cbxRandRecr.Checked == true & charNum < 69)
+								charChanges[recrInverse[charNum]] += "," + skillName[randSkill];
+							else
+								charChanges[charNum] += "," + skillName[randSkill];
+
 						}
 						// write blanks for rest of skills to output log
 						for (int i = charSkillNum[charNum]; i < 4; i++)
-							charChanges[charNum] += ",-";
+						{
+							if (cbxRandRecr.Checked == true & charNum < 69)
+								charChanges[recrInverse[charNum]] += ",-";
+							else
+								charChanges[charNum] += ",-";
+						}
 					}
 				}
 			}
@@ -2558,13 +3043,13 @@ namespace FE10Randomizer_v0._1
 		{
 			string line;
 			string[] values;
-			int[] highBytes = new int[193];
-			int[] lowBytes = new int[193];
+			int[] highBytes = new int[192];
+			int[] lowBytes = new int[192];
 
 			System.IO.StreamReader dataReader = new System.IO.StreamReader(file + "\\assets\\ShopStuff.csv");
 
-			// loop through 193 items in shop file
-			for (int i = 0; i < 193; i++)
+			// loop through 192 items in shop file
+			for (int i = 0; i < 192; i++)
 			{
 				line = dataReader.ReadLine();
 				values = line.Split(',');
@@ -2582,7 +3067,7 @@ namespace FE10Randomizer_v0._1
 					stream.Position = 230;
 					while (stream.Position < 12260) // 12260 is the end of the shop pointers
 					{
-						itemSelection = random.Next(193);
+						itemSelection = random.Next(192);
 						stream.WriteByte(Convert.ToByte(highBytes[itemSelection]));
 						stream.WriteByte(Convert.ToByte(lowBytes[itemSelection]));
 						stream.Position = stream.Position + 6;
@@ -2599,7 +3084,7 @@ namespace FE10Randomizer_v0._1
 					stream.Position = 230;
 					while (stream.Position < 12260) // 12260 is the end of the shop pointers
 					{
-						itemSelection = random.Next(193);
+						itemSelection = random.Next(192);
 						stream.WriteByte(Convert.ToByte(highBytes[itemSelection]));
 						stream.WriteByte(Convert.ToByte(lowBytes[itemSelection]));
 						stream.Position = stream.Position + 6;
@@ -2639,7 +3124,7 @@ namespace FE10Randomizer_v0._1
 						int affinitychoice = random.Next(8);
 						string outByte;
 
-						// write the 4 bytes for animations
+						// write the 4 bytes for affinity
 						for (int k = 0; k < 4; k++)
 						{
 							outByte = pointerList[affinitychoice].Remove(0, (k * 4));
@@ -2687,7 +3172,9 @@ namespace FE10Randomizer_v0._1
 		{
 			string line;
 			string[] values;
-			int statCap = Convert.ToInt32(numericStatCap.Value);
+			int statCap1 = Convert.ToInt32(numericStatCap1.Value);
+			int statCap2 = Convert.ToInt32(numericStatCap2.Value);
+			int statCap3 = Convert.ToInt32(numericStatCap3.Value);
 			int[] capLocation = new int[157];
 
 			System.IO.StreamReader dataReader = new System.IO.StreamReader(file + "\\assets\\StatCaps.csv");
@@ -2718,7 +3205,12 @@ namespace FE10Randomizer_v0._1
 						// max cap for all other 7 stats per class
 						for (int j = 0; j < 7; j++)
 						{
-							stream.WriteByte(Convert.ToByte(statCap));
+							if(i < 25)
+								stream.WriteByte(Convert.ToByte(statCap1));
+							else if (i < 80)
+								stream.WriteByte(Convert.ToByte(statCap2));
+							else
+								stream.WriteByte(Convert.ToByte(statCap3));
 						}
 					}
 				}
@@ -2732,19 +3224,19 @@ namespace FE10Randomizer_v0._1
 
 		private void eventItemRandomizer()
 		{
-			string[] itemChapter = new string[147];
-			int[] itemLocation = new int[147];
-			string[] itemName = new string[147];
+			string[] itemChapter = new string[91];
+			int[] itemLocation = new int[91];
+			string[] itemName = new string[91];
 
 			string line;
 			string[] values;
 			// initialize character information
 			System.IO.StreamReader dataReader = new System.IO.StreamReader(file + "\\assets\\EventItemInfo.csv");
 
-			// skip header line
+			// skip header line/
 			line = dataReader.ReadLine();
-			// loop through all 147 items from base convos, villages, and chests
-			for (int i = 0; i < 147; i++)
+			// loop through all 91 items from base convos, villages, and chests
+			for (int i = 0; i < 91; i++)
 			{
 				line = dataReader.ReadLine();
 				values = line.Split(',');
@@ -2756,7 +3248,7 @@ namespace FE10Randomizer_v0._1
 				itemName[i] = values[2];
 			}
 
-			for (int itemNum = 0; itemNum < 147; itemNum++)
+			for (int itemNum = 0; itemNum < 91; itemNum++)
 			{
 				byte[] itembytes = new byte[20];
 
@@ -2826,8 +3318,28 @@ namespace FE10Randomizer_v0._1
 				errorflag = 1;
 			}
 
+			// volug 1_6
+			if (errorflag == 0)
+			{
+				try
+				{
+					using (var stream = new System.IO.FileStream(dataLocation + "\\Scripts\\C0106.cmb", System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+					{
+						stream.Position = 1900;
+						for (int k = 0; k < 20; k++)
+							stream.WriteByte(0x00);
+					}
+				}
+				catch
+				{
+					textBox1.Text = "Files not found! Abandoning randomization...";
+					errorflag = 1;
+				}
+			}
+
 			// if muariam or vika is beorc, modify chapter 1_8 and 4_5 so they do not shift (same bug as Nailah above)
-			if ((newRace[15] == "B" | newRace[16] == "B") & errorflag == 0)
+			if (errorflag == 0)
 			{
 				try
 				{
@@ -2855,7 +3367,7 @@ namespace FE10Randomizer_v0._1
 			}
 
 			// if nealuchi is beorc, do the same as above
-			if (newRace[20] == "B" & errorflag == 0)
+			if (errorflag == 0)
 			{
 				try
 				{
@@ -2879,7 +3391,7 @@ namespace FE10Randomizer_v0._1
 			}
 
 			// 3-6: volug does not gain halfshift if he is beorc
-			if(newRace[9] == "B" & errorflag == 0)
+			if(errorflag == 0)
 			{
 				try
 				{
@@ -2899,7 +3411,7 @@ namespace FE10Randomizer_v0._1
 			}
 
 			// 4_7c: kurth does not gain formshift if he is beorc
-			if (newRace[9] == "B" & errorflag == 0)
+			if (errorflag == 0)
 			{
 				try
 				{
@@ -2919,7 +3431,7 @@ namespace FE10Randomizer_v0._1
 			}
 
 			// modify chapter 3_14 so that Nailah does not shift
-			if (newRace[17] == "B" & errorflag == 0)
+			if (errorflag == 0)
 			{
 				try
 				{
