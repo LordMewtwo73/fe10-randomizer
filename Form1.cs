@@ -37,11 +37,13 @@ namespace FE10Randomizer_v0._1
 		// keeps track of current character
 		int charNum;
 
+		int weightflag = 0;
+
 		// keeps track of changes made to characters
 		string[] charChanges = new string[72];
 
 		// arrays that hold character data; explained in more detail around line 65
-		string[] charName = new string[72]; // nice
+		string[] charName = new string[72];
 		string[] charChapter = new string[72];
 		string[] charTier = new string[72];
 		int[] charLevel = new int[72];
@@ -57,6 +59,7 @@ namespace FE10Randomizer_v0._1
 		int[] charLevLoc = new int[72];
 		int[] charPID = new int[72];
 		int[] charBio = new int[72];
+		int[] charFID = new int[72];
 
 		// arrays that hold new character data
 		string[] newRace = new string[72];
@@ -110,11 +113,33 @@ namespace FE10Randomizer_v0._1
 				charPID[i] = Convert.ToInt32(values[14]);
 				// location of characters biorhythm
 				charBio[i] = Convert.ToInt32(values[15]);
+				// location of FID in facedata.bin
+				charFID[i] = Convert.ToInt32(values[16]);
 			}
 			InitializeComponent();
 
 			//toolTip1.SetToolTip(cbxGrowthRand, "test1");
 			//toolTip1.SetToolTip(cbxClassRand, "test2");
+			toolTip1.SetToolTip(cbxHerons, "not recommended due to code restrictions. Randomized herons can only sing for one unit at a time");
+			toolTip1.SetToolTip(cbxRandBases, "randomizes each stat individually based off of deviation");
+			toolTip1.SetToolTip(cbxHPLCKShuffle, "HP&LCK are usually much higher than other stats, so adding them to the total may cause units to be overpowered");
+			toolTip1.SetToolTip(cbxShuffleBases, "adds up total bases (except HP&LCK) and redistributes randomly to each stat");
+			toolTip1.SetToolTip(cbxStaveUse, "keeps Sleep, Silence, Hammerne, Ashera Staff, etc at normal uses (usually 3)");
+			toolTip1.SetToolTip(numericBaseRand, "WARNING: high base variations may result in an unwinnable game");
+			toolTip1.SetToolTip(cbxEnemyGrowth, "does not affect bosses");
+			toolTip1.SetToolTip(numericEnemyGrowth, "WARNING: high enemy growths may result in an unwinnable game");
+			toolTip1.SetToolTip(cbxGaugeRand, "WARNING: may render some laguz unusable");
+			toolTip1.SetToolTip(cbxLaguzWeap, "WARNING: may render some laguz unusable (even royals!)");
+			toolTip1.SetToolTip(cbxPRFs, "affects Ragnell, Amiti, Florete, and Cymbeline");
+			toolTip1.SetToolTip(cbxEventItems, "base convos, chests, villages, and hidden items (except for some coins)");
+			toolTip1.SetToolTip(lblArmored, "sword/lance/axe general");
+			toolTip1.SetToolTip(lblBeasts, "lion, tiger, cat, wolf");
+			toolTip1.SetToolTip(lblBirds, "hawk, raven, heron (if heron checkbox is checked)");
+			toolTip1.SetToolTip(lblCavalry, "sword/lance/axe/bow knight, cleric");
+			toolTip1.SetToolTip(lblDragons, "red, white, and black dragons");
+			toolTip1.SetToolTip(lblFlying, "pegasus, wyvern, queen");
+			toolTip1.SetToolTip(lblInfantry, "myrmidon, soldier, fighter, archer, thief, hero, assassin");
+			toolTip1.SetToolTip(lblMages, "wind/fire/thunder/light mage, priest, dark sage, druid, empress, chancellor");
 
 			comboClassOptions.SelectedIndex = 0;
 			numericSeed.Value = seedGenerator.Next();
@@ -145,6 +170,9 @@ namespace FE10Randomizer_v0._1
 
 			// initialize output log
 			string logheader = "seed:," + numericSeed.Value.ToString();
+			string logheader2 = "";
+			string logheader3 = "";
+			string logheader4 = "";
 			if (cbxClassRand.Checked == true)
 			{
 				switch (comboClassOptions.SelectedIndex)
@@ -193,50 +221,80 @@ namespace FE10Randomizer_v0._1
 
 			if (cbxGrowthRand.Checked == true)
 			{
-				logheader += ",growthRand Dev=" + numericGrowth.Value.ToString();
-				logheader += ",hpMin=" + numericHP.Value.ToString();
-				logheader += ",atkMin=" + numericATK.Value.ToString();
-				logheader += ",magMin=" + numericMAG.Value.ToString();
-				logheader += ",sklMin=" + numericSKL.Value.ToString();
-				logheader += ",spdMin=" + numericSPD.Value.ToString();
-				logheader += ",lckMin=" + numericLCK.Value.ToString();
-				logheader += ",defMin=" + numericDEF.Value.ToString();
-				logheader += ",resMin=" + numericRES.Value.ToString();
+				logheader2 += ",growthRand Dev=" + numericGrowth.Value.ToString();
+				logheader2 += ",hpMin=" + numericHP.Value.ToString();
+				logheader2 += ",atkMin=" + numericATK.Value.ToString();
+				logheader2 += ",magMin=" + numericMAG.Value.ToString();
+				logheader2 += ",sklMin=" + numericSKL.Value.ToString();
+				logheader2 += ",spdMin=" + numericSPD.Value.ToString();
+				logheader2 += ",lckMin=" + numericLCK.Value.ToString();
+				logheader2 += ",defMin=" + numericDEF.Value.ToString();
+				logheader2 += ",resMin=" + numericRES.Value.ToString();
+			}
+
+			if (cbxRandWeap.Checked == true)
+			{
+				logheader3 += ",randweap";
+				logheader3 += ",MT min=" + numericMTmin.Value.ToString() + ",dev=" + numericMTdev.Value.ToString() + ",max=" + numericMTmax.Value.ToString();
+				logheader3 += ",ACC min=" + numericACCmin.Value.ToString() + ",dev=" + numericACCdev.Value.ToString() + ",max=" + numericACCmax.Value.ToString();
+				logheader3 += ",CRT min=" + numericCRTmin.Value.ToString() + ",dev=" + numericCRTdev.Value.ToString() + ",max=" + numericCRTmax.Value.ToString();
+				logheader3 += ",WT min=" + numericWTmin.Value.ToString() + ",dev=" + numericWTdev.Value.ToString() + ",max=" + numericWTmax.Value.ToString();
+				logheader3 += ",USE min=" + numericUSEmin.Value.ToString() + ",dev=" + numericUSEdev.Value.ToString() + ",max=" + numericUSEmax.Value.ToString();
+				if (cbxLaguzWeap.Checked == true)
+					logheader3 += ",randLaguzWeap";
+				if (cbxStaveUse.Checked == true)
+					logheader3 += ",keepStaveUse";
 			}
 
 			if (cbxRandBases.Checked == true)
-				logheader += ",randBaseStats-MaxDev=" + numericBaseRand.Value.ToString();
+				logheader4 += ",randBaseStats-MaxDev=" + numericBaseRand.Value.ToString();
+			if (cbxShuffleBases.Checked == true)
+			{
+				logheader4 += ",shuffleBaseStats-Addition=" + numericBaseShuffle.Value.ToString();
+				if (cbxHPLCKShuffle.Checked == true)
+					logheader4 += ",HP/LCKshuffle";
+			}
 			if (cbxEnemyGrowth.Checked == true)
-				logheader += ",enemyGrowth-MaxIncrease=" + numericEnemyGrowth.Value.ToString();
+				logheader4 += ",enemyGrowth-MaxIncrease=" + numericEnemyGrowth.Value.ToString();
 			if (cbxRandShop.Checked == true)
-				logheader += ",randShop";
+				logheader4 += ",randShop";
 			if (cbxAffinity.Checked == true)
-				logheader += ",randAffinity";
+				logheader4 += ",randAffinity";
 			if (cbxBio.Checked == true)
-				logheader += ",randBio";
+				logheader4 += ",randBio";
 			if (cbxSkillRand.Checked == true)
-				logheader += ",randSkill";
+				logheader4 += ",randSkill";
 			if (cbxEventItems.Checked == true)
-				logheader += ",randEventItems";
+				logheader4 += ",randEventItems";
 			if (cbxRandRecr.Checked == true)
-				logheader += ",randRecruitment";
+				logheader4 += ",randRecruitment";
 			if (cbxZeroGrowths.Checked == true)
-				logheader += ",zeroGrowth";
+				logheader4 += ",zeroGrowth";
+			if (cbxFlorete.Checked == true)
+				logheader4 += ",magicFlorete";
+			if (cbxPRFs.Checked == true)
+				logheader4 += ",removedPRFs";
 			if (cbxStatCaps.Checked == true)
 			{
-				logheader += ",statCaps:";
-				logheader += " T1=" + numericStatCap1.Value.ToString();
-				logheader += " T2=" + numericStatCap2.Value.ToString();
-				logheader += " T3=" + numericStatCap3.Value.ToString();
+				logheader4 += ",statCaps:";
+				logheader4 += " T1=" + numericStatCap1.Value.ToString();
+				logheader4 += " T2=" + numericStatCap2.Value.ToString();
+				logheader4 += " T3=" + numericStatCap3.Value.ToString();
 			}
 
 			try
 			{
 				dataWriter = new System.IO.StreamWriter(file + "\\outputlog.csv");
 				dataWriter.WriteLine(logheader);
+				if (logheader2 != "")
+					dataWriter.WriteLine(logheader2);
+				if (logheader3 != "")
+					dataWriter.WriteLine(logheader3);
+				if (logheader4 != "")
+					dataWriter.WriteLine(logheader4);
 
 				dataWriter.WriteLine("Name,NewName,Race,Class,LGaugeTurn,LGaugeBattle,LGaugeTurn,LGaugeBattle," +
-					"Skills1,Skills2,Skills3,Skills4,Growths:HP,STR,MAG,SKL,SPD,LCK,DEF,RES");
+					"Skills1,Skills2,Skills3,Skills4,Growths:HP,STR,MAG,SKL,SPD,LCK,DEF,RES,Bases:HP,STR,MAG,SKL,SPD,LCK,DEF,RES");
 			}
 			catch
 			{
@@ -244,12 +302,49 @@ namespace FE10Randomizer_v0._1
 				errorflag = 1;
 			}
 
+
+			// check to make sure at least one class weight overall is greater than 0
+			if (cbxClassRand.Checked == true & (
+				(radioBeast0.Checked == true & radioBird0.Checked == true & radioDragon0.Checked == true) &
+				(radioArmor0.Checked == true & radioCav0.Checked == true & radioFly0.Checked == true & radioInfantry0.Checked == true & radioMages0.Checked == true)))
+			{
+				textBox1.Text = "At least one class type must have a non-zero weight! Abandoning Randomization...";
+				errorflag = 1;
+			}
+			// check to make sure at least one not-dragon class weight overall is greater than 0
+			if (cbxClassRand.Checked == true & (
+				(radioBeast0.Checked == true & radioBird0.Checked == true & radioDragon0.Checked == false) &
+				(radioArmor0.Checked == true & radioCav0.Checked == true & radioFly0.Checked == true & radioInfantry0.Checked == true & radioMages0.Checked == true)))
+			{
+				textBox1.Text = "Early game beorc cannot turn into dragons. Please select at least one other class type to have a non-zero weight.";
+				errorflag = 1;
+			}
+			// check to make sure at least one class weight is greater than 0 for both races
+			if (cbxClassRand.Checked == true & comboClassOptions.SelectedIndex == 0 & (
+				(radioBeast0.Checked == true & radioBird0.Checked == true & radioDragon0.Checked == true) |
+				(radioArmor0.Checked == true & radioCav0.Checked == true & radioFly0.Checked == true & radioInfantry0.Checked == true & radioMages0.Checked == true)))
+			{
+				textBox1.Text = "'Basic' class randomization is impossible without both laguz and beorc classes! Abandoning Randomization...";
+				errorflag = 1;
+			}
+
+			if (cbxRandRecr.Checked == true & cbxClassRand.Checked == true & comboClassOptions.SelectedIndex == 0 & 
+				(radioBeast0.Checked == true & radioBird0.Checked == true))
+			{
+				textBox1.Text = "Early game units cannot turn into dragons. Please select at least one other laguz class type to have a non-zero weight.";
+				errorflag = 1;
+			}
+
+
 			// record names of characters
 			for (int i = 0; i < totalUnitNumber; i++)
 				charChanges[i] = charName[i];
 
 			// move some edited files
-			fileOrganizer();
+			if (errorflag == 0)
+			{
+				fileOrganizer();
+			}
 
 			// select order of random recruitment
 			if (cbxRandRecr.Checked == true & errorflag == 0)
@@ -281,13 +376,13 @@ namespace FE10Randomizer_v0._1
 				laguzModifications();
 				// changes that prevent bugs due to race-changing
 				generalChanges();
+				// base stat modifications
+				baseStatChanges();
 
 				if (cbxClassRand.Checked == true)
 				{
 					// change animations to new randomized classes
 					animationChanger();
-					// base stat modifications
-					baseStatChanges();
 					// uhh yes very important
 					if (comboClassOptions.SelectedIndex == 10)
 						veryImportantFunction();
@@ -326,6 +421,16 @@ namespace FE10Randomizer_v0._1
 			{
 				randBaseStats();
 			}
+			else if (cbxShuffleBases.Checked == true & errorflag == 0)
+			{
+				shuffleBaseStats();
+			}
+			else
+			{
+				// record no changes for bases
+				for (int i = 0; i < totalUnitNumber; i++)
+					charChanges[i] += ",-,-,-,-,-,-,-,-";
+			}
 
 			if (cbxAffinity.Checked == true & errorflag == 0)
 			{
@@ -357,6 +462,21 @@ namespace FE10Randomizer_v0._1
 				eventItemRandomizer();
 			}
 
+			if (cbxRandWeap.Checked == true & errorflag == 0)
+			{
+				weaponRandomizer();
+			}
+
+			if (cbxFlorete.Checked == true & errorflag == 0)
+			{
+				floreteChange();
+			}
+
+			if (cbxPRFs.Checked == true & errorflag == 0)
+			{
+				removePRFs();
+			}
+
 			if (errorflag == 0)
 			{
 				outputLog();
@@ -371,12 +491,12 @@ namespace FE10Randomizer_v0._1
 
 		private void fileOrganizer()
 		{
+			string sourcePath, targetPath, sourcefile, targetfile;
 			if (cbxClassRand.Checked == true | cbxRandRecr.Checked == true)
 			{
 				// moves edited dispos_h files to proper folders
-				string sourcePath = file + "\\assets\\chapterdata\\";
-				string targetPath = dataLocation + "\\zmap\\";
-				string sourcefile, targetfile;
+				 sourcePath = file + "\\assets\\chapterdata\\";
+				 targetPath = dataLocation + "\\zmap\\";
 
 				// part 1
 				for (int i = 1; i < 10; i++)
@@ -460,9 +580,8 @@ namespace FE10Randomizer_v0._1
 			if (cbxEventItems.Checked == true)
 			{
 				// moves edited script files to proper folders
-				string sourcePath = file + "\\assets\\scriptdata\\";
-				string targetPath = dataLocation + "\\Scripts\\";
-				string sourcefile, targetfile;
+				 sourcePath = file + "\\assets\\scriptdata\\";
+				 targetPath = dataLocation + "\\Scripts\\";
 
 				// part 1
 				for (int i = 2; i < 11; i++)
@@ -539,28 +658,24 @@ namespace FE10Randomizer_v0._1
 				}
 			}
 
-			if (cbxRandShop.Checked == true)
+			// moves edited shop files to proper folders
+			 sourcePath = file + "\\assets\\shopdata\\";
+			 targetPath = dataLocation + "\\Shop\\";
+
+			try
 			{
-				// moves edited shop files to proper folders
-				string sourcePath = file + "\\assets\\shopdata\\";
-				string targetPath = dataLocation + "\\Shop\\";
-				string sourcefile, targetfile;
+				sourcefile = sourcePath + "shopitem_h.bin";
+				targetfile = targetPath + "shopitem_h.bin";
+				System.IO.File.Copy(sourcefile, targetfile, true);
 
-				try
-				{
-					sourcefile = sourcePath + "shopitem_h.bin";
-					targetfile = targetPath + "shopitem_h.bin";
-					System.IO.File.Copy(sourcefile, targetfile, true);
-
-					sourcefile = sourcePath + "shopitem_m.bin";
-					targetfile = targetPath + "shopitem_m.bin";
-					System.IO.File.Copy(sourcefile, targetfile, true);
-				}
-				catch 
-				{
-					textBox1.Text = "Error 01: Game files not found! Abandoning Randomization...";
-					errorflag = 1;
-				}
+				sourcefile = sourcePath + "shopitem_m.bin";
+				targetfile = targetPath + "shopitem_m.bin";
+				System.IO.File.Copy(sourcefile, targetfile, true);
+			}
+			catch
+			{
+				textBox1.Text = "Error 01: Game files not found! Abandoning Randomization...";
+				errorflag = 1;
 			}
 		}
 
@@ -576,6 +691,7 @@ namespace FE10Randomizer_v0._1
 			int[] recrLevel = new int[69];
 			int[,] recrPID = new int[69, 4];
 			int[,] recrBases = new int[69, 8];
+			string[] recrRace = new string[69];
 
 			System.IO.StreamReader dataReader;
 			// initialize character information
@@ -620,7 +736,7 @@ namespace FE10Randomizer_v0._1
 				recrBases[i,4] = Convert.ToInt32(values[17]);
 				recrBases[i,5] = Convert.ToInt32(values[18]);
 				recrBases[i,6] = Convert.ToInt32(values[19]);
-				recrBases[i,7] = Convert.ToInt32(values[20]);
+				recrBases[i, 7] = Convert.ToInt32(values[20]);
 			}
 
 			newRecr = Enumerable.Range(0, 69).ToArray();
@@ -634,6 +750,125 @@ namespace FE10Randomizer_v0._1
 				int temp = newRecr[i];
 				newRecr[i] = newRecr[j];
 				newRecr[j] = temp;
+			}
+
+			int getout = 0;
+			// this is gonna be a long loop kids, hang on
+			while (getout == 0)
+			{
+				if (cbxClassRand.Checked == false & // if classes are randomized, this doesn't matter
+				(newRecr[0] == 4 | newRecr[0] == 43 | newRecr[0] == 58) & // micaiah is a priest
+				(newRecr[0] == 4 | newRecr[0] == 43 | newRecr[0] == 58)) // edward can't also be a priest
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[0]] = j;
+					recrInverse[newRecr[j]] = 0;
+					int temp = newRecr[0];
+					newRecr[0] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				else if (newRecr[14] == 59 | newRecr[14] == 60) // bastian and volke are fucky and can't replace tormod
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[14]] = j;
+					recrInverse[newRecr[j]] = 14;
+					int temp = newRecr[14];
+					newRecr[14] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				else if (newRecr[18] == 59 | newRecr[18] == 60) // can't replace elincia either
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[18]] = j;
+					recrInverse[newRecr[j]] = 18;
+					int temp = newRecr[18];
+					newRecr[18] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				else if (newRecr[23] == 59 | newRecr[23] == 60) // or nephenee
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[23]] = j;
+					recrInverse[newRecr[j]] = 23;
+					int temp = newRecr[23];
+					newRecr[23] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				else if (newRecr[25] == 59 | newRecr[25] == 60) // or lucia
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[25]] = j;
+					recrInverse[newRecr[j]] = 18;
+					int temp = newRecr[25];
+					newRecr[25] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				else if (newRecr[28] == 59 | newRecr[28] == 60) // orrrrr geoffrey
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[28]] = j;
+					recrInverse[newRecr[j]] = 28;
+					int temp = newRecr[28];
+					newRecr[28] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				else if (newRecr[55] == 59 | newRecr[55] == 60) // tibarn, too
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[55]] = j;
+					recrInverse[newRecr[j]] = 55;
+					int temp = newRecr[55];
+					newRecr[55] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				else if (newRecr[0] == 59 | newRecr[0] == 60) // prob not micaiah either, just in case
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[0]] = j;
+					recrInverse[newRecr[j]] = 0;
+					int temp = newRecr[0];
+					newRecr[0] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				else if (newRecr[34] == 59 | newRecr[34] == 60) // fuck, might as well prevent ike too
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[34]] = j;
+					recrInverse[newRecr[j]] = 34;
+					int temp = newRecr[34];
+					newRecr[34] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				// ike can't be a rogue, magic, or mounted... there's definitely a better way to do this but im lazy and this was easy
+				else if (cbxClassRand.Checked == false & // if classes are randomized, this doesn't matter
+				(newRecr[34] == 0 | newRecr[34] == 4 | newRecr[34] == 5 | newRecr[34] == 6 | newRecr[34] == 13 |    //micaiah,laura,sothe,ilyana,fiona
+				newRecr[34] == 14 | newRecr[34] == 24 | newRecr[34] == 28 | newRecr[34] == 29 | newRecr[34] == 30 | //tormod,heather,geoffrey,kieran,astrid
+				newRecr[34] == 31 | newRecr[34] == 33 | newRecr[34] == 35 | newRecr[34] == 36 | newRecr[34] == 37 | //makalov,calill,titania,soren,mist
+				newRecr[34] == 40 | newRecr[34] == 43 | newRecr[34] == 54 | newRecr[34] == 56 | newRecr[34] == 58 | //oscar,rhys,sanaki,pelleas,oliver
+				newRecr[34] == 65 | newRecr[34] == 68)) //renning,lehran (volke and bastian are covered in the previous elseif)
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[34]] = j;
+					recrInverse[newRecr[j]] = 34;
+					int temp = newRecr[34];
+					newRecr[34] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				// ranulf can't be mounted
+				else if (cbxClassRand.Checked == false & // if classes are randomized, this doesn't matter
+				(newRecr[45] == 13 | newRecr[45] == 28 | newRecr[45] == 29 | newRecr[45] == 30 | //fiona,geoffrey,kieran,astrid
+				newRecr[45] == 31 |  newRecr[45] == 35  | newRecr[45] == 37 | newRecr[45] == 40 | newRecr[45] == 65)) //makalov,titania,mist,oscar,renning
+				{
+					int j = random.Next(69);
+					recrInverse[newRecr[45]] = j;
+					recrInverse[newRecr[j]] = 45;
+					int temp = newRecr[45];
+					newRecr[45] = newRecr[j];
+					newRecr[j] = temp;
+				}
+				else // sweet release
+					getout = 1;
+
 			}
 
 			// go into data file and move things around
@@ -685,7 +920,63 @@ namespace FE10Randomizer_v0._1
 
 				charName[charNum] = recrName[newRecr[charNum]];
 				charPID[charNum] = recrLoc[newRecr[charNum]];
+				recrRace[charNum] = charRace[newRecr[charNum]];
 			}
+
+			for (int i = 0; i < 69; i++)
+				charRace[i] = recrRace[i];
+
+			// face-swappers anonymous
+			try
+			{
+				int[] fiddata = new int[20];
+				// open facedata file
+				using (var stream = new System.IO.FileStream(dataLocation + "\\Face\\wide\\facedata.bin", System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					// micaiah2
+					stream.Position = charFID[newRecr[0]] + 20;
+					for (int i = 0; i < 20; i++)
+						fiddata[i] = stream.ReadByte();
+					stream.Position = 6464 + 20;
+					for (int i = 0; i < 20; i++)
+						stream.WriteByte(Convert.ToByte(fiddata[i]));
+					// micaiah3
+					stream.Position = 6608 + 20;
+					for (int i = 0; i < 20; i++)
+						stream.WriteByte(Convert.ToByte(fiddata[i]));
+
+					// sothe2
+					stream.Position = charFID[newRecr[5]] + 20;
+					for (int i = 0; i < 20; i++)
+						fiddata[i] = stream.ReadByte();
+					stream.Position = 224 + 20;
+					for (int i = 0; i < 20; i++)
+						stream.WriteByte(Convert.ToByte(fiddata[i]));
+
+					// lucia2
+					stream.Position = charFID[newRecr[25]] + 20;
+					for (int i = 0; i < 20; i++)
+						fiddata[i] = stream.ReadByte();
+					stream.Position = 7664 + 20;
+					for (int i = 0; i < 20; i++)
+						stream.WriteByte(Convert.ToByte(fiddata[i]));
+
+					// ike2
+					stream.Position = charFID[newRecr[34]] + 20;
+					for (int i = 0; i < 20; i++)
+						fiddata[i] = stream.ReadByte();
+					stream.Position = 3344 + 20;
+					for (int i = 0; i < 20; i++)
+						stream.WriteByte(Convert.ToByte(fiddata[i]));
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 18: Cannot find portrait files! Abandoning randomization...";
+				errorflag = 1;
+			}
+			
 
 		}
 
@@ -1070,364 +1361,269 @@ namespace FE10Randomizer_v0._1
 		private int chooseRandClass()
 		{
 			int randClass;
-			// generate a random class
+			bool[,] stringmatrix =  { { radioInfantry0.Checked, radioInfantry1.Checked, radioInfantry2.Checked, radioInfantry3.Checked, radioInfantry4.Checked, radioInfantry5.Checked},
+							{ radioMages0.Checked, radioMages1.Checked, radioMages2.Checked, radioMages3.Checked, radioMages4.Checked, radioMages5.Checked},
+							{ radioCav0.Checked, radioCav1.Checked, radioCav2.Checked, radioCav3.Checked, radioCav4.Checked, radioCav5.Checked},
+							{ radioArmor0.Checked, radioArmor1.Checked, radioArmor2.Checked, radioArmor3.Checked, radioArmor4.Checked, radioArmor5.Checked},
+							{ radioFly0.Checked, radioFly1.Checked, radioFly2.Checked, radioFly3.Checked, radioFly4.Checked, radioFly5.Checked},
+							{ radioBeast0.Checked, radioBeast1.Checked, radioBeast2.Checked, radioBeast3.Checked, radioBeast4.Checked, radioBeast5.Checked},
+							{ radioBird0.Checked, radioBird1.Checked, radioBird2.Checked, radioBird3.Checked, radioBird4.Checked, radioBird5.Checked},
+							{ radioDragon0.Checked, radioDragon1.Checked, radioDragon2.Checked, radioDragon3.Checked, radioDragon4.Checked, radioDragon5.Checked} };
+			int[,] weightmatrix = new int[8, 6];
+			int[] weights = { 0, 0, 0, 0, 0, 0, 0, 0 };
+			int classtype;
+
+			// create weight matrix
+			for (int i = 0; i < 6; i++)
+			{
+				for (int j = 0; j < 8; j++)
+				{
+					if (stringmatrix[j, i] == true)
+					{
+						if (i != 0)
+							weights[j] = (int)Math.Pow(2,(i - 1));
+						else
+							weights[j] = 0;
+					}
+				}
+			}
+			for (int i = 1; i < 8; i++)
+				weights[i] += weights[i - 1];
+
+
+			// generate a random class type
 			if (comboClassOptions.SelectedIndex == 0) // no race-mixing
 			{
+				if (charRace[charNum] == "B")
+					classtype = random.Next(weights[4]); // 5 beorc class types
+				else if (charTier[charNum] == "a")
+					classtype = random.Next(weights[4], weights[6]); // 2 laguz class types (tier a can't be dragon)
+				else
+					classtype = random.Next(weights[4], weights[7]);
+			}
+			else // race-mixing
+			{
 				if (charTier[charNum] == "a")
+					classtype = random.Next(weights[6]); // tier a can't be dragon
+				else
+					classtype = random.Next(weights[7]);
+			}
+			for (int i = 0; i < 8; i++)
+			{
+				if (classtype < weights[i])
 				{
-					if (charRace[charNum] == "B")
-					{
-						// no race-mixing gives 19 beorc classes
-						randClass = random.Next(19);
-						while (charName[charNum] == "edward" & newClass[0] == 18 & randClass == 18) //if micaiah is priest,do not allow edward to be priest
-							randClass = random.Next(19);
-					}
-					else
-					{
-						// no race-mixing gives 7 non-royal, non-dragon laguz classes
-						if (cbxHerons.Checked == true & heronNumber < 3)
-							randClass = random.Next(19, 26);
-						else // no heron class
-							randClass = random.Next(19, 25);
-					}
+					classtype = i;
+					break;
 				}
-				else if (charTier[charNum] == "b")
+			}
+
+			// generate a random class
+			if (comboClassOptions.SelectedIndex != 10)
+			{
+				if (classtype == 0) // infantry
 				{
-					if (charRace[charNum] == "B")
+					if (charTier[charNum] == "a")
 					{
-						if (charName[charNum] == "ike")
-						{
-							// ike cannot be mounted (ch3-5), rogue (cant kill bk), magic (cant kill ashera)
-							int[] classes = { 0, 1, 2, 5, 6, 8, 9, 10, 12, 13 };
-							randClass = classes[random.Next(10)];
-						}
+						int[] classes = { 0, 3, 4, 8, 12 };
+						randClass = classes[random.Next(5)];
+					}
+					else if (charTier[charNum] == "b")
+					{
+						int[] classes = { 0, 1, 5, 9, 13, 4 };
+						if (charNum == 34)
+							randClass = classes[random.Next(5)]; // ike can't be rogue
 						else
-						{
-							// no race-mixing gives 23 beorc classes
-							randClass = random.Next(23);
-						}
+							randClass = classes[random.Next(6)];
 					}
-					else
+					else if (charTier[charNum] == "c")
 					{
-						// no race-mixing gives 10 non-royal laguz classes
-						randClass = random.Next(23, 33);
-						while ((cbxHerons.Checked == false | heronNumber == 3) & randClass == 29) // keep randomizing until no heron
-							randClass = random.Next(23, 33);
-					}
-				}
-				else if (charTier[charNum] == "c")
-				{
-					if (charRace[charNum] == "B")
-					{
-						// no race-mixing gives 27 beorc classes
-						randClass = random.Next(27);
-					}
-					else
-					{
-						// no race-mixing gives 5 royal laguz classes
-						randClass = random.Next(27, 32);
-					}
-				}
-				else // kurth, ena, giffca, gareth, nasir
-				{
-					// no race-mixing gives 9 non-royal, non-heron laguz classes
-					randClass = random.Next(27, 36);
-				}
-			}
-			else if (comboClassOptions.SelectedIndex == 1) // full race-mixing
-			{
-				if (charTier[charNum] == "a")
-				{
-					// 26 total tier 1 classes
-					if (cbxHerons.Checked == true & heronNumber < 3)
-					{
-						randClass = random.Next(26);
-						while (charName[charNum] == "edward" & (newClass[0] == 18 | newClass[0] == 25) &
-							(randClass == 18 | randClass == 25)) //if micaiah is priest/heron,do not allow edward to be priest/heron
-							randClass = random.Next(25);
-					}
-					else
-					{
-						// no heron class
-						randClass = random.Next(25);
-						while (charName[charNum] == "edward" & newClass[0] == 18 &
-							randClass == 18) //if micaiah is priest,do not allow edward to be priest
-							randClass = random.Next(25);
-					}
-				}
-				else if (charTier[charNum] == "b")
-				{
-					if (charName[charNum] == "ike")
-					{
-						int[] classes = { 0, 1, 2, 5, 6, 8, 9, 10, 12, 13, 23, 24, 25, 26, 27, 28, 30, 31, 32 };
-						randClass = classes[random.Next(19)];
-					}
-					else
-					{
-						// 33 total tier 2 classes
-						if (cbxHerons.Checked == true & heronNumber < 3)
-						{
-							randClass = random.Next(33);
-							while (charName[charNum] == "nephenee" & newClass[22] == 59 & randClass == 29)
-								//if brom is heron,do not allow nephenee to be heron
-								randClass = random.Next(33);
-
-							// ranulf can't be mounted (ch3-5)
-							while ((charName[charNum] == "ranulf") &
-								(randClass == 3 | randClass == 7 | randClass == 11 | randClass == 14 | randClass == 22))
-								randClass = random.Next(33);
-						}
-						else
-						{
-							randClass = random.Next(33);
-							while (randClass == 29)
-								randClass = random.Next(33);
-
-							while ((charName[charNum] == "ranulf") &
-								(randClass == 3 | randClass == 7 | randClass == 11 | randClass == 14 | randClass == 22 | randClass == 29))
-								randClass = random.Next(33);
-						}
-					}
-				}
-				else if (charTier[charNum] == "c")
-				{
-					randClass = random.Next(32);
-				}
-				else // kurth, ena, giffca, gareth, nasir
-				{
-					randClass = random.Next(36);
-				}
-			}
-			else if (comboClassOptions.SelectedIndex == 2) // only beorc
-			{
-				if (charTier[charNum] == "a")
-				{
-					randClass = random.Next(19);
-					while (charName[charNum] == "edward" & newClass[0] == 18 & randClass == 18) //if micaiah is priest,do not allow edward to be priest
-						randClass = random.Next(19);
-				}
-				else if (charTier[charNum] == "b")
-				{
-					if (charName[charNum] == "ike")
-					{
-						// ike cannot be mounted (ch3-5), rogue (cant kill bk), magic (cant kill ashera)
-						int[] classes = { 0, 1, 2, 5, 6, 8, 9, 10, 12, 13 };
-						randClass = classes[random.Next(10)];
-					}
-					else
-					{
-						randClass = random.Next(23);
-						// ranulf cannot be mounted unit because of 3_5
-						while ((charName[charNum] == "ranulf") &
-							(randClass == 3 | randClass == 7 | randClass == 11 | randClass == 14 | randClass == 22))
-							randClass = random.Next(23);
-					}
-				}
-				else if (charTier[charNum] == "c")
-				{
-					randClass = random.Next(27);
-				}
-				else // kurth, ena, giffca, gareth, nasir
-				{
-					randClass = random.Next(27);
-				}
-			}
-			else if (comboClassOptions.SelectedIndex == 3) // only laguz
-			{
-				if (charTier[charNum] == "a")
-				{
-					if (cbxHerons.Checked == true & heronNumber < 3)
-					{
-						randClass = random.Next(19, 26);
-						while (charName[charNum] == "edward" & newClass[0] == 25 & randClass == 25) //if micaiah is heron,do not allow edward to be heron
-							randClass = random.Next(19, 25);
-					}
-					else // no heron class
-						randClass = random.Next(19, 25);
-				}
-				else if (charTier[charNum] == "b")
-				{
-					// no race-mixing gives 10 non-royal laguz classes
-					randClass = random.Next(23, 33);
-					while (charName[charNum] == "nephenee" & newClass[22] == 59 & randClass == 29)
-						//if brom is heron,do not allow nephenee to be heron
-						randClass = random.Next(23, 33);
-					while ((cbxHerons.Checked == false | heronNumber == 3 | charName[charNum] == "ike") &
-						randClass == 29) // keep randomizing until no heron
-						randClass = random.Next(23, 33);
-				}
-				else if (charTier[charNum] == "c")
-				{
-					randClass = random.Next(27, 32);
-				}
-				else // kurth, ena, giffca, gareth, nasir
-				{
-					randClass = random.Next(27, 36);
-				}
-			}
-			else if (comboClassOptions.SelectedIndex == 4) // classic medieval
-			{
-				if (charTier[charNum] == "a")
-				{
-					int[] classes = { 0, 3, 4, 8, 12 };
-					randClass = classes[random.Next(5)];
-				}
-				else if (charTier[charNum] == "b")
-				{
-					int[] classes = { 0, 1, 5, 9, 13, 4 };
-					if (charName[charNum] == "ike")
-						randClass = classes[random.Next(5)]; // ike can't be rogue
-					else
-						randClass = classes[random.Next(6)];
-				}
-				else if (charTier[charNum] == "c")
-				{
-					int[] classes = { 0, 1, 4, 8, 12, 14, 15 };
-					randClass = classes[random.Next(7)];
-				}
-				else // kurth, ena, giffca, gareth, nasir
-				{
-					int[] classes = { 0, 1, 4, 8, 12, 14, 15 };
-					randClass = classes[random.Next(7)];
-				}
-			}
-			else if (comboClassOptions.SelectedIndex == 5) // magic is everything
-			{
-				if (charTier[charNum] == "a")
-				{
-					int[] classes = { 14, 15, 16, 17, 18 };
-					randClass = classes[random.Next(5)];
-
-					while (charName[charNum] == "edward" & newClass[0] == 18 & randClass == 18) //if micaiah is priest,do not allow edward to be priest
-						randClass = classes[random.Next(4)];
-				}
-				else if (charTier[charNum] == "b")
-				{
-					int[] classes = { 15, 16, 17, 18, 19, 20, 21 };
-					if (charName[charNum] == "ike")
-						randClass = 0; // ike can't be magic - is hero
-					else
+						int[] classes = { 0, 1, 4, 8, 12, 14, 15 };
 						randClass = classes[random.Next(7)];
+					}
+					else // kurth, ena, giffca, gareth, nasir
+					{
+						int[] classes = { 0, 1, 4, 8, 12, 14, 15 };
+						randClass = classes[random.Next(7)];
+					}
 				}
-				else if (charTier[charNum] == "c")
+				else if (classtype == 1) // mage
 				{
-					int[] classes = { 16, 17, 18, 19, 20, 21, 22, 25, 26 };
-					randClass = classes[random.Next(9)];
-				}
-				else // kurth, ena, giffca, gareth, nasir
-				{
-					int[] classes = { 16, 17, 18, 19, 20, 21, 22, 25, 26 };
-					randClass = classes[random.Next(9)];
-				}
-			}
-			else if (comboClassOptions.SelectedIndex == 6) // horse lovers anonymous
-			{
-				if (charTier[charNum] == "a")
-				{
-					int[] classes = { 2, 6, 10, 13 };
-					randClass = classes[random.Next(4)];
-				}
-				else if (charTier[charNum] == "b")
-				{
-					int[] classes = { 3, 7, 11, 14, 22 };
-					if (charName[charNum] == "ike")
-						randClass = 0; // ike can't be horsed - is hero
-					else if (charName[charNum] == "ranulf")
-						randClass = 25; // ranulf can't be horsed - is cat
-					else
+					if (charTier[charNum] == "a")
+					{
+						int[] classes = { 14, 15, 16, 17, 18 };
 						randClass = classes[random.Next(5)];
+
+						while (charNum == 1 & newClass[0] == 18 & randClass == 18) //if micaiah is priest,do not allow edward to be priest
+							randClass = classes[random.Next(4)];
+					}
+					else if (charTier[charNum] == "b")
+					{
+						int[] classes = { 15, 16, 17, 18, 19, 20, 21 };
+						if (charNum == 34)
+							randClass = 0; // ike can't be magic - is hero
+						else
+							randClass = classes[random.Next(7)];
+					}
+					else if (charTier[charNum] == "c")
+					{
+						int[] classes = { 16, 17, 18, 19, 20, 21, 22, 25, 26 };
+						randClass = classes[random.Next(9)];
+					}
+					else // kurth, ena, giffca, gareth, nasir
+					{
+						int[] classes = { 16, 17, 18, 19, 20, 21, 22, 25, 26 };
+						randClass = classes[random.Next(9)];
+					}
 				}
-				else if (charTier[charNum] == "c")
+				else if (classtype == 2) // cavalry
 				{
-					int[] classes = { 3, 6, 10, 13, 24 };
-					randClass = classes[random.Next(5)];
-				}
-				else // kurth, ena, giffca, gareth, nasir
-				{
-					int[] classes = { 3, 6, 10, 13, 24 };
-					randClass = classes[random.Next(5)];
-				}
-			}
-			else if (comboClassOptions.SelectedIndex == 7) // tanks a lot
-			{
-				if (charTier[charNum] == "a")
-				{
-					int[] classes = { 1, 5, 9 };
-					randClass = classes[random.Next(3)];
-				}
-				else if (charTier[charNum] == "b")
-				{
-					int[] classes = { 2, 6, 10 };
-					randClass = classes[random.Next(3)];
-				}
-				else if (charTier[charNum] == "c")
-				{
-					int[] classes = { 2, 5, 9 };
-					randClass = classes[random.Next(3)];
-				}
-				else // kurth, ena, giffca, gareth, nasir
-				{
-					int[] classes = { 2, 5, 9 };
-					randClass = classes[random.Next(3)];
-				}
-			}
-			else if (comboClassOptions.SelectedIndex == 8) // fly guys
-			{
-				if (charTier[charNum] == "a")
-				{
-					int[] classes = { 7, 11, 23, 24, 25 };
-					if (charName[charNum] == "edward" & newClass[0] == 18) //if micaiah is heron,do not allow edward to be heron
+					if (charTier[charNum] == "a")
+					{
+						int[] classes = { 2, 6, 10, 13 };
 						randClass = classes[random.Next(4)];
-					else if (cbxHerons.Checked == true & heronNumber < 3)
+					}
+					else if (charTier[charNum] == "b")
+					{
+						int[] classes = { 3, 7, 11, 14, 22 };
+						if (charNum == 34)
+							randClass = 0; // ike can't be horsed - is hero
+						else if (charNum == 45)
+							randClass = 25; // ranulf can't be horsed - is cat
+						else
+							randClass = classes[random.Next(5)];
+					}
+					else if (charTier[charNum] == "c")
+					{
+						int[] classes = { 3, 6, 10, 13, 24 };
 						randClass = classes[random.Next(5)];
-					else
-						randClass = classes[random.Next(4)];
-				}
-				else if (charTier[charNum] == "b")
-				{
-					int[] classes = { 8, 12, 27, 28, 29 };
-					if (charName[charNum] == "ike")
-						randClass = classes[random.Next(4)]; // ike can't be heron
-					else if (charName[charNum] == "nephenee" & newClass[22] == 59)
-						//if brom is heron,do not allow nephenee to be heron
-						randClass = classes[random.Next(4)];
-					else if (cbxHerons.Checked == true & heronNumber < 3)
+					}
+					else // kurth, ena, giffca, gareth, nasir
+					{
+						int[] classes = { 3, 6, 10, 13, 24 };
 						randClass = classes[random.Next(5)];
-					else
+					}
+				}
+				else if (classtype == 3) // armor
+				{
+					if (charTier[charNum] == "a")
+					{
+						int[] classes = { 1, 5, 9 };
+						randClass = classes[random.Next(3)];
+					}
+					else if (charTier[charNum] == "b")
+					{
+						int[] classes = { 2, 6, 10 };
+						randClass = classes[random.Next(3)];
+					}
+					else if (charTier[charNum] == "c")
+					{
+						int[] classes = { 2, 5, 9 };
+						randClass = classes[random.Next(3)];
+					}
+					else // kurth, ena, giffca, gareth, nasir
+					{
+						int[] classes = { 2, 5, 9 };
+						randClass = classes[random.Next(3)];
+					}
+				}
+				else if (classtype == 4) // fly (beorc)
+				{
+					if (charTier[charNum] == "a")
+					{
+						int[] classes = { 7, 11 };
+						randClass = classes[random.Next(2)];
+					}
+					else if (charTier[charNum] == "b")
+					{
+						int[] classes = { 8, 12 };
+						randClass = classes[random.Next(2)];
+					}
+					else if (charTier[charNum] == "c")
+					{
+						int[] classes = { 7, 11, 23 };
+						randClass = classes[random.Next(3)];
+					}
+					else // kurth, ena, giffca, gareth, nasir
+					{
+						int[] classes = { 7, 11, 23 };
+						randClass = classes[random.Next(3)];
+					}
+				}
+				else if (classtype == 5) // beasts
+				{
+					if (charTier[charNum] == "a")
+					{
+						int[] classes = { 19, 20, 21, 22 };
 						randClass = classes[random.Next(4)];
+					}
+					else if (charTier[charNum] == "b")
+					{
+						int[] classes = { 23, 24, 25, 26 };
+						randClass = classes[random.Next(4)];
+					}
+					else if (charTier[charNum] == "c")
+					{
+						int[] classes = { 27, 28 };
+						randClass = classes[random.Next(2)];
+					}
+					else // kurth, ena, giffca, gareth, nasir
+					{
+						int[] classes = { 27, 28, 29, 30 };
+						randClass = classes[random.Next(4)];
+					}
 				}
-				else if (charTier[charNum] == "c")
+				else if (classtype == 6) // birds
 				{
-					int[] classes = { 7, 11, 23, 29, 30 };
-					randClass = classes[random.Next(5)];
+					if (charTier[charNum] == "a")
+					{
+						int[] classes = { 23, 24, 25 };
+						if (charNum == 1 & newClass[0] == 18) //if micaiah is heron,do not allow edward to be heron
+							randClass = classes[random.Next(2)];
+						else if (cbxHerons.Checked == true & heronNumber < 3)
+							randClass = classes[random.Next(3)];
+						else
+							randClass = classes[random.Next(2)];
+					}
+					else if (charTier[charNum] == "b")
+					{
+						int[] classes = { 27, 28, 29 };
+						if (charNum == 34)
+							randClass = classes[random.Next(2)]; // ike can't be heron
+						else if (charNum == 23 & newClass[22] == 59)
+							//if brom is heron,do not allow nephenee to be heron
+							randClass = classes[random.Next(2)];
+						else if (cbxHerons.Checked == true & heronNumber < 3)
+							randClass = classes[random.Next(3)];
+						else
+							randClass = classes[random.Next(2)];
+					}
+					else if (charTier[charNum] == "c")
+					{
+						int[] classes = { 29, 30 };
+						randClass = classes[random.Next(2)];
+					}
+					else // kurth, ena, giffca, gareth, nasir
+					{
+						int[] classes = { 31, 32 };
+						randClass = classes[random.Next(2)];
+					}
 				}
-				else // kurth, ena, giffca, gareth, nasir
+				else // dragons
 				{
-					int[] classes = { 7, 11, 23, 31, 32 };
-					randClass = classes[random.Next(5)];
-				}
-			}
-			else if (comboClassOptions.SelectedIndex == 9) // lions and tigers and dragons
-			{
-				if (charTier[charNum] == "a")
-				{
-					int[] classes = { 19, 20, 21, 22 };
-					randClass = classes[random.Next(4)];
-				}
-				else if (charTier[charNum] == "b")
-				{
-					int[] classes = { 23, 24, 25, 26, 30, 31, 32 };
-					randClass = classes[random.Next(7)];
-				}
-				else if (charTier[charNum] == "c")
-				{
-					int[] classes = { 27, 28, 31 };
-					randClass = classes[random.Next(3)];
-				}
-				else // kurth, ena, giffca, gareth, nasir
-				{
-					int[] classes = { 27, 28, 29, 30, 33, 34, 35 };
-					randClass = classes[random.Next(7)];
+					if (charTier[charNum] == "b")
+					{
+						int[] classes = { 30, 31, 32 };
+						randClass = classes[random.Next(3)];
+					}
+					else if (charTier[charNum] == "c")
+					{
+						randClass = 31;
+					}
+					else // kurth, ena, giffca, gareth, nasir
+					{
+						int[] classes = { 33, 34, 35 };
+						randClass = classes[random.Next(3)];
+					}
 				}
 			}
 			else // lol
@@ -1441,7 +1637,7 @@ namespace FE10Randomizer_v0._1
 				}
 				else if (charTier[charNum] == "b")
 				{
-					if (charName[charNum] == "ike")
+					if (charNum == 34)
 						randClass = 0; // ike is hero
 					else
 					{
@@ -2810,13 +3006,18 @@ namespace FE10Randomizer_v0._1
 						stream.Position = charBases[charNum];
 						for (int k = 0; k < 8; k++)
 						{
-							// read growth rate
+							// read base
 							basestat = stream.ReadByte();
 							// change from signed to decimal
 							if (basestat > 127)
 								basestat -= 256;
 							int minbase = basestat - Convert.ToInt32(numericBaseRand.Value);
 							int maxbase = basestat + Convert.ToInt32(numericBaseRand.Value);
+							// prevent personal base stats from being negative for now
+							if (minbase < 0)
+								minbase = 0; 
+							if (maxbase < 0)
+								maxbase = 0;
 
 							randstat = random.Next(minbase, maxbase + 1);
 
@@ -2827,6 +3028,12 @@ namespace FE10Randomizer_v0._1
 							// write new base to game
 							stream.Position = stream.Position - 1;
 							stream.WriteByte(Convert.ToByte(randstat));
+
+							// write to output log
+							if (cbxRandRecr.Checked == true & charNum < 69)
+								charChanges[recrInverse[charNum]] += "," + randstat.ToString();
+							else
+								charChanges[charNum] += "," + randstat.ToString();
 						}
 					}
 				}
@@ -2834,6 +3041,106 @@ namespace FE10Randomizer_v0._1
 			catch
 			{
 				textBox1.Text = "Error 19: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
+				errorflag = 1;
+			}
+		}
+
+		private void shuffleBaseStats()
+		{
+			string dataFile = dataLocation + "\\FE10Data.cms.decompressed";
+
+			try
+			{
+				// open data file
+				using (var stream = new System.IO.FileStream(dataFile, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					for (int charNum = 0; charNum < totalUnitNumber; charNum++)
+					{
+						int hpval = 0;
+						int lckval = 0;
+						int totalstat = Convert.ToInt32(numericBaseShuffle.Value);
+						int basestat;
+						int[] newstats = new int[8];
+						// go to first stat
+						stream.Position = charBases[charNum];
+						for (int k = 0; k < 8; k++)
+						{
+							// read base
+							basestat = stream.ReadByte();
+
+							if (k == 0)
+								hpval = basestat;
+							else if (k == 5)
+								lckval = basestat;
+		
+							// change from signed to decimal
+							if (basestat > 127)
+								basestat -= 256;
+
+							if (cbxHPLCKShuffle.Checked == false & (k == 0 | k == 5)) // don't add hp and luck
+							{ }
+							else // everything else is added to total
+								totalstat += basestat;
+						}
+						// randomize partitions
+						int numbstats;
+						if (cbxHPLCKShuffle.Checked == true)
+							numbstats = 8;
+						else
+							numbstats = 6;
+						for (int i = 0; i < numbstats; i++)
+						{
+							if (i == numbstats-1)
+								newstats[i] = totalstat;
+							else
+								newstats[i] = random.Next(totalstat);
+						}
+						// sort by descending order
+						Array.Sort(newstats);
+						Array.Reverse(newstats);
+						for (int i = 0; i < numbstats; i++)
+						{
+							if (i == numbstats - 1)
+								newstats[i] = newstats[i];
+							else
+								newstats[i] = newstats[i] - newstats[i + 1];
+						}
+
+						// move stats and insert hp and lck
+						if (cbxHPLCKShuffle.Checked == false)
+						{
+							newstats[7] = newstats[5]; // res
+							newstats[6] = newstats[4]; // def
+							newstats[5] = lckval;      // lck
+							newstats[4] = newstats[3]; // spd
+							newstats[3] = newstats[2]; // skl
+							newstats[2] = newstats[1]; // mag
+							newstats[1] = newstats[0]; // atk
+							newstats[0] = hpval;       // hp
+						}
+
+						// write new base to game
+						stream.Position = charBases[charNum];
+						for (int k = 0; k < 8; k++)
+						{
+							stream.WriteByte(Convert.ToByte(newstats[k]));
+
+							if (newstats[k] > 127)
+								newstats[k] -= 256;
+
+							// write to output log
+							if (cbxRandRecr.Checked == true & charNum < 69)
+								charChanges[recrInverse[charNum]] += "," + newstats[k].ToString();
+							else
+								charChanges[charNum] += "," + newstats[k].ToString();
+						}
+					}
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 22: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
 				errorflag = 1;
 			}
 		}
@@ -3003,8 +3310,11 @@ namespace FE10Randomizer_v0._1
 						for (int i = 0; i < charSkillNum[charNum]; i++)
 						{
 							// get random skill
-							if ((cbxClassRand.Checked == true & newRace[charNum] == "B")
-									| (cbxClassRand.Checked == false & charRace[charNum] == "B"))
+							if ((cbxRandRecr.Checked == false | charNum >= 69) & ((cbxClassRand.Checked == true & newRace[charNum] == "B")
+									| (cbxClassRand.Checked == false & charRace[charNum] == "B")))
+								randSkill = random.Next(skillName.Length - 1); // beorc can't get wildheart, last skill on list
+							else if ((cbxRandRecr.Checked == true & charNum < 69) & ((cbxClassRand.Checked == true & newRace[recrInverse[charNum]] == "B")
+									| (cbxClassRand.Checked == false & charRace[recrInverse[charNum]] == "B")))
 								randSkill = random.Next(skillName.Length - 1); // beorc can't get wildheart, last skill on list
 							else
 								randSkill = random.Next(skillName.Length);
@@ -3247,6 +3557,7 @@ namespace FE10Randomizer_v0._1
 				// item name
 				itemName[i] = values[2];
 			}
+			dataReader.Close();
 
 			for (int itemNum = 0; itemNum < 91; itemNum++)
 			{
@@ -3288,6 +3599,172 @@ namespace FE10Randomizer_v0._1
 					textBox1.Text = "Error 14: Script files not found! Abandoning randomization...";
 					errorflag = 1;
 				}
+			}
+		}
+
+		private void weaponRandomizer()
+		{
+			int[] weapLocation = new int[185];
+			int[] weapMin = new int[5];
+			int[] weapDev = new int[5];
+			int[] weapMax = new int[5];
+
+			string line;
+			string[] values;
+			// initialize character information
+			System.IO.StreamReader dataReader = new System.IO.StreamReader(file + "\\assets\\WeaponData.csv");
+
+			// skip header line/
+			line = dataReader.ReadLine();
+			// loop through all 185 weapons
+			for (int i = 0; i < 185; i++)
+			{
+				line = dataReader.ReadLine();
+				values = line.Split(',');
+				
+				weapLocation[i] = Convert.ToInt32(values[1]);
+			}
+			dataReader.Close();
+
+			weapMin[0] = Convert.ToInt32(numericMTmin.Value);
+			weapMin[1] = Convert.ToInt32(numericACCmin.Value);
+			weapMin[2] = Convert.ToInt32(numericCRTmin.Value);
+			weapMin[3] = Convert.ToInt32(numericWTmin.Value);
+			weapMin[4] = Convert.ToInt32(numericUSEmin.Value);
+
+			weapDev[0] = Convert.ToInt32(numericMTdev.Value);
+			weapDev[1] = Convert.ToInt32(numericACCdev.Value);
+			weapDev[2] = Convert.ToInt32(numericCRTdev.Value);
+			weapDev[3] = Convert.ToInt32(numericWTdev.Value);
+			weapDev[4] = Convert.ToInt32(numericUSEdev.Value);
+
+			weapMax[0] = Convert.ToInt32(numericMTmax.Value);
+			weapMax[1] = Convert.ToInt32(numericACCmax.Value);
+			weapMax[2] = Convert.ToInt32(numericCRTmax.Value);
+			weapMax[3] = Convert.ToInt32(numericWTmax.Value);
+			weapMax[4] = Convert.ToInt32(numericUSEmax.Value);
+
+			string dataFile = dataLocation + "\\FE10Data.cms.decompressed";
+			int loopnumb;
+			if (cbxLaguzWeap.Checked == true)
+				loopnumb = 185;
+			else
+				loopnumb = 143;
+
+			try
+			{
+				// open data file
+				using (var stream = new System.IO.FileStream(dataFile, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					for (int i = 0; i < loopnumb; i++)
+					{
+						int randStat, minStat, maxStat;
+						stream.Position = weapLocation[i] + 40;
+						for (int j = 0; j < 5; j++)
+						{
+							// read in stat and calculate min and max possible values
+							randStat = stream.ReadByte();
+							minStat = randStat - weapDev[j];
+							if (minStat < weapMin[j])
+								minStat = weapMin[j];
+							else if (minStat > weapMax[j])
+								minStat = weapMax[j];
+							maxStat = randStat + weapDev[j];
+							if (maxStat > weapMax[j])
+								maxStat = weapMax[j];
+							else if (maxStat < weapMin[j])
+								maxStat = weapMin[j];
+							// random value
+							randStat = random.Next(minStat, maxStat + 1);
+							stream.Position -= 1;
+							if (i > 130 & j == 4 & cbxStaveUse.Checked == true) // keep uses of rare staves
+								stream.Position += 1;
+							else
+								stream.WriteByte(Convert.ToByte(randStat));
+						}
+					}
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 21: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
+				errorflag = 1;
+			}
+		}
+
+		private void floreteChange()
+		{
+			string dataFile = dataLocation + "\\FE10Data.cms.decompressed";
+			try
+			{
+				// open data file
+				using (var stream = new System.IO.FileStream(dataFile, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					// go to florete
+					stream.Position = 58247;
+					// change ranged type from sword to white breath
+					stream.WriteByte(130);
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 23: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
+				errorflag = 1;
+			}
+		}
+
+		private void removePRFs()
+		{
+			string dataFile = dataLocation + "\\FE10Data.cms.decompressed";
+			try
+			{
+				// open data file
+				using (var stream = new System.IO.FileStream(dataFile, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					// remove locks - ragnell, florete, amiti, cymbeline
+					int[] locks = { 58420, 58288, 58592, 63168 };
+					for (int i = 0; i < 4; i++)
+					{
+						stream.Position = locks[i];
+						stream.WriteByte(0);
+						stream.WriteByte(0);
+						stream.WriteByte(0);
+						stream.WriteByte(0);
+					}
+
+					// replace weapon level
+					stream.Position = 58380; // ragnell gets SS
+					stream.WriteByte(0);
+					stream.WriteByte(2);
+					stream.WriteByte(121);
+					stream.WriteByte(248);
+
+					stream.Position = 58248; // florete gets A
+					stream.WriteByte(0);
+					stream.WriteByte(2);
+					stream.WriteByte(127);
+					stream.WriteByte(255);
+
+					stream.Position = 58552; // amiti gets S
+					stream.WriteByte(0);
+					stream.WriteByte(3);
+					stream.WriteByte(50);
+					stream.WriteByte(123);
+
+					stream.Position = 63128; // cymbeline gets SS
+					stream.WriteByte(0);
+					stream.WriteByte(2);
+					stream.WriteByte(121);
+					stream.WriteByte(248);
+				}
+			}
+			catch
+			{
+				textBox1.Text = "Error 24: Cannot find file \\FE10Data.cms.decompressed! Abandoning randomization...";
+				errorflag = 1;
 			}
 		}
 
@@ -3691,6 +4168,165 @@ namespace FE10Randomizer_v0._1
 		{
 			if (cbxZeroGrowths.Checked == true)
 				cbxGrowthRand.Checked = false;
+		}
+
+		private void cbxRandWeap_CheckedChanged(object sender, EventArgs e)
+		{
+			if (cbxRandWeap.Checked == false)
+				panelWeap.Enabled = false;
+			else
+				panelWeap.Enabled = true;
+		}
+
+		private void weaponStatsChanged(object sender, EventArgs e)
+		{
+			numericMTmin.Maximum = numericMTmax.Value;
+			numericMTmax.Minimum = numericMTmin.Value;
+			numericACCmin.Maximum = numericACCmax.Value;
+			numericACCmax.Minimum = numericACCmin.Value;
+			numericWTmin.Maximum = numericWTmax.Value;
+			numericWTmax.Minimum = numericWTmin.Value;
+			numericUSEmin.Maximum = numericUSEmax.Value;
+			numericUSEmax.Minimum = numericUSEmin.Value;
+			numericCRTmin.Maximum = numericCRTmax.Value;
+			numericCRTmax.Minimum = numericCRTmin.Value;
+		}
+
+		private void cbxRandBases_CheckedChanged(object sender, EventArgs e)
+		{
+			if (cbxRandBases.Checked == true)
+				cbxShuffleBases.Checked = false;
+		}
+
+		private void cbxShuffleBases_CheckedChanged(object sender, EventArgs e)
+		{
+			if (cbxShuffleBases.Checked == true)
+			{
+				cbxRandBases.Checked = false;
+				cbxHPLCKShuffle.Enabled = true;
+			}
+			else
+				cbxHPLCKShuffle.Enabled = false;
+		}
+
+		private void comboClassOptions_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// can't random recruitment with option 10
+			if (comboClassOptions.SelectedIndex == 10)
+			{
+				cbxRandRecr.Checked = false;
+				cbxRandRecr.Enabled = false;
+			}
+			else
+				cbxRandRecr.Enabled = true;
+			weightflag = 1;
+			// change weights
+			if (comboClassOptions.SelectedIndex == 2)
+			{
+				radioArmor3.Checked = true;
+				radioBeast0.Checked = true;
+				radioBird0.Checked = true;
+				radioCav3.Checked = true;
+				radioDragon0.Checked = true;
+				radioFly3.Checked = true;
+				radioInfantry3.Checked = true;
+				radioMages3.Checked = true;
+			}
+			else if (comboClassOptions.SelectedIndex == 3)
+			{
+				radioArmor0.Checked = true;
+				radioBeast3.Checked = true;
+				radioBird3.Checked = true;
+				radioCav0.Checked = true;
+				radioDragon3.Checked = true;
+				radioFly0.Checked = true;
+				radioInfantry0.Checked = true;
+				radioMages0.Checked = true;
+			}
+			else if (comboClassOptions.SelectedIndex == 4)
+			{
+				radioArmor0.Checked = true;
+				radioBeast0.Checked = true;
+				radioBird0.Checked = true;
+				radioCav0.Checked = true;
+				radioDragon0.Checked = true;
+				radioFly0.Checked = true;
+				radioInfantry5.Checked = true;
+				radioMages0.Checked = true;
+			}
+			else if (comboClassOptions.SelectedIndex == 5)
+			{
+				radioArmor0.Checked = true;
+				radioBeast0.Checked = true;
+				radioBird0.Checked = true;
+				radioCav0.Checked = true;
+				radioDragon0.Checked = true;
+				radioFly0.Checked = true;
+				radioInfantry0.Checked = true;
+				radioMages5.Checked = true;
+			}
+			else if (comboClassOptions.SelectedIndex == 6)
+			{
+				radioArmor0.Checked = true;
+				radioBeast0.Checked = true;
+				radioBird0.Checked = true;
+				radioCav5.Checked = true;
+				radioDragon0.Checked = true;
+				radioFly0.Checked = true;
+				radioInfantry0.Checked = true;
+				radioMages0.Checked = true;
+			}
+			else if (comboClassOptions.SelectedIndex == 7)
+			{
+				radioArmor5.Checked = true;
+				radioBeast0.Checked = true;
+				radioBird0.Checked = true;
+				radioCav0.Checked = true;
+				radioDragon0.Checked = true;
+				radioFly0.Checked = true;
+				radioInfantry0.Checked = true;
+				radioMages0.Checked = true;
+			}
+			else if (comboClassOptions.SelectedIndex == 8)
+			{
+				radioArmor0.Checked = true;
+				radioBeast0.Checked = true;
+				radioBird5.Checked = true;
+				radioCav0.Checked = true;
+				radioDragon0.Checked = true;
+				radioFly5.Checked = true;
+				radioInfantry0.Checked = true;
+				radioMages0.Checked = true;
+			}
+			else if (comboClassOptions.SelectedIndex == 9)
+			{
+				radioArmor0.Checked = true;
+				radioBeast5.Checked = true;
+				radioBird0.Checked = true;
+				radioCav0.Checked = true;
+				radioDragon5.Checked = true;
+				radioFly0.Checked = true;
+				radioInfantry0.Checked = true;
+				radioMages0.Checked = true;
+			}
+			else if (comboClassOptions.SelectedIndex == 10)
+			{
+				radioArmor0.Checked = true;
+				radioBeast0.Checked = true;
+				radioBird0.Checked = true;
+				radioCav0.Checked = true;
+				radioDragon0.Checked = true;
+				radioFly0.Checked = true;
+				radioInfantry0.Checked = true;
+				radioMages5.Checked = true;
+			}
+			weightflag = 0;
+		}
+
+		private void radioWeights_Changed(object sender, EventArgs e)
+		{
+			if (weightflag == 0 & comboClassOptions.SelectedIndex != 0 & comboClassOptions.SelectedIndex != 1)
+				comboClassOptions.SelectedIndex = 1;
 		}
 	}
 }
