@@ -2217,7 +2217,7 @@
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.button1);
 			this.Name = "Form1";
-			this.Text = "LordMewtwo\'s FE 10 Randomizer v1.4.3 - 07/07/2020";
+			this.Text = "LordMewtwo\'s FE 10 Randomizer v1.4.7 - 08/15/2020";
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).EndInit();

@@ -66,9 +66,45 @@ namespace FE10Randomizer_v0._1
 		int[] newClass = new int[72];
 		int[] newRecr = new int[69];
 		int[] recrInverse = new int[69];
+		string[] recrRace = new string[69];
 
 		public Form1()
 		{
+			
+			InitializeComponent();
+
+			//toolTip1.SetToolTip(cbxGrowthRand, "test1");
+			//toolTip1.SetToolTip(cbxClassRand, "test2");
+			toolTip1.SetToolTip(cbxHerons, "not recommended due to code restrictions. Randomized herons can only sing for one unit at a time");
+			toolTip1.SetToolTip(cbxRandBases, "randomizes each stat individually based off of deviation");
+			toolTip1.SetToolTip(cbxHPLCKShuffle, "HP&LCK are usually much higher than other stats, so adding them to the total may cause units to be overpowered");
+			toolTip1.SetToolTip(cbxShuffleBases, "adds up total bases (except HP&LCK) and redistributes randomly to each stat");
+			toolTip1.SetToolTip(cbxStaveUse, "keeps Sleep, Silence, Hammerne, Ashera Staff, etc at normal uses (usually 3)");
+			toolTip1.SetToolTip(numericBaseRand, "WARNING: high base variations may result in an unwinnable game");
+			toolTip1.SetToolTip(cbxEnemyGrowth, "does not affect bosses");
+			toolTip1.SetToolTip(numericEnemyGrowth, "WARNING: high enemy growths may result in an unwinnable game");
+			toolTip1.SetToolTip(cbxGaugeRand, "WARNING: may render some laguz unusable");
+			toolTip1.SetToolTip(cbxLaguzWeap, "WARNING: may render some laguz unusable (even royals!)");
+			toolTip1.SetToolTip(cbxPRFs, "affects Ragnell, Amiti, Florete, and Cymbeline");
+			toolTip1.SetToolTip(cbxEventItems, "base convos, chests, villages, and hidden items (except for some coins)");
+			toolTip1.SetToolTip(lblArmored, "sword/lance/axe general");
+			toolTip1.SetToolTip(lblBeasts, "lion, tiger, cat, wolf");
+			toolTip1.SetToolTip(lblBirds, "hawk, raven, heron (if heron checkbox is checked)");
+			toolTip1.SetToolTip(lblCavalry, "sword/lance/axe/bow knight, cleric");
+			toolTip1.SetToolTip(lblDragons, "red, white, and black dragons");
+			toolTip1.SetToolTip(lblFlying, "pegasus, wyvern, queen");
+			toolTip1.SetToolTip(lblInfantry, "myrmidon, soldier, fighter, archer, thief, hero, assassin");
+			toolTip1.SetToolTip(lblMages, "wind/fire/thunder/light mage, priest, dark sage, druid, empress, chancellor");
+
+			comboClassOptions.SelectedIndex = 0;
+			numericSeed.Value = seedGenerator.Next();
+		}
+
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			textBox1.Text = "Randomization in Process"; // Insert loading br here
+
 			string line;
 			string[] values;
 			// initialize character information
@@ -116,39 +152,6 @@ namespace FE10Randomizer_v0._1
 				// location of FID in facedata.bin
 				charFID[i] = Convert.ToInt32(values[16]);
 			}
-			InitializeComponent();
-
-			//toolTip1.SetToolTip(cbxGrowthRand, "test1");
-			//toolTip1.SetToolTip(cbxClassRand, "test2");
-			toolTip1.SetToolTip(cbxHerons, "not recommended due to code restrictions. Randomized herons can only sing for one unit at a time");
-			toolTip1.SetToolTip(cbxRandBases, "randomizes each stat individually based off of deviation");
-			toolTip1.SetToolTip(cbxHPLCKShuffle, "HP&LCK are usually much higher than other stats, so adding them to the total may cause units to be overpowered");
-			toolTip1.SetToolTip(cbxShuffleBases, "adds up total bases (except HP&LCK) and redistributes randomly to each stat");
-			toolTip1.SetToolTip(cbxStaveUse, "keeps Sleep, Silence, Hammerne, Ashera Staff, etc at normal uses (usually 3)");
-			toolTip1.SetToolTip(numericBaseRand, "WARNING: high base variations may result in an unwinnable game");
-			toolTip1.SetToolTip(cbxEnemyGrowth, "does not affect bosses");
-			toolTip1.SetToolTip(numericEnemyGrowth, "WARNING: high enemy growths may result in an unwinnable game");
-			toolTip1.SetToolTip(cbxGaugeRand, "WARNING: may render some laguz unusable");
-			toolTip1.SetToolTip(cbxLaguzWeap, "WARNING: may render some laguz unusable (even royals!)");
-			toolTip1.SetToolTip(cbxPRFs, "affects Ragnell, Amiti, Florete, and Cymbeline");
-			toolTip1.SetToolTip(cbxEventItems, "base convos, chests, villages, and hidden items (except for some coins)");
-			toolTip1.SetToolTip(lblArmored, "sword/lance/axe general");
-			toolTip1.SetToolTip(lblBeasts, "lion, tiger, cat, wolf");
-			toolTip1.SetToolTip(lblBirds, "hawk, raven, heron (if heron checkbox is checked)");
-			toolTip1.SetToolTip(lblCavalry, "sword/lance/axe/bow knight, cleric");
-			toolTip1.SetToolTip(lblDragons, "red, white, and black dragons");
-			toolTip1.SetToolTip(lblFlying, "pegasus, wyvern, queen");
-			toolTip1.SetToolTip(lblInfantry, "myrmidon, soldier, fighter, archer, thief, hero, assassin");
-			toolTip1.SetToolTip(lblMages, "wind/fire/thunder/light mage, priest, dark sage, druid, empress, chancellor");
-
-			comboClassOptions.SelectedIndex = 0;
-			numericSeed.Value = seedGenerator.Next();
-		}
-
-
-		private void button1_Click(object sender, EventArgs e)
-		{
-			textBox1.Text = "Randomization in Process"; // Insert loading br here
 
 			// heron number
 			heronNumber = 0;
@@ -213,6 +216,114 @@ namespace FE10Randomizer_v0._1
 					default:
 						break;
 				}
+				if (comboClassOptions.SelectedIndex == 0 | comboClassOptions.SelectedIndex == 1)
+				{
+					logheader += ",infantry: ";
+					if (radioInfantry0.Checked == true)
+						logheader += "0";
+					else if (radioInfantry1.Checked == true)
+						logheader += "1";
+					else if (radioInfantry2.Checked == true)
+						logheader += "2";
+					else if (radioInfantry3.Checked == true)
+						logheader += "3";
+					else if (radioInfantry4.Checked == true)
+						logheader += "4";
+					else
+						logheader += "5";
+					logheader += ",mages: ";
+					if (radioMages0.Checked == true)
+						logheader += "0";
+					else if (radioMages1.Checked == true)
+						logheader += "1";
+					else if (radioMages2.Checked == true)
+						logheader += "2";
+					else if (radioMages3.Checked == true)
+						logheader += "3";
+					else if (radioMages4.Checked == true)
+						logheader += "4";
+					else
+						logheader += "5";
+					logheader += ",cavalry: ";
+					if (radioCav0.Checked == true)
+						logheader += "0";
+					else if (radioCav1.Checked == true)
+						logheader += "1";
+					else if (radioCav2.Checked == true)
+						logheader += "2";
+					else if (radioCav3.Checked == true)
+						logheader += "3";
+					else if (radioCav4.Checked == true)
+						logheader += "4";
+					else
+						logheader += "5";
+					logheader += ",armor: ";
+					if (radioArmor0.Checked == true)
+						logheader += "0";
+					else if (radioArmor1.Checked == true)
+						logheader += "1";
+					else if (radioArmor2.Checked == true)
+						logheader += "2";
+					else if (radioArmor3.Checked == true)
+						logheader += "3";
+					else if (radioArmor4.Checked == true)
+						logheader += "4";
+					else
+						logheader += "5";
+					logheader += ",flying: ";
+					if (radioFly0.Checked == true)
+						logheader += "0";
+					else if (radioFly1.Checked == true)
+						logheader += "1";
+					else if (radioFly2.Checked == true)
+						logheader += "2";
+					else if (radioFly3.Checked == true)
+						logheader += "3";
+					else if (radioFly4.Checked == true)
+						logheader += "4";
+					else
+						logheader += "5";
+					logheader += ",beasts: ";
+					if (radioBeast0.Checked == true)
+						logheader += "0";
+					else if (radioBeast1.Checked == true)
+						logheader += "1";
+					else if (radioBeast2.Checked == true)
+						logheader += "2";
+					else if (radioBeast3.Checked == true)
+						logheader += "3";
+					else if (radioBeast4.Checked == true)
+						logheader += "4";
+					else
+						logheader += "5";
+					logheader += ",birds: ";
+					if (radioBird0.Checked == true)
+						logheader += "0";
+					else if (radioBird1.Checked == true)
+						logheader += "1";
+					else if (radioBird2.Checked == true)
+						logheader += "2";
+					else if (radioBird3.Checked == true)
+						logheader += "3";
+					else if (radioBird4.Checked == true)
+						logheader += "4";
+					else
+						logheader += "5";
+					logheader += ",dragons: ";
+					if (radioDragon0.Checked == true)
+						logheader += "0";
+					else if (radioDragon1.Checked == true)
+						logheader += "1";
+					else if (radioDragon2.Checked == true)
+						logheader += "2";
+					else if (radioDragon3.Checked == true)
+						logheader += "3";
+					else if (radioDragon4.Checked == true)
+						logheader += "4";
+					else
+						logheader += "5";
+				}
+
 				if (cbxHerons.Checked == true)
 					logheader += ",heronRand";
 				if (cbxGaugeRand.Checked == true)
@@ -376,8 +487,6 @@ namespace FE10Randomizer_v0._1
 				laguzModifications();
 				// changes that prevent bugs due to race-changing
 				generalChanges();
-				// base stat modifications
-				baseStatChanges();
 
 				if (cbxClassRand.Checked == true)
 				{
@@ -394,6 +503,9 @@ namespace FE10Randomizer_v0._1
 				for (int i = 0; i < totalUnitNumber; i++)
 					charChanges[i] += ",-,-,-,-,-,-";
 			}
+
+			// base stat modifications
+			baseStatChanges();
 
 			if (cbxSkillRand.Checked == true & errorflag == 0)
 			{
@@ -691,7 +803,6 @@ namespace FE10Randomizer_v0._1
 			int[] recrLevel = new int[69];
 			int[,] recrPID = new int[69, 4];
 			int[,] recrBases = new int[69, 8];
-			string[] recrRace = new string[69];
 
 			System.IO.StreamReader dataReader;
 			// initialize character information
@@ -922,9 +1033,6 @@ namespace FE10Randomizer_v0._1
 				charPID[charNum] = recrLoc[newRecr[charNum]];
 				recrRace[charNum] = charRace[newRecr[charNum]];
 			}
-
-			for (int i = 0; i < 69; i++)
-				charRace[i] = recrRace[i];
 
 			// face-swappers anonymous
 			try
@@ -1394,12 +1502,20 @@ namespace FE10Randomizer_v0._1
 			// generate a random class type
 			if (comboClassOptions.SelectedIndex == 0) // no race-mixing
 			{
-				if (charRace[charNum] == "B")
-					classtype = random.Next(weights[4]); // 5 beorc class types
-				else if (charTier[charNum] == "a")
-					classtype = random.Next(weights[4], weights[6]); // 2 laguz class types (tier a can't be dragon)
+				if (charNum < 69)
+				{
+					if ((cbxRandRecr.Checked == false & charRace[charNum] == "B") |
+						(cbxRandRecr.Checked == true & recrRace[charNum] == "B"))
+						classtype = random.Next(weights[4]); // 5 beorc class types
+					else if (charTier[charNum] == "a")
+						classtype = random.Next(weights[4], weights[6]); // 2 laguz class types (tier a can't be dragon)
+					else
+						classtype = random.Next(weights[4], weights[7]);
+				}
 				else
+				{
 					classtype = random.Next(weights[4], weights[7]);
+				}
 			}
 			else // race-mixing
 			{
@@ -3089,6 +3205,8 @@ namespace FE10Randomizer_v0._1
 							numbstats = 8;
 						else
 							numbstats = 6;
+						if (totalstat < 0)
+							totalstat = 0;
 						for (int i = 0; i < numbstats; i++)
 						{
 							if (i == numbstats-1)
@@ -3175,7 +3293,7 @@ namespace FE10Randomizer_v0._1
 								// unless growth+deviation is less than minimum, then just set the minimum
 								if (k == 0)
 								{
-									if (maxgrowth < Convert.ToInt32(numericHP.Value))
+									if (maxgrowth <= Convert.ToInt32(numericHP.Value))
 										randgrowth = Convert.ToInt32(numericHP.Value);
 									else if (mingrowth < Convert.ToInt32(numericHP.Value))
 										randgrowth = random.Next(Convert.ToInt32(numericHP.Value), maxgrowth);
@@ -3184,7 +3302,7 @@ namespace FE10Randomizer_v0._1
 								}
 								else if (k == 1)
 								{
-									if (maxgrowth < Convert.ToInt32(numericATK.Value))
+									if (maxgrowth <= Convert.ToInt32(numericATK.Value))
 										randgrowth = Convert.ToInt32(numericATK.Value);
 									else if (mingrowth < Convert.ToInt32(numericATK.Value))
 										randgrowth = random.Next(Convert.ToInt32(numericATK.Value), maxgrowth);
@@ -3193,7 +3311,7 @@ namespace FE10Randomizer_v0._1
 								}
 								else if (k == 2)
 								{
-									if (maxgrowth < Convert.ToInt32(numericMAG.Value))
+									if (maxgrowth <= Convert.ToInt32(numericMAG.Value))
 										randgrowth = Convert.ToInt32(numericMAG.Value);
 									else if (mingrowth < Convert.ToInt32(numericMAG.Value))
 										randgrowth = random.Next(Convert.ToInt32(numericMAG.Value), maxgrowth);
@@ -3202,7 +3320,7 @@ namespace FE10Randomizer_v0._1
 								}
 								else if (k == 3)
 								{
-									if (maxgrowth < Convert.ToInt32(numericSKL.Value))
+									if (maxgrowth <= Convert.ToInt32(numericSKL.Value))
 										randgrowth = Convert.ToInt32(numericSKL.Value);
 									else if (mingrowth < Convert.ToInt32(numericSKL.Value))
 										randgrowth = random.Next(Convert.ToInt32(numericSKL.Value), maxgrowth);
@@ -3211,7 +3329,7 @@ namespace FE10Randomizer_v0._1
 								}
 								else if (k == 4)
 								{
-									if (maxgrowth < Convert.ToInt32(numericSPD.Value))
+									if (maxgrowth <= Convert.ToInt32(numericSPD.Value))
 										randgrowth = Convert.ToInt32(numericSPD.Value);
 									else if (mingrowth < Convert.ToInt32(numericSPD.Value))
 										randgrowth = random.Next(Convert.ToInt32(numericSPD.Value), maxgrowth);
@@ -3220,7 +3338,7 @@ namespace FE10Randomizer_v0._1
 								}
 								else if (k == 5)
 								{
-									if (maxgrowth < Convert.ToInt32(numericLCK.Value))
+									if (maxgrowth <= Convert.ToInt32(numericLCK.Value))
 										randgrowth = Convert.ToInt32(numericLCK.Value);
 									else if (mingrowth < Convert.ToInt32(numericLCK.Value))
 										randgrowth = random.Next(Convert.ToInt32(numericLCK.Value), maxgrowth);
@@ -3229,7 +3347,7 @@ namespace FE10Randomizer_v0._1
 								}
 								else if (k == 6)
 								{
-									if (maxgrowth < Convert.ToInt32(numericDEF.Value))
+									if (maxgrowth <= Convert.ToInt32(numericDEF.Value))
 										randgrowth = Convert.ToInt32(numericDEF.Value);
 									else if (mingrowth < Convert.ToInt32(numericDEF.Value))
 										randgrowth = random.Next(Convert.ToInt32(numericDEF.Value), maxgrowth);
@@ -3238,7 +3356,7 @@ namespace FE10Randomizer_v0._1
 								}
 								else
 								{
-									if (maxgrowth < Convert.ToInt32(numericRES.Value))
+									if (maxgrowth <= Convert.ToInt32(numericRES.Value))
 										randgrowth = Convert.ToInt32(numericRES.Value);
 									else if (mingrowth < Convert.ToInt32(numericRES.Value))
 										randgrowth = random.Next(Convert.ToInt32(numericRES.Value), maxgrowth);
@@ -3246,6 +3364,7 @@ namespace FE10Randomizer_v0._1
 										randgrowth = random.Next(mingrowth, maxgrowth);
 								}
 
+								stream.Position = stream.Position - 1;
 							}
 							else // Zero% growths run
 							{
@@ -3255,7 +3374,6 @@ namespace FE10Randomizer_v0._1
 									randgrowth = 0;
 							}
 							// write new growth to game
-							stream.Position = stream.Position - 1;
 							stream.WriteByte(Convert.ToByte(randgrowth));
 							// write to output log
 							if (cbxRandRecr.Checked == true & charNum < 69)
@@ -3310,14 +3428,25 @@ namespace FE10Randomizer_v0._1
 						for (int i = 0; i < charSkillNum[charNum]; i++)
 						{
 							// get random skill
-							if ((cbxRandRecr.Checked == false | charNum >= 69) & ((cbxClassRand.Checked == true & newRace[charNum] == "B")
+							if (charNum < 69)
+							{
+								if ((cbxRandRecr.Checked == false) & ((cbxClassRand.Checked == true & newRace[charNum] == "B")
 									| (cbxClassRand.Checked == false & charRace[charNum] == "B")))
-								randSkill = random.Next(skillName.Length - 1); // beorc can't get wildheart, last skill on list
-							else if ((cbxRandRecr.Checked == true & charNum < 69) & ((cbxClassRand.Checked == true & newRace[recrInverse[charNum]] == "B")
-									| (cbxClassRand.Checked == false & charRace[recrInverse[charNum]] == "B")))
-								randSkill = random.Next(skillName.Length - 1); // beorc can't get wildheart, last skill on list
+									randSkill = random.Next(skillName.Length - 1); // beorc can't get wildheart, last skill on list
+								else if ((cbxRandRecr.Checked == true) & ((cbxClassRand.Checked == true & newRace[recrInverse[charNum]] == "B")
+										| (cbxClassRand.Checked == false & charRace[recrInverse[charNum]] == "B")))
+									randSkill = random.Next(skillName.Length - 1); // beorc can't get wildheart, last skill on list
+								else
+									randSkill = random.Next(skillName.Length);
+							}
 							else
-								randSkill = random.Next(skillName.Length);
+							{
+								if ((cbxClassRand.Checked == true & newRace[charNum] == "B")
+											| (cbxClassRand.Checked == false & charRace[charNum] == "B"))
+									randSkill = random.Next(skillName.Length - 1); // beorc can't get wildheart, last skill on list
+								else
+									randSkill = random.Next(skillName.Length);
+							}
 							
 							// write output
 							stream.WriteByte(0);
