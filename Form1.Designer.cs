@@ -78,6 +78,8 @@
 			this.radioArmor2 = new System.Windows.Forms.RadioButton();
 			this.radioArmor1 = new System.Windows.Forms.RadioButton();
 			this.radioArmor0 = new System.Windows.Forms.RadioButton();
+			this.cbxThieves = new System.Windows.Forms.CheckBox();
+			this.cbxLords = new System.Windows.Forms.CheckBox();
 			this.cbxHerons = new System.Windows.Forms.CheckBox();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.radioBird5 = new System.Windows.Forms.RadioButton();
@@ -192,6 +194,12 @@
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.cbxPRFs = new System.Windows.Forms.CheckBox();
 			this.cbxFlorete = new System.Windows.Forms.CheckBox();
+			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.cbxEnemyRange = new System.Windows.Forms.CheckBox();
+			this.cbxWeapTri = new System.Windows.Forms.CheckBox();
+			this.cbxMapAff = new System.Windows.Forms.CheckBox();
+			this.cbxWeapCaps = new System.Windows.Forms.CheckBox();
+			this.cbxStrMag = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).BeginInit();
@@ -241,6 +249,7 @@
 			this.groupBox3.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox5.SuspendLayout();
+			this.groupBox6.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -248,7 +257,7 @@
 			this.button1.Enabled = false;
 			this.button1.Location = new System.Drawing.Point(17, 603);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(477, 54);
+			this.button1.Size = new System.Drawing.Size(477, 66);
 			this.button1.TabIndex = 0;
 			this.button1.Text = "Randomize";
 			this.button1.UseVisualStyleBackColor = true;
@@ -257,7 +266,7 @@
 			// textBox1
 			// 
 			this.textBox1.Enabled = false;
-			this.textBox1.Location = new System.Drawing.Point(12, 667);
+			this.textBox1.Location = new System.Drawing.Point(12, 679);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(945, 22);
 			this.textBox1.TabIndex = 1;
@@ -662,6 +671,9 @@
 			this.panelClass.Controls.Add(this.panel8);
 			this.panelClass.Controls.Add(this.label15);
 			this.panelClass.Controls.Add(this.panel4);
+			this.panelClass.Controls.Add(this.cbxStrMag);
+			this.panelClass.Controls.Add(this.cbxThieves);
+			this.panelClass.Controls.Add(this.cbxLords);
 			this.panelClass.Controls.Add(this.cbxHerons);
 			this.panelClass.Controls.Add(this.panel7);
 			this.panelClass.Controls.Add(this.comboClassOptions);
@@ -850,6 +862,26 @@
 			this.radioArmor0.TabIndex = 56;
 			this.radioArmor0.UseVisualStyleBackColor = true;
 			this.radioArmor0.CheckedChanged += new System.EventHandler(this.radioWeights_Changed);
+			// 
+			// cbxThieves
+			// 
+			this.cbxThieves.AutoSize = true;
+			this.cbxThieves.Location = new System.Drawing.Point(247, 357);
+			this.cbxThieves.Name = "cbxThieves";
+			this.cbxThieves.Size = new System.Drawing.Size(192, 21);
+			this.cbxThieves.TabIndex = 12;
+			this.cbxThieves.Text = "Don\'t Randomize Thieves";
+			this.cbxThieves.UseVisualStyleBackColor = true;
+			// 
+			// cbxLords
+			// 
+			this.cbxLords.AutoSize = true;
+			this.cbxLords.Location = new System.Drawing.Point(247, 330);
+			this.cbxLords.Name = "cbxLords";
+			this.cbxLords.Size = new System.Drawing.Size(178, 21);
+			this.cbxLords.TabIndex = 12;
+			this.cbxLords.Text = "Don\'t Randomize Lords";
+			this.cbxLords.UseVisualStyleBackColor = true;
 			// 
 			// cbxHerons
 			// 
@@ -1455,7 +1487,7 @@
 			// cbxStatCaps
 			// 
 			this.cbxStatCaps.AutoSize = true;
-			this.cbxStatCaps.Location = new System.Drawing.Point(840, 528);
+			this.cbxStatCaps.Location = new System.Drawing.Point(840, 468);
 			this.cbxStatCaps.Name = "cbxStatCaps";
 			this.cbxStatCaps.Size = new System.Drawing.Size(235, 21);
 			this.cbxStatCaps.TabIndex = 24;
@@ -1486,7 +1518,7 @@
 			// 
 			// numericStatCap1
 			// 
-			this.numericStatCap1.Location = new System.Drawing.Point(876, 552);
+			this.numericStatCap1.Location = new System.Drawing.Point(876, 492);
 			this.numericStatCap1.Maximum = new decimal(new int[] {
             127,
             0,
@@ -1529,7 +1561,7 @@
 			// cbxEventItems
 			// 
 			this.cbxEventItems.AutoSize = true;
-			this.cbxEventItems.Location = new System.Drawing.Point(19, 165);
+			this.cbxEventItems.Location = new System.Drawing.Point(20, 165);
 			this.cbxEventItems.Name = "cbxEventItems";
 			this.cbxEventItems.Size = new System.Drawing.Size(178, 21);
 			this.cbxEventItems.TabIndex = 31;
@@ -1538,7 +1570,7 @@
 			// 
 			// numericStatCap2
 			// 
-			this.numericStatCap2.Location = new System.Drawing.Point(876, 576);
+			this.numericStatCap2.Location = new System.Drawing.Point(876, 516);
 			this.numericStatCap2.Maximum = new decimal(new int[] {
             127,
             0,
@@ -1560,7 +1592,7 @@
 			// 
 			// numericStatCap3
 			// 
-			this.numericStatCap3.Location = new System.Drawing.Point(876, 600);
+			this.numericStatCap3.Location = new System.Drawing.Point(876, 540);
 			this.numericStatCap3.Maximum = new decimal(new int[] {
             127,
             0,
@@ -1583,7 +1615,7 @@
 			// label16
 			// 
 			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(938, 554);
+			this.label16.Location = new System.Drawing.Point(938, 494);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(45, 17);
 			this.label16.TabIndex = 34;
@@ -1592,7 +1624,7 @@
 			// label17
 			// 
 			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(938, 578);
+			this.label17.Location = new System.Drawing.Point(938, 518);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(186, 17);
 			this.label17.TabIndex = 35;
@@ -1601,7 +1633,7 @@
 			// label18
 			// 
 			this.label18.AutoSize = true;
-			this.label18.Location = new System.Drawing.Point(938, 603);
+			this.label18.Location = new System.Drawing.Point(938, 543);
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(173, 17);
 			this.label18.TabIndex = 36;
@@ -1620,7 +1652,7 @@
 			// cbxRandRecr
 			// 
 			this.cbxRandRecr.AutoSize = true;
-			this.cbxRandRecr.Location = new System.Drawing.Point(19, 189);
+			this.cbxRandRecr.Location = new System.Drawing.Point(20, 189);
 			this.cbxRandRecr.Name = "cbxRandRecr";
 			this.cbxRandRecr.Size = new System.Drawing.Size(222, 21);
 			this.cbxRandRecr.TabIndex = 37;
@@ -2100,7 +2132,7 @@
 			this.groupBox1.Controls.Add(this.cbxShuffleBases);
 			this.groupBox1.Controls.Add(this.numericBaseRand);
 			this.groupBox1.Controls.Add(this.cbxRandBases);
-			this.groupBox1.Location = new System.Drawing.Point(835, 404);
+			this.groupBox1.Location = new System.Drawing.Point(835, 344);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(342, 113);
 			this.groupBox1.TabIndex = 48;
@@ -2137,7 +2169,7 @@
 			this.groupBox3.Controls.Add(this.cbxEnemyGrowth);
 			this.groupBox3.Controls.Add(this.label20);
 			this.groupBox3.Controls.Add(this.numericEnemyGrowth);
-			this.groupBox3.Location = new System.Drawing.Point(835, 73);
+			this.groupBox3.Location = new System.Drawing.Point(835, 13);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(342, 317);
 			this.groupBox3.TabIndex = 50;
@@ -2162,12 +2194,13 @@
 			this.groupBox5.Controls.Add(this.cbxAffinity);
 			this.groupBox5.Controls.Add(this.cbxSkillRand);
 			this.groupBox5.Controls.Add(this.cbxRandShop);
+			this.groupBox5.Controls.Add(this.cbxWeapCaps);
 			this.groupBox5.Controls.Add(this.cbxRandRecr);
 			this.groupBox5.Controls.Add(this.cbxBio);
 			this.groupBox5.Controls.Add(this.cbxEventItems);
 			this.groupBox5.Location = new System.Drawing.Point(517, 382);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(304, 220);
+			this.groupBox5.Size = new System.Drawing.Size(304, 247);
 			this.groupBox5.TabIndex = 52;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Other Changes";
@@ -2192,11 +2225,74 @@
 			this.cbxFlorete.Text = "Make Florete Magic-Based";
 			this.cbxFlorete.UseVisualStyleBackColor = true;
 			// 
+			// groupBox6
+			// 
+			this.groupBox6.Controls.Add(this.cbxMapAff);
+			this.groupBox6.Controls.Add(this.cbxWeapTri);
+			this.groupBox6.Controls.Add(this.cbxEnemyRange);
+			this.groupBox6.Location = new System.Drawing.Point(835, 571);
+			this.groupBox6.Name = "groupBox6";
+			this.groupBox6.Size = new System.Drawing.Size(339, 102);
+			this.groupBox6.TabIndex = 53;
+			this.groupBox6.TabStop = false;
+			this.groupBox6.Text = "Make Hardmode Great Again";
+			// 
+			// cbxEnemyRange
+			// 
+			this.cbxEnemyRange.AutoSize = true;
+			this.cbxEnemyRange.Location = new System.Drawing.Point(15, 25);
+			this.cbxEnemyRange.Name = "cbxEnemyRange";
+			this.cbxEnemyRange.Size = new System.Drawing.Size(126, 21);
+			this.cbxEnemyRange.TabIndex = 0;
+			this.cbxEnemyRange.Text = "Enemy Ranges";
+			this.cbxEnemyRange.UseVisualStyleBackColor = true;
+			// 
+			// cbxWeapTri
+			// 
+			this.cbxWeapTri.AutoSize = true;
+			this.cbxWeapTri.Location = new System.Drawing.Point(15, 50);
+			this.cbxWeapTri.Name = "cbxWeapTri";
+			this.cbxWeapTri.Size = new System.Drawing.Size(139, 21);
+			this.cbxWeapTri.TabIndex = 0;
+			this.cbxWeapTri.Text = "Weapon Triangle";
+			this.cbxWeapTri.UseVisualStyleBackColor = true;
+			// 
+			// cbxMapAff
+			// 
+			this.cbxMapAff.AutoSize = true;
+			this.cbxMapAff.Location = new System.Drawing.Point(15, 75);
+			this.cbxMapAff.Name = "cbxMapAff";
+			this.cbxMapAff.Size = new System.Drawing.Size(103, 21);
+			this.cbxMapAff.TabIndex = 0;
+			this.cbxMapAff.Text = "Map Affinity";
+			this.cbxMapAff.UseVisualStyleBackColor = true;
+			// 
+			// cbxWeapCaps
+			// 
+			this.cbxWeapCaps.AutoSize = true;
+			this.cbxWeapCaps.Location = new System.Drawing.Point(20, 213);
+			this.cbxWeapCaps.Name = "cbxWeapCaps";
+			this.cbxWeapCaps.Size = new System.Drawing.Size(213, 21);
+			this.cbxWeapCaps.TabIndex = 37;
+			this.cbxWeapCaps.Text = "Remove Weapon Level Caps";
+			this.cbxWeapCaps.UseVisualStyleBackColor = true;
+			// 
+			// cbxStrMag
+			// 
+			this.cbxStrMag.AutoSize = true;
+			this.cbxStrMag.Location = new System.Drawing.Point(247, 383);
+			this.cbxStrMag.Name = "cbxStrMag";
+			this.cbxStrMag.Size = new System.Drawing.Size(233, 21);
+			this.cbxStrMag.TabIndex = 12;
+			this.cbxStrMag.Text = "Prioritize Higher Str/Mag Growth";
+			this.cbxStrMag.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1191, 712);
+			this.ClientSize = new System.Drawing.Size(1186, 712);
+			this.Controls.Add(this.groupBox6);
 			this.Controls.Add(this.groupBox5);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.groupBox3);
@@ -2217,7 +2313,7 @@
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.button1);
 			this.Name = "Form1";
-			this.Text = "LordMewtwo\'s FE 10 Randomizer v1.4.7 - 08/15/2020";
+			this.Text = "LordMewtwo\'s FE 10 Randomizer v1.5.0 - 08/29/2020";
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).EndInit();
@@ -2283,6 +2379,8 @@
 			this.groupBox4.PerformLayout();
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox5.PerformLayout();
+			this.groupBox6.ResumeLayout(false);
+			this.groupBox6.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2453,6 +2551,14 @@
 		private System.Windows.Forms.RadioButton radioDragon2;
 		private System.Windows.Forms.RadioButton radioDragon1;
 		private System.Windows.Forms.RadioButton radioDragon0;
+		private System.Windows.Forms.CheckBox cbxThieves;
+		private System.Windows.Forms.CheckBox cbxLords;
+		private System.Windows.Forms.GroupBox groupBox6;
+		private System.Windows.Forms.CheckBox cbxMapAff;
+		private System.Windows.Forms.CheckBox cbxWeapTri;
+		private System.Windows.Forms.CheckBox cbxEnemyRange;
+		private System.Windows.Forms.CheckBox cbxWeapCaps;
+		private System.Windows.Forms.CheckBox cbxStrMag;
 	}
 }
 
