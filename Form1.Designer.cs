@@ -35,8 +35,8 @@
 			this.cbxClassRand = new System.Windows.Forms.CheckBox();
 			this.cbxGrowthRand = new System.Windows.Forms.CheckBox();
 			this.cbxGaugeRand = new System.Windows.Forms.CheckBox();
-			this.numericLaguzMin = new System.Windows.Forms.NumericUpDown();
-			this.numericLaguzMax = new System.Windows.Forms.NumericUpDown();
+			this.numericLaguzMin1 = new System.Windows.Forms.NumericUpDown();
+			this.numericLaguzMax1 = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnLoad = new System.Windows.Forms.Button();
@@ -53,8 +53,10 @@
 			this.numericRES = new System.Windows.Forms.NumericUpDown();
 			this.panelGrowths = new System.Windows.Forms.Panel();
 			this.label12 = new System.Windows.Forms.Label();
+			this.cbxGrowthCap = new System.Windows.Forms.CheckBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
+			this.numericGrowthCap = new System.Windows.Forms.NumericUpDown();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
@@ -63,6 +65,17 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.panelClass = new System.Windows.Forms.Panel();
+			this.panelLaguz = new System.Windows.Forms.Panel();
+			this.numericLaguzMin4 = new System.Windows.Forms.NumericUpDown();
+			this.numericLaguzMin2 = new System.Windows.Forms.NumericUpDown();
+			this.numericLaguzMin3 = new System.Windows.Forms.NumericUpDown();
+			this.numericLaguzMax2 = new System.Windows.Forms.NumericUpDown();
+			this.numericLaguzMax3 = new System.Windows.Forms.NumericUpDown();
+			this.numericLaguzMax4 = new System.Windows.Forms.NumericUpDown();
+			this.label31 = new System.Windows.Forms.Label();
+			this.label32 = new System.Windows.Forms.Label();
+			this.label33 = new System.Windows.Forms.Label();
+			this.label34 = new System.Windows.Forms.Label();
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.radioDragon5 = new System.Windows.Forms.RadioButton();
 			this.radioDragon4 = new System.Windows.Forms.RadioButton();
@@ -71,6 +84,7 @@
 			this.radioDragon1 = new System.Windows.Forms.RadioButton();
 			this.radioDragon0 = new System.Windows.Forms.RadioButton();
 			this.label15 = new System.Windows.Forms.Label();
+			this.cbxNoLaguz = new System.Windows.Forms.CheckBox();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.radioArmor5 = new System.Windows.Forms.RadioButton();
 			this.radioArmor4 = new System.Windows.Forms.RadioButton();
@@ -78,6 +92,7 @@
 			this.radioArmor2 = new System.Windows.Forms.RadioButton();
 			this.radioArmor1 = new System.Windows.Forms.RadioButton();
 			this.radioArmor0 = new System.Windows.Forms.RadioButton();
+			this.cbxStrMag = new System.Windows.Forms.CheckBox();
 			this.cbxThieves = new System.Windows.Forms.CheckBox();
 			this.cbxLords = new System.Windows.Forms.CheckBox();
 			this.cbxHerons = new System.Windows.Forms.CheckBox();
@@ -159,6 +174,7 @@
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.cbxRandWeap = new System.Windows.Forms.CheckBox();
 			this.panelWeap = new System.Windows.Forms.Panel();
+			this.cbxSiegeUse = new System.Windows.Forms.CheckBox();
 			this.cbxStaveUse = new System.Windows.Forms.CheckBox();
 			this.cbxLaguzWeap = new System.Windows.Forms.CheckBox();
 			this.label24 = new System.Windows.Forms.Label();
@@ -190,18 +206,56 @@
 			this.cbxHPLCKShuffle = new System.Windows.Forms.CheckBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.cbxGrowthShuffleMin = new System.Windows.Forms.CheckBox();
+			this.cbxGrowthShuffle = new System.Windows.Forms.CheckBox();
+			this.numericGrowthShuffle = new System.Windows.Forms.NumericUpDown();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.cbxPRFs = new System.Windows.Forms.CheckBox();
+			this.cbxGMweaps = new System.Windows.Forms.CheckBox();
 			this.cbxFlorete = new System.Windows.Forms.CheckBox();
-			this.groupBox6 = new System.Windows.Forms.GroupBox();
-			this.cbxEnemyRange = new System.Windows.Forms.CheckBox();
-			this.cbxWeapTri = new System.Windows.Forms.CheckBox();
-			this.cbxMapAff = new System.Windows.Forms.CheckBox();
+			this.cbxWinCon = new System.Windows.Forms.CheckBox();
+			this.cbxLethality = new System.Windows.Forms.CheckBox();
+			this.cbxKurthEna = new System.Windows.Forms.CheckBox();
+			this.cbxFionaAI = new System.Windows.Forms.CheckBox();
+			this.cbxBKfight = new System.Windows.Forms.CheckBox();
+			this.cbxSellableItems = new System.Windows.Forms.CheckBox();
+			this.cbxJillAI = new System.Windows.Forms.CheckBox();
+			this.cbxDragonSkills = new System.Windows.Forms.CheckBox();
+			this.cbxFireMag = new System.Windows.Forms.CheckBox();
+			this.cbxLowerPrice = new System.Windows.Forms.CheckBox();
+			this.cbxDBweaps = new System.Windows.Forms.CheckBox();
+			this.cbxBirdVision = new System.Windows.Forms.CheckBox();
+			this.cbxChestKey = new System.Windows.Forms.CheckBox();
 			this.cbxWeapCaps = new System.Windows.Forms.CheckBox();
-			this.cbxStrMag = new System.Windows.Forms.CheckBox();
-			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax)).BeginInit();
+			this.cbxNihil = new System.Windows.Forms.CheckBox();
+			this.cbxBKnerf = new System.Windows.Forms.CheckBox();
+			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.cbxMapAff = new System.Windows.Forms.CheckBox();
+			this.cbxWeapTri = new System.Windows.Forms.CheckBox();
+			this.cbxEnemyRange = new System.Windows.Forms.CheckBox();
+			this.cbxRandEnemy = new System.Windows.Forms.CheckBox();
+			this.cbxEnemWeaps = new System.Windows.Forms.CheckBox();
+			this.cbxForge = new System.Windows.Forms.CheckBox();
+			this.comboLord = new System.Windows.Forms.ComboBox();
+			this.cbxChooseIke = new System.Windows.Forms.CheckBox();
+			this.cbxEnemyRecruit = new System.Windows.Forms.CheckBox();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.cbxEnemDrops = new System.Windows.Forms.CheckBox();
+			this.cbxSpirits = new System.Windows.Forms.CheckBox();
+			this.cbxTier3Enemies = new System.Windows.Forms.CheckBox();
+			this.cbxRandBosses = new System.Windows.Forms.CheckBox();
+			this.groupBox8 = new System.Windows.Forms.GroupBox();
+			this.panelRecr = new System.Windows.Forms.Panel();
+			this.groupBox9 = new System.Windows.Forms.GroupBox();
+			this.cbxTowerUnits = new System.Windows.Forms.CheckBox();
+			this.cbxBuffBosses = new System.Windows.Forms.CheckBox();
+			this.numericBossStats = new System.Windows.Forms.NumericUpDown();
+			this.cbxNoSiege = new System.Windows.Forms.CheckBox();
+			this.cbxOnlySiege = new System.Windows.Forms.CheckBox();
+			this.cbxEnemHealers = new System.Windows.Forms.CheckBox();
+			this.panelEnemy = new System.Windows.Forms.Panel();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericHP)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericSPD)).BeginInit();
@@ -212,7 +266,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.numericSKL)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericRES)).BeginInit();
 			this.panelGrowths.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericGrowthCap)).BeginInit();
 			this.panelClass.SuspendLayout();
+			this.panelLaguz.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax4)).BeginInit();
 			this.panel8.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel7.SuspendLayout();
@@ -247,15 +309,22 @@
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericGrowthShuffle)).BeginInit();
 			this.groupBox4.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.groupBox6.SuspendLayout();
+			this.groupBox7.SuspendLayout();
+			this.groupBox8.SuspendLayout();
+			this.panelRecr.SuspendLayout();
+			this.groupBox9.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericBossStats)).BeginInit();
+			this.panelEnemy.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button1
 			// 
 			this.button1.Enabled = false;
-			this.button1.Location = new System.Drawing.Point(17, 603);
+			this.button1.Location = new System.Drawing.Point(17, 684);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(477, 66);
 			this.button1.TabIndex = 0;
@@ -266,7 +335,7 @@
 			// textBox1
 			// 
 			this.textBox1.Enabled = false;
-			this.textBox1.Location = new System.Drawing.Point(12, 679);
+			this.textBox1.Location = new System.Drawing.Point(12, 760);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(945, 22);
 			this.textBox1.TabIndex = 1;
@@ -274,7 +343,7 @@
 			// cbxSkillRand
 			// 
 			this.cbxSkillRand.AutoSize = true;
-			this.cbxSkillRand.Location = new System.Drawing.Point(20, 141);
+			this.cbxSkillRand.Location = new System.Drawing.Point(22, 135);
 			this.cbxSkillRand.Name = "cbxSkillRand";
 			this.cbxSkillRand.Size = new System.Drawing.Size(137, 21);
 			this.cbxSkillRand.TabIndex = 2;
@@ -297,85 +366,86 @@
 			this.cbxGrowthRand.AutoSize = true;
 			this.cbxGrowthRand.Location = new System.Drawing.Point(16, 20);
 			this.cbxGrowthRand.Name = "cbxGrowthRand";
-			this.cbxGrowthRand.Size = new System.Drawing.Size(201, 21);
+			this.cbxGrowthRand.Size = new System.Drawing.Size(163, 21);
 			this.cbxGrowthRand.TabIndex = 3;
-			this.cbxGrowthRand.Text = "Randomize Player Growths";
+			this.cbxGrowthRand.Text = "Random w/ Deviation";
 			this.cbxGrowthRand.UseVisualStyleBackColor = true;
 			this.cbxGrowthRand.CheckedChanged += new System.EventHandler(this.cbxGrowthRand_CheckedChanged);
 			// 
 			// cbxGaugeRand
 			// 
 			this.cbxGaugeRand.AutoSize = true;
-			this.cbxGaugeRand.Location = new System.Drawing.Point(33, 356);
+			this.cbxGaugeRand.Location = new System.Drawing.Point(16, 312);
 			this.cbxGaugeRand.Name = "cbxGaugeRand";
 			this.cbxGaugeRand.Size = new System.Drawing.Size(180, 21);
 			this.cbxGaugeRand.TabIndex = 3;
 			this.cbxGaugeRand.Text = "Random Laguz Gauges";
 			this.cbxGaugeRand.UseVisualStyleBackColor = true;
+			this.cbxGaugeRand.CheckedChanged += new System.EventHandler(this.cbxGaugeRand_CheckedChanged);
 			// 
-			// numericLaguzMin
+			// numericLaguzMin1
 			// 
-			this.numericLaguzMin.Location = new System.Drawing.Point(68, 384);
-			this.numericLaguzMin.Maximum = new decimal(new int[] {
-            30,
+			this.numericLaguzMin1.Location = new System.Drawing.Point(94, 29);
+			this.numericLaguzMin1.Maximum = new decimal(new int[] {
+            15,
             0,
             0,
             0});
-			this.numericLaguzMin.Minimum = new decimal(new int[] {
+			this.numericLaguzMin1.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.numericLaguzMin.Name = "numericLaguzMin";
-			this.numericLaguzMin.Size = new System.Drawing.Size(56, 22);
-			this.numericLaguzMin.TabIndex = 5;
-			this.numericLaguzMin.Value = new decimal(new int[] {
+			this.numericLaguzMin1.Name = "numericLaguzMin1";
+			this.numericLaguzMin1.Size = new System.Drawing.Size(56, 22);
+			this.numericLaguzMin1.TabIndex = 5;
+			this.numericLaguzMin1.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.numericLaguzMin.ValueChanged += new System.EventHandler(this.numericLaguzMin_ValueChanged);
+			this.numericLaguzMin1.ValueChanged += new System.EventHandler(this.numericLaguzMin_ValueChanged);
 			// 
-			// numericLaguzMax
+			// numericLaguzMax1
 			// 
-			this.numericLaguzMax.Location = new System.Drawing.Point(169, 383);
-			this.numericLaguzMax.Maximum = new decimal(new int[] {
+			this.numericLaguzMax1.Location = new System.Drawing.Point(166, 29);
+			this.numericLaguzMax1.Maximum = new decimal(new int[] {
             30,
             0,
             0,
             0});
-			this.numericLaguzMax.Minimum = new decimal(new int[] {
+			this.numericLaguzMax1.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.numericLaguzMax.Name = "numericLaguzMax";
-			this.numericLaguzMax.Size = new System.Drawing.Size(51, 22);
-			this.numericLaguzMax.TabIndex = 5;
-			this.numericLaguzMax.Value = new decimal(new int[] {
-            30,
+			this.numericLaguzMax1.Name = "numericLaguzMax1";
+			this.numericLaguzMax1.Size = new System.Drawing.Size(51, 22);
+			this.numericLaguzMax1.TabIndex = 5;
+			this.numericLaguzMax1.Value = new decimal(new int[] {
+            15,
             0,
             0,
             0});
-			this.numericLaguzMax.ValueChanged += new System.EventHandler(this.numericLaguzMax_ValueChanged);
+			this.numericLaguzMax1.ValueChanged += new System.EventHandler(this.numericLaguzMax_ValueChanged);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(31, 387);
+			this.label2.Location = new System.Drawing.Point(108, 7);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(34, 17);
+			this.label2.Size = new System.Drawing.Size(30, 17);
 			this.label2.TabIndex = 6;
-			this.label2.Text = "min:";
+			this.label2.Text = "Min";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(130, 386);
+			this.label3.Location = new System.Drawing.Point(168, 6);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(37, 17);
+			this.label3.Size = new System.Drawing.Size(33, 17);
 			this.label3.TabIndex = 7;
-			this.label3.Text = "max:";
+			this.label3.Text = "Max";
 			// 
 			// btnLoad
 			// 
@@ -387,6 +457,10 @@
 			this.btnLoad.UseVisualStyleBackColor = true;
 			this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
 			// 
+			// folderBD
+			// 
+			this.folderBD.Description = "Select DATA\\files folder";
+			// 
 			// lblLocation
 			// 
 			this.lblLocation.AutoSize = true;
@@ -394,7 +468,7 @@
 			this.lblLocation.Name = "lblLocation";
 			this.lblLocation.Size = new System.Drawing.Size(193, 17);
 			this.lblLocation.TabIndex = 9;
-			this.lblLocation.Text = "No DATA/files folder selected";
+			this.lblLocation.Text = "No DATA\\files folder selected";
 			// 
 			// numericGrowth
 			// 
@@ -404,6 +478,16 @@
             0,
             0});
 			this.numericGrowth.Location = new System.Drawing.Point(240, 6);
+			this.numericGrowth.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+			this.numericGrowth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.numericGrowth.Name = "numericGrowth";
 			this.numericGrowth.Size = new System.Drawing.Size(60, 22);
 			this.numericGrowth.TabIndex = 10;
@@ -421,6 +505,11 @@
             0,
             0});
 			this.numericHP.Location = new System.Drawing.Point(60, 48);
+			this.numericHP.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericHP.Name = "numericHP";
 			this.numericHP.Size = new System.Drawing.Size(70, 22);
 			this.numericHP.TabIndex = 11;
@@ -438,6 +527,11 @@
             0,
             0});
 			this.numericSPD.Location = new System.Drawing.Point(196, 48);
+			this.numericSPD.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericSPD.Name = "numericSPD";
 			this.numericSPD.Size = new System.Drawing.Size(69, 22);
 			this.numericSPD.TabIndex = 12;
@@ -455,6 +549,11 @@
             0,
             0});
 			this.numericATK.Location = new System.Drawing.Point(60, 87);
+			this.numericATK.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericATK.Name = "numericATK";
 			this.numericATK.Size = new System.Drawing.Size(70, 22);
 			this.numericATK.TabIndex = 13;
@@ -472,6 +571,11 @@
             0,
             0});
 			this.numericLCK.Location = new System.Drawing.Point(196, 87);
+			this.numericLCK.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericLCK.Name = "numericLCK";
 			this.numericLCK.Size = new System.Drawing.Size(69, 22);
 			this.numericLCK.TabIndex = 14;
@@ -489,6 +593,11 @@
             0,
             0});
 			this.numericDEF.Location = new System.Drawing.Point(195, 124);
+			this.numericDEF.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericDEF.Name = "numericDEF";
 			this.numericDEF.Size = new System.Drawing.Size(70, 22);
 			this.numericDEF.TabIndex = 15;
@@ -506,6 +615,11 @@
             0,
             0});
 			this.numericMAG.Location = new System.Drawing.Point(60, 125);
+			this.numericMAG.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericMAG.Name = "numericMAG";
 			this.numericMAG.Size = new System.Drawing.Size(70, 22);
 			this.numericMAG.TabIndex = 16;
@@ -523,6 +637,11 @@
             0,
             0});
 			this.numericSKL.Location = new System.Drawing.Point(60, 161);
+			this.numericSKL.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericSKL.Name = "numericSKL";
 			this.numericSKL.Size = new System.Drawing.Size(70, 22);
 			this.numericSKL.TabIndex = 17;
@@ -540,6 +659,11 @@
             0,
             0});
 			this.numericRES.Location = new System.Drawing.Point(195, 161);
+			this.numericRES.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericRES.Name = "numericRES";
 			this.numericRES.Size = new System.Drawing.Size(70, 22);
 			this.numericRES.TabIndex = 18;
@@ -552,9 +676,11 @@
 			// panelGrowths
 			// 
 			this.panelGrowths.Controls.Add(this.label12);
+			this.panelGrowths.Controls.Add(this.cbxGrowthCap);
 			this.panelGrowths.Controls.Add(this.numericGrowth);
 			this.panelGrowths.Controls.Add(this.label13);
 			this.panelGrowths.Controls.Add(this.label11);
+			this.panelGrowths.Controls.Add(this.numericGrowthCap);
 			this.panelGrowths.Controls.Add(this.label10);
 			this.panelGrowths.Controls.Add(this.label9);
 			this.panelGrowths.Controls.Add(this.label8);
@@ -573,7 +699,7 @@
 			this.panelGrowths.Enabled = false;
 			this.panelGrowths.Location = new System.Drawing.Point(15, 43);
 			this.panelGrowths.Name = "panelGrowths";
-			this.panelGrowths.Size = new System.Drawing.Size(311, 190);
+			this.panelGrowths.Size = new System.Drawing.Size(311, 226);
 			this.panelGrowths.TabIndex = 19;
 			// 
 			// label12
@@ -584,6 +710,17 @@
 			this.label12.Size = new System.Drawing.Size(39, 17);
 			this.label12.TabIndex = 27;
 			this.label12.Text = "ATK:";
+			// 
+			// cbxGrowthCap
+			// 
+			this.cbxGrowthCap.AutoSize = true;
+			this.cbxGrowthCap.Location = new System.Drawing.Point(15, 194);
+			this.cbxGrowthCap.Name = "cbxGrowthCap";
+			this.cbxGrowthCap.Size = new System.Drawing.Size(141, 21);
+			this.cbxGrowthCap.TabIndex = 22;
+			this.cbxGrowthCap.Text = "Cap Growths (%):";
+			this.cbxGrowthCap.UseVisualStyleBackColor = true;
+			this.cbxGrowthCap.CheckedChanged += new System.EventHandler(this.cbxGrowthCap_CheckedChanged);
 			// 
 			// label13
 			// 
@@ -602,6 +739,29 @@
 			this.label11.Size = new System.Drawing.Size(43, 17);
 			this.label11.TabIndex = 26;
 			this.label11.Text = "MAG:";
+			// 
+			// numericGrowthCap
+			// 
+			this.numericGrowthCap.Location = new System.Drawing.Point(162, 194);
+			this.numericGrowthCap.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+			this.numericGrowthCap.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.numericGrowthCap.Name = "numericGrowthCap";
+			this.numericGrowthCap.Size = new System.Drawing.Size(72, 22);
+			this.numericGrowthCap.TabIndex = 39;
+			this.numericGrowthCap.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+			this.numericGrowthCap.ValueChanged += new System.EventHandler(this.numericGrowthCap_ValueChanged);
 			// 
 			// label10
 			// 
@@ -668,8 +828,10 @@
 			// 
 			// panelClass
 			// 
+			this.panelClass.Controls.Add(this.panelLaguz);
 			this.panelClass.Controls.Add(this.panel8);
 			this.panelClass.Controls.Add(this.label15);
+			this.panelClass.Controls.Add(this.cbxNoLaguz);
 			this.panelClass.Controls.Add(this.panel4);
 			this.panelClass.Controls.Add(this.cbxStrMag);
 			this.panelClass.Controls.Add(this.cbxThieves);
@@ -679,18 +841,14 @@
 			this.panelClass.Controls.Add(this.comboClassOptions);
 			this.panelClass.Controls.Add(this.panel3);
 			this.panelClass.Controls.Add(this.panel6);
-			this.panelClass.Controls.Add(this.label3);
 			this.panelClass.Controls.Add(this.panel2);
 			this.panelClass.Controls.Add(this.panel5);
 			this.panelClass.Controls.Add(this.panel1);
-			this.panelClass.Controls.Add(this.label2);
 			this.panelClass.Controls.Add(this.label30);
 			this.panelClass.Controls.Add(this.label29);
 			this.panelClass.Controls.Add(this.lblInfantry);
-			this.panelClass.Controls.Add(this.numericLaguzMax);
 			this.panelClass.Controls.Add(this.label19);
 			this.panelClass.Controls.Add(this.lblMages);
-			this.panelClass.Controls.Add(this.numericLaguzMin);
 			this.panelClass.Controls.Add(this.lblDragons);
 			this.panelClass.Controls.Add(this.lblCavalry);
 			this.panelClass.Controls.Add(this.lblBirds);
@@ -701,8 +859,204 @@
 			this.panelClass.Enabled = false;
 			this.panelClass.Location = new System.Drawing.Point(7, 41);
 			this.panelClass.Name = "panelClass";
-			this.panelClass.Size = new System.Drawing.Size(481, 429);
+			this.panelClass.Size = new System.Drawing.Size(481, 489);
 			this.panelClass.TabIndex = 21;
+			// 
+			// panelLaguz
+			// 
+			this.panelLaguz.Controls.Add(this.numericLaguzMin4);
+			this.panelLaguz.Controls.Add(this.numericLaguzMin1);
+			this.panelLaguz.Controls.Add(this.numericLaguzMin2);
+			this.panelLaguz.Controls.Add(this.numericLaguzMin3);
+			this.panelLaguz.Controls.Add(this.numericLaguzMax1);
+			this.panelLaguz.Controls.Add(this.numericLaguzMax2);
+			this.panelLaguz.Controls.Add(this.numericLaguzMax3);
+			this.panelLaguz.Controls.Add(this.numericLaguzMax4);
+			this.panelLaguz.Controls.Add(this.label2);
+			this.panelLaguz.Controls.Add(this.label31);
+			this.panelLaguz.Controls.Add(this.label32);
+			this.panelLaguz.Controls.Add(this.label33);
+			this.panelLaguz.Controls.Add(this.label3);
+			this.panelLaguz.Controls.Add(this.label34);
+			this.panelLaguz.Enabled = false;
+			this.panelLaguz.Location = new System.Drawing.Point(13, 335);
+			this.panelLaguz.Name = "panelLaguz";
+			this.panelLaguz.Size = new System.Drawing.Size(223, 150);
+			this.panelLaguz.TabIndex = 59;
+			// 
+			// numericLaguzMin4
+			// 
+			this.numericLaguzMin4.Location = new System.Drawing.Point(94, 115);
+			this.numericLaguzMin4.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+			this.numericLaguzMin4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericLaguzMin4.Name = "numericLaguzMin4";
+			this.numericLaguzMin4.Size = new System.Drawing.Size(56, 22);
+			this.numericLaguzMin4.TabIndex = 5;
+			this.numericLaguzMin4.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericLaguzMin4.ValueChanged += new System.EventHandler(this.numericLaguzMin4_ValueChanged);
+			// 
+			// numericLaguzMin2
+			// 
+			this.numericLaguzMin2.Location = new System.Drawing.Point(94, 59);
+			this.numericLaguzMin2.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+			this.numericLaguzMin2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericLaguzMin2.Name = "numericLaguzMin2";
+			this.numericLaguzMin2.Size = new System.Drawing.Size(56, 22);
+			this.numericLaguzMin2.TabIndex = 5;
+			this.numericLaguzMin2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericLaguzMin2.ValueChanged += new System.EventHandler(this.numericLaguzMin2_ValueChanged);
+			// 
+			// numericLaguzMin3
+			// 
+			this.numericLaguzMin3.Location = new System.Drawing.Point(94, 87);
+			this.numericLaguzMin3.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+			this.numericLaguzMin3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericLaguzMin3.Name = "numericLaguzMin3";
+			this.numericLaguzMin3.Size = new System.Drawing.Size(56, 22);
+			this.numericLaguzMin3.TabIndex = 5;
+			this.numericLaguzMin3.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericLaguzMin3.ValueChanged += new System.EventHandler(this.numericLaguzMin3_ValueChanged);
+			// 
+			// numericLaguzMax2
+			// 
+			this.numericLaguzMax2.Location = new System.Drawing.Point(166, 59);
+			this.numericLaguzMax2.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+			this.numericLaguzMax2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericLaguzMax2.Name = "numericLaguzMax2";
+			this.numericLaguzMax2.Size = new System.Drawing.Size(51, 22);
+			this.numericLaguzMax2.TabIndex = 5;
+			this.numericLaguzMax2.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+			this.numericLaguzMax2.ValueChanged += new System.EventHandler(this.numericLaguzMax2_ValueChanged);
+			// 
+			// numericLaguzMax3
+			// 
+			this.numericLaguzMax3.Location = new System.Drawing.Point(166, 87);
+			this.numericLaguzMax3.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+			this.numericLaguzMax3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericLaguzMax3.Name = "numericLaguzMax3";
+			this.numericLaguzMax3.Size = new System.Drawing.Size(51, 22);
+			this.numericLaguzMax3.TabIndex = 5;
+			this.numericLaguzMax3.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+			this.numericLaguzMax3.ValueChanged += new System.EventHandler(this.numericLaguzMax3_ValueChanged);
+			// 
+			// numericLaguzMax4
+			// 
+			this.numericLaguzMax4.Location = new System.Drawing.Point(166, 115);
+			this.numericLaguzMax4.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+			this.numericLaguzMax4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericLaguzMax4.Name = "numericLaguzMax4";
+			this.numericLaguzMax4.Size = new System.Drawing.Size(51, 22);
+			this.numericLaguzMax4.TabIndex = 5;
+			this.numericLaguzMax4.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+			this.numericLaguzMax4.ValueChanged += new System.EventHandler(this.numericLaguzMax4_ValueChanged);
+			// 
+			// label31
+			// 
+			this.label31.AutoSize = true;
+			this.label31.Location = new System.Drawing.Point(7, 31);
+			this.label31.Name = "label31";
+			this.label31.Size = new System.Drawing.Size(76, 17);
+			this.label31.TabIndex = 6;
+			this.label31.Text = "+ Per Turn";
+			// 
+			// label32
+			// 
+			this.label32.AutoSize = true;
+			this.label32.Location = new System.Drawing.Point(6, 61);
+			this.label32.Name = "label32";
+			this.label32.Size = new System.Drawing.Size(82, 17);
+			this.label32.TabIndex = 6;
+			this.label32.Text = "+ Per Battle";
+			// 
+			// label33
+			// 
+			this.label33.AutoSize = true;
+			this.label33.Location = new System.Drawing.Point(6, 89);
+			this.label33.Name = "label33";
+			this.label33.Size = new System.Drawing.Size(73, 17);
+			this.label33.TabIndex = 6;
+			this.label33.Text = "- Per Turn";
+			// 
+			// label34
+			// 
+			this.label34.AutoSize = true;
+			this.label34.Location = new System.Drawing.Point(6, 117);
+			this.label34.Name = "label34";
+			this.label34.Size = new System.Drawing.Size(79, 17);
+			this.label34.TabIndex = 6;
+			this.label34.Text = "- Per Battle";
 			// 
 			// panel8
 			// 
@@ -788,6 +1142,16 @@
 			this.label15.TabIndex = 13;
 			this.label15.Text = "Class Randomization Options";
 			// 
+			// cbxNoLaguz
+			// 
+			this.cbxNoLaguz.AutoSize = true;
+			this.cbxNoLaguz.Location = new System.Drawing.Point(247, 434);
+			this.cbxNoLaguz.Name = "cbxNoLaguz";
+			this.cbxNoLaguz.Size = new System.Drawing.Size(164, 21);
+			this.cbxNoLaguz.TabIndex = 12;
+			this.cbxNoLaguz.Text = "Prevent Part 1 Laguz";
+			this.cbxNoLaguz.UseVisualStyleBackColor = true;
+			// 
 			// panel4
 			// 
 			this.panel4.Controls.Add(this.radioArmor5);
@@ -863,10 +1227,20 @@
 			this.radioArmor0.UseVisualStyleBackColor = true;
 			this.radioArmor0.CheckedChanged += new System.EventHandler(this.radioWeights_Changed);
 			// 
+			// cbxStrMag
+			// 
+			this.cbxStrMag.AutoSize = true;
+			this.cbxStrMag.Location = new System.Drawing.Point(247, 459);
+			this.cbxStrMag.Name = "cbxStrMag";
+			this.cbxStrMag.Size = new System.Drawing.Size(233, 21);
+			this.cbxStrMag.TabIndex = 12;
+			this.cbxStrMag.Text = "Prioritize Higher Str/Mag Growth";
+			this.cbxStrMag.UseVisualStyleBackColor = true;
+			// 
 			// cbxThieves
 			// 
 			this.cbxThieves.AutoSize = true;
-			this.cbxThieves.Location = new System.Drawing.Point(247, 357);
+			this.cbxThieves.Location = new System.Drawing.Point(247, 410);
 			this.cbxThieves.Name = "cbxThieves";
 			this.cbxThieves.Size = new System.Drawing.Size(192, 21);
 			this.cbxThieves.TabIndex = 12;
@@ -876,7 +1250,7 @@
 			// cbxLords
 			// 
 			this.cbxLords.AutoSize = true;
-			this.cbxLords.Location = new System.Drawing.Point(247, 330);
+			this.cbxLords.Location = new System.Drawing.Point(247, 383);
 			this.cbxLords.Name = "cbxLords";
 			this.cbxLords.Size = new System.Drawing.Size(178, 21);
 			this.cbxLords.TabIndex = 12;
@@ -886,7 +1260,7 @@
 			// cbxHerons
 			// 
 			this.cbxHerons.AutoSize = true;
-			this.cbxHerons.Location = new System.Drawing.Point(34, 330);
+			this.cbxHerons.Location = new System.Drawing.Point(247, 357);
 			this.cbxHerons.Name = "cbxHerons";
 			this.cbxHerons.Size = new System.Drawing.Size(125, 21);
 			this.cbxHerons.TabIndex = 12;
@@ -1466,7 +1840,7 @@
 			// cbxZeroGrowths
 			// 
 			this.cbxZeroGrowths.AutoSize = true;
-			this.cbxZeroGrowths.Location = new System.Drawing.Point(16, 238);
+			this.cbxZeroGrowths.Location = new System.Drawing.Point(16, 322);
 			this.cbxZeroGrowths.Name = "cbxZeroGrowths";
 			this.cbxZeroGrowths.Size = new System.Drawing.Size(106, 21);
 			this.cbxZeroGrowths.TabIndex = 22;
@@ -1477,7 +1851,7 @@
 			// cbxRandShop
 			// 
 			this.cbxRandShop.AutoSize = true;
-			this.cbxRandShop.Location = new System.Drawing.Point(20, 117);
+			this.cbxRandShop.Location = new System.Drawing.Point(22, 112);
 			this.cbxRandShop.Name = "cbxRandShop";
 			this.cbxRandShop.Size = new System.Drawing.Size(145, 21);
 			this.cbxRandShop.TabIndex = 23;
@@ -1487,7 +1861,7 @@
 			// cbxStatCaps
 			// 
 			this.cbxStatCaps.AutoSize = true;
-			this.cbxStatCaps.Location = new System.Drawing.Point(840, 468);
+			this.cbxStatCaps.Location = new System.Drawing.Point(13, 100);
 			this.cbxStatCaps.Name = "cbxStatCaps";
 			this.cbxStatCaps.Size = new System.Drawing.Size(235, 21);
 			this.cbxStatCaps.TabIndex = 24;
@@ -1518,7 +1892,7 @@
 			// 
 			// numericStatCap1
 			// 
-			this.numericStatCap1.Location = new System.Drawing.Point(876, 492);
+			this.numericStatCap1.Location = new System.Drawing.Point(49, 124);
 			this.numericStatCap1.Maximum = new decimal(new int[] {
             127,
             0,
@@ -1541,7 +1915,7 @@
 			// cbxAffinity
 			// 
 			this.cbxAffinity.AutoSize = true;
-			this.cbxAffinity.Location = new System.Drawing.Point(20, 71);
+			this.cbxAffinity.Location = new System.Drawing.Point(22, 21);
 			this.cbxAffinity.Name = "cbxAffinity";
 			this.cbxAffinity.Size = new System.Drawing.Size(147, 21);
 			this.cbxAffinity.TabIndex = 29;
@@ -1551,7 +1925,7 @@
 			// cbxBio
 			// 
 			this.cbxBio.AutoSize = true;
-			this.cbxBio.Location = new System.Drawing.Point(20, 95);
+			this.cbxBio.Location = new System.Drawing.Point(22, 44);
 			this.cbxBio.Name = "cbxBio";
 			this.cbxBio.Size = new System.Drawing.Size(168, 21);
 			this.cbxBio.TabIndex = 30;
@@ -1561,7 +1935,7 @@
 			// cbxEventItems
 			// 
 			this.cbxEventItems.AutoSize = true;
-			this.cbxEventItems.Location = new System.Drawing.Point(20, 165);
+			this.cbxEventItems.Location = new System.Drawing.Point(22, 67);
 			this.cbxEventItems.Name = "cbxEventItems";
 			this.cbxEventItems.Size = new System.Drawing.Size(178, 21);
 			this.cbxEventItems.TabIndex = 31;
@@ -1570,7 +1944,7 @@
 			// 
 			// numericStatCap2
 			// 
-			this.numericStatCap2.Location = new System.Drawing.Point(876, 516);
+			this.numericStatCap2.Location = new System.Drawing.Point(49, 148);
 			this.numericStatCap2.Maximum = new decimal(new int[] {
             127,
             0,
@@ -1592,7 +1966,7 @@
 			// 
 			// numericStatCap3
 			// 
-			this.numericStatCap3.Location = new System.Drawing.Point(876, 540);
+			this.numericStatCap3.Location = new System.Drawing.Point(49, 172);
 			this.numericStatCap3.Maximum = new decimal(new int[] {
             127,
             0,
@@ -1615,7 +1989,7 @@
 			// label16
 			// 
 			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(938, 494);
+			this.label16.Location = new System.Drawing.Point(111, 126);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(45, 17);
 			this.label16.TabIndex = 34;
@@ -1624,7 +1998,7 @@
 			// label17
 			// 
 			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(938, 518);
+			this.label17.Location = new System.Drawing.Point(111, 150);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(186, 17);
 			this.label17.TabIndex = 35;
@@ -1633,7 +2007,7 @@
 			// label18
 			// 
 			this.label18.AutoSize = true;
-			this.label18.Location = new System.Drawing.Point(938, 543);
+			this.label18.Location = new System.Drawing.Point(111, 175);
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(173, 17);
 			this.label18.TabIndex = 36;
@@ -1645,19 +2019,20 @@
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(8, 9);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(745, 25);
+			this.label1.Size = new System.Drawing.Size(674, 25);
 			this.label1.TabIndex = 4;
-			this.label1.Text = "NTSC-U FE10 ISO ONLY. RANDOMIZER DOES NOT WORK WITH EASY MODE.";
+			this.label1.Text = "NTSC-U or PAL FE10 ISO ONLY. DOES NOT WORK WITH EASY MODE.";
 			// 
 			// cbxRandRecr
 			// 
 			this.cbxRandRecr.AutoSize = true;
-			this.cbxRandRecr.Location = new System.Drawing.Point(20, 189);
+			this.cbxRandRecr.Location = new System.Drawing.Point(12, 23);
 			this.cbxRandRecr.Name = "cbxRandRecr";
 			this.cbxRandRecr.Size = new System.Drawing.Size(222, 21);
 			this.cbxRandRecr.TabIndex = 37;
 			this.cbxRandRecr.Text = "Randomize Recruitment Order";
 			this.cbxRandRecr.UseVisualStyleBackColor = true;
+			this.cbxRandRecr.CheckedChanged += new System.EventHandler(this.cbxRandRecr_CheckedChanged);
 			// 
 			// cbxRandBases
 			// 
@@ -1695,16 +2070,16 @@
 			// label20
 			// 
 			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(48, 289);
+			this.label20.Location = new System.Drawing.Point(35, 250);
 			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(99, 17);
+			this.label20.Size = new System.Drawing.Size(115, 17);
 			this.label20.TabIndex = 41;
-			this.label20.Text = "Max Increase: ";
+			this.label20.Text = "Increase by (%): ";
 			// 
 			// cbxEnemyGrowth
 			// 
 			this.cbxEnemyGrowth.AutoSize = true;
-			this.cbxEnemyGrowth.Location = new System.Drawing.Point(15, 265);
+			this.cbxEnemyGrowth.Location = new System.Drawing.Point(8, 220);
 			this.cbxEnemyGrowth.Name = "cbxEnemyGrowth";
 			this.cbxEnemyGrowth.Size = new System.Drawing.Size(187, 21);
 			this.cbxEnemyGrowth.TabIndex = 42;
@@ -1718,7 +2093,12 @@
             0,
             0,
             0});
-			this.numericEnemyGrowth.Location = new System.Drawing.Point(151, 288);
+			this.numericEnemyGrowth.Location = new System.Drawing.Point(149, 249);
+			this.numericEnemyGrowth.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericEnemyGrowth.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1746,6 +2126,7 @@
 			// 
 			// panelWeap
 			// 
+			this.panelWeap.Controls.Add(this.cbxSiegeUse);
 			this.panelWeap.Controls.Add(this.cbxStaveUse);
 			this.panelWeap.Controls.Add(this.cbxLaguzWeap);
 			this.panelWeap.Controls.Add(this.label24);
@@ -1774,15 +2155,28 @@
 			this.panelWeap.Enabled = false;
 			this.panelWeap.Location = new System.Drawing.Point(10, 49);
 			this.panelWeap.Name = "panelWeap";
-			this.panelWeap.Size = new System.Drawing.Size(288, 244);
+			this.panelWeap.Size = new System.Drawing.Size(288, 266);
 			this.panelWeap.TabIndex = 45;
+			// 
+			// cbxSiegeUse
+			// 
+			this.cbxSiegeUse.AutoSize = true;
+			this.cbxSiegeUse.Checked = true;
+			this.cbxSiegeUse.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.cbxSiegeUse.Location = new System.Drawing.Point(14, 229);
+			this.cbxSiegeUse.Name = "cbxSiegeUse";
+			this.cbxSiegeUse.Size = new System.Drawing.Size(268, 21);
+			this.cbxSiegeUse.TabIndex = 6;
+			this.cbxSiegeUse.Text = "Keep Siege Weapons at Default Uses";
+			this.cbxSiegeUse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.cbxSiegeUse.UseVisualStyleBackColor = true;
 			// 
 			// cbxStaveUse
 			// 
 			this.cbxStaveUse.AutoSize = true;
 			this.cbxStaveUse.Checked = true;
 			this.cbxStaveUse.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.cbxStaveUse.Location = new System.Drawing.Point(21, 209);
+			this.cbxStaveUse.Location = new System.Drawing.Point(14, 205);
 			this.cbxStaveUse.Name = "cbxStaveUse";
 			this.cbxStaveUse.Size = new System.Drawing.Size(246, 21);
 			this.cbxStaveUse.TabIndex = 6;
@@ -1793,7 +2187,7 @@
 			// cbxLaguzWeap
 			// 
 			this.cbxLaguzWeap.AutoSize = true;
-			this.cbxLaguzWeap.Location = new System.Drawing.Point(21, 181);
+			this.cbxLaguzWeap.Location = new System.Drawing.Point(14, 181);
 			this.cbxLaguzWeap.Name = "cbxLaguzWeap";
 			this.cbxLaguzWeap.Size = new System.Drawing.Size(208, 21);
 			this.cbxLaguzWeap.TabIndex = 5;
@@ -1875,6 +2269,11 @@
 			// numericUSEmax
 			// 
 			this.numericUSEmax.Location = new System.Drawing.Point(216, 147);
+			this.numericUSEmax.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericUSEmax.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1894,7 +2293,7 @@
 			// 
 			this.numericWTmax.Location = new System.Drawing.Point(216, 119);
 			this.numericWTmax.Maximum = new decimal(new int[] {
-            50,
+            255,
             0,
             0,
             0});
@@ -1916,6 +2315,11 @@
             0,
             0});
 			this.numericCRTmax.Location = new System.Drawing.Point(216, 91);
+			this.numericCRTmax.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericCRTmax.Name = "numericCRTmax";
 			this.numericCRTmax.Size = new System.Drawing.Size(62, 22);
 			this.numericCRTmax.TabIndex = 0;
@@ -1935,7 +2339,7 @@
             0});
 			this.numericACCmax.Location = new System.Drawing.Point(216, 63);
 			this.numericACCmax.Maximum = new decimal(new int[] {
-            200,
+            255,
             0,
             0,
             0});
@@ -1957,6 +2361,11 @@
 			// numericMTmax
 			// 
 			this.numericMTmax.Location = new System.Drawing.Point(216, 35);
+			this.numericMTmax.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericMTmax.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1975,6 +2384,11 @@
 			// numericUSEdev
 			// 
 			this.numericUSEdev.Location = new System.Drawing.Point(135, 147);
+			this.numericUSEdev.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericUSEdev.Name = "numericUSEdev";
 			this.numericUSEdev.Size = new System.Drawing.Size(62, 22);
 			this.numericUSEdev.TabIndex = 0;
@@ -2000,6 +2414,11 @@
 			// numericWTdev
 			// 
 			this.numericWTdev.Location = new System.Drawing.Point(135, 119);
+			this.numericWTdev.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericWTdev.Name = "numericWTdev";
 			this.numericWTdev.Size = new System.Drawing.Size(62, 22);
 			this.numericWTdev.TabIndex = 0;
@@ -2025,6 +2444,11 @@
             0,
             0});
 			this.numericCRTdev.Location = new System.Drawing.Point(135, 91);
+			this.numericCRTdev.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericCRTdev.Name = "numericCRTdev";
 			this.numericCRTdev.Size = new System.Drawing.Size(62, 22);
 			this.numericCRTdev.TabIndex = 0;
@@ -2051,7 +2475,7 @@
             0});
 			this.numericACCdev.Location = new System.Drawing.Point(135, 63);
 			this.numericACCdev.Maximum = new decimal(new int[] {
-            150,
+            255,
             0,
             0,
             0});
@@ -2085,6 +2509,11 @@
 			// numericMTdev
 			// 
 			this.numericMTdev.Location = new System.Drawing.Point(135, 35);
+			this.numericMTdev.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
 			this.numericMTdev.Name = "numericMTdev";
 			this.numericMTdev.Size = new System.Drawing.Size(62, 22);
 			this.numericMTdev.TabIndex = 0;
@@ -2132,9 +2561,16 @@
 			this.groupBox1.Controls.Add(this.cbxShuffleBases);
 			this.groupBox1.Controls.Add(this.numericBaseRand);
 			this.groupBox1.Controls.Add(this.cbxRandBases);
-			this.groupBox1.Location = new System.Drawing.Point(835, 344);
+			this.groupBox1.Controls.Add(this.label17);
+			this.groupBox1.Controls.Add(this.cbxStatCaps);
+			this.groupBox1.Controls.Add(this.numericStatCap1);
+			this.groupBox1.Controls.Add(this.numericStatCap2);
+			this.groupBox1.Controls.Add(this.label18);
+			this.groupBox1.Controls.Add(this.numericStatCap3);
+			this.groupBox1.Controls.Add(this.label16);
+			this.groupBox1.Location = new System.Drawing.Point(835, 369);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(342, 113);
+			this.groupBox1.Size = new System.Drawing.Size(342, 208);
 			this.groupBox1.TabIndex = 48;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Base Stats";
@@ -2156,166 +2592,669 @@
 			this.groupBox2.Controls.Add(this.cbxClassRand);
 			this.groupBox2.Location = new System.Drawing.Point(6, 122);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(495, 476);
+			this.groupBox2.Size = new System.Drawing.Size(495, 536);
 			this.groupBox2.TabIndex = 49;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Classes";
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.cbxGrowthShuffleMin);
+			this.groupBox3.Controls.Add(this.cbxGrowthShuffle);
+			this.groupBox3.Controls.Add(this.numericGrowthShuffle);
 			this.groupBox3.Controls.Add(this.cbxZeroGrowths);
 			this.groupBox3.Controls.Add(this.panelGrowths);
 			this.groupBox3.Controls.Add(this.cbxGrowthRand);
-			this.groupBox3.Controls.Add(this.cbxEnemyGrowth);
-			this.groupBox3.Controls.Add(this.label20);
-			this.groupBox3.Controls.Add(this.numericEnemyGrowth);
 			this.groupBox3.Location = new System.Drawing.Point(835, 13);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(342, 317);
+			this.groupBox3.Size = new System.Drawing.Size(342, 353);
 			this.groupBox3.TabIndex = 50;
 			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Growths";
+			this.groupBox3.Text = "Player Growths";
+			// 
+			// cbxGrowthShuffleMin
+			// 
+			this.cbxGrowthShuffleMin.AutoSize = true;
+			this.cbxGrowthShuffleMin.Enabled = false;
+			this.cbxGrowthShuffleMin.Location = new System.Drawing.Point(47, 300);
+			this.cbxGrowthShuffleMin.Name = "cbxGrowthShuffleMin";
+			this.cbxGrowthShuffleMin.Size = new System.Drawing.Size(142, 21);
+			this.cbxGrowthShuffleMin.TabIndex = 40;
+			this.cbxGrowthShuffleMin.Text = "Set 15% Minimum";
+			this.cbxGrowthShuffleMin.UseVisualStyleBackColor = true;
+			// 
+			// cbxGrowthShuffle
+			// 
+			this.cbxGrowthShuffle.AutoSize = true;
+			this.cbxGrowthShuffle.Location = new System.Drawing.Point(16, 277);
+			this.cbxGrowthShuffle.Name = "cbxGrowthShuffle";
+			this.cbxGrowthShuffle.Size = new System.Drawing.Size(150, 21);
+			this.cbxGrowthShuffle.TabIndex = 40;
+			this.cbxGrowthShuffle.Text = "Shuffle w/ Addition:";
+			this.cbxGrowthShuffle.UseVisualStyleBackColor = true;
+			this.cbxGrowthShuffle.CheckedChanged += new System.EventHandler(this.cbxGrowthShuffle_CheckedChanged);
+			// 
+			// numericGrowthShuffle
+			// 
+			this.numericGrowthShuffle.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+			this.numericGrowthShuffle.Location = new System.Drawing.Point(179, 275);
+			this.numericGrowthShuffle.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+			this.numericGrowthShuffle.Name = "numericGrowthShuffle";
+			this.numericGrowthShuffle.Size = new System.Drawing.Size(70, 22);
+			this.numericGrowthShuffle.TabIndex = 47;
 			// 
 			// groupBox4
 			// 
 			this.groupBox4.Controls.Add(this.panelWeap);
 			this.groupBox4.Controls.Add(this.cbxRandWeap);
-			this.groupBox4.Location = new System.Drawing.Point(517, 73);
+			this.groupBox4.Location = new System.Drawing.Point(517, 35);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(304, 303);
+			this.groupBox4.Size = new System.Drawing.Size(305, 321);
 			this.groupBox4.TabIndex = 51;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Weapons";
 			// 
 			// groupBox5
 			// 
-			this.groupBox5.Controls.Add(this.cbxPRFs);
+			this.groupBox5.Controls.Add(this.cbxGMweaps);
 			this.groupBox5.Controls.Add(this.cbxFlorete);
-			this.groupBox5.Controls.Add(this.cbxAffinity);
-			this.groupBox5.Controls.Add(this.cbxSkillRand);
-			this.groupBox5.Controls.Add(this.cbxRandShop);
+			this.groupBox5.Controls.Add(this.cbxWinCon);
+			this.groupBox5.Controls.Add(this.cbxLethality);
+			this.groupBox5.Controls.Add(this.cbxKurthEna);
+			this.groupBox5.Controls.Add(this.cbxFionaAI);
+			this.groupBox5.Controls.Add(this.cbxBKfight);
+			this.groupBox5.Controls.Add(this.cbxSellableItems);
+			this.groupBox5.Controls.Add(this.cbxJillAI);
+			this.groupBox5.Controls.Add(this.cbxDragonSkills);
+			this.groupBox5.Controls.Add(this.cbxFireMag);
+			this.groupBox5.Controls.Add(this.cbxLowerPrice);
+			this.groupBox5.Controls.Add(this.cbxDBweaps);
+			this.groupBox5.Controls.Add(this.cbxBirdVision);
+			this.groupBox5.Controls.Add(this.cbxChestKey);
 			this.groupBox5.Controls.Add(this.cbxWeapCaps);
-			this.groupBox5.Controls.Add(this.cbxRandRecr);
-			this.groupBox5.Controls.Add(this.cbxBio);
-			this.groupBox5.Controls.Add(this.cbxEventItems);
-			this.groupBox5.Location = new System.Drawing.Point(517, 382);
+			this.groupBox5.Controls.Add(this.cbxNihil);
+			this.groupBox5.Controls.Add(this.cbxBKnerf);
+			this.groupBox5.Location = new System.Drawing.Point(1189, 216);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(304, 247);
+			this.groupBox5.Size = new System.Drawing.Size(334, 442);
 			this.groupBox5.TabIndex = 52;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Other Changes";
 			// 
-			// cbxPRFs
+			// cbxGMweaps
 			// 
-			this.cbxPRFs.AutoSize = true;
-			this.cbxPRFs.Location = new System.Drawing.Point(20, 48);
-			this.cbxPRFs.Name = "cbxPRFs";
-			this.cbxPRFs.Size = new System.Drawing.Size(177, 21);
-			this.cbxPRFs.TabIndex = 1;
-			this.cbxPRFs.Text = "Remove PRF Weapons";
-			this.cbxPRFs.UseVisualStyleBackColor = true;
+			this.cbxGMweaps.AutoSize = true;
+			this.cbxGMweaps.Location = new System.Drawing.Point(22, 159);
+			this.cbxGMweaps.Name = "cbxGMweaps";
+			this.cbxGMweaps.Size = new System.Drawing.Size(219, 21);
+			this.cbxGMweaps.TabIndex = 1;
+			this.cbxGMweaps.Text = "Greil Merc Personal Weapons";
+			this.cbxGMweaps.UseVisualStyleBackColor = true;
 			// 
 			// cbxFlorete
 			// 
 			this.cbxFlorete.AutoSize = true;
-			this.cbxFlorete.Location = new System.Drawing.Point(20, 23);
+			this.cbxFlorete.Location = new System.Drawing.Point(22, 274);
 			this.cbxFlorete.Name = "cbxFlorete";
-			this.cbxFlorete.Size = new System.Drawing.Size(198, 21);
+			this.cbxFlorete.Size = new System.Drawing.Size(160, 21);
 			this.cbxFlorete.TabIndex = 0;
-			this.cbxFlorete.Text = "Make Florete Magic-Based";
+			this.cbxFlorete.Text = "Magic-Based Florete";
 			this.cbxFlorete.UseVisualStyleBackColor = true;
 			// 
-			// groupBox6
+			// cbxWinCon
 			// 
-			this.groupBox6.Controls.Add(this.cbxMapAff);
-			this.groupBox6.Controls.Add(this.cbxWeapTri);
-			this.groupBox6.Controls.Add(this.cbxEnemyRange);
-			this.groupBox6.Location = new System.Drawing.Point(835, 571);
-			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(339, 102);
-			this.groupBox6.TabIndex = 53;
-			this.groupBox6.TabStop = false;
-			this.groupBox6.Text = "Make Hardmode Great Again";
+			this.cbxWinCon.AutoSize = true;
+			this.cbxWinCon.Location = new System.Drawing.Point(22, 343);
+			this.cbxWinCon.Name = "cbxWinCon";
+			this.cbxWinCon.Size = new System.Drawing.Size(158, 21);
+			this.cbxWinCon.TabIndex = 37;
+			this.cbxWinCon.Text = "Remove Part 4 Rout";
+			this.cbxWinCon.UseVisualStyleBackColor = true;
 			// 
-			// cbxEnemyRange
+			// cbxLethality
 			// 
-			this.cbxEnemyRange.AutoSize = true;
-			this.cbxEnemyRange.Location = new System.Drawing.Point(15, 25);
-			this.cbxEnemyRange.Name = "cbxEnemyRange";
-			this.cbxEnemyRange.Size = new System.Drawing.Size(126, 21);
-			this.cbxEnemyRange.TabIndex = 0;
-			this.cbxEnemyRange.Text = "Enemy Ranges";
-			this.cbxEnemyRange.UseVisualStyleBackColor = true;
+			this.cbxLethality.AutoSize = true;
+			this.cbxLethality.Location = new System.Drawing.Point(22, 389);
+			this.cbxLethality.Name = "cbxLethality";
+			this.cbxLethality.Size = new System.Drawing.Size(259, 21);
+			this.cbxLethality.TabIndex = 37;
+			this.cbxLethality.Text = "Replace Whisper\'s Bane w/ Lethality";
+			this.cbxLethality.UseVisualStyleBackColor = true;
 			// 
-			// cbxWeapTri
+			// cbxKurthEna
 			// 
-			this.cbxWeapTri.AutoSize = true;
-			this.cbxWeapTri.Location = new System.Drawing.Point(15, 50);
-			this.cbxWeapTri.Name = "cbxWeapTri";
-			this.cbxWeapTri.Size = new System.Drawing.Size(139, 21);
-			this.cbxWeapTri.TabIndex = 0;
-			this.cbxWeapTri.Text = "Weapon Triangle";
-			this.cbxWeapTri.UseVisualStyleBackColor = true;
+			this.cbxKurthEna.AutoSize = true;
+			this.cbxKurthEna.Location = new System.Drawing.Point(22, 228);
+			this.cbxKurthEna.Name = "cbxKurthEna";
+			this.cbxKurthEna.Size = new System.Drawing.Size(257, 21);
+			this.cbxKurthEna.TabIndex = 37;
+			this.cbxKurthEna.Text = "Kurth + Ena Not Required for Tower";
+			this.cbxKurthEna.UseVisualStyleBackColor = true;
 			// 
-			// cbxMapAff
+			// cbxFionaAI
 			// 
-			this.cbxMapAff.AutoSize = true;
-			this.cbxMapAff.Location = new System.Drawing.Point(15, 75);
-			this.cbxMapAff.Name = "cbxMapAff";
-			this.cbxMapAff.Size = new System.Drawing.Size(103, 21);
-			this.cbxMapAff.TabIndex = 0;
-			this.cbxMapAff.Text = "Map Affinity";
-			this.cbxMapAff.UseVisualStyleBackColor = true;
+			this.cbxFionaAI.AutoSize = true;
+			this.cbxFionaAI.Location = new System.Drawing.Point(22, 67);
+			this.cbxFionaAI.Name = "cbxFionaAI";
+			this.cbxFionaAI.Size = new System.Drawing.Size(167, 21);
+			this.cbxFionaAI.TabIndex = 37;
+			this.cbxFionaAI.Text = "Change 1-6 Enemy AI";
+			this.cbxFionaAI.UseVisualStyleBackColor = true;
+			// 
+			// cbxBKfight
+			// 
+			this.cbxBKfight.AutoSize = true;
+			this.cbxBKfight.Location = new System.Drawing.Point(22, 182);
+			this.cbxBKfight.Name = "cbxBKfight";
+			this.cbxBKfight.Size = new System.Drawing.Size(269, 21);
+			this.cbxBKfight.TabIndex = 37;
+			this.cbxBKfight.Text = "Ike Fights BK with Power of Friendship";
+			this.cbxBKfight.UseVisualStyleBackColor = true;
+			// 
+			// cbxSellableItems
+			// 
+			this.cbxSellableItems.AutoSize = true;
+			this.cbxSellableItems.Location = new System.Drawing.Point(22, 412);
+			this.cbxSellableItems.Name = "cbxSellableItems";
+			this.cbxSellableItems.Size = new System.Drawing.Size(266, 21);
+			this.cbxSellableItems.TabIndex = 37;
+			this.cbxSellableItems.Text = "Sellable Promotion Items / Satori Sign";
+			this.cbxSellableItems.UseVisualStyleBackColor = true;
+			// 
+			// cbxJillAI
+			// 
+			this.cbxJillAI.AutoSize = true;
+			this.cbxJillAI.Location = new System.Drawing.Point(22, 44);
+			this.cbxJillAI.Name = "cbxJillAI";
+			this.cbxJillAI.Size = new System.Drawing.Size(167, 21);
+			this.cbxJillAI.TabIndex = 37;
+			this.cbxJillAI.Text = "Change 1-5 Enemy AI";
+			this.cbxJillAI.UseVisualStyleBackColor = true;
+			// 
+			// cbxDragonSkills
+			// 
+			this.cbxDragonSkills.AutoSize = true;
+			this.cbxDragonSkills.Location = new System.Drawing.Point(22, 21);
+			this.cbxDragonSkills.Name = "cbxDragonSkills";
+			this.cbxDragonSkills.Size = new System.Drawing.Size(225, 21);
+			this.cbxDragonSkills.TabIndex = 37;
+			this.cbxDragonSkills.Text = "All Dragons can use Pool Skills";
+			this.cbxDragonSkills.UseVisualStyleBackColor = true;
+			// 
+			// cbxFireMag
+			// 
+			this.cbxFireMag.AutoSize = true;
+			this.cbxFireMag.Location = new System.Drawing.Point(22, 113);
+			this.cbxFireMag.Name = "cbxFireMag";
+			this.cbxFireMag.Size = new System.Drawing.Size(232, 21);
+			this.cbxFireMag.TabIndex = 37;
+			this.cbxFireMag.Text = "Druid/Summoner use Fire Magic";
+			this.cbxFireMag.UseVisualStyleBackColor = true;
+			// 
+			// cbxLowerPrice
+			// 
+			this.cbxLowerPrice.AutoSize = true;
+			this.cbxLowerPrice.Location = new System.Drawing.Point(22, 251);
+			this.cbxLowerPrice.Name = "cbxLowerPrice";
+			this.cbxLowerPrice.Size = new System.Drawing.Size(197, 21);
+			this.cbxLowerPrice.TabIndex = 37;
+			this.cbxLowerPrice.Text = "Lower Price of Laguz Gem";
+			this.cbxLowerPrice.UseVisualStyleBackColor = true;
+			// 
+			// cbxDBweaps
+			// 
+			this.cbxDBweaps.AutoSize = true;
+			this.cbxDBweaps.Location = new System.Drawing.Point(22, 90);
+			this.cbxDBweaps.Name = "cbxDBweaps";
+			this.cbxDBweaps.Size = new System.Drawing.Size(242, 21);
+			this.cbxDBweaps.TabIndex = 37;
+			this.cbxDBweaps.Text = "Dawn Brigade Personal Weapons";
+			this.cbxDBweaps.UseVisualStyleBackColor = true;
+			// 
+			// cbxBirdVision
+			// 
+			this.cbxBirdVision.AutoSize = true;
+			this.cbxBirdVision.Location = new System.Drawing.Point(22, 205);
+			this.cbxBirdVision.Name = "cbxBirdVision";
+			this.cbxBirdVision.Size = new System.Drawing.Size(234, 21);
+			this.cbxBirdVision.TabIndex = 37;
+			this.cbxBirdVision.Text = "Increase Bird Laguz FOW Vision";
+			this.cbxBirdVision.UseVisualStyleBackColor = true;
+			// 
+			// cbxChestKey
+			// 
+			this.cbxChestKey.AutoSize = true;
+			this.cbxChestKey.Location = new System.Drawing.Point(22, 297);
+			this.cbxChestKey.Name = "cbxChestKey";
+			this.cbxChestKey.Size = new System.Drawing.Size(187, 21);
+			this.cbxChestKey.TabIndex = 37;
+			this.cbxChestKey.Text = "Make Chest Keys 5 Uses";
+			this.cbxChestKey.UseVisualStyleBackColor = true;
 			// 
 			// cbxWeapCaps
 			// 
 			this.cbxWeapCaps.AutoSize = true;
-			this.cbxWeapCaps.Location = new System.Drawing.Point(20, 213);
+			this.cbxWeapCaps.Location = new System.Drawing.Point(22, 366);
 			this.cbxWeapCaps.Name = "cbxWeapCaps";
 			this.cbxWeapCaps.Size = new System.Drawing.Size(213, 21);
 			this.cbxWeapCaps.TabIndex = 37;
 			this.cbxWeapCaps.Text = "Remove Weapon Level Caps";
 			this.cbxWeapCaps.UseVisualStyleBackColor = true;
 			// 
-			// cbxStrMag
+			// cbxNihil
 			// 
-			this.cbxStrMag.AutoSize = true;
-			this.cbxStrMag.Location = new System.Drawing.Point(247, 383);
-			this.cbxStrMag.Name = "cbxStrMag";
-			this.cbxStrMag.Size = new System.Drawing.Size(233, 21);
-			this.cbxStrMag.TabIndex = 12;
-			this.cbxStrMag.Text = "Prioritize Higher Str/Mag Growth";
-			this.cbxStrMag.UseVisualStyleBackColor = true;
+			this.cbxNihil.AutoSize = true;
+			this.cbxNihil.Location = new System.Drawing.Point(22, 136);
+			this.cbxNihil.Name = "cbxNihil";
+			this.cbxNihil.Size = new System.Drawing.Size(151, 21);
+			this.cbxNihil.TabIndex = 0;
+			this.cbxNihil.Text = "Give Ike Nihil Scroll";
+			this.cbxNihil.UseVisualStyleBackColor = true;
+			// 
+			// cbxBKnerf
+			// 
+			this.cbxBKnerf.AutoSize = true;
+			this.cbxBKnerf.Location = new System.Drawing.Point(22, 320);
+			this.cbxBKnerf.Name = "cbxBKnerf";
+			this.cbxBKnerf.Size = new System.Drawing.Size(156, 21);
+			this.cbxBKnerf.TabIndex = 0;
+			this.cbxBKnerf.Text = "Remove BK\'s Imbue";
+			this.cbxBKnerf.UseVisualStyleBackColor = true;
+			// 
+			// groupBox6
+			// 
+			this.groupBox6.Controls.Add(this.cbxMapAff);
+			this.groupBox6.Controls.Add(this.cbxWeapTri);
+			this.groupBox6.Controls.Add(this.cbxEnemyRange);
+			this.groupBox6.Location = new System.Drawing.Point(1189, 664);
+			this.groupBox6.Name = "groupBox6";
+			this.groupBox6.Size = new System.Drawing.Size(334, 96);
+			this.groupBox6.TabIndex = 53;
+			this.groupBox6.TabStop = false;
+			this.groupBox6.Text = "Make Hardmode Great Again";
+			// 
+			// cbxMapAff
+			// 
+			this.cbxMapAff.AutoSize = true;
+			this.cbxMapAff.Location = new System.Drawing.Point(22, 68);
+			this.cbxMapAff.Name = "cbxMapAff";
+			this.cbxMapAff.Size = new System.Drawing.Size(103, 21);
+			this.cbxMapAff.TabIndex = 0;
+			this.cbxMapAff.Text = "Map Affinity";
+			this.cbxMapAff.UseVisualStyleBackColor = true;
+			// 
+			// cbxWeapTri
+			// 
+			this.cbxWeapTri.AutoSize = true;
+			this.cbxWeapTri.Location = new System.Drawing.Point(22, 44);
+			this.cbxWeapTri.Name = "cbxWeapTri";
+			this.cbxWeapTri.Size = new System.Drawing.Size(139, 21);
+			this.cbxWeapTri.TabIndex = 0;
+			this.cbxWeapTri.Text = "Weapon Triangle";
+			this.cbxWeapTri.UseVisualStyleBackColor = true;
+			// 
+			// cbxEnemyRange
+			// 
+			this.cbxEnemyRange.AutoSize = true;
+			this.cbxEnemyRange.Location = new System.Drawing.Point(22, 20);
+			this.cbxEnemyRange.Name = "cbxEnemyRange";
+			this.cbxEnemyRange.Size = new System.Drawing.Size(126, 21);
+			this.cbxEnemyRange.TabIndex = 0;
+			this.cbxEnemyRange.Text = "Enemy Ranges";
+			this.cbxEnemyRange.UseVisualStyleBackColor = true;
+			// 
+			// cbxRandEnemy
+			// 
+			this.cbxRandEnemy.AutoSize = true;
+			this.cbxRandEnemy.Location = new System.Drawing.Point(8, 21);
+			this.cbxRandEnemy.Name = "cbxRandEnemy";
+			this.cbxRandEnemy.Size = new System.Drawing.Size(255, 21);
+			this.cbxRandEnemy.TabIndex = 0;
+			this.cbxRandEnemy.Text = "Randomize Generic Enemy Classes";
+			this.cbxRandEnemy.UseVisualStyleBackColor = true;
+			this.cbxRandEnemy.CheckedChanged += new System.EventHandler(this.cbxRandEnemy_CheckedChanged);
+			// 
+			// cbxEnemWeaps
+			// 
+			this.cbxEnemWeaps.AutoSize = true;
+			this.cbxEnemWeaps.Location = new System.Drawing.Point(17, 8);
+			this.cbxEnemWeaps.Name = "cbxEnemWeaps";
+			this.cbxEnemWeaps.Size = new System.Drawing.Size(269, 21);
+			this.cbxEnemWeaps.TabIndex = 0;
+			this.cbxEnemWeaps.Text = "Enemies can have Stronger Weapons";
+			this.cbxEnemWeaps.UseVisualStyleBackColor = true;
+			// 
+			// cbxForge
+			// 
+			this.cbxForge.AutoSize = true;
+			this.cbxForge.Location = new System.Drawing.Point(22, 89);
+			this.cbxForge.Name = "cbxForge";
+			this.cbxForge.Size = new System.Drawing.Size(142, 21);
+			this.cbxForge.TabIndex = 0;
+			this.cbxForge.Text = "Randomize Forge";
+			this.cbxForge.UseVisualStyleBackColor = true;
+			// 
+			// comboLord
+			// 
+			this.comboLord.FormattingEnabled = true;
+			this.comboLord.Items.AddRange(new object[] {
+            "micaiah",
+            "edward",
+            "leonardo",
+            "nolan",
+            "laura",
+            "sothe",
+            "ilyana",
+            "aran",
+            "meg",
+            "volug",
+            "jill",
+            "tauroneo",
+            "zihark",
+            "fiona",
+            "tormod",
+            "maurim",
+            "vika",
+            "nailah",
+            "elincia",
+            "marcia",
+            "nealuchi",
+            "haar",
+            "brom",
+            "nephenee",
+            "heather",
+            "lucia",
+            "mordecai",
+            "lethe",
+            "geoffrey",
+            "keiran",
+            "astrid",
+            "makalov",
+            "danved",
+            "calill",
+            "ike",
+            "titania",
+            "soren",
+            "mist",
+            "rolf",
+            "boyd",
+            "oscar",
+            "shinon",
+            "gatrie",
+            "rhys",
+            "mia",
+            "ranulf",
+            "kyza",
+            "lyre",
+            "janaff",
+            "ulki",
+            "sigrun",
+            "tanith",
+            "skrimir",
+            "naesala",
+            "sanaki",
+            "tibarn",
+            "pelleas",
+            "stefan",
+            "oliver",
+            "bastian (DO NOT USE)",
+            "volke (DO NOT USE)",
+            "caineghis",
+            "giffca",
+            "kurthnaga",
+            "ena",
+            "renning",
+            "nasir",
+            "gareth",
+            "lehran",
+            "rafiel",
+            "leanne",
+            "reyson"});
+			this.comboLord.Location = new System.Drawing.Point(72, 48);
+			this.comboLord.Name = "comboLord";
+			this.comboLord.Size = new System.Drawing.Size(180, 24);
+			this.comboLord.TabIndex = 54;
+			// 
+			// cbxChooseIke
+			// 
+			this.cbxChooseIke.AutoSize = true;
+			this.cbxChooseIke.Enabled = false;
+			this.cbxChooseIke.Location = new System.Drawing.Point(13, 27);
+			this.cbxChooseIke.Name = "cbxChooseIke";
+			this.cbxChooseIke.Size = new System.Drawing.Size(251, 21);
+			this.cbxChooseIke.TabIndex = 55;
+			this.cbxChooseIke.Text = "Set as Ike (random classes ONLY):";
+			this.cbxChooseIke.UseVisualStyleBackColor = true;
+			// 
+			// cbxEnemyRecruit
+			// 
+			this.cbxEnemyRecruit.AutoSize = true;
+			this.cbxEnemyRecruit.Location = new System.Drawing.Point(13, 4);
+			this.cbxEnemyRecruit.Name = "cbxEnemyRecruit";
+			this.cbxEnemyRecruit.Size = new System.Drawing.Size(195, 21);
+			this.cbxEnemyRecruit.TabIndex = 37;
+			this.cbxEnemyRecruit.Text = "Include Enemy Characters";
+			this.cbxEnemyRecruit.UseVisualStyleBackColor = true;
+			this.cbxEnemyRecruit.CheckedChanged += new System.EventHandler(this.cbxEnemyRecruit_CheckedChanged);
+			// 
+			// groupBox7
+			// 
+			this.groupBox7.Controls.Add(this.panelEnemy);
+			this.groupBox7.Controls.Add(this.cbxRandEnemy);
+			this.groupBox7.Controls.Add(this.cbxEnemDrops);
+			this.groupBox7.Controls.Add(this.cbxBuffBosses);
+			this.groupBox7.Controls.Add(this.numericBossStats);
+			this.groupBox7.Controls.Add(this.cbxEnemyGrowth);
+			this.groupBox7.Controls.Add(this.numericEnemyGrowth);
+			this.groupBox7.Controls.Add(this.cbxRandBosses);
+			this.groupBox7.Controls.Add(this.label20);
+			this.groupBox7.Location = new System.Drawing.Point(516, 356);
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.Size = new System.Drawing.Size(306, 349);
+			this.groupBox7.TabIndex = 56;
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = "Enemies";
+			// 
+			// cbxEnemDrops
+			// 
+			this.cbxEnemDrops.AutoSize = true;
+			this.cbxEnemDrops.Location = new System.Drawing.Point(8, 194);
+			this.cbxEnemDrops.Name = "cbxEnemDrops";
+			this.cbxEnemDrops.Size = new System.Drawing.Size(190, 21);
+			this.cbxEnemDrops.TabIndex = 0;
+			this.cbxEnemDrops.Text = "Randomize Enemy Drops";
+			this.cbxEnemDrops.UseVisualStyleBackColor = true;
+			// 
+			// cbxSpirits
+			// 
+			this.cbxSpirits.AutoSize = true;
+			this.cbxSpirits.Location = new System.Drawing.Point(17, 29);
+			this.cbxSpirits.Name = "cbxSpirits";
+			this.cbxSpirits.Size = new System.Drawing.Size(118, 21);
+			this.cbxSpirits.TabIndex = 0;
+			this.cbxSpirits.Text = "Include Spirits";
+			this.cbxSpirits.UseVisualStyleBackColor = true;
+			// 
+			// cbxTier3Enemies
+			// 
+			this.cbxTier3Enemies.AutoSize = true;
+			this.cbxTier3Enemies.Location = new System.Drawing.Point(17, 52);
+			this.cbxTier3Enemies.Name = "cbxTier3Enemies";
+			this.cbxTier3Enemies.Size = new System.Drawing.Size(235, 21);
+			this.cbxTier3Enemies.TabIndex = 42;
+			this.cbxTier3Enemies.Text = "Part 4 Enemies have T3 Classes";
+			this.cbxTier3Enemies.UseVisualStyleBackColor = true;
+			// 
+			// cbxRandBosses
+			// 
+			this.cbxRandBosses.AutoSize = true;
+			this.cbxRandBosses.Location = new System.Drawing.Point(6, 280);
+			this.cbxRandBosses.Name = "cbxRandBosses";
+			this.cbxRandBosses.Size = new System.Drawing.Size(189, 21);
+			this.cbxRandBosses.TabIndex = 42;
+			this.cbxRandBosses.Text = "Randomize Boss Classes";
+			this.cbxRandBosses.UseVisualStyleBackColor = true;
+			// 
+			// groupBox8
+			// 
+			this.groupBox8.Controls.Add(this.panelRecr);
+			this.groupBox8.Controls.Add(this.cbxRandRecr);
+			this.groupBox8.Location = new System.Drawing.Point(836, 582);
+			this.groupBox8.Name = "groupBox8";
+			this.groupBox8.Size = new System.Drawing.Size(341, 140);
+			this.groupBox8.TabIndex = 57;
+			this.groupBox8.TabStop = false;
+			this.groupBox8.Text = "Recruitment";
+			// 
+			// panelRecr
+			// 
+			this.panelRecr.Controls.Add(this.cbxEnemyRecruit);
+			this.panelRecr.Controls.Add(this.comboLord);
+			this.panelRecr.Controls.Add(this.cbxChooseIke);
+			this.panelRecr.Enabled = false;
+			this.panelRecr.Location = new System.Drawing.Point(16, 47);
+			this.panelRecr.Name = "panelRecr";
+			this.panelRecr.Size = new System.Drawing.Size(282, 81);
+			this.panelRecr.TabIndex = 58;
+			// 
+			// groupBox9
+			// 
+			this.groupBox9.Controls.Add(this.cbxAffinity);
+			this.groupBox9.Controls.Add(this.cbxBio);
+			this.groupBox9.Controls.Add(this.cbxSkillRand);
+			this.groupBox9.Controls.Add(this.cbxTowerUnits);
+			this.groupBox9.Controls.Add(this.cbxRandShop);
+			this.groupBox9.Controls.Add(this.cbxEventItems);
+			this.groupBox9.Controls.Add(this.cbxForge);
+			this.groupBox9.Location = new System.Drawing.Point(1189, 13);
+			this.groupBox9.Name = "groupBox9";
+			this.groupBox9.Size = new System.Drawing.Size(334, 190);
+			this.groupBox9.TabIndex = 58;
+			this.groupBox9.TabStop = false;
+			this.groupBox9.Text = "Miscellaneous Randomizations";
+			// 
+			// cbxTowerUnits
+			// 
+			this.cbxTowerUnits.AutoSize = true;
+			this.cbxTowerUnits.Location = new System.Drawing.Point(22, 158);
+			this.cbxTowerUnits.Name = "cbxTowerUnits";
+			this.cbxTowerUnits.Size = new System.Drawing.Size(265, 21);
+			this.cbxTowerUnits.TabIndex = 37;
+			this.cbxTowerUnits.Text = "Fire Emblem: Choose my Tower Units";
+			this.cbxTowerUnits.UseVisualStyleBackColor = true;
+			// 
+			// cbxBuffBosses
+			// 
+			this.cbxBuffBosses.AutoSize = true;
+			this.cbxBuffBosses.Location = new System.Drawing.Point(6, 307);
+			this.cbxBuffBosses.Name = "cbxBuffBosses";
+			this.cbxBuffBosses.Size = new System.Drawing.Size(159, 21);
+			this.cbxBuffBosses.TabIndex = 37;
+			this.cbxBuffBosses.Text = "Increase Boss Stats:";
+			this.cbxBuffBosses.UseVisualStyleBackColor = true;
+			// 
+			// numericBossStats
+			// 
+			this.numericBossStats.Location = new System.Drawing.Point(174, 307);
+			this.numericBossStats.Maximum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+			this.numericBossStats.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numericBossStats.Name = "numericBossStats";
+			this.numericBossStats.Size = new System.Drawing.Size(63, 22);
+			this.numericBossStats.TabIndex = 39;
+			this.numericBossStats.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
+			// cbxNoSiege
+			// 
+			this.cbxNoSiege.AutoSize = true;
+			this.cbxNoSiege.Location = new System.Drawing.Point(17, 75);
+			this.cbxNoSiege.Name = "cbxNoSiege";
+			this.cbxNoSiege.Size = new System.Drawing.Size(242, 21);
+			this.cbxNoSiege.TabIndex = 42;
+			this.cbxNoSiege.Text = "Enemy cannot have Siege Tomes";
+			this.cbxNoSiege.UseVisualStyleBackColor = true;
+			this.cbxNoSiege.CheckedChanged += new System.EventHandler(this.cbxNoSiege_CheckedChanged);
+			// 
+			// cbxOnlySiege
+			// 
+			this.cbxOnlySiege.AutoSize = true;
+			this.cbxOnlySiege.Location = new System.Drawing.Point(17, 98);
+			this.cbxOnlySiege.Name = "cbxOnlySiege";
+			this.cbxOnlySiege.Size = new System.Drawing.Size(252, 21);
+			this.cbxOnlySiege.TabIndex = 42;
+			this.cbxOnlySiege.Text = "Enemy can only have Siege Tomes";
+			this.cbxOnlySiege.UseVisualStyleBackColor = true;
+			this.cbxOnlySiege.CheckedChanged += new System.EventHandler(this.cbxOnlySiege_CheckedChanged);
+			// 
+			// cbxEnemHealers
+			// 
+			this.cbxEnemHealers.AutoSize = true;
+			this.cbxEnemHealers.Location = new System.Drawing.Point(17, 121);
+			this.cbxEnemHealers.Name = "cbxEnemHealers";
+			this.cbxEnemHealers.Size = new System.Drawing.Size(191, 21);
+			this.cbxEnemHealers.TabIndex = 42;
+			this.cbxEnemHealers.Text = "Don\'t Randomize Healers";
+			this.cbxEnemHealers.UseVisualStyleBackColor = true;
+			this.cbxEnemHealers.CheckedChanged += new System.EventHandler(this.cbxOnlySiege_CheckedChanged);
+			// 
+			// panelEnemy
+			// 
+			this.panelEnemy.Controls.Add(this.cbxSpirits);
+			this.panelEnemy.Controls.Add(this.cbxEnemHealers);
+			this.panelEnemy.Controls.Add(this.cbxOnlySiege);
+			this.panelEnemy.Controls.Add(this.cbxNoSiege);
+			this.panelEnemy.Controls.Add(this.cbxTier3Enemies);
+			this.panelEnemy.Controls.Add(this.cbxEnemWeaps);
+			this.panelEnemy.Enabled = false;
+			this.panelEnemy.Location = new System.Drawing.Point(8, 42);
+			this.panelEnemy.Name = "panelEnemy";
+			this.panelEnemy.Size = new System.Drawing.Size(292, 151);
+			this.panelEnemy.TabIndex = 44;
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1186, 712);
+			this.ClientSize = new System.Drawing.Size(1535, 799);
+			this.Controls.Add(this.groupBox9);
+			this.Controls.Add(this.groupBox8);
+			this.Controls.Add(this.groupBox7);
 			this.Controls.Add(this.groupBox6);
 			this.Controls.Add(this.groupBox5);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.label18);
-			this.Controls.Add(this.label17);
-			this.Controls.Add(this.label16);
-			this.Controls.Add(this.numericStatCap3);
-			this.Controls.Add(this.numericStatCap2);
-			this.Controls.Add(this.numericStatCap1);
 			this.Controls.Add(this.numericSeed);
 			this.Controls.Add(this.label14);
-			this.Controls.Add(this.cbxStatCaps);
 			this.Controls.Add(this.lblLocation);
 			this.Controls.Add(this.btnLoad);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.button1);
 			this.Name = "Form1";
-			this.Text = "LordMewtwo\'s FE 10 Randomizer v1.5.0 - 08/29/2020";
-			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax)).EndInit();
+			this.Text = "LordMewtwo\'s FE 10 Randomizer v2.0.0 - 10/07/2020";
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericHP)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericSPD)).EndInit();
@@ -2327,8 +3266,17 @@
 			((System.ComponentModel.ISupportInitialize)(this.numericRES)).EndInit();
 			this.panelGrowths.ResumeLayout(false);
 			this.panelGrowths.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericGrowthCap)).EndInit();
 			this.panelClass.ResumeLayout(false);
 			this.panelClass.PerformLayout();
+			this.panelLaguz.ResumeLayout(false);
+			this.panelLaguz.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMin3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericLaguzMax4)).EndInit();
 			this.panel8.ResumeLayout(false);
 			this.panel8.PerformLayout();
 			this.panel4.ResumeLayout(false);
@@ -2375,12 +3323,24 @@
 			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericGrowthShuffle)).EndInit();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox5.PerformLayout();
 			this.groupBox6.ResumeLayout(false);
 			this.groupBox6.PerformLayout();
+			this.groupBox7.ResumeLayout(false);
+			this.groupBox7.PerformLayout();
+			this.groupBox8.ResumeLayout(false);
+			this.groupBox8.PerformLayout();
+			this.panelRecr.ResumeLayout(false);
+			this.panelRecr.PerformLayout();
+			this.groupBox9.ResumeLayout(false);
+			this.groupBox9.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericBossStats)).EndInit();
+			this.panelEnemy.ResumeLayout(false);
+			this.panelEnemy.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2394,8 +3354,8 @@
 		private System.Windows.Forms.CheckBox cbxClassRand;
 		private System.Windows.Forms.CheckBox cbxGrowthRand;
 		private System.Windows.Forms.CheckBox cbxGaugeRand;
-		private System.Windows.Forms.NumericUpDown numericLaguzMin;
-		private System.Windows.Forms.NumericUpDown numericLaguzMax;
+		private System.Windows.Forms.NumericUpDown numericLaguzMin1;
+		private System.Windows.Forms.NumericUpDown numericLaguzMax1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button btnLoad;
@@ -2482,7 +3442,7 @@
 		private System.Windows.Forms.GroupBox groupBox4;
 		private System.Windows.Forms.CheckBox cbxHPLCKShuffle;
 		private System.Windows.Forms.GroupBox groupBox5;
-		private System.Windows.Forms.CheckBox cbxPRFs;
+		private System.Windows.Forms.CheckBox cbxGMweaps;
 		private System.Windows.Forms.CheckBox cbxFlorete;
 		private System.Windows.Forms.Label lblInfantry;
 		private System.Windows.Forms.Label lblMages;
@@ -2559,6 +3519,60 @@
 		private System.Windows.Forms.CheckBox cbxEnemyRange;
 		private System.Windows.Forms.CheckBox cbxWeapCaps;
 		private System.Windows.Forms.CheckBox cbxStrMag;
+		private System.Windows.Forms.CheckBox cbxRandEnemy;
+		private System.Windows.Forms.CheckBox cbxEnemWeaps;
+		private System.Windows.Forms.CheckBox cbxForge;
+		private System.Windows.Forms.CheckBox cbxBKnerf;
+		private System.Windows.Forms.ComboBox comboLord;
+		private System.Windows.Forms.CheckBox cbxChooseIke;
+		private System.Windows.Forms.CheckBox cbxEnemyRecruit;
+		private System.Windows.Forms.CheckBox cbxNihil;
+		private System.Windows.Forms.GroupBox groupBox7;
+		private System.Windows.Forms.GroupBox groupBox8;
+		private System.Windows.Forms.Panel panelRecr;
+		private System.Windows.Forms.GroupBox groupBox9;
+		private System.Windows.Forms.CheckBox cbxSpirits;
+		private System.Windows.Forms.CheckBox cbxEnemDrops;
+		private System.Windows.Forms.CheckBox cbxChestKey;
+		private System.Windows.Forms.CheckBox cbxDragonSkills;
+		private System.Windows.Forms.CheckBox cbxFireMag;
+		private System.Windows.Forms.CheckBox cbxLowerPrice;
+		private System.Windows.Forms.CheckBox cbxDBweaps;
+		private System.Windows.Forms.CheckBox cbxBirdVision;
+		private System.Windows.Forms.CheckBox cbxSellableItems;
+		private System.Windows.Forms.CheckBox cbxNoLaguz;
+		private System.Windows.Forms.CheckBox cbxGrowthCap;
+		private System.Windows.Forms.NumericUpDown numericGrowthCap;
+		private System.Windows.Forms.CheckBox cbxRandBosses;
+		private System.Windows.Forms.CheckBox cbxGrowthShuffle;
+		private System.Windows.Forms.CheckBox cbxGrowthShuffleMin;
+		private System.Windows.Forms.NumericUpDown numericGrowthShuffle;
+		private System.Windows.Forms.CheckBox cbxTier3Enemies;
+		private System.Windows.Forms.CheckBox cbxJillAI;
+		private System.Windows.Forms.CheckBox cbxFionaAI;
+		private System.Windows.Forms.CheckBox cbxBKfight;
+		private System.Windows.Forms.CheckBox cbxKurthEna;
+		private System.Windows.Forms.Panel panelLaguz;
+		private System.Windows.Forms.NumericUpDown numericLaguzMin4;
+		private System.Windows.Forms.NumericUpDown numericLaguzMin2;
+		private System.Windows.Forms.NumericUpDown numericLaguzMin3;
+		private System.Windows.Forms.NumericUpDown numericLaguzMax2;
+		private System.Windows.Forms.NumericUpDown numericLaguzMax3;
+		private System.Windows.Forms.NumericUpDown numericLaguzMax4;
+		private System.Windows.Forms.Label label31;
+		private System.Windows.Forms.Label label32;
+		private System.Windows.Forms.Label label33;
+		private System.Windows.Forms.Label label34;
+		private System.Windows.Forms.CheckBox cbxWinCon;
+		private System.Windows.Forms.CheckBox cbxSiegeUse;
+		private System.Windows.Forms.CheckBox cbxLethality;
+		private System.Windows.Forms.CheckBox cbxBuffBosses;
+		private System.Windows.Forms.NumericUpDown numericBossStats;
+		private System.Windows.Forms.CheckBox cbxTowerUnits;
+		private System.Windows.Forms.CheckBox cbxOnlySiege;
+		private System.Windows.Forms.CheckBox cbxNoSiege;
+		private System.Windows.Forms.CheckBox cbxEnemHealers;
+		private System.Windows.Forms.Panel panelEnemy;
 	}
 }
 
