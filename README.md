@@ -8,16 +8,18 @@ This program is written in C# using Microsoft Visual Studio. You can view the co
 
 With this randomizer, you can:
 - Randomize class and starting items of all playable characters other than BK
-- Choose from a variety of randomizing templates, including but not limited to laguz-only, magic-only, and flying-only
-- Randomize transformation gauges for laguz characters
-- Randomize growth rates and set minimum growth rates
+- Change recruitment order, including being able to play as a handful of enemy characters
+- Randomize or shuffle growth rates and set minimum growth rates
 - Change growths to 0% *
+- Add back in the dumb changes made to Hardmode like removing weapon triangle and enemy ranges
 - Change stat caps
-- Randomize shop items
+- Randomize enemies and bosses
+- Power up enemies and give them random skills
+- Randomize shop, bargain, and forge items
 - Randomize event items
 - Randomize skills
-- Randomize affinities
-- Randomize biorhythms
+- New QoL and difficulty settings such as Ironman mode, Choose my Tower, no FoW, Horse Parkour, and more!
+- Randomize affinities, biorhythm, transformation gauges, movement, and so much more!
 
 
-*due to Radiant Dawn requiring a minimum of 1 stat gain per level, LUCK is set to 100% while all other stats are 0%
+*due to Radiant Dawn requiring a minimum of 1 stat gain per level, STR or MAG is set to 100% (whichever is unused for each class) while all other stats are 0%. STR or MAG is also uncapped to a max value of 127
