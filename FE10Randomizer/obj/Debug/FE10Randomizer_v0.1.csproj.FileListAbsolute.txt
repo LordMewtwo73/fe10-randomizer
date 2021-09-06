@@ -1,0 +1,9 @@
+C:\Users\Josiah\Downloads\Fire Emblem - Radiant Dawn\FE10Randomizer_v0.1\FE10Randomizer_v0.1\bin\Debug\FE10Randomizer_v0.1.exe.config
+C:\Users\Josiah\Downloads\Fire Emblem - Radiant Dawn\FE10Randomizer_v0.1\FE10Randomizer_v0.1\bin\Debug\FE10Randomizer_v0.1.exe
+C:\Users\Josiah\Downloads\Fire Emblem - Radiant Dawn\FE10Randomizer_v0.1\FE10Randomizer_v0.1\bin\Debug\FE10Randomizer_v0.1.pdb
+C:\Users\Josiah\Downloads\Fire Emblem - Radiant Dawn\FE10Randomizer_v0.1\FE10Randomizer_v0.1\obj\Debug\FE10Randomizer_v0.1.csprojAssemblyReference.cache
+C:\Users\Josiah\Downloads\Fire Emblem - Radiant Dawn\FE10Randomizer_v0.1\FE10Randomizer_v0.1\obj\Debug\FE10Randomizer_v0._1.Form1.resources
+C:\Users\Josiah\Downloads\Fire Emblem - Radiant Dawn\FE10Randomizer_v0.1\FE10Randomizer_v0.1\obj\Debug\FE10Randomizer_v0._1.Properties.Resources.resources
+C:\Users\Josiah\Downloads\Fire Emblem - Radiant Dawn\FE10Randomizer_v0.1\FE10Randomizer_v0.1\obj\Debug\FE10Randomizer_v0.1.csproj.GenerateResource.cache
+C:\Users\Josiah\Downloads\Fire Emblem - Radiant Dawn\FE10Randomizer_v0.1\FE10Randomizer_v0.1\obj\Debug\FE10Randomizer_v0.1.exe
+C:\Users\Josiah\Downloads\Fire Emblem - Radiant Dawn\FE10Randomizer_v0.1\FE10Randomizer_v0.1\obj\Debug\FE10Randomizer_v0.1.pdb
