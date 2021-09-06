@@ -1,0 +1,485 @@
+Version 2.4.4 06/08/2021
+- "Tormod starts Promoted" should now work properly
+- Ike can no longer be the raven class without making the BK fight easier
+- Lancers have been buffed
+- Warmonk/Crusader have had their STR stats increased and MAG decreased
+- Crusader now comes with Colossus instead of Corona
+- fixed bug where female rogue would have very low bases with Classpatch option
+- fixed bug where Ulki had incorrect stats with negative growths
+- fixed bug where Ike would start with two Ettards instead of a Nihil scroll
+- fixed enemies having items with too high of a weapon rank
+- reduced chances of enemies having siege tomes in early part 1 and 2
+- fixed various enemies having incorrect items
+- fixed bug where outputlog would have multiple lines for random promotion
+- various README/FAQ additions
+
+
+Version 2.4.3 04/03/2021
+- fixed array error with shuffle classes option
+- magicpatch: reduced "tempest" wind tome MT by 1
+- weaponpatch: fixed bug where enemies had incorrect weapons
+- fixed bug where prioritize str/mag wasn't working for personal bases
+- further reduced growth rate changes on laguz enemies to be 1/3 of the selected value
+- fixed bug where dragon enemies could appear early in part 3
+- moved herons to proper location in outputlog
+
+
+Version 2.4.2 04/02/2021
+- removed pg13 content
+- choose elincia class
+- option to give dragon laguz classes the canto skill
+- giving beast/dragon laguz canto now increases the classes' total capacity to prevent softlocks
+- randomizing skill capacity no longer has a chance to increase the cost of shove/canto
+- warmonk and crusader can no longer use light magic
+
+
+Version 2.4.1 04/01/2021
+- negative growths challenge patch
+- hardmode changes program has been augmented into "Challenge Patches and Hardmode 
+Changes" which includes 0% growths, Negative growths, and Ironman Mode
+- weapon patch replaces venin/bronze weapons with more interesting weapons
+- random stat boosters
+- random authority stars
+- choose ike/micaiah classes
+- random skill capacity
+- option to force one heron per part (1,2,3)
+- option to give each playable character 1 random skill
+- option to give beast laguz classes the canto skill
+- option to turn off story promotions even without random classes
+- option to give paragon only to laguz characters
+- enemies can have stronger weapons without enemy randomization
+- option to have tormod start as t3
+- Bonus BEXP option
+- magic patch has been modified, reducing new magics and reverting thunder to 1-2 range
+- elincia is now considered a lord for "don't randomize lords" option
+- include herons in class randomization now forces three herons each time
+- prioritize str/mag now includes base stats as well as growths
+- bargain randomization no longer includes bronze/iron weapons
+- characters' personal battle music works again
+- heron base conversations in tower now works with whatever characters are 
+turned into herons
+- modified 0% growths code
+- various error codes updated
+- user can now re-randomize an iso, though the program will warn you beforehand
+- fixed index out of bounds crash
+- fixed error 08 bug caused by stat cap issues
+- absolutely nothing else i promise ;)
+
+
+Version 2.3.2 03/06/2021
+- 0% growths is now a true 0% growths patch!!
+- Cymbeline now costs money in the shop (no more free handouts)
+- giving enemies skills will no longer give useless skills (ie Paragon)
+- light sage now starts with C rank in dark magic instead of D
+- fixed bug where tier 1 units could be changed into lions with random recruitment
+- random recruitment should now keep animations of new character, unless classes are randomized
+- settings.ini now saves before the randomization occurs, in case of a crash
+- setting Ike/Micaiah as a heron in random characters will now force heron randomization
+- fixed index out of bounds error that would crash randomizer
+
+
+Version 2.3.1 02/13/2021
+- new option for phys-phys/mag-mag random promotion lines
+- new option to prevent random enemies from laguz classes
+- added proper text changes for custom classes/magic to PAL version
+- enemies in part 1 no longer randomize into thieves
+- random izuka, lekain, and levail always have SS weapon
+- ettard and cymbeline have been added to random items/shop pool
+- trickster, platinum kn, bronze kn, malig kn, and malig master have had changes 
+to weapon useability
+- aura's effectiveness has been modified to all mages
+- raycism has had its description modified
+- brave magic tomes have had their mt lowered by 2
+- trickster going down a ledge no longer causes a crash
+- random event items no longer changes alondite
+- stat caps are now capped to 115 to prevent overflow due to terrain bonuses
+- bastian now starts with SS rank in thunder with class patch
+- thunder classes have had their def/res swapped with magic patch
+- various custom classes have had stats modified - see appendix in README.htm
+- fixed bug where untransformed/transformed laguz classes had different base stats
+- fixed array overflow error when selecting randomized recruitment
+- fixed bug that caused prioritize str/mag to work incorrectly
+- fixed bug where rafiel and reyson's herons were swapped
+- fixed bug where all enemies in 1-8 were flying classes
+- fixed bug where clerics had lance ranks instead of swords
+- fixed bug where low tier enemies could change into saints
+- fixed shop bug where heal and herbs always appeared
+- stat shuffling algorithm has been reinvented
+- various clarifications in README.htm
+
+
+Version 2.3.0 01/22/2021
+- added LM73's Class Patch, which adds new custom classes to the game
+- added LM73's Magic Patch, which strengthens and diversifies magic tomes
+- random promotion has been added
+- created Formshift scroll, which can be added to random event/shop items
+- minimum stat cap has been added
+- option to give light sage/priestess dark magic
+- option to increase crit rate of knives
+- Paragon mode gives all playable units the Paragon skill for extra EXP
+- Part 2 easy mode reduces each stat of all "rebellion" enemies by 3
+- lowered enemy weapons overall in part 1 when enemies are randomized
+- horse parkour now successfully allows horses to cross river tiles
+- outputlog now shows class caps
+- outputlog now has hyperlinks at the top to quickly go to a desired section
+- fixed bug where heron characters in random classes wouldn't get weapons blessed in the tower
+- fixed bug where "set stat caps" was affecting incorrect classes
+- fixed ai bug in chapter 1-5
+- fixed bug where Hetzel's animations would disappear
+- moved elincia to the left by 3 tiles in chapter 3-10 when enemies are randomized
+
+
+Version 2.2.2 01/01/2021
+- rich boy mode, replacing all coins with buffed white gems
+- random recruitment now reorders characters' base stats to better reflect who they turn into
+- random weapons now fully randomizes A rank laguz, then adds random amounts to make S and SS weapons
+- enemy re-randomizer now works with most recent updates
+- fixed random boss class checkbox tooltip
+- fixed bug where characters could end up with negative overall bases
+- fixed models for tiger laguz bosses
+
+
+Version 2.2.1 12/29/2020
+- fixed pointer errors at main screen of game
+- fixed bug that caused affinities to be incorrect in outputlog
+- fixed bug where units would not have affinities
+
+
+Version 2.2.0 12/28/2020
+- enemies and bosses can now be given random skills
+- movement can now be randomized
+- class bases can now be modified, either by deviation or shuffle
+- stat caps can be modified in two more ways: random w/ deviation or flat increase
+- added option to only modify T3 stat caps
+- Ironman mode is introduced, removing many of the game over deaths throughout the game
+- added horse parkour
+- added No FoW mode
+- added option for randomizing bargain shop only
+- weights for bargains and forge have been added
+- playable characters can be given more skills than their vanilla counterparts
+- 0% growths option now uncaps the unused stat
+- base stat randomization now takes class bases into account, so negative bases are impossible
+- outputlog now contains more randomized information
+- the chance to start with venin weapons is decreased
+- the chance to start with horseslayers/hammers is significantly decreased
+- random enemies can no longer obtain killer weapons in part 1 without "Stronger Weapons" selected
+- added Phi's new tutorial video to README.htm
+- modified documentation to accurately reflect the weapon ranks of Dawn Brigade weapons
+- fixed bug where an enemy in chapter 1-6b had an incorrect weapon
+- fixed bug with sephiran animation
+- fixed bug that allowed ike to become a heron class
+- fixed bug that allowed sothe to become a heron class
+- fixed bug that caused bosses to have no animation model
+- fixed bug regarding wildheart and heron characters
+
+
+Version 2.1.0 10/29/2020
+- pointer error at game startup has been FIXED
+- added "choose your micaiah" to random recruitment
+- added shuffle classes - randomize classes while keeping the total the same as vanilla
+- added checkbox to keep promotion event items from being randomized
+- added checkbox to keep iron items in random shop in all chapters
+- added new program to re-randomize enemies
+- hardmode and re-random programs are now included in zip with instructions
+- hardmode program now automatically changes fiona's animation to prevent crashes
+- base increases: rogue,cleric,white dragon,valkyrie - check README.htm for new bases
+- base decreases: sothe,mist,nasir - check README.htm for new bases
+- weapon randomization now works properly when deviation is set to 0 for some settings
+- ranged weapon animations now work
+- shop randomization is actually working properly now
+- DB prf weapons are now sellable when DB weapon checkbox is selected
+- enemies can no longer be randomized into thieves in the first half of part one
+- elincia starts with S rank in swords(if applicable) if GM weapon checkbox is selected so 
+she can use Amiti
+- fixed bug where night tide could not be equipped properly
+- fixed bug where bowknights would promote into male bow paladins instead of female
+- 100% growth cap on shuffle growths now actually works
+- sothe is now restricted from the heron class
+- enemy in chapter 4-Eb no longer has the wrong weapon
+- sephrian map no longer causes crashes
+- animation fixes: soldier in 2-1,izuka,lekain,levail
+- the scrollbar in the outputlog is shorter
+
+
+Version 2.0.2 10/15/2020
+- units randomized into heron class can no longer be selected for the tower, but instead one
+can be chosen just like vanilla, after the 16 units are selected
+- "choose my tower units" will not select units randomized into herons
+- can now randomize enemies into similar class types only
+- T3 enemies in part 4 now works without random enemies
+- heather can now begin as a player-controlled unit
+- fixed various portrait bugs
+- fixed bug where oliver's map could not be completed by seizing
+- boss growths are now listed in the README
+- random enemies in the first few chapters of the game can no longer carry sleep
+- enemies can no longer carry ballistae as random enemy drops
+- gems now have a higher chance of appearing as hidden items
+- random shops will always have iron weapons and low-tier tomes
+- weapon stats are now restricted to a cap of 127 to prevent crashes
+- fixed bug where multiple units would not join in PAL ISO
+- caladbolg,lughnasadh,tarvos are now B rank
+- "enemies cannot have seige tomes" now works for bosses as well
+- beorc units should no longer obtain halfshift with random skills
+- light mage and thief classes have increased bases
+- light mage class now has growths for enemy auto-leveling
+- AI for enemies in chapters 3-6 and 3-13 has been modified when laguz are turned into beorc
+- fixed bug where multiple units in chapters 1-6 and 1-E did not have proper weapons
+- fixed bug where part 4 enemies would change into saint instead of bishop
+- fixed bug where dragonprince units could not use night tide
+- fixed bug that swapped pure water and holy crown effects
+- fixed bug where shuffle growths caused the randomizer to stop
+- druids now come with master crowns, not master seals
+- fixed "shaman" class name to "light priestess" in outputlog
+- fixed bug where randomizer would stop randomization without changing textbox
+- fixed bug where forged wyrmslayer had a lance model
+- randomizer will no longer run if the selected ISO is already randomized
+- selected unit in outputlog is now more obvious
+
+
+Version 2.0.1 10/09/2020
+- fixes crash on ch3-7
+- heron characters will now keep their class when both random classes and recruitment
+is on and "include herons" is not checked
+- array out of bounds error no longer occurs with the random enemy drops function
+- having too many files in the script folder no longer causes villages to not have 
+items
+
+
+Version 2.0.0 10/07/2020
+- readme and outputlog have been completely reworked
+- can now randomize generic enemies, with a selection of settings
+- can now randomize bosses
+- can now buff stats of bosses
+- random recruitment can now include a selection of antagonists
+- added an option to choose the character who changes into ike
+- the forge can now be randomized
+- enemy drops can now be randomized
+- required team to enter tower can be randomly selected for you
+- added more options to growth randomization, including shuffling, capping 
+to a selected maximum, and allowing for deviation to be up to 255%
+- added option to remove BK's imbue skill
+- added option to give ike some help in the BK fight
+- added option to remove kurth and ena from the tower
+- added option to modify win conditions of various part 4 chapters
+- added option to prevent beorc units in Part 1 from becoming laguz classes
+- individual laguz gauge randomizations
+- siege tomes can be set to not have number of uses changed
+- PAL functionality is back
+- hardmode changes should work regardless of other selected settings
+- settings selected for previous randomization will be saved and loaded the next 
+time you open the randomizer
+- reworked instructions to randomizer to remove the compression step
+- option to set ai in Ch1-6 to help fiona's survivability as a green unit
+- SS weapons can now be found in randomized shop
+- random recruitment now changes portraits in cutscenes
+- units randomized into druids now come with a master crown in their inventory
+- healing items/staves, promotion items are now twice as common at random shops
+- randomized herons now work as intended
+- enemy growth increases to laguz enemies is 1/2 of selected
+- 0% growths set STR/MAG to 100% instead of LCK
+- skrimir/zelgius cutscene is now removed to prevent t-posing crashes
+- modified bases of cats,hawks,raven enemy units
+- increased gareth,nasir bases
+- bug that makes tigers have SS magic rank has been fixed
+- bug where ettard is unusable has been fixed
+- ATK/MAG swap now happens after randomization
+- class weights have been changed to be more effective
+- micaiah, brom, nephenee are locked from being herons
+- multiple settings that were originally changed by default are now 
+options for the randomizer, including:
+	- giving ike a free nihil
+	- ai change in Ch1-5
+	- druid having fire magic
+	- increased bird FoW vision
+	- lower laguz gem price
+	- 5-use chest keys
+	- sellable promotion items
+	- bane replaced by lethality
+
+
+Version 1.5.0 08/28/2020
+- added option to prioritize the higher of a unit's str/mag growths to their
+more useful stat
+- added option to keep thieves unrandomized
+- added option to keep lords unrandomized
+- added options to remove (or add back in?) certain contested hardmode changes
+- added an option to remove weapon level caps
+- when randRecruitment is selected without randClasses, units with unique
+classes will no longer replace a unit of a lower class tier
+- when "Remove PRFs" is selected, Ettard is now given S rank
+- minor changes to tooltips on user interface
+- updated changes2game.txt
+- volke can no longer be randomized into tauroneo due to 0% hit glitch
+
+
+Version 1.4.7 08/15/2020
+- fixed bug where program throws errors 5 and 22 when not applicable
+
+
+Version 1.4.6 08/01/2020
+- fixed crash caused by choosing both random herons + random recruitment
+- fixed bug that caused shuffling bases to throw an error
+
+
+Version 1.4.5 07/29/2020
+- fixed bug that caused 0% growths to not work properly
+
+
+Version 1.4.4 07/18/2020
+- fixed bug regarding random recruitment and characters starting at max level
+- added class weights to outputlog
+- fixed error 06 while randomizing
+- fixed bug where Danved's animation did not exist
+- fixed bug where outputlog showed incorrect names
+
+
+Version 1.4.3 07/07/2020
+- added weights to class types for class randomization
+- added option to remove PRFs
+- added option to make florete magic-based
+- bird laguz now have 2 spaces of vision in FoW
+- modified laguz gem price
+- beorc->beorc,laguz->laguz now works with random recruitment
+- fixed bug where randomized bases could cause negative values
+- fixed bug where ranulf could be mounted with random recruitment, causing a softlock
+- fixed bug where druid still didn't have promotion gains
+- added FAQ to discord and documentation folder
+- added link to Phi's video tutorial to README and FAQ
+- minor buffs to dragon prince class
+
+
+Version 1.4.2 06/20/2020
+- fixed bug where beorc characters could gain wildheart with random recruitment
+- fixed bug where base stat shuffle only modified hp
+- fixed bug regarding lance knight animations
+- fixed bug where ike gained less exp with random recruitment
+- fixed bug regarding forge in ch3-2 and 3-3
+- can no longer randomize recruitment with "true beauty" setting
+
+
+Version 1.4.1 06/18/2020
+- added a shuffle option to base stat changes
+- added weapon randomization
+- added fire/wind/worm/light to all forges
+- fiona now keeps savior to increase survivability
+- ike can no longer be a softlocking class with random recruitment
+- lehran no longer has mantle with random recruitment; whoever
+	replaces lehran now has mantle
+- fixed portrait bugs with random recruitment
+- fixed volke and bastian animations
+- fixed bug regarding volke and bastian causing 0 hit/avoid
+- modified header in output log
+- added tooltips to GUI
+
+
+Version 1.4.0 06/14/2020
+- added option to increase enemy growths
+- added base stat randomization
+- added randomized recruitment
+- output log now includes more information about randomizer parameters
+- gave lehran flat 35% growths
+- brom and nephenee now start with two weapons
+- buffed sothe bases
+- buffed cat bases
+- fixed bug where hero/vanguard max bases were t1/t2 respectively
+- fixed bug where volke's stillness skill was not randomized
+- changed executable icon
+
+
+Version 1.3.4 06/09/2020
+- shriek/maelstrom now work on raven/hawk king class
+- tibarn/skrimir bases are fixed
+- base weapon ranks are adjusted
+- ena's base strength is a little less bad
+
+
+Version 1.3.3 06/05/2020
+- can now specify stat caps for three class tiers individually
+- tormod & co's inventory in ch4-4 is now randomized
+- promotion items and satori sign can now be sold
+- master crown and satori sign worth 10k instead of 30k
+- new laguz units start transformed on the map they first appear on
+- fixed bug where jill and zihark wouldn't attack as green units
+- fixed bug where fire showed up as worm in forge
+- fixed bugs regarding blessing
+- fixed bugs regarding jill, zihark, and tauroneo laguz animations
+- fixed tiger animations
+
+
+Version 1.3.2 05/30/2020
+- fixed bugs regarding randomized event items, but now
+	most hidden items are no longer randomized
+- fixed bug that caused ike to start with alondite instead of ragnell
+- blessing skill is worth 5 skill points, still heron-only
+- red/white pool and night tide can now be used by all dragons
+- elsilence, elsleep, and rewarp are no longer locked to inventories
+- soldier position in chapter 1-2 is changed so you can reach chests
+	without a two-ranged weapon
+
+
+Version 1.3.1 05/28/2020
+- quick changes to event items on some chapters
+
+
+Version 1.3.0 05/26/2020
+- herons are now added to class randomizing
+- event item randomization
+- biorhythm randomization
+- affinity randomization
+- more templates for class randomization
+- more possible class animations
+- more possible items in shop randomization
+- fixed bug where volug would gain halfshift as beorc
+- fixed bug where kurthnaga would gain formshift as beorc
+- druids now have promotion stat gains
+- modified bases of hawks and tigers to be less terrible
+- randomized skills no longer have mercy, blessing added instead
+- ike can no longer be a magic class, as it may be impossible to damage ashera
+- added necessary beauty
+
+
+Version 1.2.5 05/19/2020
+- micaiah and edward can no longer both be priests
+- micaiah and edward can no longer have the skill mercy
+- ike now starts with nihil
+- fixed portrait issue with ike and sothe
+- replaced bane with lethality on whisper
+- fiona dying in chapter 1-6 no longer results in game over
+- modifications to chapter data files are cleaner and more efficient
+
+
+Version 1.2 05/14/2020
+- can now customize the stat cap with randomizer
+- masterseal in chapter 1-5 now drops when enemy is killed
+- stefan now keeps his vague katti if randomized to a laguz class
+- sanaki now gets cymbeline if reclassed into summoner
+- fixed mistake where heather's treasure-hunt skill was replaced instead of pass
+- dawn brigade get one extra skill each
+- giffca, nasir, gareth, kurthnaga, and ena now randomize into tier 3 beorc classes
+- fixed bug where nasir did not come with weapons as beorc
+- fixed bug regarding tiger's stat caps
+- modified base stats on neuluchi, vika, mist, cleric, and raven (check NewBases.csv)
+- made astrid slightly less terrible (check NewBases.csv)
+- fixed bug regarding fiona not having a class
+- fixed multiple bugs due to a bad lance cav animation
+- fixed bug where ranulf would be the wrong laguz class
+- removed florete from shop randomizer
+- ike now starts with nihil item since he doesn't gain the skill on promotion
+
+
+Version 1.1 05/10/2020
+- program no longer throws an error when growth deviation is less than minimum for a stat
+- ike and ranulf can no longer randomize into mounted units or cleric due to chapter 3-4
+- ike can no longer randomize into rogue, due to stat cap making it impossible to do damage to BK
+- archers can no longer start with bowgun in their inventory
+- beorc classes can no longer start with halfshift
+- "0% growths" has a 100% growth in luck, due to the interesting fact that radiant dawn forces 
+	at least one stat increase per level up
+- added SkillList.txt to documentation folder
+- modified error messages to be more specific for debugging purposes
+- added seed to replicate randomization parameters
+- the output file now specifies input growth rate deviation and minimums
+- the output file now specifies seed
+- enemies closest to jill,zihark,and tauroneo in chapter 1-5 will no longer attack them and end the level
+- fixed some cutscene animations involving laguz who had been changed into beorc
+- ettard, amiti, and florete are back to N rank, dawn brigade weapons are still D rank

@@ -1,0 +1,34 @@
+~~ THIS PROGRAM CAN ONLY BE USED ON A CLEAN ISO
+
+This program is used to only make the "Make Hardmode Great Again" changes from the full 
+randomizer program without having to deal with any of the possible bugs from the main 
+program. It was popularized by youtuber Mekkah in his FE10 Hardmode playthrough with Bismix
+
+
+~~ HOW TO USE
+Find an NTSC-U or PAL FE10 iso. I can't tell you where to find this, but the internet is 
+your friend here. Once you have it, make sure it is a .iso file, not .nkit.iso or .wpf 
+or anything else.
+
+Extract the contents of your iso into a directory using a program like WiiBaFu. If you 
+have problems with WiiBaFu, and you're sure you have a .iso, check out the FAQ on the 
+discord to see if the problem has been covered there.
+
+Open up the program by running the appropriate .exe file in your downloaded
+randomizer folder.
+
+After extracting with WiiBaFu, you should have a collection of folders 
+that contain all of the data of your iso. Inside of the extracted folder, there 
+will be a folder named "DATA", and then within that folder there should be a 
+folder named "sys". Using the Load button on the program, select the file "main.dol" 
+in the "sys" folder. EXAMPLE: after extracting my iso to my desktop, I would select 
+the following file with the randomizer: C:\Users\LordMewtwo73\Desktop\Fire 
+Emblem Radiant Dawn [RFEE01]\DATA\sys\main.dol
+
+Choose whatever settings you would like to modify. For more details on each setting, 
+you can look at the README.htm found in the documentation folder of the randomizer.
+
+After it is completed, use WiiBaFu to rebuild your iso from the extracted contents. 
+Once again, if you come across problems with WiiBaFu, check out the FAQ.
+
+Now you have a FE10 ISO with hardmode changes and nothing else!

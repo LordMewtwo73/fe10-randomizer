@@ -1,0 +1,37 @@
+~~ THIS PROGRAM CAN ONLY BE USED ON A PREVIOUSLY-RANDOMIZED ISO
+
+This program is used to re-randomize enemies if you come across a chapter that is too 
+difficult and possibly a softlock due to the new enemy classes. As this program can only 
+be used after the randomizer, this document will assume that you have successfully used 
+the FE10 Randomizer by LordMewtwo73. If you have not, do not use this program.
+
+
+~~ HOW TO USE
+You will need the extracted randomized ISO from the randomizer, before it is built with 
+WiiBaFu. If you deleted those folders after you built your ISO, you will need to extract 
+the randomized ISO into its contents with WiiBaFu. I'm not putting instructions here 
+because you should already know how to do that if you successfully used the randomizer.
+
+IMPORTANT:
+In order for this program to work, your save file cannot have previously loaded the map 
+you want enemies to change. There are multiple places you can save in FE10, so here is a 
+list of all of the save points and whether or not this program will successfully change 
+the enemies on a chapter:
+SAVE FROM CLEARED PREVIOUS CHAPTER: yes
+SAVE AT BASE OF CURRENT CHAPTER: yes
+SAVE AT PREPARATIONS SCREEN OF CURRENT CHAPTER: no
+SAVE AT BASE AFTER RETURNING TO BASE FROM PREP SCREEN: no
+BATTLE SAVE: no
+
+Thus, it is recommended when playing with randomized enemies to always have a separate save 
+file that exists BEFORE LEAVING THE BASE, just in case the chapter ends up being a softlock.
+/IMPORTANT
+
+After you open the program using the .exe file in the randomizer folder, you must select the 
+DATA\files folder inside of the extracted ISO, just as you would with the complete 
+randomizer program.
+
+Select your random enemy settings (you can choose same or different settings from your original 
+settings, it does not matter)
+
+Click Randomize, buid the ISO again, and open up a save file specified in the list above.
