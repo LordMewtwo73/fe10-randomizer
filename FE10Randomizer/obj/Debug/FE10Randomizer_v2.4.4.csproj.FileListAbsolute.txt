@@ -8,3 +8,13 @@ C:\Users\josia\Documents\FE10 Projects\FE10Randomizer_v0.1\FE10Randomizer_v0.1\o
 C:\Users\josia\Documents\FE10 Projects\FE10Randomizer_v0.1\FE10Randomizer_v0.1\obj\Debug\FE10Randomizer_v2.4.4.csproj.CoreCompileInputs.cache
 C:\Users\josia\Documents\FE10 Projects\FE10Randomizer_v0.1\FE10Randomizer_v0.1\obj\Debug\FE10Randomizer_v0.1.exe
 C:\Users\josia\Documents\FE10 Projects\FE10Randomizer_v0.1\FE10Randomizer_v0.1\obj\Debug\FE10Randomizer_v0.1.pdb
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\bin\Debug\FE10Randomizer_v0.1.exe.config
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\bin\Debug\FE10Randomizer_v0.1.exe
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\bin\Debug\FE10Randomizer_v0.1.pdb
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v0._1.Properties.Resources.resources
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v2.4.4.csproj.GenerateResource.cache
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v2.4.4.csproj.CoreCompileInputs.cache
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v0.1.exe
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v0.1.pdb
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v2.4.4.csproj.AssemblyReference.cache
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v0._1.Randomizer_Main.resources
