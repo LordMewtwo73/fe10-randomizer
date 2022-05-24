@@ -1,3 +1,34 @@
+Version 3.0.0 05/24/2022
+- game ID is modified so dolphin treats a randomized ISO as a separate game to normal FE10
+- "Don't Save" option allows for a user to obtain an outputlog without actually changing the ISO
+- randomizer backs up files from vanilla ISO to overwrite when re-randomizing
+- user no longer needs to start from a clean ISO each time (as long as the randomizer has backed up from a clean ISO at least once)
+- new save/load settings options allow for a user to save multiple sets of settings
+- random enemies now randomizes each enemy separately (though there is an option to randomizing 1:1 classes like before)
+- FE9 transfer bonuses now work again
+- introducing the CSPI: Crimean Softlock Prevention Initiative
+	- options to increase stats of ally and player characters
+	- special option to give Nephenee and Brom additional assistance in 2-1
+- two ways to randomize player skills: vanilla # + modifier, or set #
+- new option to allow all enemies to have a droppable item
+- new option to make all characters start with an extra random item
+- "Keep Vanilla Classes" allows user to swap recruitment order without swapping classes
+- new option allows all skills to be universally equippable
+- random recruitment - Elincia's replacement can now be chosen
+- choosing Ike/Micaiah/Elincia replacements can now be done without randomizing recruitment or classes
+- choosing Ike/Micaiah/Elincia classes can now be done without randomizing classes
+- randomizing laguz gauges can now be done without randomizing classes
+- "Tormod starts Promoted" now beefs up the entire Tormod Squad instead of just him
+- random shop no longer gives duplicate items in the same shop
+- lyre, tibarn, and skrimir now have weapons when randomized into beorc
+- random enemies no longer have strong weapons-patch weapons in early chapters
+- randomizing ally units can be done separately from enemy units
+- characters' starting weapon ranks are modified to match their new randomized class
+- small text changes for custom weapons and magic
+- backend code rewritten in order to fix a multitude of bugs
+- temporarily removed random event item functionality
+
+
 Version 2.4.4 06/08/2021
 - "Tormod starts Promoted" should now work properly
 - Ike can no longer be the raven class without making the BK fight easier

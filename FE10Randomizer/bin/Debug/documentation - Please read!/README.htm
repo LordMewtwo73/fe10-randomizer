@@ -86,7 +86,7 @@ th, td {
             After extracting with WiiBaFu, you should have a collection of folders
             that contain all of the data of your iso. Inside of the extracted folder, there
             will be a folder named "DATA", and then within that folder there should be a
-            folder named "files". Using the <i>Load Folder</i> button on the randomizer, select the
+            folder named "files". Using the <i>Load Folder</i> button under <i>File</i> on the randomizer menu bar, select the
             "files" folder. <b>EXAMPLE:</b> after extracting my iso to my desktop, I would select
             the following folder with the randomizer: C:\Users\LordMewtwo73\Desktop\Fire
             Emblem Radiant Dawn [RFEE01]\DATA\files
@@ -95,7 +95,16 @@ th, td {
         <br>
         <li>
             Choose whatever settings you would like to modify with the randomizer.
-            For a detailed explanation of each selection, check out the <a href="#details">How it Works</a> section of this document. Then click <i>Randomize</i>!
+            For a detailed explanation of each selection, check out the <a href="#details">How it Works</a> section of this document.
+        </li>
+
+        <br>
+        <li>
+            Here you may choose to fully save your changes or not. If you select the checkbox named <i>Don't Save</i>, the randomizer will do all of its
+            fancy math and calculations and spit out an outputlog for you to peruse. However, your ISO will be unchanged. This allows you to check the outputlog to
+            make sure you like the final product before actually editing your files. If you use the same exact seed and settings (I recommend just not closing the
+            randomizer), but you uncheck <i>Don't Save</i>, you will find that your randomized ISO will be identical to what your outputlog theorized.
+            Whether you select that checkbox or not, click <i>Randomize</i> to begin the process!
         </li>
 
         <br>
@@ -369,11 +378,7 @@ th, td {
         to them being able to trivialize that part of the game worse than Sothe already does. Only works with <i>Full</i>
         randomization.
     </p>
-    <p>
-        <b>Prioritize Higher Str/Mag</b> will guarantee that the higher of the two offensive growths and personal bases will
-        match the unit's new class. For example, Micaiah randomized as a Fighter will have an 80% STR growth instead of
-        her normal 80% MAG growth.
-    </p>
+
 
     <h4>Exceptions</h4>
     <p>
@@ -440,6 +445,11 @@ th, td {
     <br>
     <img src="images/shufflegrowths.png" alt="shuffled growths" style="width:600px;height:350px;">
 
+    <p>
+        <b>Prioritize Higher Str/Mag</b> will guarantee that the higher of the two offensive growths and personal bases will
+        match the unit's class. For example, Micaiah randomized as a Fighter will have an 80% STR growth instead of
+        her normal 80% MAG growth.
+    </p>
 
 
     <hr>
@@ -560,33 +570,30 @@ th, td {
     <hr>
     <h2 id="enemy">Enemies</h2>
 
-    <h4>Randomize Generic Enemy Classes</h4>
+    <h4>Randomize Generic Enemy/Ally Classes</h4>
     <p>
-        This selection will 1-to-1 change classes of enemy units on all chapters. By 1-to-1, I mean that
-        every fighter on a chapter will randomize into the same class, and so forth. Two units who are originally the same class
-        as each other will not randomize into two different classes. This does not include units on different chapters.
-        For example, archers in 1-1 may change into myrmidons, but archers in 1-2 may become pegasus knights.
+        These selections will change the classes of all red or yellow units in the game. Each unit will be individually randomized,
+        unless you select the "1:1 Class Changing" option.
     </p>
-    <p>This setting <b>also affects allied units.</b></p>
+
     <p>Due to AI issues among other things, there are limitations:</p>
     <ul>
         <li>Thieves are unchanged to keep confusion to a minimum, as they are able to open chests regardless of class</li>
-        <li>Healers will not change class, though their inventories may change</li>
-        <li>The laguz in chapter 1-4 will not randomize due to AI issues</li>
         <li>Some flying units are unchanged if they spawn in impossible-to-reach locations (ie pegasus knights in 1-6)</li>
         <li>Tier1 units cannot change into laguz because they become nearly unbeatable</li>
         <li>
             Due to their AI not knowing how to transform, all beorc turned into laguz classes are considered feral ones,
-            and will always stay transformed
+            and will always stay transformed - <b>As of version 3.0.0, this is no longer the case</b>
         </li>
-        <li>Allied laguz remain unchanged</li>
+        <li>Allied laguz remain unchanged - <b>As of version 3.0.0, this is no longer the case</b></li>
     </ul>
 
-    <h4>Enemies can have Stronger Weapons</h4>
+    <h4>1:1 Class Changing</h4>
     <p>
-        Each weapon type has a list of possible weapons based off of what chapter the enemy unit appears on. The list is
-        contained in an Excel document can can be found in the documentation folder. This selection allows units to
-        have the next tier of weapon that is normally not available to units on that chapter.
+        This selection will 1-to-1 change classes of enemy units on all chapters. By 1-to-1, I mean that
+        every fighter on a chapter will randomize into the same class, and so forth. Two units who are originally the same class
+        as each other will not randomize into two different classes. This does not include units on different chapters.
+        For example, bandits in 1-1 may change into myrmidons, but bandits in 1-2 may become pegasus knights.
     </p>
 
     <h4>Include Spirits</h4>
@@ -595,7 +602,7 @@ th, td {
         adds the three spirit classes to the list of possible classes the enemy can turn into in part 4.
     </p>
 
-    <h4>Enemies are Similar Classtype</h4>
+    <h4>Similar Classtype</h4>
     <p>
         Makes sure that the random enemies stay within the bounds of their vanilla class. For example, an enemy
         myrmidon may randomize into a soldier,fighter,archer,etc, while an enemy firemage may randomize
@@ -603,16 +610,10 @@ th, td {
         Armored, Flying(beorc), and Laguz
     </p>
 
-    <h4>Part 4 Enemies have T3 Classes</h4>
-    <p>
-        Is this smart? No. Will this be a fun way to play? Also no. Did somebody ask for it anyway? Yup.
-        Good luck, and have fun getting Impaled or Astra'd every other fight.
-    </p>
-
-    <h4>Enemy cannot have Siege Tomes</h4>
+    <h4>No Siege Tomes</h4>
     <p>Any enemy unit randomized into a magic class will be prevented from having meteor/bolting/etc.</p>
 
-    <h4>Enemy can only have Siege Tomes</h4>
+    <h4>Only Siege Tomes</h4>
     <p>
         Conversely, any enemy unit randomized into a magic class will <i>always</i> have meteor/bolting/etc.
         Since early siege tomes can create impossible scenarios, this change does not begin until part 3.
@@ -625,12 +626,13 @@ th, td {
         light magic instead of a staff.
     </p>
 
-    <h4>Enemy can't be Laguz (Unless They Already Are)</h4>
+    <h4>Beorc can't be Laguz and Vice-Versa</h4>
     <p>
         There are some AI issues when Laguz enemies are changed into Beorc classes and vice-versa.
         This selection keeps random enemies within their default race, keeping a more balanced and
         intelligent enemy force than with full randomization.
     </p>
+
 
     <h4>Random Enemy Drops</h4>
     <p>
@@ -638,6 +640,25 @@ th, td {
         used to drop a vulnerary might drop Urvan, you never know!
     </p>
     <p>Some items only available when stolen are now changed to be droppable.</p>
+
+    <h4>Each Enemy Drops an Item</h4>
+    <p>
+        Each enemy obtains a random item that they will drop upon death.
+    </p>
+    <p>Some items only available when stolen are now changed to be droppable.</p>
+
+    <h4>Enemies can have Stronger Weapons</h4>
+    <p>
+        Each weapon type has a list of possible weapons based off of what chapter the enemy unit appears on. The list is
+        contained in an Excel document can can be found in the documentation folder. This selection allows units to
+        have the next tier of weapon that is normally not available to units on that chapter.
+    </p>
+
+    <h4>Part 4 Enemies have T3 Classes</h4>
+    <p>
+        Is this smart? No. Will this be a fun way to play? Also no. Did somebody ask for it anyway? Yup.
+        Good luck, and have fun getting Impaled or Astra'd every other fight.
+    </p>
 
     <h4>Increase Enemy Growths</h4>
     <p>
@@ -659,7 +680,7 @@ th, td {
         <li>BK, Dheginsea, and Ashera are not randomized</li>
     </ul>
 
-    <h4>Buff Bosses</h4>
+    <h4>Increase Boss Stats</h4>
     <p>Increases the base stats of each non-playable boss in the game other than BK, Dheginsea, and Ashera.</p>
     <p>
         The change is made linearly over the course of the game, so early bosses will have a small base stat
@@ -772,7 +793,7 @@ th, td {
         normally set to Sothe and Heather.
     </p>
     <p>
-        As of version 2.2.2, bases of the slot are reordered to better reflect the new character. For example,
+        <b>As of version 2.2.2</b>, bases of the slot are reordered to better reflect the new character. For example,
         Ike's highest personal base is in STR. If he were to be randomized into Soren, whose highest personal base
         is MAG, then Ike's slot will have a MAG base equal to vanilla Ike's STR base stat.
     </p>
@@ -828,16 +849,23 @@ th, td {
 
     </table>
 
-    <h4>Set as Ike/Set as Micaiah</h4>
+    <h4>Keep Vanilla Classes</h4>
     <p>
-        With this, you can select the characters to replace Ike and Micaiah. The character selected to replace
-        ike will be the lord, will fight BK, and must land the killing blow to win the game.
+        This will keep the classes of the vanilla slot, no matter what character is randomized into that slot.
+        For example, if Micaiah's slot is randomized into Nolan, the first unit you obtain will still be a lightmage,
+        even though it is Nolan's face, growths, and affinity.
+        For obvious reasons, this does not work with random classes.
+    </p>
+
+    <h4>Set as Ike/Micaiah/Elincia</h4>
+    <p>
+        With this, you can select the characters to replace Ike, Micaiah, and Elincia. The character selected to replace
+        Ike will be the lord, will fight BK, and must land the killing blow to win the game.
     </p>
     <p>
-        Due to the limitations listed in the class randomization section, there is a list of classes the Ike
-        cannot be or else there is a chance for softlocks. For that reason, this option is only possible when
-        player class randomization is selected. This may be lifted in a future version, but I cannot
-        guarantee anything.
+        Due to the limitations listed in the class randomization section, there is a list of classes that Ike
+        cannot be or else there is a chance for softlocks. If you attempt to select one of these, the randomizer will
+        inform you of the problem and will not randomize until you change it.
     </p>
 
     <h4>Randomize Affinity</h4>
@@ -859,8 +887,8 @@ th, td {
 
     <h4>Randomize Skills</h4>
     <p>
-        Randomizes each skill attached to playable characters (sans BK). Characters will have the same number
-        of skills that they would normally have in the vanilla game. The list of possible skills can
+        Randomizes each skill attached to playable characters (sans BK). The number of skills will depend on the user
+        inputs. The list of possible skills can
         be found in the <a href="#randskills">appendix</a> of this document.
     </p>
     <p>
@@ -872,14 +900,20 @@ th, td {
         it will still work. However, if you remove the skill, you will not be able to reassign it to that unit.
     </p>
 
-    <h4>Give Max Number of Skills to Playable Characters</h4>
+    <h4>Characters keep same # of Skills + modifier</h4>
     <p>
-        Instead of each character keeping the same number of skills that they would normally have, this
-        option gives every character as many skills as possible, depending on the character. This is normally four, but
-        some characters have hidden personal skills that cannot be overwritten and take up one of their four slots.
+        Each character will gain a number of random skills equal to the number of skills they start with in the vanilla
+        game, with the addition of whatever number you put in the modifier box. For example, Micaiah normally starts with 1
+        skill, but Ena starts with 4. If you select this option with a modifier of 1, Micaiah will start with 2 random skills
+        and Ena 5. Each character can have a maximum of 6 skills.
+    </p>
+    <h4>Characters have set # of Skills = modifier</h4>
+    <p>
+        No matter how many skills a character may normally have in the base game, this option will give all player characters
+        the same number of skills, equal to the number you place in the modifier box.
     </p>
 
-    <h4>Give all Characters Paragon</h4>
+    <h4>Give all Characters/Laguz Paragon</h4>
     <p>
         Replaces the final skill of each character with Paragon. If a character has less than the maximum number
         of skills, Paragon will not overwrite any of their original or randomized skills. You can also limit this to
@@ -888,6 +922,10 @@ th, td {
 
     <h4>All Dragons can use Pool Skills</h4>
     <p>Blood tide, white pool, night wave can all be equipped to a dragon regardless of color with this setting.</p>
+
+    <h4>All Classes can use all Skills</h4>
+    <p>This setting removes all restrictions for skill placement. Beorc can have Laguz skills, mages can have Imbue, etc.</p>
+
 
     <h4>Randomize Skill Capacity</h4>
     <p>
@@ -1116,27 +1154,27 @@ th, td {
     <table>
         <tr> <th>Name</th> <th>Type</th> <th>Rank</th> <th>MT</th> <th>HIT</th> <th>CRIT</th> <th>WT</th> <th>Range</th> <th>Uses</th> <th>Cost</th> <th>Effect</th> </tr>
         <tr> <td>Fire</td> <td>Fire</td> <td>E</td> <td>6</td> <td>80</td> <td>5</td> <td>3</td> <td>1-2</td> <td>50</td> <td>850</td> <td>effective vs beasts</td> </tr>
-        <tr> <td>Smelt</td> <td>Fire</td> <td>D</td> <td>8</td> <td>75</td> <td>0</td> <td>5</td> <td>1-2</td> <td>40</td> <td>1360</td> <td>effective vs armor</td> </tr>
+        <tr> <td>Smelt</td> <td>Fire</td> <td>D</td> <td>8</td> <td>75</td> <td>0</td> <td>5</td> <td>1-2</td> <td>40</td> <td>1360</td> <td>effective vs beasts/armor</td> </tr>
         <tr> <td>Arcfire</td> <td>Fire</td> <td>B</td> <td>13</td> <td>80</td> <td>0</td> <td>6</td> <td>1-2</td> <td>30</td> <td>3000</td> <td>effective vs beasts</td> </tr>
-        <tr> <td>Bolganone</td> <td>Fire</td> <td>S</td> <td>16</td> <td>60</td> <td>5</td> <td>8</td> <td>1-2</td> <td>20</td> <td>4500</td> <td>–</td> </tr>
+        <tr> <td>Bolganone</td> <td>Fire</td> <td>S</td> <td>16</td> <td>60</td> <td>5</td> <td>8</td> <td>1-2</td> <td>20</td> <td>4500</td> <td>effective vs beasts</td> </tr>
         <tr> <td>Rexflame</td> <td>Fire</td> <td>SS</td> <td>17</td> <td>90</td> <td>5</td> <td>12</td> <td>1-2</td> <td>50</td> <td>17500</td> <td>SKL +3; effective vs beasts</td> </tr>
-        <tr> <td>Meteor</td> <td>Fire</td> <td>C</td> <td>10</td> <td>65</td> <td>0</td> <td>18</td> <td>3-10</td> <td>5</td> <td>2500</td> <td>–</td> </tr>
+        <tr> <td>Meteor</td> <td>Fire</td> <td>C</td> <td>10</td> <td>65</td> <td>0</td> <td>18</td> <td>3-10</td> <td>5</td> <td>2500</td> <td>effective vs beasts</td> </tr>
         <tr> <td>Thunder</td> <td>Thunder</td> <td>E</td> <td>4</td> <td>85</td> <td>10</td> <td>4</td> <td>1-2</td> <td>50</td> <td>750</td> <td>effective vs dragon</td> </tr>
         <tr> <td>Snipeshock</td> <td>Thunder</td> <td>D</td> <td>6</td> <td>80</td> <td>15</td> <td>6</td> <td>2-3</td> <td>40</td> <td>1200</td> <td>effective vs dragon</td> </tr>
         <tr> <td>Arcthunder</td> <td>Thunder</td> <td>B</td> <td>10</td> <td>85</td> <td>10</td> <td>8</td> <td>1-2</td> <td>30</td> <td>2700</td> <td>effective vs dragon</td> </tr>
-        <tr> <td>Thoron</td> <td>Thunder</td> <td>S</td> <td>12</td> <td>80</td> <td>30</td> <td>10</td> <td>1-2</td> <td>20</td> <td>4100</td> <td>–</td> </tr>
+        <tr> <td>Thoron</td> <td>Thunder</td> <td>S</td> <td>12</td> <td>80</td> <td>30</td> <td>10</td> <td>1-2</td> <td>20</td> <td>4100</td> <td>effective vs dragon</td> </tr>
         <tr> <td>Rexbolt</td> <td>Thunder</td> <td>SS</td> <td>15</td> <td>100</td> <td>20</td> <td>13</td> <td>1-2</td> <td>50</td> <td>16250</td> <td>DEF +3; effective vs dragon</td> </tr>
-        <tr> <td>Bolting</td> <td>Thunder</td> <td>C</td> <td>8</td> <td>70</td> <td>5</td> <td>19</td> <td>3-8</td> <td>5</td> <td>2250</td> <td>–</td> </tr>
+        <tr> <td>Bolting</td> <td>Thunder</td> <td>C</td> <td>8</td> <td>70</td> <td>5</td> <td>19</td> <td>3-8</td> <td>5</td> <td>2250</td> <td>effective vs dragon</td> </tr>
         <tr> <td>Wind</td> <td>Wind</td> <td>E</td> <td>5</td> <td>100</td> <td>0</td> <td>2</td> <td>2-3</td> <td>50</td> <td>650</td> <td>effective vs flying</td> </tr>
-        <tr> <td>Tempest</td> <td>Wind</td> <td>D</td> <td>4</td> <td>95</td> <td>0</td> <td>4</td> <td>2-3</td> <td>40</td> <td>1040</td> <td>brave</td> </tr>
+        <tr> <td>Tempest</td> <td>Wind</td> <td>D</td> <td>4</td> <td>95</td> <td>0</td> <td>4</td> <td>2-3</td> <td>40</td> <td>1040</td> <td>brave, effective vs flying</td> </tr>
         <tr> <td>Arcwind</td> <td>Wind</td> <td>B</td> <td>11</td> <td>90</td> <td>0</td> <td>5</td> <td>2-3</td> <td>30</td> <td>2400</td> <td>effective vs flying</td> </tr>
-        <tr> <td>Tornado</td> <td>Wind</td> <td>S</td> <td>13</td> <td>115</td> <td>5</td> <td>6</td> <td>2-3</td> <td>20</td> <td>3800</td> <td>–</td> </tr>
+        <tr> <td>Tornado</td> <td>Wind</td> <td>S</td> <td>13</td> <td>115</td> <td>5</td> <td>6</td> <td>2-3</td> <td>20</td> <td>3800</td> <td>effective vs flying</td> </tr>
         <tr> <td>Rexcalibur</td> <td>Wind</td> <td>SS</td> <td>16</td> <td>100</td> <td>10</td> <td>11</td> <td>2-3</td> <td>50</td> <td>15000</td> <td>SPD +3; effective vs flying</td> </tr>
-        <tr> <td>Blizzard</td> <td>Wind</td> <td>C</td> <td>9</td> <td>80</td> <td>0</td> <td>17</td> <td>3-12</td> <td>5</td> <td>2000</td> <td>–</td> </tr>
-        <tr> <td>Light</td> <td>Light</td> <td>E</td> <td>4</td> <td>100</td> <td>5</td> <td>1</td> <td>1-2</td> <td>50</td> <td>800</td> <td>–</td> </tr>
+        <tr> <td>Blizzard</td> <td>Wind</td> <td>C</td> <td>9</td> <td>80</td> <td>0</td> <td>17</td> <td>3-12</td> <td>5</td> <td>2000</td> <td>effective vs flying</td> </tr>
+        <tr> <td>Light</td> <td>Light</td> <td>E</td> <td>4</td> <td>100</td> <td>5</td> <td>1</td> <td>1-2</td> <td>50</td> <td>800</td> <td>-</td> </tr>
         <tr> <td>Raycism</td> <td>Light</td> <td>D</td> <td>6</td> <td>95</td> <td>5</td> <td>3</td> <td>1-2</td> <td>40</td> <td>1280</td> <td>effective vs laguz</td> </tr>
-        <tr> <td>Aura</td> <td>Light</td> <td>B</td> <td>9</td> <td>90</td> <td>10</td> <td>5</td> <td>1-2</td> <td>35</td> <td>3325</td> <td>effective vs druids</td> </tr>
-        <tr> <td>Nosferatu</td> <td>Light</td> <td>S</td> <td>8</td> <td>85</td> <td>0</td> <td>7</td> <td>1-2</td> <td>20</td> <td>4200</td> <td>nosferatu</td> </tr>
+        <tr> <td>Aura</td> <td>Light</td> <td>B</td> <td>9</td> <td>90</td> <td>10</td> <td>5</td> <td>1-2</td> <td>35</td> <td>3325</td> <td>effective vs mages</td> </tr>
+        <tr> <td>Nosferatu</td> <td>Light</td> <td>S</td> <td>8</td> <td>85</td> <td>0</td> <td>7</td> <td>1-2</td> <td>20</td> <td>4200</td> <td>steals life</td> </tr>
         <tr> <td>Valaura</td> <td>Light</td> <td>S</td> <td>9</td> <td>95</td> <td>0</td> <td>12</td> <td>1-2</td> <td>30</td> <td>6750</td> <td>brave</td> </tr>
         <tr> <td>Rexaura</td> <td>Light</td> <td>SS</td> <td>15</td> <td>110</td> <td>5</td> <td>11</td> <td>1-2</td> <td>50</td> <td>15500</td> <td>LCK +5</td> </tr>
         <tr> <td>Purge</td> <td>Light</td> <td>A</td> <td>7</td> <td>80</td> <td>0</td> <td>16</td> <td>3-10</td> <td>5</td> <td>2350</td> <td>–</td> </tr>
@@ -1179,8 +1217,11 @@ th, td {
 
     <h4>Randomize Event Items</h4>
     <p>
-        Changes all items obtained from villages, chests, treasure, base conversations, and events. Some events
-        are unchanged, including obtaining Amiti and Ragnell. Treasure spots can be found <a href="https://serenesforest.net/radiant-dawn/miscellaneous/hidden-treasure/">HERE</a>.
+        <b>AS OF V3.0.0, THIS SELECTION IS TEMPORARILY UNAVAILABLE</b>
+        <strike>
+            Changes all items obtained from villages, chests, treasure, base conversations, and events. Some events
+            are unchanged, including obtaining Amiti and Ragnell. Treasure spots can be found <a href="https://serenesforest.net/radiant-dawn/miscellaneous/hidden-treasure/">HERE</a>
+        </strike>.
     </p>
     <h4>Don't Randomize Promotion Items</h4>
     <p>This selection will prevent all promotion items given through events from being randomized.</p>
@@ -1242,9 +1283,10 @@ th, td {
             - lions, cats, tigers, and wolves will now be able to finish their movement
             after an action
         </dd>
-	<dt>Give Dragon Laguz Canto</dt>
-	<dd>- red, white, and black dragons will be able to finish their movement after an action
-	</dd>
+        <dt>Give Dragon Laguz Canto</dt>
+        <dd>
+            - red, white, and black dragons will be able to finish their movement after an action
+        </dd>
         <dt>Add Formshift Scroll</dt>
         <dd>- turns an unused item into a skill scroll that teaches Formshift to any Laguz</dd>
         <dd>- adds Formshift scroll to random event items and shop</dd>
@@ -1268,18 +1310,14 @@ th, td {
         <dd>- to diversify micaiah's classes more from Bishop/Priest</dt>
         <dd>- gives light sage starting C rank in dark</dt>
         <dd>- gives light priestess starting B rank in dark</dt>
-        <dt>Tormod Starts Promoted</dt>
+        <dt>Beefy Tormod Squad</dt>
         <dd>
-            - to offset his terrible availability, Tormod will be considered a t3 beorc for the
+            - to offset their terrible availability, Tormod and Co will be considered a t3 beorc for the
             purposes of randomization
         </dd>
-        <dd>- starts as a firearchsage without random classes</dd>
-        <dd>- is not considered a laguz royal if randomized into a laguz</dd>
-        <dt>Heather Starts Blue</dt>
-        <dd>
-            - Heather will no longer be a green unit on chapter 2-1, allowing the user to better control where she goes
-            (and prevent her untimely demise)
-        </dd>
+        <dd>- Tormod starts as a firearchsage without random classes</dd>
+        <dd>- Vika and Maurim gain stat boosts</dd>
+        <dd>- they are not considered a laguz royal if randomized into a laguz</dd>
     </dl>
 
     <h4>Softlock Prevention</h4>
@@ -1290,10 +1328,6 @@ th, td {
         <dt>Change 1-6 Enemy AI</dt>
         <dd>- causes the enemies near Fiona to not attack immediately</dt>
         <dd>- prevents Fiona from dying turn 1</dt>
-        <dt>Reduce Stats of Part 2 Enemies</dt>
-        <dd>- lowers each stat of the generic "Rebellion" enemies by 3</dd>
-        <dd>- does not affect the enemies in 2-P, as those are Begnion knights</dd>
-        <dd>- does not affect bosses</dd>
         <dt>Remove BK's Imbue</dt>
         <dd>- BK no longer heals each turn, making him easier to kill in the tower</dt>
         <dd>- this allows Ike to be randomized into magic/rogue classes
@@ -1303,11 +1337,34 @@ th, td {
         <dd>- this allows Ike to be randomized into magic/rogue classes
     </dl>
 
+    <h4>Crimean Softlock Prevention Initiative</h4>
+    <dl>
+        <dt>Reduce Stats of Part 2 Enemies</dt>
+        <dd>- lowers each stat of the generic "Rebellion" enemies by 3</dd>
+        <dd>- does not affect the enemies in 2-P, as those are Begnion knights</dd>
+        <dd>- does not affect bosses</dd>
+        <dt>Increase Stats of Part 2 Allies</dt>
+        <dd>- increases each stat of the generic "Crimea" enemies by 3</dd>
+        <dt>Increase Stats of Part 2 PCs</dt>
+        <dd>- increases each stat of multiple player characters by 2</dd>
+        <dd>- the list includes Elincia, Brom, Nephenee, Heather, Lucia, Astrid, Makalov, Kieran, and Calill</dd>
+        <dt>2-1: Friendship of Farmers and Felines</dt>
+        <dd>- gives Brom and Nephenee some necessary assistance in 2-1</dd>
+        <dd>- Lethe and Mordecai make an early appearance</dd>
+        <dt>Heather Starts Blue</dt>
+        <dd>
+            - Heather will no longer be a green unit on chapter 2-1, allowing the user to better control where she goes
+            (and prevent her untimely demise)
+        </dd>
+    </dl>
+
     <h4>Other Helpful Changes</h4>
     <dl>
         <dt>Lots of BEXP</dt>
         <dd>- chapters will output an increased amount of BEXP for completion</dd>
         <dd>- no, like a substantially increased amount</dd>
+        <dt>Characters Come With a Bonus Item</dt>
+        <dd>- each character holds a random item on recruitment</dd>
         <dt>Remove Weapon Level Caps</dt>
         <dd>- each class can obtain SS rank in any weapon type they can use</dt>
         <dt>Kurth + Ena not Required for Tower</dt>
@@ -1315,7 +1372,7 @@ th, td {
         <dd>- Kurth & Ena will still appear in cutscenes, but their replacements will have their weapons blessed</dd>
         <dt>Make Chest Keys 5 Uses</dt>
         <dd>- necessary without rogues/thieves</dt>
-        <dt>Change Part 4 Rout Maps</dt>
+        <dt>Remove Part 4 Rout</dt>
         <dd>- changes the win condition of 4-P, 4-1, 4-2, 4-3, and 4-Ea to "Defeat Boss"</dd>
         <dd>- changes the win condition of 4-4 to "Seize", with the target being Oliver's starting location</dd>
         <dt>Increase Bird Laguz FOW Vision</dt>
@@ -1417,13 +1474,13 @@ th, td {
         for the rest of that chapter.
     </p>
 
-<br>
+    <br>
     <h3>I selected Ironman mode but Aran dying still caused a game over, what's up?</h3>
-<p>This is a known glitch that I am unable to fix. After being recruited on his debut chapter (1-3), Aran dying will result in a game over. If he dies as a red unit, this does not count as a game over. This is the only game over that is not due to a victory condition/lord dying. For a full list of game overs in Ironman mode, check out the README under "Ironman mode"</p>
+    <p>This is a known glitch that I am unable to fix. After being recruited on his debut chapter (1-3), Aran dying will result in a game over. If he dies as a red unit, this does not count as a game over. This is the only game over that is not due to a victory condition/lord dying. For a full list of game overs in Ironman mode, check out the README under "Ironman mode"</p>
 
-<br>
+    <br>
     <h3>How to I check my growths after randomizing?</h3>
-<p>There is a new file in the randomizer folder called "outputlog.htm" that appears after a successful randomization!</p>
+    <p>There is a new file in the randomizer folder called "outputlog.htm" that appears after a successful randomization!</p>
 
     <br><hr><hr><br>
 
