@@ -1,0 +1,11 @@
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\bin\Debug\FE10 Challenge Patches and Hardmode Changes.exe.config
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\bin\Debug\FE10 Challenge Patches and Hardmode Changes.exe
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\bin\Debug\FE10 Challenge Patches and Hardmode Changes.pdb
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10 Challenges Patches and Hardmode Changes\obj\Debug\FE10 Challenges Patches and Hardmode Changes.csproj.AssemblyReference.cache
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10 Challenges Patches and Hardmode Changes\obj\Debug\FE10_Challenges_Patches_and_Hardmode_Changes.Form1.resources
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10 Challenges Patches and Hardmode Changes\obj\Debug\FE10_Challenges_Patche_and_Hardmode_Changes.Properties.Resources.resources
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10 Challenges Patches and Hardmode Changes\obj\Debug\FE10 Challenges Patches and Hardmode Changes.csproj.GenerateResource.cache
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10 Challenges Patches and Hardmode Changes\obj\Debug\FE10 Challenges Patches and Hardmode Changes.csproj.CoreCompileInputs.cache
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10 Challenges Patches and Hardmode Changes\obj\Debug\FE10 Challenges Patches and Hardmode Changes.csproj.CopyComplete
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10 Challenges Patches and Hardmode Changes\obj\Debug\FE10 Challenge Patches and Hardmode Changes.exe
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10 Challenges Patches and Hardmode Changes\obj\Debug\FE10 Challenge Patches and Hardmode Changes.pdb
