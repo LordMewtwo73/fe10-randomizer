@@ -1,0 +1,9 @@
+Name,JID,hp,atk,mag,skl,spd,lck,def,res
+Hero,JID_HERO,2,1,2,1,1,0,1,2
+Assassin,JID_ASSASSIN,4,2,4,2,2,0,2,4
+Darksage,JID_DARKSAGE,2,2,1,1,1,0,2,1
+Empress,JID_CAESER,4,5,2,2,2,0,5,2
+Chancellor,JID_CHANCELLOR,4,4,2,2,2,0,4,2
+Druid,JID_DRUID,1,2,2,1,1,0,2,1
+Cleric,JID_CLERIC,1,2,2,1,1,0,2,1
+Queen,JID_QUEEN,4,4,4,2,2,0,3,3

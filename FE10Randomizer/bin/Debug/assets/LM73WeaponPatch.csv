@@ -1,0 +1,11 @@
+Name,Functions Like,new name,e_common name loc,new descrip,e_common descrip loc,Rank,Mt,Hit,Crit,Wt,Rng min,Rng max,Uses,Cost per Use,Attributes,Effectiveness,Bonuses,PAL_e_common name loc,PAL_e_common descrip loc
+IID_BRONZESWORD,,Longsword,7080,Effective: #P035,38836,C,9,85,0,14,1,1,20,55,,SFXC_KNIGHT,,7120,42040
+IID_POISONSWORD,axe,Noble Sword,7176,A sword designed to counter foes with lances. It;has a disadvantage vs others swords.,39420,B,11,90,0,12,1,1,25,80,,,,7216,42624
+IID_BRONZELANCE,,Heavy Spear,7356,Effective: #P036,40812,C,10,75,0,16,1,1,20,70,,SFXC_ARMOR,,7396,44008
+IID_POISONLANCE,sword,Noble Lance,7460,A lance designed to counter foes with axes. It has;a disadvantage vs other lances.,41360,B,12,80,0,14,1,1,25,80,,,,7500,44556
+IID_BRONZEAXE,,Dragon Axe,7552,Effective: #P03A,41988,C,13,65,5,19,1,1,20,80,,SFXC_DRAGON,,7592,45184
+IID_POISONAXE,lance,Noble Axe,7644,An axe designed to counter foes with swords. It;has a disadvantage vs other axes.,42532,B,14,70,0,17,1,1,25,80,,,,7688,45728
+IID_BRONZEBOW,,Laguz Bow,7740,Effective: #P034,43272,C,8,80,0,12,2,2,20,100,expandrange,SFXC_FLY;SFXC_ALIZE,,7784,46472
+IID_POISONBOW,light,Bright Bow,7836,A magic bow (#P012).;Effective: #P017,43816,B,15,85,0,13,2,2,35,120,expandrange,SFXC_FLY;SFXC_MAGE,,7880,47016
+IID_BRONZEKNIFE,dark,Vampiric Knife,8020,A magic knife (#P013).;Steals life from enemies.,45112,B,11,75,5,7,1,2,25,200,resire,,,8064,48312
+IID_BRONZEDAGGER,,Assassin Dagger,8076,Effective: #P008#P009#P00A#P00B#P00C#P017,45436,C,6,60,10,9,1,1,20,95,,SFXC_HUMAN,,8120,48636
