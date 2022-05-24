@@ -1,4 +1,0 @@
-Not all files were processed successfully.
-
-[C:\Users\Josiah\Desktop\Fire Emblem Radiant Dawn [RFEE01] - Copy - Copy\DATA\files\zu\volke\volke.tpl]: Not a compressed file!
-[C:\Users\Josiah\Desktop\Fire Emblem Radiant Dawn [RFEE01] - Copy - Copy\DATA\files\zu\volke\kn.pak]: Not a compressed file!
