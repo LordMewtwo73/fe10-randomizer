@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C176C03F-D44C-4F5C-8EA0-778EC0A309E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FE10Randomizer_v0._1</RootNamespace>
-    <AssemblyName>FE10Randomizer_v0.1</AssemblyName>
+    <RootNamespace>FE10Randomizer_v330</RootNamespace>
+    <AssemblyName>FERandomizer_v3.3.0</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

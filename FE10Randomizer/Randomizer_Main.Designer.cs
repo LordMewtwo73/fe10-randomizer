@@ -292,6 +292,7 @@
 			this.cbxStatBooster = new System.Windows.Forms.CheckBox();
 			this.tabEnemies = new System.Windows.Forms.TabPage();
 			this.cbxRandAllies = new System.Windows.Forms.CheckBox();
+			this.cbxBossBonusDrop = new System.Windows.Forms.CheckBox();
 			this.cbxEnemBonusDrop = new System.Windows.Forms.CheckBox();
 			this.tabWeapons = new System.Windows.Forms.TabPage();
 			this.tabCharacters = new System.Windows.Forms.TabPage();
@@ -352,7 +353,6 @@
 			this.tabMisc = new System.Windows.Forms.TabPage();
 			this.cbxEasyPromotion = new System.Windows.Forms.CheckBox();
 			this.cbxRandPromotion = new System.Windows.Forms.CheckBox();
-			this.cbxWhiteGem = new System.Windows.Forms.CheckBox();
 			this.label36 = new System.Windows.Forms.Label();
 			this.label35 = new System.Windows.Forms.Label();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -368,10 +368,13 @@
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
 			this.cbxBonusItems = new System.Windows.Forms.CheckBox();
 			this.cbxBonusBEXP = new System.Windows.Forms.CheckBox();
+			this.cbxWhiteGem = new System.Windows.Forms.CheckBox();
 			this.cbxStoryPromo = new System.Windows.Forms.CheckBox();
 			this.cbxNoFOW = new System.Windows.Forms.CheckBox();
 			this.groupBox9 = new System.Windows.Forms.GroupBox();
 			this.cbxKnifeCrit = new System.Windows.Forms.CheckBox();
+			this.cbxDruidCrown = new System.Windows.Forms.CheckBox();
+			this.cbxMistCrown = new System.Windows.Forms.CheckBox();
 			this.cbxTormodT3 = new System.Windows.Forms.CheckBox();
 			this.cbxHorseParkour = new System.Windows.Forms.CheckBox();
 			this.cbxDarkMag = new System.Windows.Forms.CheckBox();
@@ -1050,12 +1053,12 @@
 			this.cbxBio.TabIndex = 30;
 			this.cbxBio.Text = "Randomize Biorhythm";
 			this.cbxBio.UseVisualStyleBackColor = true;
+			this.cbxBio.CheckedChanged += new System.EventHandler(this.cbxBio_CheckedChanged);
 			// 
 			// cbxEventItems
 			// 
 			this.cbxEventItems.AutoSize = true;
-			this.cbxEventItems.Enabled = false;
-			this.cbxEventItems.Location = new System.Drawing.Point(38, 180);
+			this.cbxEventItems.Location = new System.Drawing.Point(38, 189);
 			this.cbxEventItems.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxEventItems.Name = "cbxEventItems";
 			this.cbxEventItems.Size = new System.Drawing.Size(138, 17);
@@ -1201,7 +1204,7 @@
 			// label20
 			// 
 			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(197, 312);
+			this.label20.Location = new System.Drawing.Point(207, 317);
 			this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label20.Name = "label20";
 			this.label20.Size = new System.Drawing.Size(85, 13);
@@ -1211,7 +1214,7 @@
 			// cbxEnemyGrowth
 			// 
 			this.cbxEnemyGrowth.AutoSize = true;
-			this.cbxEnemyGrowth.Location = new System.Drawing.Point(175, 287);
+			this.cbxEnemyGrowth.Location = new System.Drawing.Point(185, 292);
 			this.cbxEnemyGrowth.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxEnemyGrowth.Name = "cbxEnemyGrowth";
 			this.cbxEnemyGrowth.Size = new System.Drawing.Size(144, 17);
@@ -1226,7 +1229,7 @@
             0,
             0,
             0});
-			this.numericEnemyGrowth.Location = new System.Drawing.Point(282, 312);
+			this.numericEnemyGrowth.Location = new System.Drawing.Point(292, 317);
 			this.numericEnemyGrowth.Margin = new System.Windows.Forms.Padding(2);
 			this.numericEnemyGrowth.Maximum = new decimal(new int[] {
             255,
@@ -2000,7 +2003,7 @@
 			// 
 			this.cbxNoRandPromotions.AutoSize = true;
 			this.cbxNoRandPromotions.Enabled = false;
-			this.cbxNoRandPromotions.Location = new System.Drawing.Point(61, 198);
+			this.cbxNoRandPromotions.Location = new System.Drawing.Point(61, 211);
 			this.cbxNoRandPromotions.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxNoRandPromotions.Name = "cbxNoRandPromotions";
 			this.cbxNoRandPromotions.Size = new System.Drawing.Size(185, 17);
@@ -2070,7 +2073,7 @@
 			// cbxEnemWeaps
 			// 
 			this.cbxEnemWeaps.AutoSize = true;
-			this.cbxEnemWeaps.Location = new System.Drawing.Point(175, 265);
+			this.cbxEnemWeaps.Location = new System.Drawing.Point(185, 270);
 			this.cbxEnemWeaps.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxEnemWeaps.Name = "cbxEnemWeaps";
 			this.cbxEnemWeaps.Size = new System.Drawing.Size(206, 17);
@@ -2293,7 +2296,7 @@
 			// cbxEnemDrops
 			// 
 			this.cbxEnemDrops.AutoSize = true;
-			this.cbxEnemDrops.Location = new System.Drawing.Point(175, 203);
+			this.cbxEnemDrops.Location = new System.Drawing.Point(185, 208);
 			this.cbxEnemDrops.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxEnemDrops.Name = "cbxEnemDrops";
 			this.cbxEnemDrops.Size = new System.Drawing.Size(145, 17);
@@ -2305,7 +2308,7 @@
 			// cbxBuffBosses
 			// 
 			this.cbxBuffBosses.AutoSize = true;
-			this.cbxBuffBosses.Location = new System.Drawing.Point(175, 359);
+			this.cbxBuffBosses.Location = new System.Drawing.Point(185, 362);
 			this.cbxBuffBosses.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxBuffBosses.Name = "cbxBuffBosses";
 			this.cbxBuffBosses.Size = new System.Drawing.Size(123, 17);
@@ -2316,7 +2319,7 @@
 			// cbxTier3Enemies
 			// 
 			this.cbxTier3Enemies.AutoSize = true;
-			this.cbxTier3Enemies.Location = new System.Drawing.Point(175, 245);
+			this.cbxTier3Enemies.Location = new System.Drawing.Point(185, 250);
 			this.cbxTier3Enemies.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxTier3Enemies.Name = "cbxTier3Enemies";
 			this.cbxTier3Enemies.Size = new System.Drawing.Size(179, 17);
@@ -2326,7 +2329,7 @@
 			// 
 			// numericBossStats
 			// 
-			this.numericBossStats.Location = new System.Drawing.Point(301, 359);
+			this.numericBossStats.Location = new System.Drawing.Point(311, 362);
 			this.numericBossStats.Margin = new System.Windows.Forms.Padding(2);
 			this.numericBossStats.Maximum = new decimal(new int[] {
             25,
@@ -2350,7 +2353,7 @@
 			// cbxRandBosses
 			// 
 			this.cbxRandBosses.AutoSize = true;
-			this.cbxRandBosses.Location = new System.Drawing.Point(175, 338);
+			this.cbxRandBosses.Location = new System.Drawing.Point(185, 341);
 			this.cbxRandBosses.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxRandBosses.Name = "cbxRandBosses";
 			this.cbxRandBosses.Size = new System.Drawing.Size(144, 17);
@@ -4273,6 +4276,7 @@
 			this.tabEnemies.Controls.Add(this.cbxRandAllies);
 			this.tabEnemies.Controls.Add(this.cbxRandEnemy);
 			this.tabEnemies.Controls.Add(this.label20);
+			this.tabEnemies.Controls.Add(this.cbxBossBonusDrop);
 			this.tabEnemies.Controls.Add(this.cbxEnemBonusDrop);
 			this.tabEnemies.Controls.Add(this.cbxEnemDrops);
 			this.tabEnemies.Controls.Add(this.cbxRandBosses);
@@ -4293,7 +4297,7 @@
 			// cbxRandAllies
 			// 
 			this.cbxRandAllies.AutoSize = true;
-			this.cbxRandAllies.Location = new System.Drawing.Point(280, 33);
+			this.cbxRandAllies.Location = new System.Drawing.Point(309, 33);
 			this.cbxRandAllies.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxRandAllies.Name = "cbxRandAllies";
 			this.cbxRandAllies.Size = new System.Drawing.Size(177, 17);
@@ -4302,15 +4306,27 @@
 			this.cbxRandAllies.UseVisualStyleBackColor = true;
 			this.cbxRandAllies.CheckedChanged += new System.EventHandler(this.cbxRandEnemy_CheckedChanged);
 			// 
+			// cbxBossBonusDrop
+			// 
+			this.cbxBossBonusDrop.AutoSize = true;
+			this.cbxBossBonusDrop.Location = new System.Drawing.Point(185, 386);
+			this.cbxBossBonusDrop.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxBossBonusDrop.Name = "cbxBossBonusDrop";
+			this.cbxBossBonusDrop.Size = new System.Drawing.Size(146, 17);
+			this.cbxBossBonusDrop.TabIndex = 0;
+			this.cbxBossBonusDrop.Text = "Each Boss Drops an Item\r\n";
+			this.cbxBossBonusDrop.UseVisualStyleBackColor = true;
+			this.cbxBossBonusDrop.CheckedChanged += new System.EventHandler(this.cbxEnemBonusDrop_CheckedChanged);
+			// 
 			// cbxEnemBonusDrop
 			// 
 			this.cbxEnemBonusDrop.AutoSize = true;
-			this.cbxEnemBonusDrop.Location = new System.Drawing.Point(175, 224);
+			this.cbxEnemBonusDrop.Location = new System.Drawing.Point(185, 229);
 			this.cbxEnemBonusDrop.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxEnemBonusDrop.Name = "cbxEnemBonusDrop";
-			this.cbxEnemBonusDrop.Size = new System.Drawing.Size(155, 17);
+			this.cbxEnemBonusDrop.Size = new System.Drawing.Size(204, 17);
 			this.cbxEnemBonusDrop.TabIndex = 0;
-			this.cbxEnemBonusDrop.Text = "Each Enemy Drops an Item\r\n";
+			this.cbxEnemBonusDrop.Text = "Each Non-Boss Enemy Drops an Item\r\n";
 			this.cbxEnemBonusDrop.UseVisualStyleBackColor = true;
 			this.cbxEnemBonusDrop.CheckedChanged += new System.EventHandler(this.cbxEnemBonusDrop_CheckedChanged);
 			// 
@@ -5179,7 +5195,6 @@
 			// 
 			this.tabMisc.Controls.Add(this.cbxEasyPromotion);
 			this.tabMisc.Controls.Add(this.cbxRandPromotion);
-			this.tabMisc.Controls.Add(this.cbxWhiteGem);
 			this.tabMisc.Controls.Add(this.label36);
 			this.tabMisc.Controls.Add(this.label35);
 			this.tabMisc.Controls.Add(this.groupBox6);
@@ -5220,18 +5235,6 @@
 			this.cbxRandPromotion.Text = "Random Promotion";
 			this.cbxRandPromotion.UseVisualStyleBackColor = true;
 			this.cbxRandPromotion.CheckedChanged += new System.EventHandler(this.cbxRandPromotion_CheckedChanged);
-			// 
-			// cbxWhiteGem
-			// 
-			this.cbxWhiteGem.AutoSize = true;
-			this.cbxWhiteGem.Enabled = false;
-			this.cbxWhiteGem.Location = new System.Drawing.Point(61, 218);
-			this.cbxWhiteGem.Margin = new System.Windows.Forms.Padding(2);
-			this.cbxWhiteGem.Name = "cbxWhiteGem";
-			this.cbxWhiteGem.Size = new System.Drawing.Size(119, 17);
-			this.cbxWhiteGem.TabIndex = 66;
-			this.cbxWhiteGem.Text = "Money is No Object";
-			this.cbxWhiteGem.UseVisualStyleBackColor = true;
 			// 
 			// label36
 			// 
@@ -5394,6 +5397,7 @@
 			// 
 			this.groupBox10.Controls.Add(this.cbxBonusItems);
 			this.groupBox10.Controls.Add(this.cbxBonusBEXP);
+			this.groupBox10.Controls.Add(this.cbxWhiteGem);
 			this.groupBox10.Controls.Add(this.cbxStoryPromo);
 			this.groupBox10.Controls.Add(this.cbxChestKey);
 			this.groupBox10.Controls.Add(this.cbxNoFOW);
@@ -5401,11 +5405,11 @@
 			this.groupBox10.Controls.Add(this.cbxBirdVision);
 			this.groupBox10.Controls.Add(this.cbxWeapCaps);
 			this.groupBox10.Controls.Add(this.cbxWinCon);
-			this.groupBox10.Location = new System.Drawing.Point(289, 194);
+			this.groupBox10.Location = new System.Drawing.Point(289, 192);
 			this.groupBox10.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox10.Name = "groupBox10";
 			this.groupBox10.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox10.Size = new System.Drawing.Size(230, 208);
+			this.groupBox10.Size = new System.Drawing.Size(230, 230);
 			this.groupBox10.TabIndex = 3;
 			this.groupBox10.TabStop = false;
 			this.groupBox10.Text = "Other Helpful Changes";
@@ -5430,6 +5434,17 @@
 			this.cbxBonusBEXP.TabIndex = 60;
 			this.cbxBonusBEXP.Text = "Lots of BEXP";
 			this.cbxBonusBEXP.UseVisualStyleBackColor = true;
+			// 
+			// cbxWhiteGem
+			// 
+			this.cbxWhiteGem.AutoSize = true;
+			this.cbxWhiteGem.Location = new System.Drawing.Point(13, 202);
+			this.cbxWhiteGem.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxWhiteGem.Name = "cbxWhiteGem";
+			this.cbxWhiteGem.Size = new System.Drawing.Size(178, 17);
+			this.cbxWhiteGem.TabIndex = 66;
+			this.cbxWhiteGem.Text = "Replace Coins with White Gems";
+			this.cbxWhiteGem.UseVisualStyleBackColor = true;
 			// 
 			// cbxStoryPromo
 			// 
@@ -5457,15 +5472,17 @@
 			// groupBox9
 			// 
 			this.groupBox9.Controls.Add(this.cbxKnifeCrit);
+			this.groupBox9.Controls.Add(this.cbxDruidCrown);
+			this.groupBox9.Controls.Add(this.cbxMistCrown);
 			this.groupBox9.Controls.Add(this.cbxTormodT3);
 			this.groupBox9.Controls.Add(this.cbxFireMag);
 			this.groupBox9.Controls.Add(this.cbxHorseParkour);
 			this.groupBox9.Controls.Add(this.cbxDarkMag);
-			this.groupBox9.Location = new System.Drawing.Point(289, 25);
+			this.groupBox9.Location = new System.Drawing.Point(289, 16);
 			this.groupBox9.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox9.Name = "groupBox9";
 			this.groupBox9.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox9.Size = new System.Drawing.Size(230, 127);
+			this.groupBox9.Size = new System.Drawing.Size(230, 159);
 			this.groupBox9.TabIndex = 2;
 			this.groupBox9.TabStop = false;
 			this.groupBox9.Text = "Increased Usefulness";
@@ -5480,6 +5497,28 @@
 			this.cbxKnifeCrit.TabIndex = 65;
 			this.cbxKnifeCrit.Text = "Give Knives Higher Crit";
 			this.cbxKnifeCrit.UseVisualStyleBackColor = true;
+			// 
+			// cbxDruidCrown
+			// 
+			this.cbxDruidCrown.AutoSize = true;
+			this.cbxDruidCrown.Location = new System.Drawing.Point(13, 136);
+			this.cbxDruidCrown.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxDruidCrown.Name = "cbxDruidCrown";
+			this.cbxDruidCrown.Size = new System.Drawing.Size(171, 17);
+			this.cbxDruidCrown.TabIndex = 60;
+			this.cbxDruidCrown.Text = "Druids Start with Master Crown";
+			this.cbxDruidCrown.UseVisualStyleBackColor = true;
+			// 
+			// cbxMistCrown
+			// 
+			this.cbxMistCrown.AutoSize = true;
+			this.cbxMistCrown.Location = new System.Drawing.Point(13, 117);
+			this.cbxMistCrown.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxMistCrown.Name = "cbxMistCrown";
+			this.cbxMistCrown.Size = new System.Drawing.Size(154, 17);
+			this.cbxMistCrown.TabIndex = 60;
+			this.cbxMistCrown.Text = "Mist Starts with Holy Crown";
+			this.cbxMistCrown.UseVisualStyleBackColor = true;
 			// 
 			// cbxTormodT3
 			// 
@@ -5595,7 +5634,7 @@
 			this.groupBox7.Controls.Add(this.cbxLethality);
 			this.groupBox7.Controls.Add(this.cbxLaguzCanto);
 			this.groupBox7.Controls.Add(this.cbxFormshift);
-			this.groupBox7.Location = new System.Drawing.Point(26, 25);
+			this.groupBox7.Location = new System.Drawing.Point(26, 16);
 			this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox7.Name = "groupBox7";
 			this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
@@ -5752,7 +5791,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "Randomizer_Main";
-			this.Text = "LordMewtwo\'s FE10 Randomizer v3.0.0 - 05/23/2022";
+			this.Text = "LordMewtwo\'s FE10 Randomizer v3.3.0 - 02/17/2023";
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericHP)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericSPD)).EndInit();
@@ -6273,6 +6312,9 @@
 		private System.Windows.Forms.CheckBox cbxLetheMordy;
 		private System.Windows.Forms.CheckBox cbxPart2Allies;
 		private System.Windows.Forms.CheckBox cbxPart2PCs;
+		private System.Windows.Forms.CheckBox cbxBossBonusDrop;
+		private System.Windows.Forms.CheckBox cbxMistCrown;
+		private System.Windows.Forms.CheckBox cbxDruidCrown;
 	}
 }
 

@@ -369,8 +369,9 @@ namespace FE10FileExtract
 		/// <summary>
 		/// saves local class variables into FullInfo
 		/// </summary>
-		public void Refresh()
+		public void Refresh(string olddata, bool refreshcolor)
 		{
+			string[] olddata_split = olddata.Split(',');
 			string[] split = FullInfo.Split(',');
 			split[0] = DisposID.ToString();
 			split[3] = PID;
@@ -380,7 +381,12 @@ namespace FE10FileExtract
 			for (int i = 7; i < 9; i++)
 				split[i] = Location[i - 7].ToString();
 			split[9] = Level.ToString();
-			split[10] = Color.ToString();
+
+			if (refreshcolor)
+				split[10] = Color.ToString();
+			else
+				split[10] = olddata_split[10];
+
 			split[11] = TransState.ToString();
 			for (int i = 17; i < 21; i++)
 				split[i] = Weapons[i - 17];
@@ -483,9 +489,22 @@ namespace FE10FileExtract
 			{
 				if (ReadLines[i].Contains(char2write.PID))
 				{
-					char2write.Refresh();
+					char2write.Refresh(ReadLines[i], false);
 					ReadLines[i] = char2write.FullInfo;
-					break;
+					//break;
+				}
+			}
+		}
+
+		public void WriteColor(ChapterChar char2write)
+		{
+			for (int i = 0; i < ReadLines.Length; i++)
+			{
+				if (ReadLines[i].Contains(char2write.PID))
+				{
+					char2write.Refresh(ReadLines[i], true);
+					ReadLines[i] = char2write.FullInfo;
+					//break;
 				}
 			}
 		}
@@ -498,7 +517,7 @@ namespace FE10FileExtract
 				{
 					if (ReadLines[i].StartsWith(chars2write[j].DisposID.ToString()))
 					{
-						chars2write[j].Refresh();
+						chars2write[j].Refresh(ReadLines[i], false);
 						ReadLines[i] = chars2write[j].FullInfo;
 						break;
 					}
@@ -526,7 +545,7 @@ namespace FE10FileExtract
 				{
 					// set new ID
 					char2insert.DisposID = maxID + 1;
-					char2insert.Refresh();
+					char2insert.Refresh(ReadLines[i], true);
 					// insert
 					templines[i + 1] = char2insert.FullInfo;
 					// save the rest
@@ -1815,7 +1834,7 @@ namespace FE10FileExtract
 							stream.Read(readbytes, 0, 4);
 							string name = ReadPointer(stream, bytes2int(readbytes) + 32);
 							// name as header
-							outstring.Add("Mapname," + name);
+							outstring.Add(name + "," + name);
 
 							string[] captions = new string[20] { "MCT", "zmap", "ScriptFile", "MessFile",
 																"Unknown_1", "Unknown_2", "Unknown_3", "Unknown_4",
@@ -2272,17 +2291,29 @@ namespace FE10FileExtract
 							bool bonuses = false;
 							for (int x = 0; x < inData.Count; x++)
 							{
-								if (inData[x][0] == "Attributes")
+								if (inData[x][0] == "Attributes" & inData[x].Length > 1)
 								{
-									numAttributes = inData[x].Length - 1;
+									if (inData[x][1] != "")
+										numAttributes = inData[x].Length - 1;
+									else
+										numAttributes = 0;
 								}
-								if (inData[x][0] == "Effectiveness")
+								if (inData[x][0] == "Effectiveness" & inData[x].Length > 1)
 								{
-									numEffectiveness = inData[x].Length - 1;
+									if (inData[x][1] != "")
+										numEffectiveness = inData[x].Length - 1;
+									else
+										numEffectiveness = 0;
 								}
 								if (inData[x][0] == "Bonuses")
 								{
-									bonuses = inData[x].Length > 1;
+									if (inData[x].Length > 1)
+									{
+										if (inData[x][1] != "")
+											bonuses = inData[x].Length > 1;
+										else
+											bonuses = false;
+									}
 									break;
 								}
 							}
@@ -2295,14 +2326,23 @@ namespace FE10FileExtract
 
 									if (ispointer)
 									{
-										if (inData[x][y] != "")
+										if (inData[x][0] == "Attributes" & numAttributes < 1)
+										{ }
+										else if (inData[x][0] == "Effectiveness" & numEffectiveness < 1)
+										{ }
+										else if (inData[x][0] == "Bonuses" & !bonuses)
+										{ }
+										else
 										{
-											pointernames.Add(inData[x][y]);
-											pointerloc.Add((int)stream.Position);
+											if (inData[x][y] != "")
+											{
+												pointernames.Add(inData[x][y]);
+												pointerloc.Add((int)stream.Position);
+											}
+											// create blank pointer - will edit later
+											for (int z = 0; z < 4; z++)
+												stream.WriteByte(0x00);
 										}
-										// create blank pointer - will edit later
-										for (int z = 0; z < 4; z++)
-											stream.WriteByte(0x00);
 									}
 									else
 									{
@@ -2827,7 +2867,7 @@ namespace FE10FileExtract
 						// number of entries
 						int num = 0;
 						for (int j = 0; j < readlines.Length; j++)
-							if (readlines[j].StartsWith("Mapname"))
+							if (readlines[j].StartsWith("C0"))
 								num++;
 						readbytes = int2bytes(num);
 						stream.Write(readbytes,0,4);
@@ -2844,7 +2884,7 @@ namespace FE10FileExtract
 								line++;
 								if (line == readlines.Length)
 									break;
-								if (readlines[line].StartsWith("Mapname"))
+								if (readlines[line].StartsWith("C0"))
 									break;
 							}
 							// name
@@ -3369,7 +3409,7 @@ namespace FE10FileExtract
 		}
 
 		#region
-		/*
+		
 		public static void ExtractFE10Anim(string datapath, string extractfolder)
 		{
 			byte[] readbytes = new byte[4];
@@ -3477,13 +3517,13 @@ namespace FE10FileExtract
 								outstring.Add(captions[i] + "," + stream.ReadByte().ToString());
 
 							stream.Read(readbytes, 0, 4);
-							outstring.Add("ymufolder," + ReadPointer(stream, bytes2int(readbytes) + 32));
+							outstring.Add("dataName," + ReadPointer(stream, bytes2int(readbytes) + 32));
 
 							stream.Read(readbytes, 0, 4);
 							long currpos = stream.Position;
 							stream.Position = bytes2int(readbytes) + 32;
 							stream.Read(readbytes, 0, 4);
-							outstring.Add("dataName," + ReadPointer(stream, bytes2int(readbytes) + 32));
+							outstring.Add("ymuFolder," + ReadPointer(stream, bytes2int(readbytes) + 32));
 							stream.Position = currpos;
 						}
 					}
@@ -3664,7 +3704,7 @@ namespace FE10FileExtract
 									{
 										if (inData[x][y] != "")
 										{
-											if (inData[x][0] == "dataName")
+											if (inData[x][0] == "ymuFolder")
 											{
 												datanames.Add(inData[x][y]);
 												datanamesloc.Add((int)stream.Position);
@@ -3997,7 +4037,7 @@ namespace FE10FileExtract
 					{
 						if (pointernames[i] == filterednames[j] & filterednames[j] != "SKIP")
 						{
-							stream.Write(int2bytes(pointerdestination[j] - 32));
+							stream.Write(int2bytes(pointerdestination[j] - 32),0,4);
 						}
 					}
 				}
@@ -4855,7 +4895,7 @@ namespace FE10FileExtract
 					pointerdestination.Add((int)stream.Position);
 					if (filterednames[i] != "SKIP")
 					{
-						stream.Write(pointerbytes[i]);
+						stream.Write(pointerbytes[i], 0, pointerbytes[i].Length);
 						stream.WriteByte(0x00);
 					}
 				}
@@ -4866,7 +4906,7 @@ namespace FE10FileExtract
 				// write pointer regions to file
 				dataregionsize = (int)stream.Position - 32;
 				for (int i = 0; i < pointerloc.Count; i++)
-					stream.Write(int2bytes(pointerloc[i] - 32));
+					stream.Write(int2bytes(pointerloc[i] - 32), 0,4);
 
 				// alphabetize secondary pointers
 				List<string> unsort_labels = new List<string>();
@@ -4892,7 +4932,7 @@ namespace FE10FileExtract
 				}
 
 				// write end region
-				stream.Write(endregion.ToArray());
+				stream.Write(endregion.ToArray(), 0 ,endregion.ToArray().Length);
 				filesize = (int)stream.Position;
 
 				// go back and fill pointers
@@ -4903,7 +4943,7 @@ namespace FE10FileExtract
 					{
 						if (pointernames[i] == filterednames[j] & filterednames[j] != "SKIP")
 						{
-							stream.Write(int2bytes(pointerdestination[j] - 32));
+							stream.Write(int2bytes(pointerdestination[j] - 32), 0 ,4);
 						}
 					}
 				}
@@ -4921,7 +4961,7 @@ namespace FE10FileExtract
 
 		}
 
-
+		/*
 		public static void ExtractScript(string scriptpath, string csvpath)
 		{
 			byte[] readbytes = new byte[4];
