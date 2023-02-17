@@ -2,7 +2,7 @@ PID,Class Tree Name,Class Number a,b,c,d,level
 micaiah,lightmage,54,55,56,56,1
 edward,myrm,0,1,2,2,4
 leonardo,archer,35,36,37,37,4
-nolan,fighter,23,24,25,26,9
+nolan,fighter,23,24,25,25,9
 laura,priest,57,58,59,59,1
 sothe,thief,41,42,43,43,1
 ilyana,thdrmage,48,49,50,50,12
@@ -65,7 +65,7 @@ giffca,lion,999,87,99,87,36
 kurthnaga,blackdrag,999,98,103,98,20
 ena,reddrag,999,96,103,96,22
 renning,swdknight,5,6,7,7,16
-nasir,whitedrag,999,97,103,97,34
+nasir,whitedrag,999,97,999,97,34
 gareth,reddrag,999,96,103,96,31
 lehran,chancellor,999,999,66,66,20
 rafiel,heron,93,93,999,999,12

@@ -123,7 +123,7 @@ ID,Name,JID,playable tier,playable weapon,playable classtype,beorc/laguz,animati
 121,druid_sp,JID_DRUID_SP,x,X;X;X,X,B,x,3,D;D,M
 122,bishop_sp,JID_BISHOP_SP,x,X;X;X,X,B,x,3,H;M,H
 123,saint_sp,JID_SAINT_SP,x,X;X;X,X,B,x,4,H;M,H
-124,blackknight,JID_DARKKNIGHT,x,X;X;X,X,B,x,4,S;L,A
+124,blackknight,JID_DARKKNIGHT,c;d,S;L;S,A,B,73;73,4,S;L,A
 125,windspirit,JID_SPIRIT_W,x,X;X;X,X,B,x,3;4,W;W,M
 126,firespirit,JID_SPIRIT_F,x,X;X;X,X,B,x,3;4,F;F,M
 127,thunderspirit,JID_SPIRIT_S,x,X;X;X,X,B,x,3;4,T;T,M

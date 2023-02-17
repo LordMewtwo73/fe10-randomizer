@@ -4,7 +4,7 @@ IID_ELFIRE,Smelt,8204,Mid-level fire magic.;Effective: #P036 #P038,46236,D,8,75,
 IID_GIGAFIRE,,0,,0,B,13,80,0,6,1,2,30,100,,SFXC_BEAST,,0,0
 IID_BOLGANONE,,0,Extremely powerful fire magic.;Effective: #P038,46380,S,16,60,5,8,1,2,20,225,,SFXC_BEAST,,0,49580
 IID_REXFLAME,,0,,0,*,17,90,5,12,1,2,50,350,,SFXC_BEAST,0;0;0;3;0;0;0;0;0;0;0;0,0,0
-IID_CYMBELINE,,0,,0,N,13,95,10,5,1,2,45,0,valuable;eqE,SFXC_BEAST,,0,0
+IID_CYMBELINE,,0,,0,N,13,95,10,5,1,2,45,200,valuable;eqE,SFXC_BEAST,,0,0
 IID_METEOR,,0,,0,C,10,65,0,18,3,10,5,500,longfar,SFXC_BEAST,,0,0
 IID_THUNDER,,0,,0,E,4,85,10,4,1,2,50,15,,SFXC_DRAGON,,0,0
 IID_ELTHUNDER,Snipeshock,8272,Mid-level lightning magic with an extended;range. Effective: #P03A.,46804,D,6,80,15,6,2,3,40,30,,SFXC_DRAGON,,8316,50004
@@ -19,13 +19,13 @@ IID_TORNADO, ,0,Extremely powerful wind magic.;Effective: #P037,47480,S,13,115,5
 IID_REXCALIBUR,,0,,0,*,16,100,10,11,2,3,50,300,,SFXC_FLY,0;0;0;0;3;0;0;0;0;0;0;0,0,0
 IID_BLIZZARD,,0,,0,C,9,80,0,17,3,12,5,400,longfar,SFXC_FLY,,0,0
 IID_LIGHT,,0,,0,E,4,100,5,1,1,2,50,16,,,,0,0
-IID_ELLIGHT,Raycism,8384,Magic created by the senators of Begnion.;Effective: #P034,47780,D,6,95,5,3,1,2,40,32,,SFXC_ALIZE,,8428,51076
+IID_ELLIGHT,Cleanse,8384,Magic created by the senators of Begnion.;Effective: #P034,47780,D,6,95,5,3,1,2,40,32,,SFXC_ALIZE,,8428,51076
 IID_SHINE,Aura,8392,High-level light magic.;Effective: #P017,47860,B,9,90,10,5,1,2,35,95,,SFXC_MAGE,,8436,51156
 IID_RESIRE,,0,,0,S,8,85,0,7,1,2,20,210,resire,,,0,0
 IID_VALAURA,,0,Powerful light magic. Its wielder can;hit twice in a single turn.,48036,S,7,95,0,12,1,2,30,225,twice,,,0,0
 IID_REXAURA,,0,,0,*,15,110,5,11,1,2,50,310,,,0;0;0;0;0;5;0;0;0;0;0;0,0,0
 IID_PURGE,,0,,0,A,7,80,0,16,3,10,5,470,longfar,,,0,0
-IID_THANY,,0,,0,N,8,100,0,1,1,2,45,0,valuable;eqD,SFXC_ARMOR;SFXC_KNIGHT,,0,0
+IID_THANY,,0,,0,N,8,100,0,1,1,2,45,250,valuable;eqD,SFXC_ARMOR;SFXC_KNIGHT,,0,0
 IID_CREIDDYLED,,0,,0,N,11,100,15,15,1,2,0,0,valuable;eqF;infinity,,,0,0
 IID_WORM,,0,Low-level dark magic. Few spellcasters can master;the intricacies of these fell arts.,48488,E,10,75,0,8,1,2,50,20,,,,0,51784
 IID_KAREAU,Elluna,8464,High-level dark magic.;Effective: #P017,48576,C,12,70,5,10,1,2,35,70,,SFXC_MAGE,,8508,51872
