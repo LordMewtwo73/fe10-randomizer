@@ -1,3 +1,115 @@
+Version 3.3.0 02/17/2023
+- black knight class is now in randomization pool for tier 3 units
+- fixed bug where BEXP gave positive level-ups with zero/negative growths
+- added random enemies to outputlog
+- added growths to enemy light mages
+- fixed bug where prioritize str/mag didn't take negative numbers into account
+- fixed forge issues with poison/bronze bows
+- Pain & Agony should no longer randomize into beorc classes if beorc:beorc enemy setting is on
+- Heather and Calill's stats in the outputlog should better reflect in-game stats
+- fixed some various outputlog bugs, including forge and stat boosters
+- fixed bug where thunder paladin promoted into the wrong class
+- fixed nolan and nasir changing classes with random recruitment
+- enemies with droppable items can no longer use those items
+- dark magic is now in early game forge for custom class patch without any other settings
+- falconknight base sword rank is increased with weapon patch
+- white gems are increased to sell for $30k when "coins to white gems" is selected
+- stat booster randomization has been slightly tweaked
+- modified some boss ai in the tower
+- fixed win conditions not being properly displayed in part 4
+- fixed a myriad of issues with tormod's part 4 map, including vika/maurim with 0 stats, and seize not working
+- fixed portrait bugs
+- fixed ledge movement bug with random movement
+- sothe moving up/down ledges with staff should no longer crash the game
+- fixed "string length 0" error
+- fixed bug where dheginsea would lose formshift
+
+
+Version 3.2.1 07/13/2022
+- choosing part 4 units have correct portraits now
+- tibarn now has correct stats
+- "replace coins with white gems" now possible without random event items
+- new option to give mist a holy crown
+- new option to give druids a master crown
+- fixed bug where thani is free
+- fixed bug where heron (reyson) is not modified correctly
+- formshift scroll bugs fixed
+- royal laguz now have proper gauges without formshift
+- fixed bug where tower bosses randomized into _SP classes instead of t3
+- enemies in tower now have SS ranks
+- early units no longer have custom weapons
+- readme is updated
+
+
+Version 3.2.0 07/05/2022
+- random event items are back
+- script changes are cleaner thanks to thane98's script editor, hopefully causing less crashes
+- outputlog contains event item info
+- outputlog contains bargain and forge info
+- outputlog now shows chosen tower units as vanilla and random recruit characters
+- fixed bug where red dragon lost stats on transformation
+
+
+Version 3.1.1 06/27/2022
+- fixed crash in the middle of 3-7 due to random enemies
+
+
+Version 3.1.0 06/24/2022
+- fixed bug where random recruitment would make everyone laguz
+- added boss-only bonus item option
+- fixed bug where bowpaladin and druid didn't promote
+- fixed re-randomize warning
+- universal skills now still restricts wildheart/formshift to laguz
+- fixed crash before 1-8
+- fixed bug where lyre, skrimir, and tibarn would not be recruited
+- ike no longer has the direct command in 3-E
+- fixed bug where son of ashnard class could not equip skills
+- fixed forge crashes (last time i hope)
+- fixed enemy in trees in 4-2
+- dragon axe and other custom weapons no longer appear on early enemies
+- fixed bug where choose your tower only gave rhys
+
+
+Version 3.0.3 06/07/2022
+- fixed portrait bugs with sothe/ike
+- fixed animation issues with numida
+- weapon stats now coerce to minimum even if deviation is 0
+- fixed bug where non-rare staves didn't randomize
+- fixed forge crashes
+- white dragons now prioritize magic
+- heal staff now shows up with basic items in random shop
+- fixed bug where herons act like regular dancers
+- fixed bug where thieves couldn't open chests
+- fixed bug where beorc units could shift and cause crashes
+- skips skrimir/zelgius cutscene to bypass crash
+- fixed formshift scroll
+- fixed weapon levels
+- fixed JID_CLERIC bug
+- fixed 3-7 reinforcement crash
+- modified 1-5/1-6 AI changes
+
+
+Version 3.0.2 05/26/2022
+- fixed bug where meg, volug, and a few other characters were not properly randomized
+- random enemy drops no longer modifies chest keys
+- fixed forge occasionally crashing
+- fixed crash caused by shuffling growths
+- fixed bug where some portraits would not properly change with randomized recruitment
+
+
+Version 3.0.1 05/25/2022
+- fixed overflow error with bases and growths
+- fixed bug where bases would be saved over growths sometimes
+- fixed bug where randomizer would hang up in random recruitment
+- program creates necessary folders in vanillafiles instead of throwing error
+- fixed enemy rerandomizer crashing due to not finding files properly
+- fixed bug where shuffling character stats would cause in-game crashes
+- Universal Skills checkbox now saves in settings files
+- fixed map models changing with random recruitment to not match character
+- fixed new custom weapons keeping poison or crit0
+- fixed bug where boss characters didn't have growths when randomized into player characters
+
+
 Version 3.0.0 05/24/2022
 - game ID is modified so dolphin treats a randomized ISO as a separate game to normal FE10
 - "Don't Save" option allows for a user to obtain an outputlog without actually changing the ISO

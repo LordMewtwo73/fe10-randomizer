@@ -86,8 +86,10 @@ th, td {
             After extracting with WiiBaFu, you should have a collection of folders
             that contain all of the data of your iso. Inside of the extracted folder, there
             will be a folder named "DATA", and then within that folder there should be a
-            folder named "files". Using the <i>Load Folder</i> button under <i>File</i> on the randomizer menu bar, select the
-            "files" folder. <b>EXAMPLE:</b> after extracting my iso to my desktop, I would select
+            folder named "files". (Note: in some versions of the game, there is no "DATA" folder.
+            However, you should still have a "files" folder. Using the <i>Load Folder</i> button
+            under <i>File</i> on the randomizer menu bar, select the "files" folder.
+            <b>EXAMPLE:</b> after extracting my iso to my desktop, I would select
             the following folder with the randomizer: C:\Users\LordMewtwo73\Desktop\Fire
             Emblem Radiant Dawn [RFEE01]\DATA\files
         </li>
@@ -1217,19 +1219,11 @@ th, td {
 
     <h4>Randomize Event Items</h4>
     <p>
-        <b>AS OF V3.0.0, THIS SELECTION IS TEMPORARILY UNAVAILABLE</b>
-        <strike>
             Changes all items obtained from villages, chests, treasure, base conversations, and events. Some events
-            are unchanged, including obtaining Amiti and Ragnell. Treasure spots can be found <a href="https://serenesforest.net/radiant-dawn/miscellaneous/hidden-treasure/">HERE</a>
-        </strike>.
+            are unchanged, including obtaining Amiti and Ragnell. Treasure spots can be found <a href="https://serenesforest.net/radiant-dawn/miscellaneous/hidden-treasure/">HERE</a>.
     </p>
     <h4>Don't Randomize Promotion Items</h4>
     <p>This selection will prevent all promotion items given through events from being randomized.</p>
-    <h4>Money is No Object</h4>
-    <p>
-        Wanna buy all those cool randomized forge items? This selection will change all hidden coins
-        to White Gems, which are also modified to be sold for 30k instead of 10k.
-    </p>
 
     <h4>Randomize Movement</h4>
     <p>
@@ -1318,6 +1312,16 @@ th, td {
         <dd>- Tormod starts as a firearchsage without random classes</dd>
         <dd>- Vika and Maurim gain stat boosts</dd>
         <dd>- they are not considered a laguz royal if randomized into a laguz</dd>
+        <dt>Mist Starts with Holy Crown</dt>
+        <dd>
+            - comes in starting inventory
+            - normal holy crown is now randomized with Random Event Items
+        </dd>
+        <dt>Druid Starts with Master Crown</dt>
+        <dd>
+            - comes in starting inventory
+            - druid still can't promote via exp
+        </dd>
     </dl>
 
     <h4>Softlock Prevention</h4>
@@ -1382,6 +1386,11 @@ th, td {
         <dt>Turn of Story Promotions</dt>
         <dd>- automatic with class or recruitment randomization, no need to select</dd>
         <dd>- useful to promote Micaiah/Ike/Sothe early without randomization</dd>
+        <dt>Replace Coins with White Gems</dt>
+        <dd>
+            - changes all hidden coins to white gems
+            - white gems modified to be sold for 30k instead of 10k.
+        </dd>
     </dl>
 
 
@@ -1446,6 +1455,16 @@ th, td {
         Make sure that you did not move/rename any files in the randomizer. If everything is exactly
         as it was when you unzipped it, try running the .exe as administrator.
     </p>
+
+    <br>
+    <h3>
+        The randomizer produces an error that says "Cannot find file [something something]/temp/script/[name].cmb"
+    </h3>
+    <p>
+        This is a known issue with the script editor; make sure the filepath does not contain any 
+        non-English characters. It also would be best if the path is on the C: drive, not an external drive.
+    </p>
+
 
     <br>
     <h3>Where do I get an ISO?</h3>
