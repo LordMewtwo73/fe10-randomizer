@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FE10FileExtract;
 using System.IO;
+using System.Diagnostics;
 
 namespace FE10_Challenges_Patches_and_Hardmode_Changes
 {
@@ -44,6 +45,9 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 
 		// create random number generator
 		Random random;
+
+		// list of decompiled script files
+		string[] script_exl;
 
 		// arrays that hold character data
 		Character[] characters;
@@ -118,6 +122,7 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 
 				// extract dispos, shop, and FE10Data files
 				ExtractFiles();
+				ExaltScripts();
 
 				// modifies various character/class stats based on user selection
 				DataFileModifications();
@@ -127,6 +132,7 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 
 				// compress files back to ISO
 				CompressFiles();
+				CompressScripts();
 				// mark ISO as randomized
 				ChangeISO_ID();
 
@@ -278,6 +284,52 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 			FE10ExtractCompress.ExtractDispos(chapterpath, outpath);
 			// csv to class
 			ChapterData = new DisposFile(outpath);
+		}
+
+		// uses thane98's Exalt script editor to decompile scripts into usable txt files
+		private void ExaltScripts()
+		{
+			// copy scripts to temp folder
+			string scriptloc = dataLocation + "\\Scripts\\";
+			string outloc = file + "\\assets\\temp\\script\\";
+
+			if (!Directory.Exists(outloc))
+				Directory.CreateDirectory(outloc);
+
+			string[] scripts = Directory.GetFiles(scriptloc);
+			List<string> newscripts = new List<string>();
+
+			for (int i = 0; i < scripts.Length; i++)
+			{
+				string tempfilename = Path.GetFileName(scripts[i]);
+				if (tempfilename.StartsWith("C") & !tempfilename.Contains("C0000") & !tempfilename.Contains("C0401") & !tempfilename.Contains("CFINAL"))
+				{
+					newscripts.Add(outloc + tempfilename);
+					File.Copy(scripts[i], outloc + tempfilename, true);
+				}
+			}
+
+			script_exl = new string[newscripts.Count];
+
+			// write batch file
+			StreamWriter writer = new StreamWriter(outloc + "decompile.bat");
+			for (int i = 0; i < newscripts.Count; i++)
+			{
+				writer.WriteLine("\"exalt-cli.exe\" -g FE10 decompile \"" + newscripts[i] + "\"");
+				// save locations of decompiled files
+				script_exl[i] = newscripts[i].Replace(".cmb", ".exl");
+			}
+			writer.Close();
+
+			// run batch file
+			Process p = new Process();
+			p.StartInfo.WorkingDirectory = outloc;
+			p.StartInfo.FileName = "decompile.bat";
+			p.StartInfo.CreateNoWindow = false;
+			p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+			p.Start();
+			p.WaitForExit();
+
 		}
 
 		// initializes variables and reads in characterdata and classdata
@@ -639,50 +691,74 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 		}
 
 		private void ScriptModifications()
+
 		{
 			textBox1.Text = "Modifying Script Files";
 			Application.DoEvents();
 
-			// remove gameovers caused by characters other than micaiah/ike dying
-			if (cbxIronMan.Checked)
+			// loop through extracted script files
+			for (int x = 0; x < script_exl.Length; x++)
 			{
-				string dataFile = dataLocation + "\\Scripts\\";
-				string[] scriptfile = new string[62];
-				int[] gameoverLoc = new int[scriptfile.Length];
+				string scriptname = Path.GetFileNameWithoutExtension(script_exl[x]);
+				// read in all lines
+				StreamReader tempread = new StreamReader(script_exl[x]);
+				string[] filelines = tempread.ReadToEnd().Split('\n');//new string[1] { Environment.NewLine }, StringSplitOptions.None);
+				tempread.Close();
 
-				string line;
-				string[] values;
+				// set up edited lines
+				List<string> outscriptlines = new List<string>();
 
-				System.IO.StreamReader dataReader = new System.IO.StreamReader(file + "\\assets\\ironmanData.csv");
-
-				// loop through all classes
-				for (int i = 0; i < gameoverLoc.Length; i++)
+				// loop through each line looking for certain text depending on settings
+				for (int y = 0; y < filelines.Length; y++)
 				{
-					line = dataReader.ReadLine();
-					values = line.Split(',');
-					scriptfile[i] = values[0];
-					gameoverLoc[i] = Convert.ToInt32(values[1]);
-				}
-				dataReader.Close();
+					string templine = filelines[y];
+					// if this is false, the line will be deleted at the end of the iteration
+					bool saveline = true;
 
-				for (int i = 0; i < gameoverLoc.Length; i++)
-				{
-					try
+					// remove game overs for ironman mode
+					if (cbxIronMan.Checked)
 					{
-						using (var stream = new System.IO.FileStream(dataFile + scriptfile[i], System.IO.FileMode.Open,
-							System.IO.FileAccess.ReadWrite))
+						if (templine.Contains("gf_gameover"))
 						{
-							stream.Position = gameoverLoc[i];
-							stream.WriteByte(0x00);
-							stream.WriteByte(0x00);
+							// if the gameover is set by a unit dying, the previous line will contain a PID and the next line a MDIE_ script
+							if (filelines[y - 1].Contains("PID_") & filelines[y + 1].Contains("DIE"))
+							{
+								// now we remove all lines that aren't characters that still provide gameovers in ironman mode
+								if (filelines[y - 1].Contains("PID_MICAIAH"))
+								{ }
+								else if (filelines[y - 1].Contains("PID_IKE"))
+								{ }
+								else if (filelines[y - 1].Contains("PID_LAURA") & scriptname.Contains("0103"))
+								{ }
+								else if (filelines[y - 1].Contains("PID_ERINCIA") & (scriptname.Contains("0201") | scriptname.Contains("0205") | scriptname.Contains("0311")))
+								{ }
+								else if (filelines[y - 1].Contains("PID_LUCHINO") & scriptname.Contains("0203"))
+								{ }
+								else if (filelines[y - 1].Contains("PID_GEOFFRAY") & (scriptname.Contains("0204") | scriptname.Contains("0205") | scriptname.Contains("0310")))
+								{ }
+								else if (filelines[y - 1].Contains("PID_LAY") & scriptname.Contains("0301") | scriptname.Contains("0305"))
+								{ }
+								else if (filelines[y - 1].Contains("PID_SKRIMIR") & scriptname.Contains("0301"))
+								{ }
+								else if (filelines[y - 1].Contains("PID_TIBARN") & (scriptname.Contains("0312") | scriptname.Contains("0403") | scriptname.Contains("0406")))
+								{ }
+								else
+									saveline = false;
+
+							}
 						}
 					}
-					catch
-					{
-						textBox1.Text = "Error in IronMan mode: Cannot find script files";
-						errorflag = 1;
-					}
+
+					if (saveline)
+						outscriptlines.Add(templine);
 				}
+
+				// save all changes back to file
+				StreamWriter writer = new StreamWriter(script_exl[x]);
+				for (int i = 0; i < outscriptlines.Count; i++)
+					writer.WriteLine(outscriptlines[i]);
+				writer.Close();
+
 			}
 
 		}
@@ -782,95 +858,68 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 					}
 				}
 
-				// zero growths patch
-				if (cbxZeroGrowths.Checked)
+				// zero / negative growths patch
+				if (cbxZeroGrowths.Checked | cbxNegGrowths.Checked)
 				{
 					int growthcalc = 0;
 					int bexpcalc = 0;
+					int[] positiveones = new int[3];
 					if (gameVersion == 0)
 					{
 						growthcalc = 431204;
-						bexpcalc = 431560;
+						bexpcalc = 432564;//431560;
+						positiveones = new int[3] { 430236, 430144, 430164 };
 					}
 					else if (gameVersion == 1)
 					{
 						growthcalc = 431140;
-						bexpcalc = 431496;
+						bexpcalc = 432500;// 431496;
+						positiveones = new int[3] { 430172, 430080, 430100 };
 					}
 					else if (gameVersion == 2)
 					{
 						growthcalc = 318504;
-						bexpcalc = 318860;
+						bexpcalc = 319864;// 318860;
+						positiveones = new int[3] { 317536, 317444, 317464 };
 					}
 
-					if (growthcalc != 0 & bexpcalc != 0)
-					{
-						byte[] nop = new byte[4] { 0x60, 0x00, 0x00, 0x00 };
-						// growth calculation occurs for all eight stats with 12 byte intervals - replace first four bytes with nop (0x60 00 00 00)
-						stream.Position = growthcalc;
-						for (int i = 0; i < 8; i++)
-						{
-							stream.Write(nop, 0, 4);
-							stream.Position += 8;
-						}
-						// bexp calculation occurs for all eight stats with 8 byte intervals - replace first four bytes with nop
-						stream.Position = bexpcalc;
-						for (int i = 0; i < 8; i++)
-						{
-							stream.Write(nop, 0, 4);
-							stream.Position += 4;
-						}
-					}
-				}
+					// assembly command to load 0 or -1 into r0 (which is then added to current stat)
+					byte[] addzero = new byte[4] { 0x38, 0x00, 0x00, 0x00 };
+					byte[] subone = new byte[4] { 0x38, 0x00, 0xFF, 0xFF };
 
-				// negative growths patch
-				if (cbxNegGrowths.Checked)
-				{
-					int[] locations = new int[4];
-					if (gameVersion == 0)
-					{
-						locations[0] = 430236;
-						locations[1] = 431204;
-						locations[2] = 430144;
-						locations[3] = 430164;
-					}
-					else if (gameVersion == 1)
-					{
-						locations[0] = 430172;
-						locations[1] = 431140;
-						locations[2] = 430080;
-						locations[3] = 430100;
-					}
-					else if (gameVersion == 2)
-					{
-						locations[0] = 317536;
-						locations[1] = 318504;
-						locations[2] = 317444;
-						locations[3] = 317464;
-					}
-					// change add 1 operation to subtract 1
-					stream.Position = locations[0] + 2;
-					stream.WriteByte(0xFF);
-					stream.WriteByte(0xFF);
-
-					byte[] nop = new byte[4] { 0x60, 0x00, 0x00, 0x00 };
-					// growth calculation occurs for all eight stats with 12 byte intervals - replace first four bytes with nop (0x60 00 00 00)
-					stream.Position = locations[1];
+					// growthcalc adds one to value if no other stats increase; this needs to change to 0
+					// growth calculation occurs for all eight stats with 12 byte intervals
+					stream.Position = growthcalc;
 					for (int i = 0; i < 8; i++)
 					{
-						stream.Write(nop, 0, 4);
+						stream.Write(addzero, 0, 4);
 						stream.Position += 8;
 					}
 
-					// change load 1 operation to load -1
-					stream.Position = locations[2] + 2;
-					stream.WriteByte(0xFF);
-					stream.WriteByte(0xFF);
+					// bexpcalc does the bexp calculation, if less than 3 stats increase; this changes to 0 in zero, -1 in negative
+					// same as growth calc, this occurs for all eight stats in 12 byte intervals
+					stream.Position = bexpcalc;
+					for (int i = 0; i < 8; i++)
+					{
+						if (cbxZeroGrowths.Checked)
+							stream.Write(addzero, 0, 4);
+						else if (cbxNegGrowths.Checked)
+							stream.Write(subone, 0, 4);
+						stream.Position += 8;
+					}
 
-					// change add 1 operation to subtract 1
-					stream.Position = locations[3] + 2;
-					stream.WriteByte(0xFF);
-					stream.WriteByte(0xFF);
+					// if negative growths is on, need to change the +1 to -1 in a couple different places
+					if (cbxNegGrowths.Checked)
+					{
+						for (int i = 0; i < positiveones.Length; i++)
+						{
+							// change add 1 operation to subtract 1
+							stream.Position = positiveones[i] + 2;
+							stream.WriteByte(0xFF);
+							stream.WriteByte(0xFF);
+						}
+					}
+
 				}
 
 			}
@@ -936,6 +985,45 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 			string chapterpath = dataLocation + "\\zmap\\emap0407d\\dispos_c.bin";
 			string csvpath = tempfolder + "\\chapter\\emap407d.csv";
 			FE10ExtractCompress.CompressDispos(chapterpath, csvpath);
+		}
+
+		// compile scripts with Exalt
+		private void CompressScripts()
+		{
+			string scriptloc = dataLocation + "\\Scripts\\";
+			string outloc = file + "\\assets\\temp\\script\\";
+
+			// write batch file
+			StreamWriter writer = new StreamWriter(outloc + "compile.bat");
+			for (int i = 0; i < script_exl.Length; i++)
+			{
+				writer.WriteLine("\"exalt-cli.exe\" -g FE10 compile \"" + script_exl[i] + "\"");
+			}
+			writer.Close();
+
+			// run batch file
+			Process p = new Process();
+			p.StartInfo.WorkingDirectory = outloc;
+			p.StartInfo.FileName = "compile.bat";
+			p.StartInfo.CreateNoWindow = false;
+			p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+			p.Start();
+			p.WaitForExit();
+
+			// copy files back
+			string[] scripts = Directory.GetFiles(outloc);
+
+			for (int i = 0; i < scripts.Length; i++)
+			{
+				string extension = Path.GetExtension(scripts[i]);
+				string tempfilename = Path.GetFileName(scripts[i]);
+				if (extension == ".cmb")
+				{
+					File.Copy(scripts[i], scriptloc + tempfilename, true);
+				}
+			}
+
+
 		}
 
 		// writes outputlog for user

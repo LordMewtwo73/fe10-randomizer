@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FE10FileExtract.cs" />
     <Compile Include="FE10_Challenge_Hardmode.cs">
       <SubType>Form</SubType>
     </Compile>
