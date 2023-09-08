@@ -10,7 +10,7 @@ With this randomizer, you can:
 - Randomize class and starting items of all playable characters other than BK
 - Change recruitment order, including being able to play as a handful of enemy characters
 - Randomize or shuffle growth rates and set minimum growth rates
-- Change growths to 0% *
+- Change growths to 0%
 - Add back in the dumb changes made to Hardmode like removing weapon triangle and enemy ranges
 - Change stat caps
 - Randomize enemies and bosses
@@ -22,4 +22,4 @@ With this randomizer, you can:
 - Randomize affinities, biorhythm, transformation gauges, movement, and so much more!
 
 
-*due to Radiant Dawn requiring a minimum of 1 stat gain per level, STR or MAG is set to 100% (whichever is unused for each class) while all other stats are 0%. STR or MAG is also uncapped to a max value of 127
+
