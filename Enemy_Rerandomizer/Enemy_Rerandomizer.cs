@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FE10FileExtract;
 using System.IO;
 
 namespace Enemy_Rerandomizer
@@ -142,7 +141,10 @@ namespace Enemy_Rerandomizer
 			string tempfolder = file + "\\assets\\temp\\";
 			string[] allfiles = getRecursiveFiles(tempfolder);
 			foreach (string onefile in allfiles)
-				File.Delete(onefile);
+			{
+				if (!onefile.Contains("exalt-cli.exe"))
+					File.Delete(onefile);
+			}
 		}
 
 		// disables front panel from user
@@ -274,7 +276,7 @@ namespace Enemy_Rerandomizer
 				classtype = "L"; // laguz
 			else if (types.Contains("SFXC_ARMOR"))
 				classtype = "A"; // armor
-			else if (types.Contains("SFXC_FLY"))
+			else if (skills.Contains("SID_FLY"))
 				classtype = "F"; // flier
 			else if (types.Contains("SFXC_KNIGHT"))
 				classtype = "C"; // cavalry
@@ -335,7 +337,7 @@ namespace Enemy_Rerandomizer
 							{ } // no spirits
 							else if (!chaptername.StartsWith("407") & classes[x].JID.Contains("SPIRIT"))
 							{ } // no spirits before tower
-							else if (classes[x].Classtype_E != "F" & classtype == "F" & (chaptername == "107" | chaptername == "307"))
+							else if (classes[x].Classtype_E != "F" & classtype == "F" & (chaptername == "107" | chaptername == "308" | chaptername == "403"))
 							{ } // fliers in these chapters need to stay flying or script crashes
 							else if (classes[x].Name.Contains("thief") & chaptername.StartsWith("10"))
 							{ } // no early thieves

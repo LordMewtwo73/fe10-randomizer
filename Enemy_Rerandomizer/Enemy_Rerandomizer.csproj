@@ -71,6 +71,7 @@
     <Compile Include="Enemy_Rerandomizer.Designer.cs">
       <DependentUpon>Enemy_Rerandomizer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FE10FileExtract.cs" />
     <Compile Include="LZ77.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,9 +101,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FE10Randomizer\FE10Randomizer_v2.4.4.csproj">
+    <ProjectReference Include="..\FE10Randomizer\FE10Randomizer_v3.4.1.csproj">
       <Project>{c176c03f-d44c-4f5c-8ea0-778ec0a309e4}</Project>
-      <Name>FE10Randomizer_v2.4.4</Name>
+      <Name>FE10Randomizer_v3.4.1</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
