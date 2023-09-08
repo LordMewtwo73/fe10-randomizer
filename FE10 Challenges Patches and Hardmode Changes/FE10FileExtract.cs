@@ -369,8 +369,9 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 		/// <summary>
 		/// saves local class variables into FullInfo
 		/// </summary>
-		public void Refresh()
+		public void Refresh(string olddata, bool refreshcolor)
 		{
+			string[] olddata_split = olddata.Split(',');
 			string[] split = FullInfo.Split(',');
 			split[0] = DisposID.ToString();
 			split[3] = PID;
@@ -380,7 +381,12 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 			for (int i = 7; i < 9; i++)
 				split[i] = Location[i - 7].ToString();
 			split[9] = Level.ToString();
-			split[10] = Color.ToString();
+
+			if (refreshcolor)
+				split[10] = Color.ToString();
+			else
+				split[10] = olddata_split[10];
+
 			split[11] = TransState.ToString();
 			for (int i = 17; i < 21; i++)
 				split[i] = Weapons[i - 17];
@@ -483,7 +489,7 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 			{
 				if (ReadLines[i].Contains(char2write.PID))
 				{
-					char2write.Refresh();
+					char2write.Refresh(ReadLines[i], true);
 					ReadLines[i] = char2write.FullInfo;
 					break;
 				}
@@ -498,7 +504,7 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 				{
 					if (ReadLines[i].StartsWith(chars2write[j].DisposID.ToString()))
 					{
-						chars2write[j].Refresh();
+						chars2write[j].Refresh(ReadLines[i], false);
 						ReadLines[i] = chars2write[j].FullInfo;
 						break;
 					}
@@ -526,7 +532,7 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 				{
 					// set new ID
 					char2insert.DisposID = maxID + 1;
-					char2insert.Refresh();
+					char2insert.Refresh(ReadLines[i], true);
 					// insert
 					templines[i + 1] = char2insert.FullInfo;
 					// save the rest
@@ -1963,7 +1969,9 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 							for (int y = 0; y < 4; y++)
 							{
 								stream.Read(readbytes, 0, 4);
-								tempstring += bytes2float(readbytes).ToString() + ",";
+								float biodata = bytes2float(readbytes);
+								biodata *= 100;
+								tempstring += biodata.ToString() + ",";
 							}
 							outstring.Add(tempstring);
 						}
@@ -3148,8 +3156,10 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 							{
 								if (inData[y] != "")
 								{
-									readbytes = float2bytes((float)Convert.ToDouble(inData[y]));
-									stream.Write(readbytes,0,4);
+									float biodata = (float)Convert.ToDouble(inData[y]);
+									biodata = biodata / 100;
+									readbytes = float2bytes(biodata);
+									stream.Write(readbytes, 0, 4);
 								}
 							}
 						}

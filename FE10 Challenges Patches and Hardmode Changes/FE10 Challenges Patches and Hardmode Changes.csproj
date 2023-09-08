@@ -90,9 +90,9 @@
     <Content Include="darkaffinity.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FE10Randomizer\FE10Randomizer_v2.4.4.csproj">
+    <ProjectReference Include="..\FE10Randomizer\FE10Randomizer_v3.4.1.csproj">
       <Project>{c176c03f-d44c-4f5c-8ea0-778ec0a309e4}</Project>
-      <Name>FE10Randomizer_v2.4.4</Name>
+      <Name>FE10Randomizer_v3.4.1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

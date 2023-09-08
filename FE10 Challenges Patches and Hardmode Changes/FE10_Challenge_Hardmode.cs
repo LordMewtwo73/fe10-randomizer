@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FE10FileExtract;
 using System.IO;
 using System.Diagnostics;
 
@@ -936,7 +935,10 @@ namespace FE10_Challenges_Patches_and_Hardmode_Changes
 			string tempfolder = file + "\\assets\\temp\\";
 			string[] allfiles = getRecursiveFiles(tempfolder);
 			foreach (string onefile in allfiles)
-				File.Delete(onefile);
+			{
+				if (!onefile.Contains("exalt-cli.exe"))
+					File.Delete(onefile);
+			}
 		}
 
 		// compresses files back to ISO
