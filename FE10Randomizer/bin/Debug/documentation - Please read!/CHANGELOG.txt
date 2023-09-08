@@ -1,3 +1,40 @@
+Version 3.4.1 09/08/2023
+- fixed crash when using the "Part 4 enemies use T3 classes" option
+- fixed biorhythm bug for those on non-US English PCs
+- fixed small outputlog typo
+- fixed bug where random recruitment sometimes did not properly swap animations
+
+
+Version 3.4.0 03/14/2023
+- added option for palette changing, to keep palette of character regardless of class
+- added blackknight and ashera to character recruitment pool without randomized classes
+- added setting to allow tower bosses to change class with random recruitment or random enemies
+- added order incarnate to class pool for player and enemy units
+- added corona skill to order incarnate
+- added growths to trueblade, blackknight, summoner, and other classes that didn't 
+have growths, so enemies that randomize into them are scaled properly
+- fixed tposing dawn brigade
+- fixed skrimir fight scene crash
+- (actually) fixed bug where prioritize str/mag didn't work for negative bases
+- fixed bug where outputlog gave incorrect class bases
+- fixed bug where names of herons before entering the tower were incorrect
+- fixed bug where 4-P still said "rout enemy" even when win con was defeat boss
+- "choose my tower units" now gives chosen units a special name color
+- fixed locked rewarp staff
+- fixed 2-E swordmasters not being randomized
+- matrona no longer has a shop cost of 0
+- fixed bug where bosses turned into laguz didn't have gauges and stayed untransformed
+
+
+Version 3.3.1 02/27/2023
+- fixed various forge crashes
+- fixed bug where the end of the game brought you to a debug chapter
+- matrona staff now actually shows up when rolled in random event items
+- remove the 1-4 laguz' negative bases if randomized into beorc classes
+- location of hidden items now has a visual cue on the map
+- final blow on ashera no longer has to be ike (though the cutscene does not play)
+
+
 Version 3.3.0 02/17/2023
 - black knight class is now in randomization pool for tier 3 units
 - fixed bug where BEXP gave positive level-ups with zero/negative growths
