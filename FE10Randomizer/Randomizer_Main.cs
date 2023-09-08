@@ -25,10 +25,12 @@ namespace FE10Randomizer_v0._1
 		string sysLocation;
 		// location of shop file
 		string shopfileLocation;
+		// temporary files
+		string tempfolder;
 
 		// extraction classes
 		DisposFile[] ChapterData;
-		FEDataFile CharacterData, ClassData, ItemData, SkillData, TerrData, MapData;
+		FEDataFile CharacterData, ClassData, ItemData, SkillData, TerrData, MapData, BattleUnitData, MapAnimData;
 
 		// bools for successful randomization
 		bool notvanilla;
@@ -47,6 +49,9 @@ namespace FE10Randomizer_v0._1
 
 		// number of units changed to heron
 		int heronNumber;
+
+		// number of default animations in the vanilla game
+		int animnumber;
 
 		// whether user has NTSC-U 1.0 or 1.1, or PAL
 		int gameVersion;
@@ -191,7 +196,55 @@ namespace FE10Randomizer_v0._1
 						string versionNum = eachsetting[0];
 
 						// get lists based on version settings were saved from
-						if (versionNum == "3.3.0" | versionNum == "3.2.1")
+						if (versionNum == "3.4.0" | versionNum == "3.4.1")
+						{
+							checkBoxes = new System.Windows.Forms.CheckBox[]  { cbxAffinity, cbxBio, cbxBirdVision, cbxBKfight, cbxBKnerf, cbxBuffBosses, cbxChestKey,
+														   cbxChooseIke, cbxClassRand, cbxDBweaps, cbxDragonSkills, cbxEnemDrops, cbxEnemHealers,
+														   cbxEnemWeaps, cbxEnemyGrowth, cbxEnemyRange, cbxEnemyRecruit, cbxEventItems, cbxFionaAI,
+														   cbxFireMag, cbxFlorete, cbxForge, cbxGaugeRand, cbxGMweaps, cbxGrowthCap, cbxGrowthRand,
+														   cbxGrowthShuffle, cbxGrowthShuffleMin, cbxHerons, cbxHPLCKShuffle, cbxJillAI, cbxKurthEna,
+														   cbxLaguzWeap, cbxLethality, cbxLords, cbxLowerPrice, cbxMapAff, cbxNihil, cbxNoLaguz,
+														   cbxNoSiege, cbxOnlySiege, cbxRandBases, cbxRandBosses, cbxRandEnemy, cbxRandRecr,
+														   cbxRandShop, cbxRandWeap, cbxSellableItems, cbxShuffleBases, cbxSiegeUse, cbxSkillRand,
+														   cbxSpirits, cbxStatCaps, cbxStaveUse, cbxStrMag, cbxThieves, cbxTier3Enemies, cbxTowerUnits,
+														   cbxWeapCaps, cbxWeapTri, cbxWinCon, cbxZeroGrowths, cbxSimilarEnemy, cbxGrowthShuffleMax,
+														   cbxHeatherBlue,cbxChooseMic,cbxIronShop,cbxClassSwap,cbxNoRandPromotions,cbxStatCapDev,
+														   cbxStatCapFlat, cbxT3Statcaps, cbxSkillVanilla, cbxBargains, cbxRandMove, cbxEnemySkills, cbxBossSkills,
+														   cbxHorseParkour, cbxNoFOW, cbxIronMan, cbxRandClassBases, cbxShuffleClassBases, cbxHPShuffleclass, cbxWhiteGem,
+														   cbxFormshift, cbxDarkMag, cbxClassPatch, cbxKnifeCrit, cbxRandPromotion, cbxMagicPatch, cbxPart2Enemies,
+														   cbxParagon, cbxEasyPromotion, cbxNoEnemyLaguz,cbxBonusBEXP, cbxTormodT3, cbxLaguzCanto, cbxStatBooster,
+														   cbxStatBoostMult, cbxNegGrowths, cbxStoryPromo, cbxAuthority, cbxSkillCap, cbxMicClass, cbxIkeClass,
+															cbxHeronSpread, cbxSkillSetNum, cbxWeapPatch,cbxDragonCanto,cbxElinciaClass,cbxSkillVanilla,cbxSkillSetNum,
+															cbxChooseElincia,cbxRecrVanillaClass,cbxBonusItems,cbxEnemBonusDrop,cbx1to1EnemyRand,cbxRandAllies,cbxPart2PCs,
+															cbxPart2Allies,cbxLetheMordy, cbxUniversalSkills, cbxBossBonusDrop,cbxMistCrown,cbxDruidCrown, cbxPaletteSwap, cbxRandTowerBosses};
+
+							comboBoxes = new System.Windows.Forms.ComboBox[] { comboClassOptions, comboIke, comboMicc, comboIkeClass, comboMicClass, comboElinciaClass, comboElincia };
+
+							numericUpDowns = new System.Windows.Forms.NumericUpDown[]  { numericACCdev, numericACCmax, numericACCmin, numericATK, numericBaseRand,
+																numericBaseShuffle, numericBossStats, numericCRTdev, numericCRTmax, numericCRTmin,
+																numericDEF, numericEnemyGrowth, numericGrowth, numericGrowthCap, numericGrowthShuffle,
+																numericHP, numericLaguzMax1, numericLaguzMax2, numericLaguzMax3, numericLaguzMax4,
+																numericLaguzMin1, numericLaguzMin2, numericLaguzMin3, numericLaguzMin4, numericLCK,
+																numericMAG, numericMTdev, numericMTmax, numericMTmin, numericRES, numericSKL,
+																numericSPD, numericStatCap1, numericStatCap2, numericStatCap3, numericUSEdev,
+																numericUSEmax, numericUSEmin, numericWTdev, numericWTmax, numericWTmin, numericStatCapDev,
+																numericStatCapFlat, numericMoveMin, numericMoveMax, numericEnemySkills, numericBargSword,
+																numericBargLance, numericBargAxe, numericBargBow, numericBargKnife, numericBargTome,
+																numericBargStave, numericBargStat, numericBargItem, numericBargSkill, numericForgeSword,
+																numericForgeLance, numericForgeAxe, numericForgeBow, numericForgeKnife, numericForgeTome,
+																numericClassBaseDev, numericClassBaseShuf, numericStatCapMin,numStatBoostMin, numStatBoostMax,
+																numSkillVanillaPlus,numSkillSet};
+
+							radioButtons = new System.Windows.Forms.RadioButton[] { radioArmor0, radioArmor1, radioArmor2, radioArmor3, radioArmor4, radioArmor5,
+																radioBeast0, radioBeast1, radioBeast2, radioBeast3, radioBeast4, radioBeast5,
+																radioBird0, radioBird1, radioBird2, radioBird3, radioBird4, radioBird5,
+																radioCav0, radioCav1, radioCav2, radioCav3, radioCav4, radioCav5,
+																radioDragon0, radioDragon1, radioDragon2, radioDragon3, radioDragon4, radioDragon5,
+																radioFly0, radioFly1, radioFly2, radioFly3, radioFly4, radioFly5,
+																radioInfantry0, radioInfantry1, radioInfantry2, radioInfantry3, radioInfantry4, radioInfantry5,
+																radioMages0, radioMages1, radioMages2, radioMages3, radioMages4, radioMages5};
+						}
+						else if (versionNum == "3.3.1" | versionNum == "3.3.0" | versionNum == "3.2.1")
 						{
 							checkBoxes = new System.Windows.Forms.CheckBox[]  { cbxAffinity, cbxBio, cbxBirdVision, cbxBKfight, cbxBKnerf, cbxBuffBosses, cbxChestKey,
 														   cbxChooseIke, cbxClassRand, cbxDBweaps, cbxDragonSkills, cbxEnemDrops, cbxEnemHealers,
@@ -897,6 +950,9 @@ namespace FE10Randomizer_v0._1
 		// sets tooltips for all front panel objects
 		private void InitializeToolTips()
 		{
+			toolTip1.SetToolTip(cbxPaletteSwap, "each playable unit will have their map and battle palettes match the character they are, regardless of class");
+			toolTip1.SetToolTip(cbxRandTowerBosses, "allows tower bosses (BK, Dheg, Ashera, etc) to have their classes changed");
+			toolTip1.SetToolTip(cbxRandTowerBosses2, "allows tower bosses (BK, Dheg, Ashera, etc) to have their classes changed");
 			toolTip1.SetToolTip(cbxMistCrown, "puts a holy crown into mist's starting inventory; with Random Event Items, the scripted holy crown will be randomized");
 			toolTip1.SetToolTip(cbxDruidCrown, "puts a master crown into starting inventory of any character randomized into a druid; druids still cannot promote via EXP");
 			toolTip1.SetToolTip(cbxLetheMordy, "brom and nephenee gain assistance in 2-1");
@@ -907,7 +963,7 @@ namespace FE10Randomizer_v0._1
 			toolTip1.SetToolTip(cbxEnemBonusDrop, "each enemy gains a random droppable item");
 			toolTip1.SetToolTip(cbxBonusItems, "each character gains a bonus item upon recruitment");
 			toolTip1.SetToolTip(cbxRecrVanillaClass, "keeps vanilla classes even when characters change - ie, Micaiah turns into Ike, but she stays a lightmage");
-			toolTip1.SetToolTip(cbxChooseElincia, "allows you to select the character to replace elincia");
+			toolTip1.SetToolTip(cbxChooseElincia, "allows you to select the character to replace Elincia");
 			toolTip1.SetToolTip(cbxTrialMode, "Use this to get an outputlog for your desired settings without actually modifying your ISO");
 			toolTip1.SetToolTip(cbxDragonCanto, "Goldoa do be movin' tho");
 			toolTip1.SetToolTip(cbxWeapPatch, "removes venin and bronze weapons from the game and replaces them with new effective weapons and weapons that effect weapon triangle differently; see README.htm for more details");
@@ -1175,7 +1231,7 @@ namespace FE10Randomizer_v0._1
 						if (chosenname == "micaiah" | chosenname == "laura" | chosenname == "sothe" | chosenname == "ilyana" | chosenname == "tormod" |
 							chosenname == "heather" | chosenname == "calill" | chosenname == "soren" | chosenname == "rhys" | chosenname == "sanaki" |
 							chosenname == "pelleas" | chosenname == "oliver" | chosenname == "lehran" | chosenname == "valtome" | chosenname == "numida" |
-							chosenname == "izuka" | chosenname == "hetzel" | chosenname == "lekain" | chosenname == "sephiran")
+							chosenname == "izuka" | chosenname == "hetzel" | chosenname == "lekain" | chosenname == "sephiran" | chosenname == "ashera")
 						{
 							textBox1.Text = "Ike cannot be changed into " + char.ToUpper(chosenname[0]) + chosenname.Substring(1) + " because they are a magical unit and he will not be able to defeat the Black Knight. Use Nerf BK or class randomization to allow Ike to become this character.";
 							return false;
@@ -1227,7 +1283,8 @@ namespace FE10Randomizer_v0._1
 						if (chosenname != "nailah" & chosenname != "elincia" & chosenname != "naesala" & chosenname != "sanaki" & chosenname != "tibarn" &
 							chosenname != "stefan" & chosenname != "oliver" & chosenname != "caineghis" & chosenname != "giffca" & chosenname != "kurthnaga" &
 							chosenname != "ena" & chosenname != "renning" & chosenname != "nasir" & chosenname != "gareth" & chosenname != "lehran" &
-							chosenname != "hetzel" & chosenname != "levail" & chosenname != "lekain" & chosenname != "zelgius" & chosenname != "dheginsea" & chosenname != "sephiran")
+							chosenname != "hetzel" & chosenname != "levail" & chosenname != "lekain" & chosenname != "zelgius" & chosenname != "dheginsea" & 
+							chosenname != "sephiran" & chosenname != "blackknight" & chosenname != "ashera")
 						{
 							textBox1.Text = "Elincia cannot be changed into " + char.ToUpper(chosenname[0]) + chosenname.Substring(1) + " because that character cannot be changed into a T3 class. Use class randomization to allow Elincia to become this character.";
 							return false;
@@ -1319,23 +1376,34 @@ namespace FE10Randomizer_v0._1
 			}
 
 			// delete old temp files
-			string tempfolder = file + "\\assets\\temp";
 			foreach (string path in Directory.GetFiles(tempfolder))
 				File.Delete(path);
 
-			// extract to csv files
+			// add directories if necessary
 			Directory.CreateDirectory(tempfolder + "\\data");
 			Directory.CreateDirectory(tempfolder + "\\chapter");
-			//Directory.CreateDirectory(tempfolder + "\\anim");
-			//Directory.CreateDirectory(tempfolder + "\\battle");
+			Directory.CreateDirectory(tempfolder + "\\anim");
+			Directory.CreateDirectory(tempfolder + "\\battle");
+			Directory.CreateDirectory(tempfolder + "\\mess");
 
-			//FE10ExtractCompress.ExtractFE10Anim(file + "\\assets\\gamedata" + "\\FE10Anim.cms.decompressed", tempfolder + "\\anim");
-			//FE10ExtractCompress.ExtractFE10Battle(file + "\\assets\\gamedata" + "\\FE10Battle.cms.decompressed", tempfolder + "\\battle");
+			// extract to csv files
+			FE10ExtractCompress.ExtractFE10Anim(file + "\\assets\\gamedata" + "\\FE10Anim.cms.decompressed", tempfolder + "\\anim");
+			FE10ExtractCompress.ExtractFE10Battle(file + "\\assets\\gamedata" + "\\FE10Battle.cms.decompressed", tempfolder + "\\battle");
 
-			//FE10ExtractCompress.CompressFE10Anim(file + "\\assets\\gamedata" + "\\FE10Anim.cms.decompressed", tempfolder + "\\anim");
-			//FE10ExtractCompress.CompressFE10Battle(file + "\\assets\\gamedata" + "\\FE10Battle.cms.decompressed", tempfolder + "\\battle");
+			FE10ExtractCompress.ExtractMessFile(dataLocation + "\\Mess\\e_common.m", tempfolder + "\\mess\\e_common.csv");
+			FE10ExtractCompress.ExtractMessFile(dataLocation + "\\Mess\\e_c0407a.m", tempfolder + "\\mess\\e_c0407a.csv"); 
+			//FE10ExtractCompress.CompressMessFile(tempfolder + "\\mess\\e_c0407a.m", tempfolder + "\\mess\\e_c0407a.csv");
+
+			//FE10ExtractCompress.ExtractMessFile(tempfolder + "\\mess\\e_common.m", tempfolder + "\\mess\\e_common_out1.csv");
+
+			//FE10ExtractCompress.CompressFE10Anim(file + "\\assets\\gamedata" + "\\FE10Anim.cms.decompressed_test", tempfolder + "\\anim");
+			//FE10ExtractCompress.CompressFE10Battle(file + "\\assets\\gamedata" + "\\FE10Battle.cms.decompressed_test", tempfolder + "\\battle");
+
+			//List<tplImage> tplImages = FE10ExtractCompress.ExtractTpl(file + "\\assets\\gamedata\\d_knignt2_h.tpl");
+			//FE10ExtractCompress.CompressTpl(file + "\\assets\\gamedata\\d_knignt2_h_OUT.tpl", tplImages);
 
 			FE10ExtractCompress.ExtractFE10Data(decompressed, tempfolder + "\\data");
+
 			// csv to classes
 			foreach (string path in Directory.GetFiles(tempfolder + "\\data"))
 			{
@@ -1352,6 +1420,16 @@ namespace FE10Randomizer_v0._1
 				else if (Path.GetFileName(path).Contains("ChapterData"))
 					MapData = new FEDataFile(path);
 			}
+
+			string battleunitpath = tempfolder + "\\battle\\022%FE10BUnit.csv";
+			if (File.Exists(battleunitpath))
+				BattleUnitData = new FEDataFile(battleunitpath);
+
+			string animpath = tempfolder + "\\anim\\000%FE10AnimHeader.csv";
+			if (File.Exists(animpath))
+				MapAnimData = new FEDataFile(animpath);
+			
+
 
 			// extract dispos files to csv
 			ChapterData = new DisposFile[chapters.Length];
@@ -1598,10 +1676,12 @@ namespace FE10Randomizer_v0._1
 			jarodclass = -1;
 			// initialize variables
 			heronNumber = 0;
+			animnumber = 133;
 			forgeOutput = "";
 			eventItemsOutput = "";
 			bargainOutput = "";
 			randEnemyOutput = "";
+			tempfolder = file + "\\assets\\temp";
 
 			// reset error flag
 			errorflag = 0;
@@ -1753,7 +1833,7 @@ namespace FE10Randomizer_v0._1
 			}
 
 			// list of files edited by randomizer
-			string[] files2copy = new string[68] { "tmd.bin", "ticket.bin","disc\\header.bin","sys\\boot.bin","sys\\main.dol", "files\\Mess\\e_common.m", "files\\etc\\banner_en.tpl",
+			string[] files2copy = new string[69] { "tmd.bin", "ticket.bin","disc\\header.bin","sys\\boot.bin","sys\\main.dol", "files\\Mess\\e_common.m", "files\\Mess\\e_c0407a.m", "files\\etc\\banner_en.tpl",
 													"files\\opening.bnr","files\\FE10Data.cms","files\\FE10Anim.cms","files\\FE10Battle.cms","files\\Face\\facedata.bin",
 													"files\\Face\\wide\\facedata.bin","files\\Scripts\\","files\\Shop\\", "files\\zmap\\", "files\\ymu\\sworder2_z",
 													"files\\ymu\\sworder3_z","files\\ymu\\soldier2_f","files\\ymu\\soldier3_f","files\\ymu\\thief2_s","files\\ymu\\thief3_s",
@@ -1898,7 +1978,7 @@ namespace FE10Randomizer_v0._1
 				targetfile = targetPath + "icon_wide.cms";
 				System.IO.File.Copy(sourcefile, targetfile, true);
 			}
-			if (cbxClassPatch.Checked)
+			if (!cbxPaletteSwap.Checked)
 			{
 				// moves FE10Battle and FE10Animation files
 				sourcePath = file + "\\assets\\gamedata\\";
@@ -1911,6 +1991,13 @@ namespace FE10Randomizer_v0._1
 				targetfile = targetPath + "FE10Battle.cms";
 				System.IO.File.Copy(sourcefile, targetfile, true);
 			}
+			// move battle to remove t-posing
+			//sourcePath = file + "\\assets\\gamedata\\";
+			//targetPath = dataLocation + "\\";
+			//sourcefile = sourcePath + "FE10Battle.cms";
+			//targetfile = targetPath + "FE10Battle.cms";
+			//System.IO.File.Copy(sourcefile, targetfile, true);
+
 			if (aprilFools & errorflag == 0)
 			{
 				// camilla time
@@ -2012,7 +2099,7 @@ namespace FE10Randomizer_v0._1
 			if (cbxClassPatch.Checked)
 			{
 				LM73classPatch();
-				LaguzMJID();
+				//LaguzMJID();
 				ClassPatch_statchanges();
 				if (!cbxClassRand.Checked & !cbxClassSwap.Checked & !cbxRandRecr.Checked)
 					ClassPatch_changeVanillaClasses();
@@ -2272,11 +2359,8 @@ namespace FE10Randomizer_v0._1
 			int totalchars = 72;
 			if (cbxEnemyRecruit.Checked == true)
 			{
-				// include enemy characters, but don't include BK or ashera if class rando is off
-				if (cbxClassRand.Checked | cbxClassSwap.Checked | cbxRecrVanillaClass.Checked)
-					totalchars = 86;
-				else
-					totalchars = 84;
+				// add 14 enemy characters
+				totalchars = 86;
 			}
 
 			// randomize recruitment order
@@ -2302,7 +2386,7 @@ namespace FE10Randomizer_v0._1
 				}
 				else
 				{
-					// no full recruitment randomization, only swapping miccy or ike
+					// no full recruitment randomization, only swapping miccy or ike or elincia
 					characters[i].NewRecr = i;
 				}
 			}
@@ -2378,7 +2462,7 @@ namespace FE10Randomizer_v0._1
 								if (newname == "micaiah" | newname == "laura" | newname == "sothe" | newname == "ilyana" | newname == "tormod" |
 									newname == "heather" | newname == "calill" | newname == "soren" | newname == "rhys" | newname == "sanaki" |
 									newname == "pelleas" | newname == "oliver" | newname == "lehran" | newname == "valtome" | newname == "numida" |
-									newname == "izuka" | newname == "hetzel" | newname == "lekain" | newname == "sephiran")
+									newname == "izuka" | newname == "hetzel" | newname == "lekain" | newname == "sephiran" | newname == "ashera")
 									tryagain = true;
 							}
 						}
@@ -2407,8 +2491,23 @@ namespace FE10Randomizer_v0._1
 					if (cbxEnemyRecruit.Checked & !cbxRandBosses.Checked)
 					{
 						if (characters[i].Name == "jarod" | characters[i].Name == "ludveck" | characters[i].Name == "septimus" | characters[i].Name == "valtome" |
-							characters[i].Name == "numida" | characters[i].Name == "izuka" | characters[i].Name == "hetzel" | characters[i].Name == "levail" |
-							characters[i].Name == "lekain" | characters[i].Name == "zelgius" | characters[i].Name == "dheginsea" | characters[i].Name == "sephiran" |
+							characters[i].Name == "numida" | characters[i].Name == "izuka" | characters[i].Name == "hetzel")
+						{
+							if (characters[i].Tier == "a" & possibleclasses[0] == 999)
+								tryagain = true;
+							else if (characters[i].Tier == "b" & possibleclasses[1] == 999)
+								tryagain = true;
+							else if (characters[i].Tier == "c" & possibleclasses[2] == 999)
+								tryagain = true;
+							else if (characters[i].Tier == "d" & possibleclasses[3] == 999)
+								tryagain = true;
+						}
+					}
+
+					// tower bosses have an additional restriction keeping them from being randomized
+					if (cbxEnemyRecruit.Checked & (!cbxRandBosses.Checked | !cbxRandTowerBosses.Checked))
+					{
+						if (characters[i].Name == "levail" | characters[i].Name == "lekain" | characters[i].Name == "dheginsea" | characters[i].Name == "sephiran" |
 							characters[i].Name == "blackknight" | characters[i].Name == "ashera")
 						{
 							if (characters[i].Tier == "a" & possibleclasses[0] == 999)
@@ -4099,6 +4198,10 @@ namespace FE10Randomizer_v0._1
 
 			for (int charNum = 0; charNum < animationnumber; charNum++)
 			{
+				string[] saveanim = new string[4] { "", "", "", "" };
+				string[] ymuData = new string[4];
+				string[] zuData = new string[4];
+
 				int charclass;
 				if (characters[charNum].NewClass != -1)
 					charclass = characters[charNum].NewClass;
@@ -4122,7 +4225,7 @@ namespace FE10Randomizer_v0._1
 						animationpointers1 = animationpointers2;
 
 					// create 4-animation string
-					string[] saveanim = new string[4];
+
 					string[] origanim = CharacterData.ReadStringArray(characters[charNum].PID, "Animations");
 					string[][] allanimpointers = { animationpointers1, animationpointers2, animationpointers3, animationpointers3 };
 					for (int j = 0; j < allanimpointers.Length; j++)
@@ -4142,11 +4245,11 @@ namespace FE10Randomizer_v0._1
 							string fullanimpointer = animationlines[random.Next(minanimpointer, maxanimpointer)];
 							string[] split = fullanimpointer.Split(',');
 							saveanim[j] = split[j + 1];
+							ymuData[j] = split[j + 5];
+							zuData[j] = split[j + 9];
 						}
 					}
-					// save new animation
-					CharacterData.Write(characters[charNum].PID, "Animations", saveanim);
-					CharacterData.Write(characters[charNum].PID, "JID", classes[charclass].JID);
+
 				}
 				else
 				{
@@ -4155,9 +4258,9 @@ namespace FE10Randomizer_v0._1
 					if (characters[charNum].NewClass == -1)
 					{ }
 					else if (cbxRandRecr.Checked & !cbxClassRand.Checked & !cbxClassSwap.Checked & // already have correct animations from rand recruit
-						( characters[charNum].Name != "micaiah" | !cbxMicClass.Checked) &			// micaiah gets animation change if class randomized
-						( characters[charNum].Name != "ike" | !cbxIkeClass.Checked) &				// same with ike
-						( characters[charNum].Name != "elincia" | !cbxElinciaClass.Checked))		// and elincia
+						(characters[charNum].Name != "micaiah" | !cbxMicClass.Checked) &            // micaiah gets animation change if class randomized
+						(characters[charNum].Name != "ike" | !cbxIkeClass.Checked) &                // same with ike
+						(characters[charNum].Name != "elincia" | !cbxElinciaClass.Checked))     // and elincia
 					{ }
 					else
 					{
@@ -4169,16 +4272,375 @@ namespace FE10Randomizer_v0._1
 						// choose animation, select the line from original read-in lines
 						string fullanimpointer = animationlines[random.Next(minanimpointer, maxanimpointer)];
 						string[] split = fullanimpointer.Split(',');
-						string[] saveanim = new string[4];
 						for (int i = 0; i < 4; i++)
+						{
 							saveanim[i] = split[i + 1];
-
-						// save new animation
-						CharacterData.Write(characters[charNum].PID, "Animations", saveanim);
-						CharacterData.Write(characters[charNum].PID, "JID", classes[charclass].JID);
+							ymuData[i] = split[i + 5];
+							zuData[i] = split[i + 9];
+						}
 					}
 				}
+
+				if (saveanim[0] != "" & saveanim[1] != "" & saveanim[2] != "" & saveanim[3] != "")
+				{
+					// save new animation
+					if (cbxClassRand.Checked & cbxPaletteSwap.Checked)
+					{
+						string vanilla_animations;
+						if (characters[charNum].NewRecr != -1)
+							vanilla_animations = animationlines[characters[characters[charNum].NewRecr].VanillaAnimations];
+						else
+							vanilla_animations = animationlines[characters[charNum].VanillaAnimations];
+						PaletteSwapFunction(characters[charNum], vanilla_animations, saveanim, ymuData, zuData);
+					}
+					else
+						CharacterData.Write(characters[charNum].PID, "Animations", saveanim);
+					CharacterData.Write(characters[charNum].PID, "JID", classes[charclass].JID);
+				}
+
+				
 			}
+		}
+
+		// swaps palette stuff
+		private void PaletteSwapFunction(Character character, string charVanillaAnim, string[] saveanim, string[] ymuData, string[] zuData)
+		{
+			// if we've run out of animations, that's unfortunate
+			if (animnumber >= 253)
+			{
+				//CharacterData.Write(character.PID, "Animations", saveanim);
+				//return;
+			}
+			// make new animation names
+			string[] newAnims = new string[4];
+			int startindex = 0;
+			if (character.NewRace == "L")
+			{ // only two animations
+				for (int i = 0; i < 2; i++)
+					newAnims[i] = "AID_" + character.Name.ToUpper() + "_SWAP" + i.ToString();
+				newAnims[2] = newAnims[1];
+				newAnims[3] = newAnims[2];
+			}
+			else if (character.Tier == "c" | character.Tier == "d")
+			{ // only one animation
+				for (int i = 0; i < 4; i++)
+					newAnims[i] = "AID_" + character.Name.ToUpper() + "_SWAP0";
+				saveanim[0] = saveanim[2];
+				ymuData[0] = ymuData[2];
+				zuData[0] = zuData[2];
+				startindex = 2;
+			}
+			else if (character.Tier == "b")
+			{
+				if (character.Name.ToUpper() == "NEALUCHI")
+				{ }
+				// only two animations
+				for (int i = 1; i < 3; i++)
+					newAnims[i] = "AID_" + character.Name.ToUpper() + "_SWAP" + i.ToString();
+				newAnims[0] = newAnims[1];
+				newAnims[3] = newAnims[2];
+				saveanim[0] = saveanim[1];
+				ymuData[0] = ymuData[1];
+				zuData[0] = zuData[1];
+				startindex = 1;
+			}
+			else
+			{
+				for (int i = 0; i < 3; i++)
+					newAnims[i] = "AID_" + character.Name.ToUpper() + "_SWAP" + i.ToString();
+				newAnims[3] = newAnims[2];
+			}
+
+			// read all lines from FE10BTex
+			System.IO.StreamReader dataReader = new System.IO.StreamReader(file + "\\assets\\temp\\battle\\023%FE10BTex.csv");
+			string[] btexlines = dataReader.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			dataReader.Close();
+
+			dataReader = new System.IO.StreamReader(file + "\\assets\\temp\\battle\\000%FE10BAnimData.csv");
+			string[] banimlines = dataReader.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			dataReader.Close();
+
+			List<string> newbtexlines = new List<string>(btexlines);
+			List<string> newbanimlines = new List<string>(banimlines);
+
+			// loop over each animation
+			for (int k = startindex; k < 4; k++)
+			{
+				string[] vanilsplit = charVanillaAnim.Split(',');
+				string ymufolder = vanilsplit[k + 5];
+				string zufolder = vanilsplit[k + 9];
+
+				// initialize ymu and zu folders/files from vanilla_animations
+				string zupalette;
+				string ymupalette;
+				if (ymufolder.Split(';').Length > 1)
+				{
+					ymupalette = ymufolder.Split(';')[1];
+					ymufolder = ymufolder.Split(';')[0];
+				}
+				else
+					ymupalette = ymufolder;
+				if (zufolder.Split(';').Length > 1)
+				{
+					zupalette = zufolder.Split(';')[1];
+					zufolder = zufolder.Split(';')[0];
+				}
+				else
+					zupalette = zufolder;
+
+				string oldymutpl = ymuData[k];
+				if (ymuData[k].Split(';').Length > 1)
+				{
+					oldymutpl = ymuData[k].Split(';')[1];
+					ymuData[k] = ymuData[k].Split(';')[0];
+				}
+
+				string oldzutpl = zuData[k];
+				if (zuData[k].Split(';').Length > 1)
+				{
+					oldzutpl = zuData[k].Split(';')[1];
+					zuData[k] = zuData[k].Split(';')[0];
+				}
+
+				string palettefile = dataLocation + "\\ymu\\" + ymufolder + "\\" + ymupalette + ".tpl";
+				if (!File.Exists(palettefile))
+				{
+					ymupalette += "1";
+					palettefile = dataLocation + "\\ymu\\" + ymufolder + "\\" + ymupalette + ".tpl";
+				}
+				if (File.Exists(palettefile))
+				{
+					bool sameAnim = false;
+					for (int j = startindex; j < k; j++)
+					{
+						if (newAnims[j] == newAnims[k])
+							sameAnim = true;
+					}
+
+					if (!sameAnim)
+					{ // only do the rest if the animation is different than a previous one
+						string bunitname = "";
+
+						// read in data for new animation -> if myrm, reading in AID_SWORDER1, for example
+						string[] animheaders = MapAnimData.ReadHeaders("AID_");
+						string[] animData = new string[animheaders.Length];
+
+						for (int i = 1; i < animheaders.Length; i++)
+						{
+							//animData[i] = MapAnimData.ReadString(animData[k]
+							animData[i] = MapAnimData.ReadString(saveanim[k], animheaders[i]);
+						}
+
+						// modify data to look for correct palette - look at palette_changing.txt in assets if you want more details
+						animData[0] = newAnims[k];
+
+						int highanimnum = 1;
+						int lowanimnum = animnumber;
+						while (lowanimnum >= 256)
+						{
+							lowanimnum -= 256;
+							highanimnum += 1;
+						}
+
+						for (int i = 0; i < animheaders.Length; i++)
+						{
+							if (animheaders[i] == "ID")
+							{
+								// change ID to the next value, increment for future animations
+								animData[i] = lowanimnum.ToString();
+								animnumber++;
+							}
+							// save BUnitName for later
+							else if (animheaders[i] == "BUnitName")
+								bunitname = animData[i];
+							else if (animheaders[i].Contains("unknown1"))
+								animData[i] = highanimnum.ToString();
+							// save ymu folder/palette name
+							else if (animheaders[i] == "dataName")
+								animData[i] = ymupalette;
+							else if (animheaders[i] == "ymuFolder")
+							{
+								// move .tpl palette to correct ymu folder
+								if (ymuData[k] != ymufolder)
+								{
+									if (File.Exists(palettefile))
+									{
+										File.Copy(palettefile, dataLocation + "\\ymu\\" + ymuData[k] + "\\" + ymupalette + ".tpl", true);
+										string oldpalettefile = dataLocation + "\\ymu\\" + ymuData[k] + "\\" + oldymutpl + ".tpl";
+										if (File.Exists(oldpalettefile))
+										{
+											// see if number of images in tpl match. if not, add one
+											List<tplImage> oldTpl = FE10ExtractCompress.ExtractTpl(oldpalettefile);
+											List<tplImage> newTpl = FE10ExtractCompress.ExtractTpl(palettefile);
+											if (oldTpl.Count > newTpl.Count)
+											{
+												for (int p = 0; p < newTpl.Count; p++)
+												{
+													for (int x = p; x < oldTpl.Count; x++)
+													{
+														if (oldTpl[x].Height == newTpl[p].Height & oldTpl[x].Width == newTpl[p].Width)
+														{
+															oldTpl[x] = newTpl[p];
+															break;
+														}
+													}
+												}
+												newTpl = oldTpl;
+												FE10ExtractCompress.CompressTpl(dataLocation + "\\ymu\\" + ymuData[k] + "\\" + ymupalette + ".tpl", newTpl);
+											}
+										}
+									}
+								}
+							}
+						}
+						// save new AID to FE10AnimHeader
+						MapAnimData.AddNew(animheaders, animData, false);
+
+						// FE10BAnimData ties the AID to the ground and flying animations, so let's make some new entries
+						string groundanim = "", flyinganim = "";
+						for (int i = 0; i < newbanimlines.Count; i++)
+						{
+							// find ground/flying anims of normal class animation
+							string[] split = newbanimlines[i].Split(',');
+							if (split[1] == saveanim[k])
+							{
+								groundanim = newbanimlines[i + 3].Split(',')[1];
+								flyinganim = newbanimlines[i + 4].Split(',')[1];
+								break;
+							}
+						}
+						if (groundanim != "" | flyinganim != "")
+						{
+							newbanimlines.Add("AID," + newAnims[k]);
+							newbanimlines.Add("PID," + character.PID);
+							newbanimlines.Add("JID,");
+							newbanimlines.Add("groundanim," + groundanim);
+							newbanimlines.Add("flyinganim," + flyinganim);
+						}
+
+						// now we switch to FE10BUnit
+						// find correct entry with BUnitName from above, and increment the numtextures (also save zu value for later)
+						string zufoldername = BattleUnitData.ReadString(bunitname, "Class");
+						int textures = BattleUnitData.ReadInt(bunitname, "numtextures");
+
+						if (zufoldername == "")
+						{
+							bunitname = groundanim;
+							zufoldername = BattleUnitData.ReadString(bunitname, "Class");
+							textures = BattleUnitData.ReadInt(bunitname, "numtextures");
+						}
+
+						int insertloc = -1;
+						for (int i = 1; i < newbtexlines.Count; i++)
+						{
+							// find final location of class we're modifying
+							string[] split = newbtexlines[i].Split(',');
+							if (split[1] == oldzutpl | split[1] == zufoldername | split[1] + "1" == zufoldername)
+							{
+								if (newbtexlines[i - 1].Split(',')[1] == "8E-A9-8C-52")
+								{
+									bool alreadysaved = false;
+									for (int j = i; j < i + (textures * 2) - 1; j++)
+									{
+										if (newbtexlines[j].Contains(character.PID))
+										{
+											alreadysaved = true;
+											break;
+										}
+									}
+									if (!alreadysaved)
+										insertloc = i + (textures * 2) - 1;
+									break;
+								}
+							}
+						}
+						if (insertloc != -1)
+						{
+							// add in two new lines for the PID and the zu palette
+							newbtexlines.Insert(insertloc, "NAME," + character.PID);
+							newbtexlines.Insert(insertloc + 1, "Class," + zupalette);
+
+							BattleUnitData.Write(bunitname, "numtextures", textures + 1);
+						}
+
+						
+
+						// move .tpl palette to correct zu folder
+						if (zuData[k] != zupalette)
+						{
+							string zupalettefile = dataLocation + "\\zu\\" + zufolder + "\\" + zupalette + ".tpl";
+							if (!File.Exists(zupalettefile))
+								zupalettefile = dataLocation + "\\zu\\" + zufolder + "\\" + zupalette + "1.tpl";
+							if (File.Exists(zupalettefile))
+							{
+								string newloc = dataLocation + "\\zu\\" + zuData[k] + "\\" + zupalette + ".tpl";
+								if (zupalettefile != newloc)
+									File.Copy(zupalettefile, newloc, true);
+
+								string oldpalettefile = dataLocation + "\\zu\\" + zuData[k] + "\\" + oldzutpl + ".tpl";
+								if (File.Exists(oldpalettefile))
+								{
+									// see if number of images in tpl match. if not, add one
+									List<tplImage> oldTpl = FE10ExtractCompress.ExtractTpl(oldpalettefile);
+									List<tplImage> newTpl = FE10ExtractCompress.ExtractTpl(zupalettefile);
+									if (oldTpl.Count > newTpl.Count)
+									{
+										List<int> overwritten = new List<int>();
+										for (int p = 0; p < newTpl.Count; p++)
+										{
+											//for (int x = p; x < oldTpl.Count; x++)
+											for (int x = oldTpl.Count - 1; x >= p; x--)
+											{
+												if (oldTpl[x].Height == newTpl[p].Height & oldTpl[x].Width == newTpl[p].Width)
+												{
+													bool save = true;
+													for (int o = 0; o < overwritten.Count; o++)
+														if (overwritten[o] == x)
+															save = false;
+													if (save)
+													{
+														oldTpl[x] = newTpl[p];
+														overwritten.Add(x);
+														break;
+													}
+												}
+											}
+										}
+										newTpl = oldTpl;
+										FE10ExtractCompress.CompressTpl(dataLocation + "\\zu\\" + zuData[k] + "\\" + zupalette + ".tpl", newTpl);
+									}
+								}
+
+								if (Directory.Exists(dataLocation + "\\zu\\" + zuData[k] + "_sky"))
+									File.Copy(dataLocation + "\\zu\\" + zuData[k] + "\\" + zupalette + ".tpl", dataLocation + "\\zu\\" + zuData[k] + "_sky\\" + zupalette + ".tpl", true);
+
+
+							}
+						}
+					}
+				}
+				else
+				{
+					if (k != 0)
+						newAnims[k] = newAnims[k - 1];
+					else
+						newAnims[k] = saveanim[k];
+				}
+
+			}
+
+			StreamWriter writer = new StreamWriter(file + "\\assets\\temp\\battle\\023%FE10BTex.csv");
+			for (int i = 0; i < newbtexlines.Count; i++)
+				writer.WriteLine(newbtexlines[i]);
+			writer.Close();
+
+			writer = new StreamWriter(file + "\\assets\\temp\\battle\\000%FE10BAnimData.csv");
+			for (int i = 0; i < newbanimlines.Count; i++)
+				writer.WriteLine(newbanimlines[i]);
+			writer.Close();
+
+			CharacterData.Write(character.PID, "Animations", newAnims);
+
 		}
 
 		// adds custom hybrid classes to the game
@@ -4195,18 +4657,10 @@ namespace FE10Randomizer_v0._1
 				string[] split = lines[i].Split(',');
 
 				string JID = split[0];
-				// new mjid and mh_j
-				string MJID = split[8];
-				string MH_J = split[12];
 				// min/max weapon rank strings
-				string minrank = split[15];
-				string maxrank = split[16];
+				string minrank = split[8];
+				string maxrank = split[9];
 
-				// change information in FE10Data
-				if (MJID != "")
-					ClassData.Write(JID, "MJID", MJID);
-				if (MH_J != "")
-					ClassData.Write(JID, "MH_J", MH_J);
 				ClassData.Write(JID, "Base_WeaponRank", minrank);
 				ClassData.Write(JID, "Max_WeaponRank", maxrank);
 
@@ -4266,6 +4720,12 @@ namespace FE10Randomizer_v0._1
 			// animation file changes and script changes, if not trial
 			if (!cbxTrialMode.Checked)
 			{
+
+				StreamReader reader = new StreamReader(tempfolder + "\\mess\\e_common.csv");
+				string[] alllines = reader.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+				reader.Close();
+				List<string> ecommonlines = new List<string>(alllines);
+
 				// script changes
 				for (int i = 1; i < lines.Length; i++)
 				{
@@ -4276,57 +4736,47 @@ namespace FE10Randomizer_v0._1
 					string newclassname = split[1];
 					// new description
 					string newdescription = split[2];
-					// locations of name/description in text documents
-					int namelocation, namepointerloc, descriplocation;
-					if (gameVersion == 2) // PAL iso
-					{
-						// location in e_common where name is stored in text
-						namelocation = Convert.ToInt32(split[21]);
-						// pointer for text name
-						namepointerloc = Convert.ToInt32(split[22]);
-						// location in e_common where description is stored in text
-						descriplocation = Convert.ToInt32(split[23]);
-					}
-					else
-					{
-						// location in e_common where name is stored in text
-						namelocation = Convert.ToInt32(split[9]);
-						// pointer for text name
-						namepointerloc = Convert.ToInt32(split[10]);
-						// location in e_common where description is stored in text
-						descriplocation = Convert.ToInt32(split[13]);
-					}
 
-					// change text for mjids and mh_js
-					using (var stream = new System.IO.FileStream(dataLocation + "\\Mess\\e_common.m", System.IO.FileMode.Open,
-								System.IO.FileAccess.ReadWrite))
+
+					if (newclassname != "")
 					{
-						if (namelocation != 0)
+						string newMJID = JID.Replace("JID", "MJID");
+						string newMHJ = JID.Replace("JID", "MH_J");
+						if (JID.Contains("ROGUE") | JID.Contains("ESPION"))
 						{
-							stream.Position = namelocation;
-							byte[] namestring = System.Text.Encoding.ASCII.GetBytes(newclassname);
-							stream.Write(namestring, 0, namestring.Length);
-							stream.WriteByte(0x00);
-							stream.Position = namepointerloc;
-							byte[] newnamepointer = int2bytes(namelocation - 32);
-							stream.Write(newnamepointer, 0, 4);
+							newMJID += "_SO";
+							newMHJ += "_SO";
 						}
-						if (descriplocation != 0)
+						if (JID.Contains("SAGE_W"))
 						{
-							string[] description = newdescription.Split(';');
-							stream.Position = descriplocation;
-							for (int j = 0; j < description.Length; j++)
+							for (int k = 0; k < ecommonlines.Count; k++)
 							{
-								byte[] descrstring = System.Text.Encoding.ASCII.GetBytes(description[j]);
-								stream.Write(descrstring, 0, descrstring.Length);
-								if (j != description.Length - 1)
-									stream.WriteByte(0x0A); // new line
-								else
-									stream.WriteByte(0x00);
+								string[] splitline = ecommonlines[k].Split(',');
+								if (splitline.Length > 1)
+								{
+									if (splitline[0] == newMJID)
+										splitline[1] = newclassname;
+									else if (splitline[0] == newMHJ)
+										splitline[1] = newdescription.Replace(";", "~");
+									ecommonlines[k] = splitline[0] + "," + splitline[1];
+								}
 							}
 						}
+						else
+						{
+							ecommonlines.Add(newMJID + "," + newclassname);
+							ecommonlines.Add(newMHJ + "," + newdescription.Replace(";", "~"));
+						}
+						ClassData.Write(JID, "MJID", newMJID);
+						ClassData.Write(JID, "MH_J", newMHJ);
 					}
 				}
+
+				alllines = ecommonlines.ToArray();
+				StreamWriter writer = new StreamWriter(tempfolder + "\\mess\\e_common.csv");
+				for (int k = 0; k < alllines.Length; k++)
+					writer.WriteLine(alllines[k]);
+				writer.Close();
 
 				// animation file changes
 				#region
@@ -4343,10 +4793,10 @@ namespace FE10Randomizer_v0._1
 					string movefromzu = split[6];
 					string movefromfile = split[7];
 					// ymu animation files to move
-					string movetoymu = split[17];
-					string movetoymu2 = split[18];
-					string ymufiles2move = split[19];
-					string movefromymu = split[20];
+					string movetoymu = split[10];
+					string movetoymu2 = split[11];
+					string ymufiles2move = split[12];
+					string movefromymu = split[13];
 
 					// move animation files accordingly
 					if (movefromzu != "")
@@ -4657,11 +5107,8 @@ namespace FE10Randomizer_v0._1
 			int totalchars = 72;
 			if (cbxEnemyRecruit.Checked & cbxRandRecr.Checked)
 			{
-				// include enemy characters, but don't include BK or ashera if class rando is off
-				if (cbxClassRand.Checked | cbxClassSwap.Checked | cbxRecrVanillaClass.Checked)
-					totalchars = 86;
-				else
-					totalchars = 84;
+				// include enemy characters
+				totalchars = 86;
 			}
 
 			// face-swappers anonymous
@@ -4831,7 +5278,7 @@ namespace FE10Randomizer_v0._1
 			if (classeschanged)
 				number = lines.Length;
 			else
-				number = 82;
+				number = 84;
 
 			for (int i = 1; i < number; i++)
 			{
@@ -5191,7 +5638,7 @@ namespace FE10Randomizer_v0._1
 						if (strbase > 127)
 							strbase -= 256;
 						if (magbase > 127)
-							magbase -= 127;
+							magbase -= 256;
 
 						if ((ismagic & strbase > magbase) | (!ismagic & strbase < magbase))
 						{
@@ -5358,57 +5805,49 @@ namespace FE10Randomizer_v0._1
 			// script changes, if not trial
 			if (!cbxTrialMode.Checked)
 			{
+				StreamReader reader = new StreamReader(tempfolder + "\\mess\\e_common.csv");
+				string[] alllines = reader.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+				reader.Close();
+				List<string> ecommonlines = new List<string>(alllines);
+
+				// script changes
 				for (int i = 1; i < lines.Length; i++)
 				{
 					string[] split = lines[i].Split(',');
+
 					string IID = split[0];
-					string new_tomename = split[1];
+					// new name
+					string newname = split[1];
 					// new description
-					string new_tomedesc = split[3];
-					int tome_nameloc, tome_descloc;
-					if (gameVersion == 2) // PAL iso
-					{
-						// location to write name in e_common.m
-						tome_nameloc = Convert.ToInt32(split[17]);
-						// location of description in e_common.m
-						tome_descloc = Convert.ToInt32(split[18]);
-					}
-					else
-					{
-						// location to write name in e_common.m
-						tome_nameloc = Convert.ToInt32(split[2]);
-						// location of description in e_common.m
-						tome_descloc = Convert.ToInt32(split[4]);
-					}
+					string newdescription = split[3];
 
-					// change text for name and description
-					using (var stream = new System.IO.FileStream(dataLocation + "\\Mess\\e_common.m", System.IO.FileMode.Open,
-							System.IO.FileAccess.ReadWrite))
+					string MIID = IID.Replace("IID", "MIID");
+					string MHI = IID.Replace("IID", "MH_I");
+
+					if(newname != "" | newdescription != "")
 					{
-						if (tome_nameloc != 0)
+						for (int k = 0; k < ecommonlines.Count; k++)
 						{
-							stream.Position = tome_nameloc;
-							byte[] namestring = System.Text.Encoding.ASCII.GetBytes(new_tomename);
-							stream.Write(namestring, 0, namestring.Length);
-							stream.WriteByte(0x00);
-						}
-						if (tome_descloc != 0)
-						{
-							string[] description = new_tomedesc.Split(';');
-							stream.Position = tome_descloc;
-							for (int j = 0; j < description.Length; j++)
+							string[] splitline = ecommonlines[k].Split(',');
+							if (splitline.Length > 1)
 							{
-								byte[] descrstring = System.Text.Encoding.ASCII.GetBytes(description[j]);
-								stream.Write(descrstring, 0, descrstring.Length);
-								if (j != description.Length - 1)
-									stream.WriteByte(0x0A); // new line
-								else
-									stream.WriteByte(0x00);
+								if (splitline[0] == MIID & newname != "")
+									splitline[1] = newname;
+								else if (splitline[0] == MHI & newdescription != "")
+									splitline[1] = newdescription.Replace(";", "~");
+								ecommonlines[k] = splitline[0] + "," + splitline[1];
 							}
-
 						}
 					}
 				}
+
+				alllines = ecommonlines.ToArray();
+				StreamWriter writer = new StreamWriter(tempfolder + "\\mess\\e_common.csv");
+				for (int k = 0; k < alllines.Length; k++)
+					writer.WriteLine(alllines[k]);
+				writer.Close();
+
+				
 			}
 		}
 
@@ -5453,6 +5892,7 @@ namespace FE10Randomizer_v0._1
 				ItemData.Write(IID, "Effectiveness", effective.Split(';'));
 				ItemData.Write(IID, "Bonuses", bonus.Split(';'));
 			}
+
 			// change weapon ranks to be minimum D for sword/axe/lance/bow
 			ClassData.Write("JID_BLADEDUX", "Base_WeaponRank", "CD----------");
 			ClassData.Write("JID_BLADEDUX_F", "Base_WeaponRank", "CD----------");
@@ -5462,6 +5902,12 @@ namespace FE10Randomizer_v0._1
 			// script changes, if not trial
 			if (!cbxTrialMode.Checked)
 			{
+				StreamReader reader = new StreamReader(tempfolder + "\\mess\\e_common.csv");
+				string[] alllines = reader.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+				reader.Close();
+				List<string> ecommonlines = new List<string>(alllines);
+
+
 				for (int i = 1; i < lines.Length; i++)
 				{
 					string[] split = lines[i].Split(',');
@@ -5469,49 +5915,32 @@ namespace FE10Randomizer_v0._1
 					string new_weapname = split[2];
 					// new description
 					string new_weapdesc = split[4];
-					int weap_nameloc, weap_descloc;
-					if (gameVersion == 2) // PAL iso
-					{
-						// location to write name in e_common.m
-						weap_nameloc = Convert.ToInt32(split[18]);
-						// location of description in e_common.m
-						weap_descloc = Convert.ToInt32(split[19]);
-					}
-					else
-					{
-						// location to write name in e_common.m
-						weap_nameloc = Convert.ToInt32(split[3]);
-						// location of description in e_common.m
-						weap_descloc = Convert.ToInt32(split[5]);
-					}
 
-					// change text for name and description
-					using (var stream = new System.IO.FileStream(dataLocation + "\\Mess\\e_common.m", System.IO.FileMode.Open,
-							System.IO.FileAccess.ReadWrite))
+					string MIID = IID.Replace("IID", "MIID");
+					string MHI = IID.Replace("IID", "MH_I");
+
+					if (new_weapname != "" | new_weapdesc != "")
 					{
-						if (weap_nameloc != 0)
+						for (int k = 0; k < ecommonlines.Count; k++)
 						{
-							stream.Position = weap_nameloc;
-							byte[] namestring = System.Text.Encoding.ASCII.GetBytes(new_weapname);
-							stream.Write(namestring, 0, namestring.Length);
-							stream.WriteByte(0x00);
-						}
-						if (weap_descloc != 0)
-						{
-							string[] description = new_weapdesc.Split(';');
-							stream.Position = weap_descloc;
-							for (int j = 0; j < description.Length; j++)
+							string[] splitline = ecommonlines[k].Split(',');
+							if (splitline.Length > 1)
 							{
-								byte[] descrstring = System.Text.Encoding.ASCII.GetBytes(description[j]);
-								stream.Write(descrstring, 0, descrstring.Length);
-								if (j != description.Length - 1)
-									stream.WriteByte(0x0A); // new line
-								else
-									stream.WriteByte(0x00);
+								if (splitline[0] == MIID & new_weapname != "")
+									splitline[1] = new_weapname;
+								else if (splitline[0] == MHI & new_weapdesc != "")
+									splitline[1] = new_weapdesc.Replace(";", "~");
+								ecommonlines[k] = splitline[0] + "," + splitline[1];
 							}
 						}
 					}
 				}
+
+				alllines = ecommonlines.ToArray();
+				StreamWriter writer = new StreamWriter(tempfolder + "\\mess\\e_common.csv");
+				for (int k = 0; k < alllines.Length; k++)
+					writer.WriteLine(alllines[k]);
+				writer.Close();
 			}
 		}
 
@@ -6055,6 +6484,8 @@ namespace FE10Randomizer_v0._1
 						{ } // incorrect tier
 						else if (((classes[x].Classtype_E == "L" & !(classtype == "L")) | (!(classes[x].Classtype_E == "L") & classtype == "L")) & cbxNoEnemyLaguz.Checked)
 						{ } // laguz and beorc must stay the same type
+						else if (classes[x].Classtype_E == "L" & chaptername.StartsWith("1"))
+						{ } // no laguz bosses in part 1
 						else if (classes[x].Name.Contains("dragon") & !chaptername.StartsWith("31") & !chaptername.StartsWith("4"))
 						{ } // no dragons until end of part 3
 						else if (classes[x].JID.Contains("SPIRIT") & !cbxSpirits.Checked)
@@ -6063,6 +6494,9 @@ namespace FE10Randomizer_v0._1
 						{ } // no spirits before tower
 						else if (classes[x].Name.Contains("thief") & chaptername.StartsWith("10"))
 						{ } // no early thieves
+						else if (!cbxRandTowerBosses.Checked & (editchar.PID == "PID_LEKAIN" | editchar.PID == "PID_RUBALE" | editchar.PID == "PID_DARKKNIGHT" |
+																editchar.PID == "PID_DHEGINHANSEA" | editchar.PID == "PID_CEPHERAN" | editchar.PID == "PID_ASTARTE"))
+						{ } // don't randomize tower bosses
 						else
 							possibleclasses.Add(x); // success
 					}
@@ -6075,6 +6509,10 @@ namespace FE10Randomizer_v0._1
 				{
 					if (characters[x].PID == editchar.PID)
 					{
+						if (!cbxRandTowerBosses.Checked & (editchar.PID == "PID_LEKAIN" | editchar.PID == "PID_RUBALE" | editchar.PID == "PID_DARKKNIGHT" |
+																editchar.PID == "PID_DHEGINHANSEA" | editchar.PID == "PID_CEPHERAN" | editchar.PID == "PID_ASTARTE"))
+							break; // don't change tower bosses
+
 						if (characters[x].NewClass != -1)
 							possibleclasses.Add(characters[x].NewClass);
 						break;
@@ -6082,14 +6520,14 @@ namespace FE10Randomizer_v0._1
 				}
 			}
 			// t3 only
-			else if (tier == "4")
+			else if (tier == "4" & cbxTier3Enemies.Checked)
 			{
 				// go one class up from the t2 variant of the SP class
 				string name = JID.Split('_')[1];            // JID _ SWORDMASTER _ SP
 				for (int k = 0; k < classes.Length; k++)
 					if (classes[k].JID.Contains(name))      // JID_SWORDMASTER
 					{
-						if (classes[k].JID == "JID_SAINT")  // saint doesnt have a promotion
+						if (classes[k].JID == "JID_SAINT" | classes[k].JID == "JID_GODDESS")  // saint and goddess do not have promotions
 							possibleclasses.Add(k);
 						else
 							possibleclasses.Add(k + 1);     // JID_SWORDESCHATOS
@@ -6109,6 +6547,14 @@ namespace FE10Randomizer_v0._1
 			// modify ai
 			if (newclass != -1)
 			{
+				// modify transstate of new laguz
+				if (classtype != "L" & classes[newclass].Classtype_E == "L")
+				{
+					// sets gauge to a half-filled; bosses will not lower/raise in gauge
+					editchar.TransState = 15;
+				}
+
+
 				string[] ai = editchar.AI;
 				// non healer turned into healer
 				if (classtype != "H" & classes[newclass].Classtype_E == "H" & (tier == "1" | tier == "2"))
@@ -6187,9 +6633,10 @@ namespace FE10Randomizer_v0._1
 									bool issiege = split[0] == "IID_METEOR" | split[0] == "IID_BLIZZARD" | split[0] == "IID_THUNDERSTORM" | split[0] == "IID_PURGE" | split[0] == "IID_FENRIR";
 									if (weapontypes[j % 2] != split[1])
 									{ } // different weapon type
-									else if (editchar.PID == "PID_IZCA" | editchar.PID == "PID_LEKAIN" | editchar.PID == "PID_RUBALE")
+									else if (editchar.PID == "PID_IZCA" | editchar.PID == "PID_LEKAIN" | editchar.PID == "PID_RUBALE" | editchar.PID == "PID_DARKKNIGHT" |
+											 editchar.PID == "PID_CEPHERAN" | editchar.PID == "PID_ASTARTE")
 									{
-										// izuka, lekain, levail have SS weapon
+										// izuka, lekain, levail, and other tower bosses have SS weapon
 										if (split[2] == "" & split[3] == "T")
 											possibleweapons.Add(split[0]);
 									}
@@ -6544,7 +6991,12 @@ namespace FE10Randomizer_v0._1
 					CharacterData.Write(characters[i].PID, "Authority", authority[characters[i].NewRecr]);
 					CharacterData.Write(characters[i].PID, "Growths", growths[characters[i].NewRecr]);
 					if (!cbxRecrVanillaClass.Checked)
+					{
+						// don't change animations if tower boss is not changing classes
+						if(cbxRandTowerBosses.Checked | (characters[i].Name != "lekain" & characters[i].Name  != "levail" & characters[i].Name != "blackknight" &
+														 characters[i].Name != "dheginsea" & characters[i].Name != "ashera"))
 						CharacterData.Write(characters[i].PID, "Animations", animations[characters[i].NewRecr]);
+					}
 
 					CharacterData.Write(characters[i].PID, "FID", FID[characters[i].NewRecr]);
 				}
@@ -6563,10 +7015,7 @@ namespace FE10Randomizer_v0._1
 			int totalchars = 72;
 			if (cbxEnemyRecruit.Checked)
 			{
-				if (cbxClassRand.Checked | cbxClassSwap.Checked | cbxRecrVanillaClass.Checked)
-					totalchars = 86;
-				else
-					totalchars = 84;
+				totalchars = 86;
 			}
 
 			int[,] charBaseOrder = new int[totalchars, 6];
@@ -6699,6 +7148,7 @@ namespace FE10Randomizer_v0._1
 								}
 							}
 							bool isboss = false;
+							bool isRecrBoss = false;
 							StreamReader dataReader = new StreamReader(file + "\\assets\\bosslist.csv");
 							string[] bosspids = dataReader.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 							dataReader.Close();
@@ -6711,6 +7161,22 @@ namespace FE10Randomizer_v0._1
 									break;
 								}
 							}
+							// check if boss is a character that is in the random recruitment pool
+							if(isboss)
+							{
+								int endboss = 81;
+								if (cbxRandTowerBosses.Checked)
+									endboss = 86;
+								for (int k = 72; k < endboss; k++)
+								{
+									if (disposchars[j].PID == characters[k].PID)
+									{
+										isRecrBoss = true;
+										break;
+									}
+								}
+							}
+
 							if (!isboss)
 							{
 								bool generic = false;
@@ -6751,17 +7217,17 @@ namespace FE10Randomizer_v0._1
 							else
 							{
 								// change class and weapons
-								if (cbxRandBosses.Checked | (cbxRandRecr.Checked & cbxEnemyRecruit.Checked) | (cbxTier3Enemies.Checked & chapters[i].StartsWith("4")))
+								if (cbxRandBosses.Checked | (cbxRandRecr.Checked & cbxEnemyRecruit.Checked & isRecrBoss & !cbxRecrVanillaClass.Checked) | (cbxTier3Enemies.Checked & chapters[i].StartsWith("4")))
 									disposchars[j] = chooseBossClass(disposchars[j], chapters[i]);
 								// change weapons
-								if (cbxRandBosses.Checked | cbxEnemWeaps.Checked)
-									disposchars[j].Weapons = chooseEnemyWeapons(disposchars[j], chapters[i], true);
+								if (cbxRandBosses.Checked | (cbxRandRecr.Checked & cbxEnemyRecruit.Checked & isRecrBoss & !cbxRecrVanillaClass.Checked) | cbxEnemWeaps.Checked)
+									disposchars[j].Weapons = chooseEnemyWeapons(disposchars[j], chapters[i], isboss);
 								// dropped items
 								if (cbxEnemDrops.Checked | cbxBossBonusDrop.Checked)
 									disposchars[j].Items = chooseEnemyDrops(disposchars[j], isboss);
 								// skills
 								if (cbxEnemySkills.Checked | cbxBossSkills.Checked)
-									disposchars[j].Skills = chooseEnemySkills(disposchars[j], true);
+									disposchars[j].Skills = chooseEnemySkills(disposchars[j], isboss);
 
 								chapterenemyoutput += EnemyOutputLog(disposchars[j]);
 							}
@@ -7217,13 +7683,54 @@ namespace FE10Randomizer_v0._1
 			textBox1.Text = "Modifying FE10Data File";
 			Application.DoEvents();
 
-			// if enemy classes are randomized, add growth rates to Light Mage to make her class scale with level
+			// if enemy classes are randomized, add growth rates classes without them so the enemies properly scaled with level
 			if (cbxRandEnemy.Checked | cbxRandAllies.Checked | cbxRandBosses.Checked)
 			{
-				int[] miccgrowths = new int[8] { 40, 15, 60, 40, 35, 60, 20, 70 };
-				ClassData.Write("JID_LIGHTMAGE", "Growths", miccgrowths);
-				ClassData.Write("JID_LIGHTSAGE", "Growths", miccgrowths);
-				ClassData.Write("JID_SHAMAN", "Growths", miccgrowths);
+				System.IO.StreamReader dataReader;
+				dataReader = new System.IO.StreamReader(file + "\\assets\\EnemyClassGrowths.csv");
+
+				string[] alllines = dataReader.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+				dataReader.Close();
+
+				for (int i = 0; i < alllines.Length; i++)
+				{
+					string[] splitline = alllines[i].Split(',');
+					string jidname = splitline[0];
+					int[] growths = new int[8];
+					for (int j = 0; j < 8; j++)
+						growths[j] = Convert.ToInt32(splitline[j + 1]);
+
+					ClassData.Write(jidname, "Growths", growths);
+				}
+
+				//int[] miccgrowths = new int[8] { 40, 15, 60, 40, 35, 60, 20, 70 };
+				//ClassData.Write("JID_LIGHTMAGE", "Growths", miccgrowths);
+				//ClassData.Write("JID_LIGHTSAGE", "Growths", miccgrowths);
+				//ClassData.Write("JID_SHAMAN", "Growths", miccgrowths);
+			}
+
+			// add some skills to order incarnate if anybody can change into it
+			if (classeschanged | cbxRandEnemy.Checked | cbxRandAllies.Checked | cbxRandBosses.Checked | (cbxRandRecr.Checked & cbxEnemyRecruit.Checked))
+			{
+				List<string> godskills = ClassData.ReadStringArray("JID_GODDESS", "Skills").ToList<string>();
+				List<string> godtypes = ClassData.ReadStringArray("JID_GODDESS", "Class_Types").ToList<string>();
+
+				godskills.Add("SID_AURORAL");
+				godtypes.Add("SFXC_HUMAN");
+				godtypes.Add("SFXC_MAGE");
+
+				ClassData.Write("JID_GODDESS", "Skills", godskills.ToArray());
+				ClassData.Write("JID_GODDESS", "Class_Types", godtypes.ToArray());
+				ClassData.Write("JID_GODDESS", "MOV", 6);
+				
+			}
+
+			// if enemy classes are randomized, and laguz can turn into beorc units, remove the base stat decreases from chapter 1-4 laguz
+			if (cbxRandEnemy.Checked & !cbxNoEnemyLaguz.Checked)
+			{
+				int[] nullbases = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
+				CharacterData.Write("PID_GOON_CAT", "Bases", nullbases);
+				CharacterData.Write("PID_GOON_TIGER", "Bases", nullbases);
 			}
 
 			// change ranged type from sword to white breath
@@ -7556,12 +8063,15 @@ namespace FE10Randomizer_v0._1
 				}
 			}
 
-			// give cymbeline a cost
+			// give cymbeline and matrona a cost
 			if (cbxRandShop.Checked | cbxBargains.Checked | cbxForge.Checked)
+			{
 				ItemData.Write("IID_CYMBELINE", "Cost/Use", 200);
+				ItemData.Write("IID_MATRONA", "Cost/Use", 7500);
+			}
 
 			// some weapon changes due to class/shop/item randomization
-			if (classeschanged | cbxRandShop.Checked | cbxEventItems.Checked | cbxGMweaps.Checked)
+			if (classeschanged | cbxRandShop.Checked | cbxEventItems.Checked | cbxGMweaps.Checked | cbxBonusItems.Checked)
 			{
 				// amiti / ragnell / staves / rudol gem are not locked to unit
 				string[] weapons = new string[6] { "IID_AMITE", "IID_RAGNELL", "IID_ELSLEEP", "IID_ELSILENCE", "IID_REWARP", "IID_RUDOLGEM" };
@@ -7824,7 +8334,7 @@ namespace FE10Randomizer_v0._1
 				}
 			}
 			// blackwave is tied to PID kurth and dheg, need to change to JID tied
-			else if (!cbxUniversalSkills.Checked)
+			else if (!cbxUniversalSkills.Checked & classeschanged)
 			{
 				string[] newcond = new string[8] { "0", "JID_DRAGONKING", "0", "JID_DRAGONPRINCE", "0", "JID_BLACKDRAGON", "0", "JID_BLACKDRAGON_KU" };
 				SkillData.Write("SID_BLACKWAVE", "Condition_2", newcond);
@@ -8126,7 +8636,7 @@ namespace FE10Randomizer_v0._1
 			// script files still need to be changed elsewhere in the code
 			if (cbxWinCon.Checked)
 			{
-				string[] mapnames = new string[6] { "C0401", "C0402", "C0403", "C0404", "C0405", "C0407a" };
+				string[] mapnames = new string[8] { "C0401", "C0401a", "C0401b", "C0402", "C0403", "C0404", "C0405", "C0407a" };
 
 				string defeatboss = MapData.ReadStringArray("C0202", "Objective_H")[0];
 				string seizemap = MapData.ReadStringArray("C0111", "Objective_H")[0];
@@ -8217,6 +8727,9 @@ namespace FE10Randomizer_v0._1
 				string[] filelines = tempread.ReadToEnd().Split('\n');//new string[1] { Environment.NewLine }, StringSplitOptions.None);
 				tempread.Close();
 
+				// hidden item locations
+				List<string[]> hiddenitems = new List<string[]>();
+
 				// set up edited lines
 				List<string> outscriptlines = new List<string>();
 
@@ -8226,6 +8739,30 @@ namespace FE10Randomizer_v0._1
 					string templine = filelines[y];
 					// if this is false, the line will be deleted at the end of the iteration
 					bool saveline = true;
+
+					// puts shiny on hidden items
+					if (true)
+					{
+						// if hidden item, save location
+						if (templine.Contains("GetRndTreasure"))
+						{
+							string[] splitstring = filelines[y - 1].Split(',');
+							hiddenitems.Add(new string[2] { splitstring[0].Split('(')[1], splitstring[1] });
+						}
+						// add shiny function
+						if ((templine.Contains("MapLoad") & !templine.Contains("EventMapLoad") & hiddenitems.Count > 0) |
+							templine.Contains("MapInfoShow();") & scriptname.Contains("0105")) // 1_5 doesn't have mapload for some reason??
+						{
+							// save MapLoad line, then set to not save later
+							outscriptlines.Add(templine);
+							saveline = false;
+							// add shiny function for each hidden item
+							for (int u = 0; u < hiddenitems.Count; u++)
+							{
+								outscriptlines.Add("    AddTT(" + hiddenitems[u][0] + "," + hiddenitems[u][1] + ", 21, 0, 0, 0);");
+							}
+						}
+					}
 
 					// changes to prevent laguz from transforming if they are no longer laguz and also softlocks
 					if (classeschanged | cbxChooseElincia.Checked | cbxChooseIke.Checked | cbxChooseMic.Checked)
@@ -8273,7 +8810,7 @@ namespace FE10Randomizer_v0._1
 					// remove 3-4 skrimir fight
 					if (classeschanged | cbxChooseElincia.Checked | cbxChooseIke.Checked | cbxChooseMic.Checked)
 					{
-						if (scriptname.Contains("0305") & templine.Contains("NetuzoBattle"))
+						if (scriptname.Contains("0305") & templine.Contains("Netuzo"))
 							saveline = false;
 					}
 
@@ -8333,6 +8870,9 @@ namespace FE10Randomizer_v0._1
 									saveline = false;
 
 							}
+							// aran has a unique script for his gameover in 1-3
+							else if (filelines[y - 2].Contains("PID_BRAD") & scriptname.Contains("0104") & filelines[y + 1].Contains("DIE"))
+								saveline = false;
 						}
 					}
 
@@ -8341,8 +8881,8 @@ namespace FE10Randomizer_v0._1
 					{
 						if (scriptname.Contains("0407e") & templine.Contains("UnitGetEquipWepI"))
 						{
-							string[] splits = templine.Split(new string[1] { "PID_IKE" }, StringSplitOptions.None);
-							templine = splits[0] + "PID_IKE\"))) {";
+							string[] splits = templine.Split(new string[1] { "UnitGetByPID(" }, StringSplitOptions.None);
+							templine = splits[0] + "v1)) {";
 						}
 					}
 
@@ -8496,207 +9036,212 @@ namespace FE10Randomizer_v0._1
 			textBox1.Text = "Modifying Text";
 			Application.DoEvents();
 
-			using (var stream = new System.IO.FileStream(dataLocation + "\\Mess\\e_common.m", System.IO.FileMode.Open,
-						System.IO.FileAccess.ReadWrite))
+			// e_common.m
+			StreamReader reader = new StreamReader(tempfolder + "\\mess\\e_common.csv");
+			string[] alllines = reader.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			reader.Close();
+
+			string[] towerunitmpids = new string[16];
+			// prepare tower unit names
+			if (cbxTowerUnits.Checked)
 			{
-				// change description of holy crown
-				if (characters[37].NewRecr != -1) // character replacing mist
+				// standard required units - ike, micaiah, sothe, sanaki, kurthnaga, ena
+				int[] towerInts = new int[16] { 34, 0, 5, 54, 63, 64, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+
+				int x = 0;
+				for (int k = 4; k < 16; k++)
 				{
-					if (gameVersion == 2) // PAL iso
-						stream.Position = 56121;
+					if (!cbxKurthEna.Checked & k < 6)
+					{ }
 					else
-						stream.Position = 52801;
-
-					string mistname = characters[characters[37].NewRecr].Name;
-					mistname = mistname[0].ToString().ToUpper() + mistname.Substring(1) + ".";
-					byte[] mistnamebytes = System.Text.Encoding.ASCII.GetBytes(mistname);
-					stream.Write(mistnamebytes, 0, mistname.Length);
-					stream.WriteByte(0x00);
-				}
-
-				// change name and description of IID_TROOP
-				if (cbxFormshift.Checked)
-				{
-					string scrollname = "Royal Scroll";
-					string description = "Allows you to acquire Formshift at base";
-
-					if (gameVersion == 2) // PAL iso
-						stream.Position = 9892;
-					else
-						stream.Position = 9856;
-					byte[] stringbytes = System.Text.Encoding.ASCII.GetBytes(scrollname);
-					stream.Write(stringbytes, 0, scrollname.Length);
-					stream.WriteByte(0x00);
-
-					if (gameVersion == 2) // PAL iso
-						stream.Position = 61760;
-					else
-						stream.Position = 58440;
-					byte[] descripbyte = System.Text.Encoding.ASCII.GetBytes(description);
-					stream.Write(descripbyte, 0, description.Length);
-				}
-
-				// saves the new modifiers of random stat boosters as their descriptions
-				if (cbxStatBooster.Checked)
-				{
-					string[] statboosters = new string[8] { "IID_ANGELROBE", "IID_ENERGYDROP", "IID_SPIRITPOWDER", "IID_SECRETBOOK",
-														"IID_SPEEDWING", "IID_GODDESSICON", "IID_DRAGONSHIELD", "IID_TALISMAN" };
-					int[] usetext = new int[statboosters.Length];
-					int[] desctext = new int[statboosters.Length];
-
-					string line;
-					string[] values;
-
-					System.IO.StreamReader dataReader = new System.IO.StreamReader(file + "\\assets\\StatBoosters.csv");
-					// skip new line
-					line = dataReader.ReadLine();
-					// read lines
-					for (int i = 0; i < statboosters.Length; i++)
 					{
-						line = dataReader.ReadLine();
-						values = line.Split(',');
+						towerInts[k] = towerUnits[x];
+						x++;
+					}
+				}
+				for (int k = 0; k < 16; k++)
+					towerunitmpids[k] = CharacterData.ReadString(characters[towerInts[k]].PID, "MPID");
+			}
 
-						if (gameVersion != 2)
+			for (int i = 0; i < alllines.Length; i++)
+			{
+				if (alllines[i] != "")
+				{
+					string pointername = alllines[i].Split(',')[0];
+					string outtext = alllines[i].Split(',')[1];
+
+					bool isTowermpid = false;
+					if (cbxTowerUnits.Checked & pointername.StartsWith("MPID_"))
+					{
+						for (int k = 0; k < 16; k++)
+							if (pointername == towerunitmpids[k])
+								isTowermpid = true;
+					}
+
+					// change description of holy crown
+					if (pointername == "MH_I_HOLYCROWN")
+					{
+						if (characters[37].NewRecr != -1) // character replacing mist
 						{
-							usetext[i] = Convert.ToInt32(values[2]);
-							desctext[i] = Convert.ToInt32(values[4]);
-						}
-						else
-						{
-							usetext[i] = Convert.ToInt32(values[3]);
-							desctext[i] = Convert.ToInt32(values[5]);
+							string mistname = characters[characters[37].NewRecr].Name;
+							mistname = mistname[0].ToString().ToUpper() + mistname.Substring(1);
+							outtext = outtext.Replace("Mist", mistname);
 						}
 					}
-					dataReader.Close();
 
-					// loop through each statbooster
-					for (int i = 0; i < statboosters.Length; i++)
+
+					// troop scroll -> formshift scroll
+					else if (pointername == "MIID_TROOP" & cbxFormshift.Checked)
+						outtext = "Royal Scroll";
+					else if (pointername == "MH_I_TROOP" & cbxFormshift.Checked)
+						outtext = "Allows you to acquire Formshift at base.";
+
+
+					// stat booster changes
+					else if ((pointername == "MH_I_ANGELROBE" | pointername == "MH_I_ENERGYDROP" | pointername == "MH_I_SPIRITPOWDER" | pointername == "MH_I_SECRETBOOK" |
+							  pointername == "MH_I_SPEEDWING" | pointername == "MH_I_GODDESSICON" | pointername == "MH_I_DRAGONSHIELD" | pointername == "MH_I_TALISMAN")
+							  & cbxStatBooster.Checked)
 					{
-						int[] statchanges = ItemData.ReadIntArray(statboosters[i], "Bonuses");
-
-						// modify use text
-						string outstring = "Stats changed.";
-						byte[] outbytes = System.Text.Encoding.ASCII.GetBytes(outstring);
-						stream.Position = usetext[i];
-						stream.Write(outbytes, 0, outbytes.Length);
-						while (stream.ReadByte() != 0x00)
-						{
-							stream.Position -= 1;
-							stream.WriteByte(0x00);
-						}
-						// modify description text based off of stat changes
-						outstring = "";
+						string IID = pointername.Replace("MH_I", "IID");
+						int[] statchanges = ItemData.ReadIntArray(IID, "Bonuses");
+						outtext = "";
 						string[] statnames = new string[10] { "HP", "STR", "MAG", "SKL", "SPD", "LCK", "DEF", "RES", "MOV", "CON" };
 						for (int j = 0; j < statchanges.Length; j++)
 						{
 							if (statchanges[j] != 0)
 							{
-								if (outstring != "")
-									outstring += "; ";
-								outstring += statnames[j];
+								if (outtext != "")
+									outtext += "; ";
+								outtext += statnames[j];
 								if (statchanges[j] <= 127)
 								{
-									outstring += " +";
-									outstring += statchanges[j].ToString();
+									outtext += " +";
+									outtext += statchanges[j].ToString();
 								}
 								// negative
 								if (statchanges[j] > 127)
 								{
 									statchanges[j] -= 256;
-									outstring += " ";
-									outstring += statchanges[j].ToString();
+									outtext += " ";
+									outtext += statchanges[j].ToString();
 								}
 							}
 						}
-						byte[] outbytes2 = System.Text.Encoding.ASCII.GetBytes(outstring);
-						stream.Position = desctext[i];
-						stream.Write(outbytes2, 0, outbytes2.Length);
-						while (stream.ReadByte() != 0x00)
-						{
-							stream.Position -= 1;
-							stream.WriteByte(0x00);
-						}
 					}
-				}
-
-				// unused
-				if (aprilFools)
-				{
-					/*
-					using (var stream = new System.IO.FileStream(dataLocation + "\\Mess\\e_common.m", System.IO.FileMode.Open,
-							System.IO.FileAccess.ReadWrite))
+					else if ((pointername == "MUP_HP" | pointername == "MUP_STR" | pointername == "MUP_MPOW" | pointername == "MUP_TECH" | pointername == "MUP_QUICK" |
+							  pointername == "MUP_LUCK" | pointername == "MUP_DEF" | pointername == "MUP_MDEF") & cbxStatBooster.Checked)
 					{
-						string camilla = "Camilla";
-						string desc_camilla = "She's your sister, pervert.";
-						if (gameVersion == 2) // PAL iso
-							stream.Position = 3508;
-						else
-							stream.Position = 3472;
-						byte[] stringbytes = System.Text.Encoding.ASCII.GetBytes(camilla);
-						stream.Write(stringbytes, 0, camilla.Length);
-						stream.WriteByte(0x00);
-
-						string bonk = "Bonk";
-						if (gameVersion == 2) // PAL iso
-							stream.Position = 8728;
-						else
-							stream.Position = 8684;
-						byte[] descripbyte = System.Text.Encoding.ASCII.GetBytes(bonk);
-						while (stream.ReadByte() != 0x4A)
-						{
-							stream.Position -= 1;
-							stream.Write(descripbyte, 0, bonk.Length);
-							stream.WriteByte(0x00);
-							stream.Position += 3;
-						}
-
-						string police = "Horny Police";
-						if (gameVersion == 2) // PAL iso
-							stream.Position = 7020;
-						else
-							stream.Position = 6984;
-						byte[] classbytes = System.Text.Encoding.ASCII.GetBytes(police);
-						stream.Write(classbytes, 0, police.Length);
-						stream.WriteByte(0x00);
-
+						outtext = "Stats increased.";
 					}
-					*/
+
+
+					// color name for units that are tower selected
+					else if (cbxTowerUnits.Checked & isTowermpid)
+					{
+						outtext = "#C09" + outtext;
+					}
+
+
+					alllines[i] = pointername + "," + outtext;
+
 				}
 
 			}
 
-			// heron changes - changes what names pop up when choosen the heron for the tower
-			if (classeschanged)
+			StreamWriter writer = new StreamWriter(tempfolder + "\\mess\\e_common.csv");
+			for (int i = 0; i < alllines.Length; i++)
+				writer.WriteLine(alllines[i]);
+			writer.Close();
+
+			// unused
+			if (aprilFools)
 			{
-				using (var stream = new System.IO.FileStream(dataLocation + "\\Mess\\e_c0407a.m", System.IO.FileMode.Open,
+				/*
+				using (var stream = new System.IO.FileStream(dataLocation + "\\Mess\\e_common.m", System.IO.FileMode.Open,
 						System.IO.FileAccess.ReadWrite))
 				{
-					for (int i = 0; i < characters.Length; i++)
+					string camilla = "Camilla";
+					string desc_camilla = "She's your sister, pervert.";
+					if (gameVersion == 2) // PAL iso
+						stream.Position = 3508;
+					else
+						stream.Position = 3472;
+					byte[] stringbytes = System.Text.Encoding.ASCII.GetBytes(camilla);
+					stream.Write(stringbytes, 0, camilla.Length);
+					stream.WriteByte(0x00);
+
+					string bonk = "Bonk";
+					if (gameVersion == 2) // PAL iso
+						stream.Position = 8728;
+					else
+						stream.Position = 8684;
+					byte[] descripbyte = System.Text.Encoding.ASCII.GetBytes(bonk);
+					while (stream.ReadByte() != 0x4A)
 					{
-						int newclass = characters[i].NewClass;
-						if (newclass > 92 & newclass < 96) // is a heron
-						{
-							string heronname = characters[i].Name;
-							if (cbxRandRecr.Checked == true)
-								heronname = characters[characters[i].NewRecr].Name;
-							if (heronname.Length > 6)
-								heronname = heronname.Substring(0, 6);
-							byte[] heronbytes = System.Text.Encoding.ASCII.GetBytes(heronname);
-
-
-							if (newclass == 93) // first heron is rafiel
-								stream.Position = 6768;
-							else if (newclass == 94) // second is leanne
-								stream.Position = 6784;
-							else // reyson
-								stream.Position = 6776;
-							for (int j = 0; j < heronbytes.Length; j++)
-								stream.WriteByte(heronbytes[j]);
-							stream.WriteByte(0x00);
-						}
+						stream.Position -= 1;
+						stream.Write(descripbyte, 0, bonk.Length);
+						stream.WriteByte(0x00);
+						stream.Position += 3;
 					}
+
+					string police = "Horny Police";
+					if (gameVersion == 2) // PAL iso
+						stream.Position = 7020;
+					else
+						stream.Position = 6984;
+					byte[] classbytes = System.Text.Encoding.ASCII.GetBytes(police);
+					stream.Write(classbytes, 0, police.Length);
+					stream.WriteByte(0x00);
+
+				}
+				*/
+			}
+
+
+			// e_c0407a.m
+			reader = new StreamReader(tempfolder + "\\mess\\e_c0407a.csv");
+			alllines = reader.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			reader.Close();
+
+			string[] heronname = new string[3] { "Rafiel", "Leanne", "Reyson" };
+			for (int i = 0; i < characters.Length; i++)
+			{
+				int classname;
+				if (classeschanged)
+					classname = characters[i].NewClass;
+				else
+					classname = characters[i].VanillaClass;
+				if (classname > 92 & classname < 96) // is a heron
+				{
+					int value = classname - 93;
+					if (cbxRandRecr.Checked == true)
+						heronname[value] = characters[characters[i].NewRecr].Name;
+					else
+						heronname[value] = characters[i].Name;
+					heronname[value] = heronname[value].Substring(0,1).ToUpper() + heronname[value].Substring(1);
 				}
 			}
+
+			for (int i = 0; i < alllines.Length; i++)
+			{
+				string[] split = alllines[i].Split(',');
+				if (split.Length > 1)
+				{
+					if (split[0] == "MS_0407a_OP_08_02A_01")
+						split[1] = heronname[0];
+					else if (split[0] == "MS_0407a_OP_08_02C_01")
+						split[1] = heronname[1];
+					else if (split[0] == "MS_0407a_OP_08_02B_01")
+						split[1] = heronname[2];
+
+					alllines[i] = split[0] + "," + split[1];
+				}
+			}
+
+			writer = new StreamWriter(tempfolder + "\\mess\\e_c0407a.csv");
+			for (int i = 0; i < alllines.Length; i++)
+				writer.WriteLine(alllines[i]);
+			writer.Close();
 
 		}
 		private void MaindolModifications()
@@ -9014,7 +9559,6 @@ namespace FE10Randomizer_v0._1
 		// deletes temp files used in any previous randomization process
 		private void DeleteTemp()
 		{
-			string tempfolder = file + "\\assets\\temp\\";
 			string[] allfiles = getRecursiveFiles(tempfolder);
 			foreach (string onefile in allfiles)
 			{
@@ -9028,8 +9572,6 @@ namespace FE10Randomizer_v0._1
 		{
 			textBox1.Text = "Compressing FE10Data";
 			Application.DoEvents();
-
-			string tempfolder = file + "\\assets\\temp";
 
 			string compressed = dataLocation + "\\FE10Data.cms";
 			string decompressed = dataLocation + "\\FE10Data.cms.decompressed";
@@ -9089,6 +9631,78 @@ namespace FE10Randomizer_v0._1
 			FE10ExtractCompress.CompressShopfile(shopfile, csvfile);
 			shopfile = dataLocation + "\\Shop\\shopitem_m.bin";
 			FE10ExtractCompress.CompressShopfile(shopfile, csvfile);
+
+			if (cbxPaletteSwap.Checked)
+			{
+				// map and battle animations back to files
+				BattleUnitData.Save();
+				MapAnimData.Save();
+
+				// compress csv back to data file
+				string decompressedanim = dataLocation + "\\FE10Anim.cms.decompressed";
+				string compressedanim = dataLocation + "\\FE10Anim.cms";
+				string decompressedbattle = dataLocation + "\\FE10Battle.cms.decompressed";
+				string compressedbattle = dataLocation + "\\FE10Battle.cms";
+
+				FE10ExtractCompress.CompressFE10Anim(decompressedanim, tempfolder + "\\anim");
+				FE10ExtractCompress.CompressFE10Battle(decompressedbattle, tempfolder + "\\battle");
+
+				//FE10ExtractCompress.ExtractFE10Anim(decompressedanim, tempfolder + "\\anim_outtest");
+				//FE10ExtractCompress.ExtractFE10Battle(decompressedbattle, tempfolder + "\\battle_outtest");
+
+				// compress FE10Anim.cms.decompressed back to cms file
+				decompressedbytes = new List<byte>();
+				using (var stream = new System.IO.FileStream(decompressedanim, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+				{
+					// read all decompressed bytes
+					stream.Position = 0;
+					for (int i = 0; i < stream.Length; i++)
+					{
+						decompressedbytes.Add((byte)stream.ReadByte());
+					}
+				}
+				// compress
+				compressedbytes = LZ77.Compress(decompressedbytes.ToArray());
+				// save all compressed bytes
+				using (var stream = new System.IO.FileStream(compressedanim, System.IO.FileMode.Create,
+						System.IO.FileAccess.ReadWrite))
+				{
+					stream.Position = 0;
+					foreach (byte data in compressedbytes)
+						stream.WriteByte(data);
+				}
+
+				// compress FE10Battle.cms.decompressed back to cms file
+				if (true)
+				{
+					decompressedbytes = new List<byte>();
+					using (var stream = new System.IO.FileStream(decompressedbattle, System.IO.FileMode.Open,
+							System.IO.FileAccess.ReadWrite))
+					{
+						// read all decompressed bytes
+						stream.Position = 0;
+						for (int i = 0; i < stream.Length; i++)
+						{
+							decompressedbytes.Add((byte)stream.ReadByte());
+						}
+					}
+					// compress
+					compressedbytes = LZ77.Compress(decompressedbytes.ToArray());
+					// save all compressed bytes
+					using (var stream = new System.IO.FileStream(compressedbattle, System.IO.FileMode.Create,
+							System.IO.FileAccess.ReadWrite))
+					{
+						stream.Position = 0;
+						foreach (byte data in compressedbytes)
+							stream.WriteByte(data);
+					}
+				}
+			}
+
+			// mess files
+			FE10ExtractCompress.CompressMessFile(dataLocation + "\\Mess\\e_common.m", tempfolder + "\\mess\\e_common.csv");
+			FE10ExtractCompress.CompressMessFile(dataLocation + "\\Mess\\e_c0407a.m", tempfolder + "\\mess\\e_c0407a.csv");
 		}
 
 		// compile scripts with Exalt
@@ -9151,7 +9765,7 @@ namespace FE10Randomizer_v0._1
 														   cbxStatBoostMult, cbxNegGrowths, cbxStoryPromo, cbxAuthority, cbxSkillCap, cbxMicClass, cbxIkeClass,
 															cbxHeronSpread, cbxSkillSetNum, cbxWeapPatch,cbxDragonCanto,cbxElinciaClass,cbxSkillVanilla,cbxSkillSetNum,
 															cbxChooseElincia,cbxRecrVanillaClass,cbxBonusItems,cbxEnemBonusDrop,cbx1to1EnemyRand,cbxRandAllies,cbxPart2PCs,
-															cbxPart2Allies,cbxLetheMordy, cbxUniversalSkills, cbxBossBonusDrop,cbxMistCrown,cbxDruidCrown};
+															cbxPart2Allies,cbxLetheMordy, cbxUniversalSkills, cbxBossBonusDrop,cbxMistCrown,cbxDruidCrown, cbxPaletteSwap,cbxRandTowerBosses};
 			System.Windows.Forms.ComboBox[] comboBoxes = { comboClassOptions, comboIke, comboMicc, comboIkeClass, comboMicClass, comboElinciaClass, comboElincia };
 			System.Windows.Forms.NumericUpDown[] numericUpDowns = { numericACCdev, numericACCmax, numericACCmin, numericATK, numericBaseRand,
 																numericBaseShuffle, numericBossStats, numericCRTdev, numericCRTmax, numericCRTmin,
@@ -9177,7 +9791,7 @@ namespace FE10Randomizer_v0._1
 																radioMages0, radioMages1, radioMages2, radioMages3, radioMages4, radioMages5};
 
 			// convert choices into strings
-			string settingstring = "3.3.0,";
+			string settingstring = "3.4.1,";
 			for (int i = 0; i < numericUpDowns.Length; i++)
 			{
 				settingstring += numericUpDowns[i].Value.ToString() + ",";
@@ -9306,7 +9920,7 @@ namespace FE10Randomizer_v0._1
 
 				// random recruit
 				if ((cbxRandRecr.Checked | (characters[charNum].NewRecr != -1 & characters[charNum].NewRecr != charNum)) & 
-					(isplayerchar | (cbxEnemyRecruit.Checked & charNum < 83) | cbxEnemyRecruit.Checked & cbxClassRand.Checked))
+					(isplayerchar | (cbxEnemyRecruit.Checked)))
 				{
 					string recrname = characters[characters[charNum].NewRecr].Name;
 					outlogtext += "<h4>Character</h4><img src=\"assets/logpics/" + recrname +
@@ -9351,11 +9965,11 @@ namespace FE10Randomizer_v0._1
 
 					// class bases
 					string JID;
-					JID = characters[charNum].JID;
-					//if (classeschanged)
-						//JID = classes[characters[charNum].NewClass].JID;
-					//else
-						//JID = classes[characters[charNum].VanillaClass].JID;
+					
+					if (classeschanged)
+						JID = classes[characters[charNum].NewClass].JID;
+					else
+						JID = characters[charNum].JID; //JID = classes[characters[charNum].VanillaClass].JID;
 					outlogtext += "<h4>Class Bases</h4><table><tr><th>HP</th><th>STR</th><th>MAG</th>" +
 						"<th>SKL</th><th>SPD</th><th>LCK</th><th>DEF</th><th>RES</th></tr><tr>";
 
@@ -9696,8 +10310,8 @@ namespace FE10Randomizer_v0._1
 			{
 				outlogtext += "<br><hr><br><h2 id=\"promo\">Promotion Lines</h2>";
 
-				outlogtext += htmlSpoilerButton("bargains");
-				outlogtext += "<div id=\"bargains\" style=\"display:none\">" + randPromoOutput;
+				outlogtext += htmlSpoilerButton("randpromos");
+				outlogtext += "<div id=\"randpromos\" style=\"display:none\">" + randPromoOutput;
 				outlogtext += "</div>";
 			}
 
@@ -9737,7 +10351,7 @@ namespace FE10Randomizer_v0._1
 			return (allfiles.ToArray());
 		}
 
-		private void ikeMicClassCombos()
+		private void ikeMicElinClassCombos()
 		{
 			if (cbxClassPatch.Checked == true)
 			{
@@ -9832,6 +10446,7 @@ namespace FE10Randomizer_v0._1
 			}
 			
 		}
+
 
 		// creates array with random values that add up to given total - used for shuffling
 		private int[] shuffler(int total, int number)
@@ -9995,35 +10610,7 @@ namespace FE10Randomizer_v0._1
 			if (cbxRandRecr.Checked == false)
 				cbxStoryPromo.Enabled = !cbxClassRand.Checked;
 
-			if (cbxEnemyRecruit.Checked == true)
-			{
-				if (cbxClassRand.Checked == true)
-				{
-					comboIke.Items.Add("blackknight");
-					comboIke.Items.Add("ashera");
-					comboMicc.Items.Add("blackknight");
-					comboMicc.Items.Add("ashera");
-					comboElincia.Items.Add("blackknight");
-					comboElincia.Items.Add("ashera");
-				}
-				else
-				{
-					if (comboIke.SelectedIndex >= 84)
-						comboIke.SelectedIndex = 34;
-					comboIke.Items.RemoveAt(84);
-					comboIke.Items.RemoveAt(84);
-					if (comboMicc.SelectedIndex >= 84)
-						comboMicc.SelectedIndex = 0;
-					comboMicc.Items.RemoveAt(84);
-					comboMicc.Items.RemoveAt(84);
-					if (comboElincia.SelectedIndex >= 84)
-						comboElincia.SelectedIndex = 18;
-					comboElincia.Items.RemoveAt(84);
-					comboElincia.Items.RemoveAt(84);
-				}
-			}
-
-			ikeMicClassCombos();
+			ikeMicElinClassCombos();
 		}
 
 		private void cbxGrowthRand_CheckedChanged(object sender, EventArgs e)
@@ -10227,62 +10814,6 @@ namespace FE10Randomizer_v0._1
 			if (cbxClassRand.Checked == false)
 				cbxStoryPromo.Enabled = !cbxRandRecr.Checked;
 
-			if (cbxEnemyRecruit.Checked & cbxRandRecr.Checked)
-			{
-				string[] enemies = { "jarod","ludveck","septimus","valtome","numida","izuka","hetzel",
-									"levail","lekain","zelgius","dheginsea","sephiram"};
-
-				for (int i = 0; i < enemies.Length; i++)
-				{
-					comboIke.Items.Add(enemies[i]);
-					comboMicc.Items.Add(enemies[i]);
-					comboElincia.Items.Add(enemies[i]);
-				}
-				if (cbxClassRand.Checked == true)
-				{
-					comboIke.Items.Add("blackknight");
-					comboIke.Items.Add("ashera");
-					comboMicc.Items.Add("blackknight");
-					comboMicc.Items.Add("ashera");
-					comboElincia.Items.Add("blackknight");
-					comboElincia.Items.Add("ashera");
-				}
-			}
-			else
-			{
-				if (comboIke.SelectedIndex >= 72)
-					comboIke.SelectedIndex = 34;
-				if (comboMicc.SelectedIndex >= 72)
-					comboMicc.SelectedIndex = 0;
-				if (comboElincia.SelectedIndex >= 72)
-					comboElincia.SelectedIndex = 18;
-
-				
-
-				for (int i = 0; i < 12; i++)
-				{
-					if (comboIke.Items.Count > 72)
-					{
-						comboIke.Items.RemoveAt(72);
-						comboMicc.Items.RemoveAt(72);
-						comboElincia.Items.RemoveAt(72);
-					}
-				}
-				if (cbxClassRand.Checked == true)
-				{
-					if (comboIke.Items.Count > 72)
-					{
-						comboIke.Items.RemoveAt(72);
-						comboIke.Items.RemoveAt(72);
-						comboMicc.Items.RemoveAt(72);
-						comboMicc.Items.RemoveAt(72);
-						comboElincia.Items.RemoveAt(72);
-						comboElincia.Items.RemoveAt(72);
-					}
-				}
-			}
-
-
 		}
 
 		private void numericGrowthCap_ValueChanged(object sender, EventArgs e)
@@ -10346,25 +10877,16 @@ namespace FE10Randomizer_v0._1
 
 		private void cbxEnemyRecruit_CheckedChanged(object sender, EventArgs e)
 		{
-			if (cbxEnemyRecruit.Checked & cbxRandRecr.Checked)
+			if (cbxEnemyRecruit.Checked)
 			{
 				string[] enemies = { "jarod","ludveck","septimus","valtome","numida","izuka","hetzel",
-									"levail","lekain","zelgius","dheginsea","sephiram"};
+									"levail","lekain","zelgius","dheginsea","sephiram","blackknight","ashera"};
 
 				for (int i = 0; i < enemies.Length; i++)
 				{
 					comboIke.Items.Add(enemies[i]);
 					comboMicc.Items.Add(enemies[i]);
 					comboElincia.Items.Add(enemies[i]);
-				}
-				if (cbxClassRand.Checked == true)
-				{
-					comboIke.Items.Add("blackknight");
-					comboIke.Items.Add("ashera");
-					comboMicc.Items.Add("blackknight");
-					comboMicc.Items.Add("ashera");
-					comboElincia.Items.Add("blackknight");
-					comboElincia.Items.Add("ashera");
 				}
 			}
 			else
@@ -10376,34 +10898,15 @@ namespace FE10Randomizer_v0._1
 				if (comboElincia.SelectedIndex >= 72)
 					comboElincia.SelectedIndex = 18;
 
-				for (int i = 0; i < 12; i++)
+				while (comboIke.Items.Count > 72)
 				{
-					if (comboIke.Items.Count > 72)
-						comboIke.Items.RemoveAt(72);
-					if (comboMicc.Items.Count > 72)
-						comboMicc.Items.RemoveAt(72);
-					if (comboElincia.Items.Count > 72)
-						comboElincia.Items.RemoveAt(72);
-				}
-				if (cbxClassRand.Checked == true)
-				{
-					if (comboIke.Items.Count > 72)
-					{
-						comboIke.Items.RemoveAt(72);
-						comboIke.Items.RemoveAt(72);
-					}
-					if (comboMicc.Items.Count > 72)
-					{
-						comboMicc.Items.RemoveAt(72);
-						comboMicc.Items.RemoveAt(72);
-					}
-					if (comboElincia.Items.Count > 72)
-					{
-						comboElincia.Items.RemoveAt(72);
-						comboElincia.Items.RemoveAt(72);
-					}
+					comboIke.Items.RemoveAt(72);
+					comboMicc.Items.RemoveAt(72);
+					comboElincia.Items.RemoveAt(72);
 				}
 			}
+
+			cbxRandTowerBosses.Enabled = cbxEnemyRecruit.Checked;
 		}
 
 		private void cbxGaugeRand_CheckedChanged(object sender, EventArgs e)
@@ -10441,7 +10944,7 @@ namespace FE10Randomizer_v0._1
 				cbxStatCapDev.Checked = false;
 				cbxStatCapFlat.Checked = false;
 			}
-			ikeMicClassCombos();
+			ikeMicElinClassCombos();
 		}
 
 		private void cbxStatCapDev_CheckedChanged(object sender, EventArgs e)
@@ -10545,22 +11048,22 @@ namespace FE10Randomizer_v0._1
 
 		private void cbxClassPatch_CheckedChanged(object sender, EventArgs e)
 		{
-			ikeMicClassCombos();
+			ikeMicElinClassCombos();
 		}
 
 		private void cbxHorseParkour_CheckedChanged(object sender, EventArgs e)
 		{
-			ikeMicClassCombos();
+			ikeMicElinClassCombos();
 		}
 
 		private void cbxBKnerf_CheckedChanged(object sender, EventArgs e)
 		{
-			ikeMicClassCombos();
+			ikeMicElinClassCombos();
 		}
 
 		private void cbxBKfight_CheckedChanged(object sender, EventArgs e)
 		{
-			ikeMicClassCombos();
+			ikeMicElinClassCombos();
 		}
 
 		private void cbxLords_CheckedChanged(object sender, EventArgs e)
@@ -10622,6 +11125,21 @@ namespace FE10Randomizer_v0._1
 
 		}
 
+		private void cbxRandTowerBosses_CheckedChanged(object sender, EventArgs e)
+		{
+			cbxRandTowerBosses2.Checked = cbxRandTowerBosses.Checked;
+		}
+
+		private void cbxRandTowerBosses2_CheckedChanged(object sender, EventArgs e)
+		{
+			cbxRandTowerBosses.Checked = cbxRandTowerBosses2.Checked;
+		}
+
+		private void cbxRandBosses_CheckedChanged(object sender, EventArgs e)
+		{
+			cbxRandTowerBosses2.Enabled = cbxRandBosses.Checked;
+		}
+
 		private void cbxMicClass_CheckedChanged(object sender, EventArgs e)
 		{
 			if (cbxMicClass.Checked == true)
@@ -10679,7 +11197,7 @@ namespace FE10Randomizer_v0._1
 				}
 			}
 
-			ikeMicClassCombos();
+			ikeMicElinClassCombos();
 		}
 
 		private void cbxParagon_CheckedChanged(object sender, EventArgs e)
@@ -10706,6 +11224,7 @@ namespace FE10Randomizer_v0._1
 
 		// new data (randomized class, recruitment, etc)
 		public string NewRace, RecrRace, NewName;
+		public int VanillaAnimations;
 		public int NewClass, NewRecr, RecrInverse;
 		public int[] RecrClasses;
 
@@ -10725,12 +11244,14 @@ namespace FE10Randomizer_v0._1
 			PhysMag = split[10];
 			VanillaClass = Convert.ToInt32(split[11]);
 			JID = split[12];
+			VanillaAnimations = Convert.ToInt32(split[13]);
 
 			NewRecr = -1;
 			NewClass = -1;
 			RecrInverse = -1;
 			NewRace = Race;
 			NewName = Name;
+
 		}
 	}
 

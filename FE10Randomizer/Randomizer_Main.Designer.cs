@@ -160,6 +160,7 @@
 			this.cbxRandBosses = new System.Windows.Forms.CheckBox();
 			this.panelRecr = new System.Windows.Forms.Panel();
 			this.cbxRecrVanillaClass = new System.Windows.Forms.CheckBox();
+			this.cbxRandTowerBosses = new System.Windows.Forms.CheckBox();
 			this.comboMicc = new System.Windows.Forms.ComboBox();
 			this.cbxChooseMic = new System.Windows.Forms.CheckBox();
 			this.cbxTowerUnits = new System.Windows.Forms.CheckBox();
@@ -172,6 +173,7 @@
 			this.cbxThieves = new System.Windows.Forms.CheckBox();
 			this.cbxNoLaguz = new System.Windows.Forms.CheckBox();
 			this.cbxHerons = new System.Windows.Forms.CheckBox();
+			this.cbxPaletteSwap = new System.Windows.Forms.CheckBox();
 			this.panelClass = new System.Windows.Forms.Panel();
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.radioDragon5 = new System.Windows.Forms.RadioButton();
@@ -291,6 +293,7 @@
 			this.numStatBoostMax = new System.Windows.Forms.NumericUpDown();
 			this.cbxStatBooster = new System.Windows.Forms.CheckBox();
 			this.tabEnemies = new System.Windows.Forms.TabPage();
+			this.cbxRandTowerBosses2 = new System.Windows.Forms.CheckBox();
 			this.cbxRandAllies = new System.Windows.Forms.CheckBox();
 			this.cbxBossBonusDrop = new System.Windows.Forms.CheckBox();
 			this.cbxEnemBonusDrop = new System.Windows.Forms.CheckBox();
@@ -2308,7 +2311,7 @@
 			// cbxBuffBosses
 			// 
 			this.cbxBuffBosses.AutoSize = true;
-			this.cbxBuffBosses.Location = new System.Drawing.Point(185, 362);
+			this.cbxBuffBosses.Location = new System.Drawing.Point(185, 384);
 			this.cbxBuffBosses.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxBuffBosses.Name = "cbxBuffBosses";
 			this.cbxBuffBosses.Size = new System.Drawing.Size(123, 17);
@@ -2329,7 +2332,7 @@
 			// 
 			// numericBossStats
 			// 
-			this.numericBossStats.Location = new System.Drawing.Point(311, 362);
+			this.numericBossStats.Location = new System.Drawing.Point(311, 384);
 			this.numericBossStats.Margin = new System.Windows.Forms.Padding(2);
 			this.numericBossStats.Maximum = new decimal(new int[] {
             25,
@@ -2360,10 +2363,12 @@
 			this.cbxRandBosses.TabIndex = 42;
 			this.cbxRandBosses.Text = "Randomize Boss Classes";
 			this.cbxRandBosses.UseVisualStyleBackColor = true;
+			this.cbxRandBosses.CheckedChanged += new System.EventHandler(this.cbxRandBosses_CheckedChanged);
 			// 
 			// panelRecr
 			// 
 			this.panelRecr.Controls.Add(this.cbxRecrVanillaClass);
+			this.panelRecr.Controls.Add(this.cbxRandTowerBosses);
 			this.panelRecr.Controls.Add(this.cbxEnemyRecruit);
 			this.panelRecr.Enabled = false;
 			this.panelRecr.Location = new System.Drawing.Point(145, 52);
@@ -2375,7 +2380,7 @@
 			// cbxRecrVanillaClass
 			// 
 			this.cbxRecrVanillaClass.AutoSize = true;
-			this.cbxRecrVanillaClass.Location = new System.Drawing.Point(10, 24);
+			this.cbxRecrVanillaClass.Location = new System.Drawing.Point(10, 40);
 			this.cbxRecrVanillaClass.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxRecrVanillaClass.Name = "cbxRecrVanillaClass";
 			this.cbxRecrVanillaClass.Size = new System.Drawing.Size(124, 17);
@@ -2383,6 +2388,19 @@
 			this.cbxRecrVanillaClass.Text = "Keep Vanilla Classes";
 			this.cbxRecrVanillaClass.UseVisualStyleBackColor = true;
 			this.cbxRecrVanillaClass.CheckedChanged += new System.EventHandler(this.cbxRecrVanillaClass_CheckedChanged);
+			// 
+			// cbxRandTowerBosses
+			// 
+			this.cbxRandTowerBosses.AutoSize = true;
+			this.cbxRandTowerBosses.Enabled = false;
+			this.cbxRandTowerBosses.Location = new System.Drawing.Point(10, 21);
+			this.cbxRandTowerBosses.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxRandTowerBosses.Name = "cbxRandTowerBosses";
+			this.cbxRandTowerBosses.Size = new System.Drawing.Size(161, 17);
+			this.cbxRandTowerBosses.TabIndex = 37;
+			this.cbxRandTowerBosses.Text = "Change Tower Boss Classes";
+			this.cbxRandTowerBosses.UseVisualStyleBackColor = true;
+			this.cbxRandTowerBosses.CheckedChanged += new System.EventHandler(this.cbxRandTowerBosses_CheckedChanged);
 			// 
 			// comboMicc
 			// 
@@ -2550,16 +2568,17 @@
 			this.panelClass2.Controls.Add(this.cbxThieves);
 			this.panelClass2.Controls.Add(this.cbxNoLaguz);
 			this.panelClass2.Controls.Add(this.cbxHerons);
+			this.panelClass2.Controls.Add(this.cbxPaletteSwap);
 			this.panelClass2.Enabled = false;
 			this.panelClass2.Location = new System.Drawing.Point(359, 279);
 			this.panelClass2.Name = "panelClass2";
-			this.panelClass2.Size = new System.Drawing.Size(158, 132);
+			this.panelClass2.Size = new System.Drawing.Size(175, 132);
 			this.panelClass2.TabIndex = 67;
 			// 
 			// cbxHeronSpread
 			// 
 			this.cbxHeronSpread.AutoSize = true;
-			this.cbxHeronSpread.Location = new System.Drawing.Point(9, 103);
+			this.cbxHeronSpread.Location = new System.Drawing.Point(9, 93);
 			this.cbxHeronSpread.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxHeronSpread.Name = "cbxHeronSpread";
 			this.cbxHeronSpread.Size = new System.Drawing.Size(142, 17);
@@ -2570,7 +2589,7 @@
 			// cbxLords
 			// 
 			this.cbxLords.AutoSize = true;
-			this.cbxLords.Location = new System.Drawing.Point(9, 17);
+			this.cbxLords.Location = new System.Drawing.Point(9, 7);
 			this.cbxLords.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxLords.Name = "cbxLords";
 			this.cbxLords.Size = new System.Drawing.Size(136, 17);
@@ -2582,7 +2601,7 @@
 			// cbxThieves
 			// 
 			this.cbxThieves.AutoSize = true;
-			this.cbxThieves.Location = new System.Drawing.Point(9, 40);
+			this.cbxThieves.Location = new System.Drawing.Point(9, 30);
 			this.cbxThieves.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxThieves.Name = "cbxThieves";
 			this.cbxThieves.Size = new System.Drawing.Size(148, 17);
@@ -2593,7 +2612,7 @@
 			// cbxNoLaguz
 			// 
 			this.cbxNoLaguz.AutoSize = true;
-			this.cbxNoLaguz.Location = new System.Drawing.Point(9, 61);
+			this.cbxNoLaguz.Location = new System.Drawing.Point(9, 51);
 			this.cbxNoLaguz.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxNoLaguz.Name = "cbxNoLaguz";
 			this.cbxNoLaguz.Size = new System.Drawing.Size(126, 17);
@@ -2604,13 +2623,24 @@
 			// cbxHerons
 			// 
 			this.cbxHerons.AutoSize = true;
-			this.cbxHerons.Location = new System.Drawing.Point(9, 82);
+			this.cbxHerons.Location = new System.Drawing.Point(9, 72);
 			this.cbxHerons.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxHerons.Name = "cbxHerons";
 			this.cbxHerons.Size = new System.Drawing.Size(98, 17);
 			this.cbxHerons.TabIndex = 12;
 			this.cbxHerons.Text = "Include Herons";
 			this.cbxHerons.UseVisualStyleBackColor = true;
+			// 
+			// cbxPaletteSwap
+			// 
+			this.cbxPaletteSwap.AutoSize = true;
+			this.cbxPaletteSwap.Location = new System.Drawing.Point(8, 112);
+			this.cbxPaletteSwap.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxPaletteSwap.Name = "cbxPaletteSwap";
+			this.cbxPaletteSwap.Size = new System.Drawing.Size(153, 17);
+			this.cbxPaletteSwap.TabIndex = 37;
+			this.cbxPaletteSwap.Text = "Match Palette to Character";
+			this.cbxPaletteSwap.UseVisualStyleBackColor = true;
 			// 
 			// panelClass
 			// 
@@ -3495,7 +3525,9 @@
             "100 - queenwolf",
             "101 - hawkking",
             "102 - ravenking",
-            "103 - dragonking"});
+            "103 - dragonking",
+            "124 - blackknight",
+            "128 - orderincarnate"});
 			this.comboElinciaClass.Location = new System.Drawing.Point(215, 391);
 			this.comboElinciaClass.Margin = new System.Windows.Forms.Padding(2);
 			this.comboElinciaClass.Name = "comboElinciaClass";
@@ -4273,6 +4305,7 @@
 			// tabEnemies
 			// 
 			this.tabEnemies.Controls.Add(this.panelEnemy);
+			this.tabEnemies.Controls.Add(this.cbxRandTowerBosses2);
 			this.tabEnemies.Controls.Add(this.cbxRandAllies);
 			this.tabEnemies.Controls.Add(this.cbxRandEnemy);
 			this.tabEnemies.Controls.Add(this.label20);
@@ -4294,6 +4327,19 @@
 			this.tabEnemies.Text = "Enemies";
 			this.tabEnemies.UseVisualStyleBackColor = true;
 			// 
+			// cbxRandTowerBosses2
+			// 
+			this.cbxRandTowerBosses2.AutoSize = true;
+			this.cbxRandTowerBosses2.Enabled = false;
+			this.cbxRandTowerBosses2.Location = new System.Drawing.Point(210, 362);
+			this.cbxRandTowerBosses2.Margin = new System.Windows.Forms.Padding(2);
+			this.cbxRandTowerBosses2.Name = "cbxRandTowerBosses2";
+			this.cbxRandTowerBosses2.Size = new System.Drawing.Size(161, 17);
+			this.cbxRandTowerBosses2.TabIndex = 37;
+			this.cbxRandTowerBosses2.Text = "Change Tower Boss Classes";
+			this.cbxRandTowerBosses2.UseVisualStyleBackColor = true;
+			this.cbxRandTowerBosses2.CheckedChanged += new System.EventHandler(this.cbxRandTowerBosses2_CheckedChanged);
+			// 
 			// cbxRandAllies
 			// 
 			this.cbxRandAllies.AutoSize = true;
@@ -4309,7 +4355,7 @@
 			// cbxBossBonusDrop
 			// 
 			this.cbxBossBonusDrop.AutoSize = true;
-			this.cbxBossBonusDrop.Location = new System.Drawing.Point(185, 386);
+			this.cbxBossBonusDrop.Location = new System.Drawing.Point(185, 408);
 			this.cbxBossBonusDrop.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxBossBonusDrop.Name = "cbxBossBonusDrop";
 			this.cbxBossBonusDrop.Size = new System.Drawing.Size(146, 17);
@@ -5791,7 +5837,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "Randomizer_Main";
-			this.Text = "LordMewtwo\'s FE10 Randomizer v3.3.0 - 02/17/2023";
+			this.Text = "LordMewtwo\'s FE10 Randomizer v3.4.1 - 09/08/2023";
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericHP)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericSPD)).EndInit();
@@ -6315,6 +6361,9 @@
 		private System.Windows.Forms.CheckBox cbxBossBonusDrop;
 		private System.Windows.Forms.CheckBox cbxMistCrown;
 		private System.Windows.Forms.CheckBox cbxDruidCrown;
+		private System.Windows.Forms.CheckBox cbxRandTowerBosses;
+		private System.Windows.Forms.CheckBox cbxRandTowerBosses2;
+		private System.Windows.Forms.CheckBox cbxPaletteSwap;
 	}
 }
 

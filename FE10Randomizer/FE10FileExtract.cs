@@ -30,7 +30,10 @@ namespace FE10FileExtract
 		{
 			StreamWriter writer = new StreamWriter(FilePath);
 			for (int i = 0; i < ReadLines.Length; i++)
-				writer.WriteLine(ReadLines[i]);
+			{
+				if (ReadLines[i] != "")
+					writer.WriteLine(ReadLines[i]);
+			}
 			writer.Close();
 		}
 
@@ -46,6 +49,14 @@ namespace FE10FileExtract
 				{
 					location = i;
 					break;
+				}
+				else if (splitstring[0] == "NAME" & splitstring.Length > 1)
+				{
+					if (splitstring[1] == keyname)
+					{
+						location = i;
+						break;
+					}
 				}
 			}
 
@@ -90,6 +101,14 @@ namespace FE10FileExtract
 						location = i;
 						break;
 					}
+					else if (splitstring[0] == "NAME" & splitstring.Length > 1)
+					{
+						if (splitstring[1] == keyname)
+						{
+							location = i;
+							break;
+						}
+					}
 				}
 
 				// return blank if not found
@@ -127,6 +146,14 @@ namespace FE10FileExtract
 				{
 					location = i;
 					break;
+				}
+				else if (splitstring[0] == "NAME" & splitstring.Length > 1)
+				{
+					if (splitstring[1] == keyname)
+					{
+						location = i;
+						break;
+					}
 				}
 			}
 
@@ -171,6 +198,14 @@ namespace FE10FileExtract
 						location = i;
 						break;
 					}
+					else if (splitstring[0] == "NAME" & splitstring.Length > 1)
+					{
+						if (splitstring[1] == keyname)
+						{
+							location = i;
+							break;
+						}
+					}
 				}
 
 				// return blank if not found
@@ -198,6 +233,40 @@ namespace FE10FileExtract
 			}
 		}
 
+		public string[] ReadHeaders(string keynamePrefix)
+		{
+			List<string> headers = new List<string>();
+			headers.Add(keynamePrefix);
+			for (int i = 1; i < ReadLines.Length; i++)
+			{
+				string[] splitstring = ReadLines[i].Split(',');
+				if (splitstring[0].Contains(keynamePrefix))
+					break;
+				headers.Add(splitstring[0]);
+			}
+			return (headers.ToArray());
+		}
+		public void AddNew(string[] headers, string[] values, bool useHeaderKeyname)
+		{
+			List<string> allLines = new List<string>();
+			for (int i = 0; i < ReadLines.Length; i++)
+			{
+				if(ReadLines[i] != "")
+				allLines.Add(ReadLines[i]);
+			}
+
+			for (int i = 0; i < headers.Length; i++)
+			{
+				if (i == 0 & !useHeaderKeyname)
+					allLines.Add(values[0] + "," + values[0]);
+				else
+					allLines.Add(headers[i] + "," + values[i]);
+			}
+
+			ReadLines = allLines.ToArray();
+		}
+
+
 		public void Write(string keyname, string specifier, string[] savethis)
 		{
 			// find keyname
@@ -209,6 +278,14 @@ namespace FE10FileExtract
 				{
 					location = i;
 					break;
+				}
+				else if (splitstring[0] == "NAME" & splitstring.Length > 1)
+				{
+					if (splitstring[1] == keyname)
+					{
+						location = i;
+						break;
+					}
 				}
 			}
 
@@ -241,6 +318,14 @@ namespace FE10FileExtract
 					location = i;
 					break;
 				}
+				else if (splitstring[0] == "NAME" & splitstring.Length > 1)
+				{
+					if (splitstring[1] == keyname)
+					{
+						location = i;
+						break;
+					}
+				}
 			}
 
 			// return blank if not found
@@ -271,6 +356,14 @@ namespace FE10FileExtract
 				{
 					location = i;
 					break;
+				}
+				else if (splitstring[0] == "NAME" & splitstring.Length > 1)
+				{
+					if (splitstring[1] == keyname)
+					{
+						location = i;
+						break;
+					}
 				}
 			}
 
@@ -303,6 +396,14 @@ namespace FE10FileExtract
 					location = i;
 					break;
 				}
+				else if (splitstring[0] == "NAME" & splitstring.Length > 1)
+				{
+					if (splitstring[1] == keyname)
+					{
+						location = i;
+						break;
+					}
+				}
 			}
 
 			// return blank if not found
@@ -324,8 +425,8 @@ namespace FE10FileExtract
 				}
 			}
 		}
-
 	}
+
 
 	public class ChapterChar
 	{
@@ -564,44 +665,168 @@ namespace FE10FileExtract
 		}
 	}
 
+	public class tplImage
+	{
+		public int Height, Width;
+		public byte Format;
+		public byte[] Header;
+		public byte[] ImageData;
+		
+		public tplImage()
+		{ }
+	}
+
+
 
 	public class FE10ExtractCompress
 	{
-		//public static void NotMain()
-		//{
-			//string thispath = Directory.GetCurrentDirectory();
-			//string[] allfiles = getRecursiveFiles(thispath);
-			//test_readskills(thispath + "\\pidlist.txt", thispath + "\\skillsbypid.csv", thispath + "\\FE10Data\\001%PersonData.csv");
 
-			//BackupVanillaFiles();
+		public static List<tplImage> ExtractTpl(string tplPath)
+		{
+			byte[] readbytes = new byte[4];
+			List<tplImage> output = new List<tplImage>();
+			int numImages;
+			int[] imageDataStarts;
 
-			//ExtractDispos(thispath + "\\dispos_c.bin", thispath + "\\dispos\\outputdispos.csv");
-			//CompressDispos(thispath + "\\dispos\\dispostest_c.bin", thispath + "\\dispos\\outputdispos.csv");
+			using (var stream = new System.IO.FileStream(tplPath, System.IO.FileMode.Open,
+						System.IO.FileAccess.ReadWrite))
+			{
+				stream.Position = 7;
+				numImages = stream.ReadByte();
+				imageDataStarts = new int[numImages];
+				for (int i = 0; i < numImages; i++)
+					output.Add(new tplImage());
 
-			//ExtractShopfile(thispath + "\\shopitem_h.bin", thispath + "\\outputshop.csv");
-			//CompressShopfile(thispath + "\\shop_test.bin", thispath + "\\outputshop.csv");
+				for (int imageNum = 0; imageNum < numImages; imageNum++)
+				{
+					tplImage temptplImage = new tplImage();
+					// read where image header begins
+					stream.Position = 12 + (8 * imageNum);
+					stream.Read(readbytes, 0, 4);
 
-			//ExtractFE10Data(thispath + "\\FE10Data_test.cms.decompressed", thispath + "\\FE10Data");
-			//ExtractFE10Data(thispath + "\\FE10Data.cms.decompressed", thispath + "\\FE10Data");
-			//CompressFE10Data(thispath + "\\FE10Data_test.cms.decompressed", thispath + "\\FE10Data");
+					// go to image header
+					stream.Position = (long)bytes2int(readbytes);
+					// read height
+					readbytes[0] = 0x00;
+					readbytes[1] = 0x00;
+					readbytes[2] = (byte)stream.ReadByte();
+					readbytes[3] = (byte)stream.ReadByte();
+					temptplImage.Height = bytes2int(readbytes);
+					// read width
+					readbytes[0] = 0x00;
+					readbytes[1] = 0x00;
+					readbytes[2] = (byte)stream.ReadByte();
+					readbytes[3] = (byte)stream.ReadByte();
+					temptplImage.Width = bytes2int(readbytes);
+					// read format
+					stream.Position += 3;
+					temptplImage.Format = (byte)stream.ReadByte();
+					// read location of image data
+					stream.Read(readbytes, 0, 4);
+					imageDataStarts[imageNum] = bytes2int(readbytes);
+					// read rest of header data
+					temptplImage.Header = new byte[24];
+					stream.Read(temptplImage.Header, 0, 24);
 
-			//ExtractFE10Anim(thispath + "\\FE10Anim.cms.decompressed", thispath + "\\FE10Anim");
-			//CompressFE10Anim(thispath + "\\FE10Anim.cms.decompressed_out", thispath + "\\FE10Anim");
+					output[imageNum] = temptplImage;
+				}
+				for (int imageNum = 0; imageNum < numImages; imageNum++)
+				{
+					tplImage temptplImage = output[imageNum];
+					// read image data
+					stream.Position = imageDataStarts[imageNum];
+					List<byte> databytes = new List<byte>();
+					int end;
+					if (imageNum == numImages - 1)
+						end = (int)stream.Length;
+					else
+						end = imageDataStarts[imageNum + 1];
 
-			//ExtractFE10Battle(thispath + "\\FE10Battle.cms.decompressed", thispath + "\\FE10Battle");
-			//CompressFE10Battle(thispath + "\\FE10Battle.cms.decompressed_out", thispath + "\\FE10Battle");
+					while (stream.Position < end)
+						databytes.Add((byte)stream.ReadByte());
 
-			//ExtractFE10Battle(thispath + "\\FE10Battle.cms.decompressed_modded", thispath + "\\FE10Battle_modded");
-			//ExtractFE10Anim(thispath + "\\FE10Anim.cms.decompressed_modded", thispath + "\\FE10Anim_modded");
+					temptplImage.ImageData = databytes.ToArray();
 
-			//ExtractScript(thispath + "\\C0101.cmb", thispath + "\\outputscript.csv");
-			//CompressScript(thispath + "\\C0101test.cmb", thispath + "\\outputscript.csv");
-			//ExtractScript(thispath + "\\C0101test.cmb", thispath + "\\outputscript.csv");
+					output[imageNum] = temptplImage;
+				}
+				return (output);
+			}
+		}
 
-			//test();
-			//check(thispath + "\\FE10Data.cms.decompressed", thispath + "\\FE10Data_test.cms.decompressed");
-		//}
+		public static void CompressTpl(string tplPath, List<tplImage> images)
+		{
+			byte[] readbytes = new byte[4];
 
+			// record the size of each image
+			int[] imageSizes = new int[images.Count];
+			for (int i = 0; i < imageSizes.Length; i++)
+			{
+				imageSizes[i] = images[i].ImageData.Length;
+			}
+
+			// beginning of file is always the same
+			byte[] tplbytes = new byte[12] { 0x00, 0x20, 0xAF, 0x30, 0x00, 0x00, 0x00, (byte)images.Count, 0x00, 0x00, 0x00, 0x0C };
+			List<byte> outbytes = new List<byte>(tplbytes);
+
+			// next is the rest of the header - the next values point to the start of each imageheader part, which are each 0x24 (36) bytes long
+			// because these values are 8 bytes long themselves, the first imageheader value will be 8*number of images past where we currently are
+			for (int i = 0; i < images.Count; i++)
+			{
+				int headerdatastart = 12 + (8 * images.Count);
+				headerdatastart += (36 * i);
+				readbytes = int2bytes(headerdatastart);
+				for (int j = 0; j < 4; j++)
+					outbytes.Add(readbytes[j]);
+				for (int j = 0; j < 4; j++)
+					outbytes.Add(0x00);
+			}
+			// now image header for each image
+			for (int i = 0; i < images.Count; i++)
+			{
+				// height, width
+				readbytes = int2bytes(images[i].Height);
+				outbytes.Add(readbytes[2]);
+				outbytes.Add(readbytes[3]);
+				readbytes = int2bytes(images[i].Width);
+				outbytes.Add(readbytes[2]);
+				outbytes.Add(readbytes[3]);
+				// format type
+				for (int j = 0; j < 3; j++)
+					outbytes.Add(0x00);
+				outbytes.Add(images[i].Format);
+				// next is beginning of datafile - this is a lot of math, so instead we'll just fill it in later
+				for (int j = 0; j < 4; j++)
+					outbytes.Add(0x00);
+				// now we finish the image header
+				for (int j = 0; j < images[i].Header.Length; j++)
+					outbytes.Add(images[i].Header[j]);
+			}
+			// add in buffer
+			for (int i = 0; i < 16; i++)
+				outbytes.Add(0x00);
+			while (outbytes.Count % 16 != 0)
+				outbytes.Add(0x00);
+			// image data time, this is easy
+			for (int i = 0; i < images.Count; i++)
+			{
+				// save this location back in the header
+				// location of this value is the beginning (12) + 8 bytes header for each image + 36 for any previous image + the beginning 8 of this image's header
+				int offset = 12 + (8 * images.Count) + (36 * i) + 8;
+				readbytes = int2bytes(outbytes.Count);
+				for (int k = 0; k < 4; k++)
+					outbytes[offset + k] = readbytes[k];
+				// save all image data
+				for (int j = 0; j < images[i].ImageData.Length; j++)
+					outbytes.Add(images[i].ImageData[j]);
+			}
+
+			// now save
+			using (var stream = new System.IO.FileStream(tplPath, System.IO.FileMode.Create,
+						System.IO.FileAccess.ReadWrite))
+			{
+				stream.Write(outbytes.ToArray(), 0, outbytes.Count);
+			}
+		}
 
 		public static void ExtractDispos(string dispospath, string csvpath)
 		{
@@ -1777,10 +2002,11 @@ namespace FE10FileExtract
 							// name as header
 							outstring.Add("Name," + name);
 							tempstring = "Terrain_Data";
-							for (int i = 0; i < 100; i++)
+							for (int i = 0; i < 400; i++)
 							{
-								stream.Read(readbytes, 0, 4);
-								tempstring += "," + bytes2int(readbytes).ToString();
+								tempstring += "," + stream.ReadByte().ToString();
+								//stream.Read(readbytes, 0, 4);
+								//tempstring += "," + bytes2int(readbytes).ToString();
 							}
 
 							outstring.Add(tempstring);
@@ -1982,7 +2208,9 @@ namespace FE10FileExtract
 							for (int y = 0; y < 4; y++)
 							{
 								stream.Read(readbytes, 0, 4);
-								tempstring += bytes2float(readbytes).ToString() + ",";
+								float biodata = bytes2float(readbytes);
+								biodata *= 100;
+								tempstring += biodata.ToString() + ",";
 							}
 							outstring.Add(tempstring);
 						}
@@ -2763,9 +2991,10 @@ namespace FE10FileExtract
 									}
 									else
 									{
-										// saved as 4-byte value
-										readbytes = int2bytes(Convert.ToInt32(inData[x][y]));
-										stream.Write(readbytes,0,4);
+										// saved as 1-byte value
+										stream.WriteByte((byte)Convert.ToInt32(inData[x][y]));
+										//readbytes = int2bytes(Convert.ToInt32(inData[x][y]));
+										//stream.Write(readbytes,0,4);
 									}
 
 								}
@@ -2867,7 +3096,7 @@ namespace FE10FileExtract
 						// number of entries
 						int num = 0;
 						for (int j = 0; j < readlines.Length; j++)
-							if (readlines[j].StartsWith("C0"))
+							if (readlines[j].StartsWith("Mapname") | readlines[j].StartsWith("C0") | readlines[j].StartsWith("CFINAL") | readlines[j].StartsWith("T0"))
 								num++;
 						readbytes = int2bytes(num);
 						stream.Write(readbytes,0,4);
@@ -2884,7 +3113,7 @@ namespace FE10FileExtract
 								line++;
 								if (line == readlines.Length)
 									break;
-								if (readlines[line].StartsWith("C0"))
+								if (readlines[line].StartsWith("Mapname") | readlines[line].StartsWith("C0") | readlines[line].StartsWith("CFINAL") | readlines[line].StartsWith("T0"))
 									break;
 							}
 							// name
@@ -3188,8 +3417,10 @@ namespace FE10FileExtract
 							{
 								if (inData[y] != "")
 								{
-									readbytes = float2bytes((float)Convert.ToDouble(inData[y]));
-									stream.Write(readbytes,0,4);
+									float biodata = (float)Convert.ToDouble(inData[y]);
+									biodata = biodata / 100;
+									readbytes = float2bytes(biodata);
+									stream.Write(readbytes, 0, 4);
 								}
 							}
 						}
@@ -3293,6 +3524,7 @@ namespace FE10FileExtract
 				// write pointernames to file
 				List<string> filterednames = new List<string>();
 				List<int> pointerdestination = new List<int>();
+				filterednames.Add("AID_KINGHT_SP_F");
 				for (int i = 0; i < pointernames.Count; i++)
 					filterednames.Add(pointernames[i]);
 				filterednames.Sort();
@@ -3510,7 +3742,7 @@ namespace FE10FileExtract
 							outstring.Add(namestring + "," + namestring);
 
 							stream.Read(readbytes, 0, 4);
-							outstring.Add("unknown," + ReadPointer(stream, bytes2int(readbytes) + 32));
+							outstring.Add("BUnitName," + ReadPointer(stream, bytes2int(readbytes) + 32));
 
 							string[] captions = new string[4] { "unknown1", "ID", "unknown2", "unknown3" };
 							for (int i = 0; i < 4; i++)
@@ -4676,7 +4908,16 @@ namespace FE10FileExtract
 							}
 
 							tempstring = "unknownbytes";
-							for (int i = 0; i < 20; i++)
+							for (int i = 0; i <13; i++)
+								tempstring += "," + stream.ReadByte().ToString();
+							outstring.Add(tempstring);
+
+							tempstring = "numtextures";
+							tempstring += "," + stream.ReadByte().ToString();
+							outstring.Add(tempstring);
+
+							tempstring = "unknownbytes2";
+							for (int i = 0; i < 6; i++)
 								tempstring += "," + stream.ReadByte().ToString();
 							outstring.Add(tempstring);
 						}
@@ -4961,433 +5202,642 @@ namespace FE10FileExtract
 
 		}
 
-		/*
-		public static void ExtractScript(string scriptpath, string csvpath)
+		public static void ExtractMessFile(string datapath, string extractfile)
 		{
 			byte[] readbytes = new byte[4];
+			int filesize, num_pointers1, num_pointers2;
+			int header, dataregion, pointer1, pointer2, endregion;
+			int size_header, size_dataregion, size_pointer1, size_pointer2, size_endregion;
+			int pointerstart;
+
 			List<string> outstring = new List<string>();
-			List<int> commandlocs = new List<int>();
 
-			using (var stream = new FileStream(scriptpath, FileMode.Open, FileAccess.ReadWrite))
+			// header always is at the top, and it is always 32 bytes long
+			header = 0;
+			size_header = 32;
+			dataregion = 32;
+
+			using (var stream = new FileStream(datapath, FileMode.Open, FileAccess.ReadWrite))
 			{
-				// name
-				string name = ReadPointer(stream, 4);
-				outstring.Add(name);
-				// location of the start of command pointers
-				stream.Position = 40;
+				// read header
+				#region
+				stream.Position = header;
+				// full file size
 				stream.Read(readbytes, 0, 4);
-				stream.Position = ReversePointer(readbytes);
-
+				filesize = bytes2int(readbytes);
+				// data region size
 				stream.Read(readbytes, 0, 4);
-				while (!(readbytes[0] == 0 & readbytes[1] == 0 & readbytes[2] == 0 & readbytes[3] == 0))
+				size_dataregion = bytes2int(readbytes);
+				// number of pointers in pointer section 1
+				stream.Read(readbytes, 0, 4);
+				num_pointers1 = bytes2int(readbytes);
+				// number of pointers in pointer section 2
+				stream.Read(readbytes, 0, 4);
+				num_pointers2 = bytes2int(readbytes);
+
+				// calculate other locations and sizes
+				pointer1 = dataregion + size_dataregion;
+				size_pointer1 = num_pointers1 * 4;
+				pointer2 = pointer1 + size_pointer1;
+				size_pointer2 = num_pointers2 * 8;
+				endregion = pointer2 + size_pointer2;
+				size_endregion = filesize - endregion;
+				#endregion
+
+				// go to pointers
+				stream.Position = pointer2;
+				for (int i = 0; i < num_pointers2; i++)
 				{
-					commandlocs.Add(ReversePointer(readbytes));
+					int textloc, nameloc;
 					stream.Read(readbytes, 0, 4);
-				}
-
-				for (int i = 0; i < commandlocs.Count; i++)
-				{
-					stream.Position = commandlocs[i];
-
-					int nameloc = -1;
-					int dataloc = -1;
+					textloc = bytes2int(readbytes);
 					stream.Read(readbytes, 0, 4);
-					if (!(readbytes[0] == 0 & readbytes[1] == 0 & readbytes[2] == 0 & readbytes[3] == 0))
-						nameloc = ReversePointer(readbytes);
-					stream.Read(readbytes, 0, 4);
-					if (!(readbytes[0] == 0 & readbytes[1] == 0 & readbytes[2] == 0 & readbytes[3] == 0))
-						dataloc = ReversePointer(readbytes);
+					nameloc = endregion + bytes2int(readbytes);
 
-					if (nameloc == -1)
-						nameloc = dataloc;
-
-					string tempstring = "";
-					while (stream.Position < nameloc)
-						tempstring += "," + stream.ReadByte().ToString();
-					outstring.Add("headerbytes" + tempstring);
-
-					tempstring = "";
-					while (stream.Position < dataloc)
-						tempstring += "," + stream.ReadByte().ToString();
-					outstring.Add("namebytes" + tempstring);
-
-					stream.Position = dataloc;
-					tempstring = "";
-					while (true)
-					{
-						if (i < commandlocs.Count - 1)
-						{
-							if (stream.Position >= commandlocs[i + 1])
-							{
-								outstring.Add(tempstring);
-								break;
-							}
-						}
-						else
-						{
-							if (stream.Position >= stream.Length)
-							{
-								outstring.Add(tempstring);
-								break;
-							}
-						}
-
-
-						int pointloc, pointloc2;
-						string pointname;
-						byte currbyte = (byte)stream.ReadByte();
-						tempstring += "," + currbyte.ToString();
-						switch (currbyte)
-						{
-							case 0x1C:
-								// 1 byte pointer
-								pointloc = stream.ReadByte();
-								pointname = ReadPointer(stream, pointloc + 43);
-								if (pointname == "")
-								{
-									pointname = ReadPointer(stream, pointloc + 44);
-									tempstring += "," + pointname;
-								}
-								else
-								{
-									stream.Position -= 1;
-								}
-								break;
-							case 0x1D:
-								// 2 byte pointer
-								readbytes[0] = 0x00;
-								readbytes[1] = 0x00;
-								stream.Read(readbytes, 2, 2);
-								pointloc = bytes2int(readbytes);
-								pointname = ReadPointer(stream, pointloc + 43);
-								if (pointname == "")
-								{
-									pointname = ReadPointer(stream, pointloc + 44);
-									tempstring += "," + pointname;
-								}
-								else
-								{
-									stream.Position -= 2;
-								}
-								break;
-							case 0x38:
-								// function pointer (2 bytes)
-								pointloc = stream.ReadByte();
-								pointloc2 = stream.ReadByte();
-								pointloc = bytes2int(new byte[4] { 0x00, 0x00, (byte)pointloc, (byte)pointloc2 });
-								pointname = ReadPointer(stream, pointloc + 44);
-								tempstring += "," + pointname;
-								break;
-							case 0x19:
-								// single byte int
-								pointloc = stream.ReadByte();
-								tempstring += "," + pointloc;
-								break;
-							case 0x1A:
-								// single byte int
-								readbytes[0] = 0x00;
-								readbytes[1] = 0x00;
-								stream.Read(readbytes, 2, 2);
-								pointloc = bytes2int(readbytes);
-								tempstring += "," + pointloc;
-								break;
-							case 0x20:
-							case 0x47:
-								// end of line
-								outstring.Add(tempstring);
-								tempstring = "";
-								break;
-						}
-					}
-
-					outstring.Add("");
+					outstring.Add(ReadPointer(stream, nameloc) + "," + ReadMessPointer(stream, textloc + 32));
 
 				}
-
 			}
-
-			StreamWriter writer = new StreamWriter(csvpath);
+			if (File.Exists(extractfile))
+				File.Delete(extractfile);
+			StreamWriter writer = new StreamWriter(extractfile);
 			for (int i = 0; i < outstring.Count; i++)
 				writer.WriteLine(outstring[i]);
 			writer.Close();
 		}
 
-		public static void CompressScript(string scriptpath, string csvpath)
+		public static void CompressMessFile(string datapath, string extractfile)
 		{
-			byte[] readbytes = new byte[4];
-			int numcommands = 0;
-			int[] commandloc;
-			List<int> commandindex = new List<int>();
-			List<string> pointernames = new List<string>();
-			List<int> pointerlength = new List<int>();
-			List<string> sortedpointers = new List<string>();
-			List<int> pointerloc = new List<int>();
-			int endofpointers;
-
-			// read in all data
-			StreamReader reader = new StreamReader(csvpath);
-			string[] readlines = reader.ReadToEnd().Split(new[] { "\r\n" }, StringSplitOptions.None);
-			reader.Close();
-
-			// save list of pointers
-			for (int i = 1; i < readlines.Length; i++)
+			if (File.Exists(extractfile))
 			{
-				if (readlines[i].StartsWith("headerbytes"))
-				{
-					commandindex.Add(i);
-					numcommands += 1;
-				}
-				string[] splitline = readlines[i].Split(',');
-				if (splitline.Length < 2)
-				{ }
-				else
-				{
-					for (int j = 1; j < splitline.Length; j++)
+				byte[] readbytes = new byte[4];
+				int filesize, pointersstart, endstart;
+
+				StreamReader reader = new StreamReader(extractfile);
+				string[] entries = reader.ReadToEnd().Split(new[] { "\r\n" }, StringSplitOptions.None);
+				reader.Close();
+				List<string> no_blanks = new List<string>(entries);
+				for (int i = 0; i < no_blanks.Count; i++)
+					if (no_blanks[i] == "")
 					{
-						bool ispointer = !System.Text.RegularExpressions.Regex.IsMatch(splitline[j], @"^\d+$");
-						if (ispointer)
+						no_blanks.RemoveAt(i);
+						i--;
+					}
+				entries = no_blanks.ToArray();
+				string[] pointernames = new string[entries.Length];
+				int[] entriesloc = new int[entries.Length];
+				int[] pointernamesloc = new int[entries.Length];
+				for (int i = 0; i < entries.Length; i++)
+				{
+					pointernames[i] = entries[i].Split(',')[0];
+					entries[i] = entries[i].Split(',')[1];
+				}
+
+				using (var stream = new FileStream(datapath, FileMode.Create, FileAccess.ReadWrite))
+				{
+					stream.Position = 0;
+					// create blank header - will edit later
+					for (int i = 0; i < 32; i++)
+						stream.WriteByte(0x00);
+
+					for (int i = 0; i < entries.Length; i++)
+					{
+						// turn strings into byte arrays
+						List<byte[]> pointerbytes = new List<byte[]>();
+						byte[] output = new byte[0];
+
+						if (entries[i] != "")
 						{
-							bool writethis = true;
-							for (int x = 0; x < pointernames.Count; x++)
+							string[] splitname = entries[i].Split('-');
+							bool listofbytes = splitname.Length > 1;
+							for (int x = 0; x < splitname.Length; x++)
 							{
-								if (splitline[j] == pointernames[x])
+								if (splitname[x].Length != 2)
 								{
-									writethis = false;
+									listofbytes = false;
 									break;
 								}
 							}
-							if (writethis)
+							if (listofbytes)
+								output = bytestring2byte(splitname);
+							else
 							{
-								if (splitline[j - 1] == "28")
-									pointerlength.Add(1);
-								else
-									pointerlength.Add(2);
-								pointernames.Add(splitline[j]);
-							}
-						}
-					}
-				}
-			}
-
-			using (var stream = new FileStream(scriptpath, FileMode.Create, FileAccess.ReadWrite))
-			{
-				string cmb = "cmb";
-				stream.Write(Encoding.ASCII.GetBytes(cmb),0, Encoding.ASCII.GetBytes(cmb).Length);
-				stream.WriteByte(0x00);
-				stream.Write(Encoding.ASCII.GetBytes(readlines[0].Split(',')[0]),0, Encoding.ASCII.GetBytes(readlines[0].Split(',')[0]).Length);
-				while (stream.Position < 24)
-					stream.WriteByte(0x00);
-				stream.Write(new byte[4] { 0x24, 0x10, 0x06, 0x20 },0,4);
-				while (stream.Position < 36)
-					stream.WriteByte(0x00);
-				stream.WriteByte(0x2C);
-				while (stream.Position < 44)
-					stream.WriteByte(0x00);
-
-				// sort pointers
-				for (int i = 0; i < pointernames.Count; i++)
-				{
-					if (pointerlength[i] == 1)
-						sortedpointers.Add(pointernames[i]);
-				}
-				for (int i = 0; i < pointernames.Count; i++)
-				{
-					if (pointerlength[i] == 2)
-						sortedpointers.Add(pointernames[i]);
-				}
-				for (int i = 0; i < pointernames.Count; i++)
-				{
-					pointernames[i] = sortedpointers[i];
-				}
-
-				List<byte[]> pointerbytes = new List<byte[]>();
-				for (int i = 0; i < pointernames.Count; i++)
-				{
-					string[] splitname = pointernames[i].Split('-');
-					bool listofbytes = splitname.Length > 1;
-					for (int x = 0; x < splitname.Length; x++)
-					{
-						if (splitname[x] == "" | splitname[x].Contains("*"))
-						{
-							listofbytes = false;
-							break;
-						}
-					}
-					if (listofbytes)
-						pointerbytes.Add(bytestring2byte(splitname));
-					else
-					{
-						string tempy = pointernames[i];
-						tempy = tempy.Replace('|', ',');
-						pointerbytes.Add(Encoding.ASCII.GetBytes(tempy));
-					}
-				}
-
-				// write pointers
-				for (int i = 0; i < pointerbytes.Count; i++)
-				{
-					pointerloc.Add((int)stream.Position - 44);
-					stream.Write(pointerbytes[i]);
-					stream.WriteByte(0x00);
-				}
-
-				// pad
-				while (stream.Position % 4 != 0)
-					stream.WriteByte(0x00);
-
-				endofpointers = (int)stream.Position;
-
-				// pad, will be pointers later
-				for (int i = 0; i < numcommands + 1; i++)
-					stream.Write(new byte[4] { 0x00, 0x00, 0x00, 0x00 });
-
-				// save commands
-				commandloc = new int[numcommands];
-				for (int i = 0; i < numcommands; i++)
-				{
-					string header = readlines[commandindex[i]];
-					string name = readlines[commandindex[i] + 1];
-					commandloc[i] = (int)stream.Position;
-					// name pointer
-					if (name.Split(',').Length < 2)
-						stream.Write(new byte[4] { 0x00, 0x00, 0x00, 0x00 });
-					else
-						stream.Write(int2ReverseBytes((int)stream.Position + 8 + header.Split(',').Length - 1));
-
-					// datapointer
-					if (name.Split(',').Length < 2)
-						stream.Write(int2ReverseBytes((int)stream.Position + 4 + header.Split(',').Length - 1));
-					else
-						stream.Write(int2ReverseBytes((int)stream.Position + 4 + name.Split(',').Length - 1 + header.Split(',').Length - 1));
-
-					// header
-					string[] splitstring = header.Split(',');
-					for (int j = 1; j < splitstring.Length; j++)
-						stream.WriteByte(Convert.ToByte(splitstring[j]));
-					// name
-					if (name.Split(',').Length >= 2)
-					{
-						splitstring = name.Split(',');
-						for (int j = 1; j < splitstring.Length; j++)
-							stream.WriteByte(Convert.ToByte(splitstring[j]));
-					}
-
-					int x = 1;
-					while (readlines[commandindex[i] + 1 + x] != "")
-					{
-						string[] splitline = readlines[commandindex[i] + 1 + x].Split(',');
-						for (int j = 1; j < splitline.Length; j++)
-						{
-							bool ispointer = !System.Text.RegularExpressions.Regex.IsMatch(splitline[j], @"^\d+$");
-							if (!ispointer)
-							{
-								switch (splitline[j])
+								// replace > with commas, and ~ with line breaks
+								output = Encoding.ASCII.GetBytes(entries[i]);
+								for (int j = 0; j < output.Length; j++)
 								{
-									case "28":
-									case "XXXXXXXXXXXXXXXXXXXXX":
-										// one byte pointer
-										stream.WriteByte(Convert.ToByte(splitline[j]));
-										//stream.WriteByte(0x1D);
-										j += 1;
-										for (int k = 0; k < pointernames.Count; k++)
-										{
-											if (pointernames[k] == splitline[j])
-											{
-												readbytes = int2bytes(pointerloc[k]);
-												stream.Write(readbytes, 3, 1);
-												break;
-											}
-											if (k == pointernames.Count - 1)
-												j--;
-										}
-										break;
-									//case "28":
-									case "29":
-										// two byte pointer
-										int location = -1;
-
-										j += 1;
-										for (int k = 0; k < pointernames.Count; k++)
-										{
-											if (pointernames[k] == splitline[j])
-											{
-												location = pointerloc[k];
-												break;
-											}
-										}
-										if (location == -1)
-										{
-											stream.WriteByte(Convert.ToByte(splitline[j]));
-											j--;
-										}
-										else if (true)//location > 255)
-										{
-											stream.WriteByte(0x1D);
-											readbytes = int2bytes(location);
-											stream.Write(readbytes, 2, 2);
-										}
-										else
-										{
-											stream.WriteByte(0x1C);
-											stream.WriteByte((byte)location);
-										}
-										break;
-									case "56":
-										// two byte function pointer
-										stream.WriteByte(Convert.ToByte(splitline[j]));
-										j += 1;
-										for (int k = 0; k < pointernames.Count; k++)
-										{
-											if (pointernames[k] == splitline[j])
-											{
-												readbytes = int2bytes(pointerloc[k]);
-												stream.Write(readbytes, 2, 2);
-												break;
-											}
-										}
-										break;
-									case "25":
-										// one byte integer
-										stream.WriteByte(Convert.ToByte(splitline[j]));
-										j += 1;
-										stream.WriteByte(Convert.ToByte(splitline[j]));
-										break;
-									case "26":
-										// two byte integer
-										stream.WriteByte(Convert.ToByte(splitline[j]));
-										j += 1;
-										readbytes = int2bytes(Convert.ToInt32(splitline[j]));
-										stream.Write(readbytes, 2, 2);
-										break;
-									default:
-										stream.WriteByte(Convert.ToByte(splitline[j]));
-										break;
-
+									if (output[j] == 0x3E)
+										output[j] = 0x2C;
+									else if (output[j] == 0x7E)
+										output[j] = 0x0A;
 								}
 							}
-
 						}
-
-						x++;
+						// save location of this entry
+						entriesloc[i] = (int)stream.Position;
+						// write entry
+						for (int j = 0; j < output.Length; j++)
+							stream.WriteByte(output[j]);
+						// end
+						stream.WriteByte(0x00);
+						// pad until a multiple of 4
+						while (stream.Position % 4 != 0)
+							stream.WriteByte(0x00);
 					}
-					// pad
-					//while (stream.Position % 4 != 0)
-					//stream.WriteByte(0x00);
+
+					// save location of data file ending
+					pointersstart = (int)stream.Position;
+
+					for (int i = 0; i < entries.Length; i++)
+					{
+						readbytes = int2bytes(entriesloc[i] - 32);
+						stream.Write(readbytes, 0, 4);
+						for (int j = 0; j < 4; j++)
+							stream.WriteByte(0x00);
+					}
+
+					// save location of end location
+					endstart = (int)stream.Position;
+					for (int i = 0; i < pointernames.Length; i++)
+					{
+						pointernamesloc[i] = (int)stream.Position - endstart;
+						// turn strings into byte arrays
+						List<byte[]> pointerbytes = new List<byte[]>();
+						string[] splitname = pointernames[i].Split('-');
+						bool listofbytes = splitname.Length > 1;
+						for (int x = 0; x < splitname.Length; x++)
+						{
+							if (splitname[x].Length != 2)
+							{
+								listofbytes = false;
+								break;
+							}
+						}
+						byte[] output;
+						if (listofbytes)
+							output = bytestring2byte(splitname);
+						else
+							output = Encoding.ASCII.GetBytes(pointernames[i]);
+
+						for (int j = 0; j < output.Length; j++)
+							stream.WriteByte(output[j]);
+						stream.WriteByte(0x00);
+					}
+
+					// save end location
+					filesize = (int)stream.Position;
+
+					// go back and fill pointers
+					stream.Position = pointersstart + 4;
+					for (int i = 0; i < pointernamesloc.Length; i++)
+					{
+						readbytes = int2bytes(pointernamesloc[i]);
+						stream.Write(readbytes, 0, 4);
+						stream.Position += 4;
+					}
+
+					// fill header
+					stream.Position = 0;
+					stream.Write(int2bytes(filesize), 0, 4);
+					stream.Write(int2bytes(pointersstart - 32), 0, 4);
+					stream.Position += 4;
+					stream.Write(int2bytes(entries.Length), 0, 4);
+
 
 				}
 
-				// save pointers back
-				stream.Position = endofpointers;
-				for (int i = 0; i < numcommands; i++)
-					stream.Write(int2ReverseBytes(commandloc[i]));
-
-				stream.Position = 40;
-				stream.Write(int2ReverseBytes(endofpointers));
+				
 
 			}
 		}
 
-		*/
+			/*
+			public static void ExtractScript(string scriptpath, string csvpath)
+			{
+				byte[] readbytes = new byte[4];
+				List<string> outstring = new List<string>();
+				List<int> commandlocs = new List<int>();
+
+				using (var stream = new FileStream(scriptpath, FileMode.Open, FileAccess.ReadWrite))
+				{
+					// name
+					string name = ReadPointer(stream, 4);
+					outstring.Add(name);
+					// location of the start of command pointers
+					stream.Position = 40;
+					stream.Read(readbytes, 0, 4);
+					stream.Position = ReversePointer(readbytes);
+
+					stream.Read(readbytes, 0, 4);
+					while (!(readbytes[0] == 0 & readbytes[1] == 0 & readbytes[2] == 0 & readbytes[3] == 0))
+					{
+						commandlocs.Add(ReversePointer(readbytes));
+						stream.Read(readbytes, 0, 4);
+					}
+
+					for (int i = 0; i < commandlocs.Count; i++)
+					{
+						stream.Position = commandlocs[i];
+
+						int nameloc = -1;
+						int dataloc = -1;
+						stream.Read(readbytes, 0, 4);
+						if (!(readbytes[0] == 0 & readbytes[1] == 0 & readbytes[2] == 0 & readbytes[3] == 0))
+							nameloc = ReversePointer(readbytes);
+						stream.Read(readbytes, 0, 4);
+						if (!(readbytes[0] == 0 & readbytes[1] == 0 & readbytes[2] == 0 & readbytes[3] == 0))
+							dataloc = ReversePointer(readbytes);
+
+						if (nameloc == -1)
+							nameloc = dataloc;
+
+						string tempstring = "";
+						while (stream.Position < nameloc)
+							tempstring += "," + stream.ReadByte().ToString();
+						outstring.Add("headerbytes" + tempstring);
+
+						tempstring = "";
+						while (stream.Position < dataloc)
+							tempstring += "," + stream.ReadByte().ToString();
+						outstring.Add("namebytes" + tempstring);
+
+						stream.Position = dataloc;
+						tempstring = "";
+						while (true)
+						{
+							if (i < commandlocs.Count - 1)
+							{
+								if (stream.Position >= commandlocs[i + 1])
+								{
+									outstring.Add(tempstring);
+									break;
+								}
+							}
+							else
+							{
+								if (stream.Position >= stream.Length)
+								{
+									outstring.Add(tempstring);
+									break;
+								}
+							}
+
+
+							int pointloc, pointloc2;
+							string pointname;
+							byte currbyte = (byte)stream.ReadByte();
+							tempstring += "," + currbyte.ToString();
+							switch (currbyte)
+							{
+								case 0x1C:
+									// 1 byte pointer
+									pointloc = stream.ReadByte();
+									pointname = ReadPointer(stream, pointloc + 43);
+									if (pointname == "")
+									{
+										pointname = ReadPointer(stream, pointloc + 44);
+										tempstring += "," + pointname;
+									}
+									else
+									{
+										stream.Position -= 1;
+									}
+									break;
+								case 0x1D:
+									// 2 byte pointer
+									readbytes[0] = 0x00;
+									readbytes[1] = 0x00;
+									stream.Read(readbytes, 2, 2);
+									pointloc = bytes2int(readbytes);
+									pointname = ReadPointer(stream, pointloc + 43);
+									if (pointname == "")
+									{
+										pointname = ReadPointer(stream, pointloc + 44);
+										tempstring += "," + pointname;
+									}
+									else
+									{
+										stream.Position -= 2;
+									}
+									break;
+								case 0x38:
+									// function pointer (2 bytes)
+									pointloc = stream.ReadByte();
+									pointloc2 = stream.ReadByte();
+									pointloc = bytes2int(new byte[4] { 0x00, 0x00, (byte)pointloc, (byte)pointloc2 });
+									pointname = ReadPointer(stream, pointloc + 44);
+									tempstring += "," + pointname;
+									break;
+								case 0x19:
+									// single byte int
+									pointloc = stream.ReadByte();
+									tempstring += "," + pointloc;
+									break;
+								case 0x1A:
+									// single byte int
+									readbytes[0] = 0x00;
+									readbytes[1] = 0x00;
+									stream.Read(readbytes, 2, 2);
+									pointloc = bytes2int(readbytes);
+									tempstring += "," + pointloc;
+									break;
+								case 0x20:
+								case 0x47:
+									// end of line
+									outstring.Add(tempstring);
+									tempstring = "";
+									break;
+							}
+						}
+
+						outstring.Add("");
+
+					}
+
+				}
+
+				StreamWriter writer = new StreamWriter(csvpath);
+				for (int i = 0; i < outstring.Count; i++)
+					writer.WriteLine(outstring[i]);
+				writer.Close();
+			}
+
+			public static void CompressScript(string scriptpath, string csvpath)
+			{
+				byte[] readbytes = new byte[4];
+				int numcommands = 0;
+				int[] commandloc;
+				List<int> commandindex = new List<int>();
+				List<string> pointernames = new List<string>();
+				List<int> pointerlength = new List<int>();
+				List<string> sortedpointers = new List<string>();
+				List<int> pointerloc = new List<int>();
+				int endofpointers;
+
+				// read in all data
+				StreamReader reader = new StreamReader(csvpath);
+				string[] readlines = reader.ReadToEnd().Split(new[] { "\r\n" }, StringSplitOptions.None);
+				reader.Close();
+
+				// save list of pointers
+				for (int i = 1; i < readlines.Length; i++)
+				{
+					if (readlines[i].StartsWith("headerbytes"))
+					{
+						commandindex.Add(i);
+						numcommands += 1;
+					}
+					string[] splitline = readlines[i].Split(',');
+					if (splitline.Length < 2)
+					{ }
+					else
+					{
+						for (int j = 1; j < splitline.Length; j++)
+						{
+							bool ispointer = !System.Text.RegularExpressions.Regex.IsMatch(splitline[j], @"^\d+$");
+							if (ispointer)
+							{
+								bool writethis = true;
+								for (int x = 0; x < pointernames.Count; x++)
+								{
+									if (splitline[j] == pointernames[x])
+									{
+										writethis = false;
+										break;
+									}
+								}
+								if (writethis)
+								{
+									if (splitline[j - 1] == "28")
+										pointerlength.Add(1);
+									else
+										pointerlength.Add(2);
+									pointernames.Add(splitline[j]);
+								}
+							}
+						}
+					}
+				}
+
+				using (var stream = new FileStream(scriptpath, FileMode.Create, FileAccess.ReadWrite))
+				{
+					string cmb = "cmb";
+					stream.Write(Encoding.ASCII.GetBytes(cmb),0, Encoding.ASCII.GetBytes(cmb).Length);
+					stream.WriteByte(0x00);
+					stream.Write(Encoding.ASCII.GetBytes(readlines[0].Split(',')[0]),0, Encoding.ASCII.GetBytes(readlines[0].Split(',')[0]).Length);
+					while (stream.Position < 24)
+						stream.WriteByte(0x00);
+					stream.Write(new byte[4] { 0x24, 0x10, 0x06, 0x20 },0,4);
+					while (stream.Position < 36)
+						stream.WriteByte(0x00);
+					stream.WriteByte(0x2C);
+					while (stream.Position < 44)
+						stream.WriteByte(0x00);
+
+					// sort pointers
+					for (int i = 0; i < pointernames.Count; i++)
+					{
+						if (pointerlength[i] == 1)
+							sortedpointers.Add(pointernames[i]);
+					}
+					for (int i = 0; i < pointernames.Count; i++)
+					{
+						if (pointerlength[i] == 2)
+							sortedpointers.Add(pointernames[i]);
+					}
+					for (int i = 0; i < pointernames.Count; i++)
+					{
+						pointernames[i] = sortedpointers[i];
+					}
+
+					List<byte[]> pointerbytes = new List<byte[]>();
+					for (int i = 0; i < pointernames.Count; i++)
+					{
+						string[] splitname = pointernames[i].Split('-');
+						bool listofbytes = splitname.Length > 1;
+						for (int x = 0; x < splitname.Length; x++)
+						{
+							if (splitname[x] == "" | splitname[x].Contains("*"))
+							{
+								listofbytes = false;
+								break;
+							}
+						}
+						if (listofbytes)
+							pointerbytes.Add(bytestring2byte(splitname));
+						else
+						{
+							string tempy = pointernames[i];
+							tempy = tempy.Replace('|', ',');
+							pointerbytes.Add(Encoding.ASCII.GetBytes(tempy));
+						}
+					}
+
+					// write pointers
+					for (int i = 0; i < pointerbytes.Count; i++)
+					{
+						pointerloc.Add((int)stream.Position - 44);
+						stream.Write(pointerbytes[i]);
+						stream.WriteByte(0x00);
+					}
+
+					// pad
+					while (stream.Position % 4 != 0)
+						stream.WriteByte(0x00);
+
+					endofpointers = (int)stream.Position;
+
+					// pad, will be pointers later
+					for (int i = 0; i < numcommands + 1; i++)
+						stream.Write(new byte[4] { 0x00, 0x00, 0x00, 0x00 });
+
+					// save commands
+					commandloc = new int[numcommands];
+					for (int i = 0; i < numcommands; i++)
+					{
+						string header = readlines[commandindex[i]];
+						string name = readlines[commandindex[i] + 1];
+						commandloc[i] = (int)stream.Position;
+						// name pointer
+						if (name.Split(',').Length < 2)
+							stream.Write(new byte[4] { 0x00, 0x00, 0x00, 0x00 });
+						else
+							stream.Write(int2ReverseBytes((int)stream.Position + 8 + header.Split(',').Length - 1));
+
+						// datapointer
+						if (name.Split(',').Length < 2)
+							stream.Write(int2ReverseBytes((int)stream.Position + 4 + header.Split(',').Length - 1));
+						else
+							stream.Write(int2ReverseBytes((int)stream.Position + 4 + name.Split(',').Length - 1 + header.Split(',').Length - 1));
+
+						// header
+						string[] splitstring = header.Split(',');
+						for (int j = 1; j < splitstring.Length; j++)
+							stream.WriteByte(Convert.ToByte(splitstring[j]));
+						// name
+						if (name.Split(',').Length >= 2)
+						{
+							splitstring = name.Split(',');
+							for (int j = 1; j < splitstring.Length; j++)
+								stream.WriteByte(Convert.ToByte(splitstring[j]));
+						}
+
+						int x = 1;
+						while (readlines[commandindex[i] + 1 + x] != "")
+						{
+							string[] splitline = readlines[commandindex[i] + 1 + x].Split(',');
+							for (int j = 1; j < splitline.Length; j++)
+							{
+								bool ispointer = !System.Text.RegularExpressions.Regex.IsMatch(splitline[j], @"^\d+$");
+								if (!ispointer)
+								{
+									switch (splitline[j])
+									{
+										case "28":
+										case "XXXXXXXXXXXXXXXXXXXXX":
+											// one byte pointer
+											stream.WriteByte(Convert.ToByte(splitline[j]));
+											//stream.WriteByte(0x1D);
+											j += 1;
+											for (int k = 0; k < pointernames.Count; k++)
+											{
+												if (pointernames[k] == splitline[j])
+												{
+													readbytes = int2bytes(pointerloc[k]);
+													stream.Write(readbytes, 3, 1);
+													break;
+												}
+												if (k == pointernames.Count - 1)
+													j--;
+											}
+											break;
+										//case "28":
+										case "29":
+											// two byte pointer
+											int location = -1;
+
+											j += 1;
+											for (int k = 0; k < pointernames.Count; k++)
+											{
+												if (pointernames[k] == splitline[j])
+												{
+													location = pointerloc[k];
+													break;
+												}
+											}
+											if (location == -1)
+											{
+												stream.WriteByte(Convert.ToByte(splitline[j]));
+												j--;
+											}
+											else if (true)//location > 255)
+											{
+												stream.WriteByte(0x1D);
+												readbytes = int2bytes(location);
+												stream.Write(readbytes, 2, 2);
+											}
+											else
+											{
+												stream.WriteByte(0x1C);
+												stream.WriteByte((byte)location);
+											}
+											break;
+										case "56":
+											// two byte function pointer
+											stream.WriteByte(Convert.ToByte(splitline[j]));
+											j += 1;
+											for (int k = 0; k < pointernames.Count; k++)
+											{
+												if (pointernames[k] == splitline[j])
+												{
+													readbytes = int2bytes(pointerloc[k]);
+													stream.Write(readbytes, 2, 2);
+													break;
+												}
+											}
+											break;
+										case "25":
+											// one byte integer
+											stream.WriteByte(Convert.ToByte(splitline[j]));
+											j += 1;
+											stream.WriteByte(Convert.ToByte(splitline[j]));
+											break;
+										case "26":
+											// two byte integer
+											stream.WriteByte(Convert.ToByte(splitline[j]));
+											j += 1;
+											readbytes = int2bytes(Convert.ToInt32(splitline[j]));
+											stream.Write(readbytes, 2, 2);
+											break;
+										default:
+											stream.WriteByte(Convert.ToByte(splitline[j]));
+											break;
+
+									}
+								}
+
+							}
+
+							x++;
+						}
+						// pad
+						//while (stream.Position % 4 != 0)
+						//stream.WriteByte(0x00);
+
+					}
+
+					// save pointers back
+					stream.Position = endofpointers;
+					for (int i = 0; i < numcommands; i++)
+						stream.Write(int2ReverseBytes(commandloc[i]));
+
+					stream.Position = 40;
+					stream.Write(int2ReverseBytes(endofpointers));
+
+				}
+			}
+
+			*/
 		#endregion
 
 
@@ -5494,6 +5944,53 @@ namespace FE10FileExtract
 			}
 			else
 				return ("");
+		}
+
+		// goes to location in stream and reads ASCII until a break (0x00)
+		// difference from ReadPointer is that it can read endlines (0x0A) (changes to ~), and also changes commas to >
+		static string ReadMessPointer(FileStream stream, int location)
+		{
+			int x;
+			List<byte> templist = new List<byte>();
+			long origpos = stream.Position;
+			stream.Position = location;
+			while ((x = stream.ReadByte()) != 0x00 & x > 0)
+			{
+				templist.Add((byte)x);
+			}
+			stream.Position = origpos;
+			bool ascii = true;
+			for (int i = 0; i < templist.Count; i++)
+			{
+				if ((templist[i] < 32 | templist[i] > 126) & templist[i] != 10)
+				{
+					ascii = false;
+					break;
+				}
+			}
+			if (templist.Count > 0)
+			{
+				string readstring;
+				if (ascii)
+				{
+					for (int i = 0; i < templist.Count; i++)
+					{
+						if (templist[i] == 0x2C)
+							templist[i] = 0x3E;
+						else if (templist[i] == 0x0A)
+							templist[i] = 0x7E;
+					}
+					readstring = Encoding.ASCII.GetString(templist.ToArray());
+					if (System.Text.RegularExpressions.Regex.IsMatch(readstring, @"^\d+$"))
+						readstring = BitConverter.ToString(templist.ToArray());
+				}
+				else
+					readstring = BitConverter.ToString(templist.ToArray());
+				return (readstring);
+			}
+			else
+				return ("");
+
 		}
 
 		static byte[] bytestring2byte(string[] bytestring)
