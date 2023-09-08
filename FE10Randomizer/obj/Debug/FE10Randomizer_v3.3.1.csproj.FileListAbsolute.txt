@@ -1,0 +1,10 @@
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v0._1.Randomizer_Main.resources
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v3.3.1.csproj.GenerateResource.cache
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v3.3.1.csproj.CoreCompileInputs.cache
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v3.3.1.csproj.AssemblyReference.cache
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\bin\Debug\FERandomizer_v3.4.0.exe.config
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\bin\Debug\FERandomizer_v3.4.0.exe
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\bin\Debug\FERandomizer_v3.4.0.pdb
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FE10Randomizer_v340.Properties.Resources.resources
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FERandomizer_v3.4.0.exe
+C:\Users\josia\Documents\FE10 Projects\FE10Randomizer\FE10Randomizer\obj\Debug\FERandomizer_v3.4.0.pdb
