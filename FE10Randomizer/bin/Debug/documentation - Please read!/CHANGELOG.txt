@@ -1,3 +1,16 @@
+Version 3.4.2 03/05/2024
+- characters with custom classes now have their base stats modified with custom class patch
+- prioritize str/mag option now swaps randomized class str/mag bases when appropriate
+- class bases and weapon stats are now listed in outputlog when class or weapon patch is applied w/o randomization
+- modified custom class animations to minimize crashes caused by sothe healing or new magic classes using seige magic
+- fixed crash at the end of part 1 caused by Volug attempting to transform
+- fixed crash caused by soren's sage color palette
+- fixed 4-5 seize point missing
+- fixed bug where characters with custom classes did not display correct base stats in outputlog
+- fixed bug where Izuka could replace T1 characters with random recruitment
+- fixed bug where herons could end up in the same part even with options on to disable that
+
+
 Version 3.4.1 09/08/2023
 - fixed crash when using the "Part 4 enemies use T3 classes" option
 - fixed biorhythm bug for those on non-US English PCs
