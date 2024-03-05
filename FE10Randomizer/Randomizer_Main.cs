@@ -196,7 +196,7 @@ namespace FE10Randomizer_v0._1
 						string versionNum = eachsetting[0];
 
 						// get lists based on version settings were saved from
-						if (versionNum == "3.4.0" | versionNum == "3.4.1")
+						if (versionNum == "3.4.0" | versionNum == "3.4.1" | versionNum == "3.4.2")
 						{
 							checkBoxes = new System.Windows.Forms.CheckBox[]  { cbxAffinity, cbxBio, cbxBirdVision, cbxBKfight, cbxBKnerf, cbxBuffBosses, cbxChestKey,
 														   cbxChooseIke, cbxClassRand, cbxDBweaps, cbxDragonSkills, cbxEnemDrops, cbxEnemHealers,
@@ -2395,6 +2395,8 @@ namespace FE10Randomizer_v0._1
 			// loop until we find a good selection
 			while (!finished)
 			{
+				List<char> heronparts = new List<char>();
+
 				string newname;
 				bool tryagain = false;
 				int problemchild = -1;
@@ -2521,12 +2523,29 @@ namespace FE10Randomizer_v0._1
 						}
 					}
 
+					// herons shouldn't be bosses if herons are not randomized
+					if (!cbxClassRand.Checked | !cbxHerons.Checked)
+					{
+						if (newname == "rafiel" | newname == "leanne" | newname == "reyson")
+						{
+							char part = characters[i].Chapter[0];
+							if (part != '1' & part != '2' & part != '3')
+								tryagain = true;
+							else if (heronparts.Contains(part) & cbxHeronSpread.Checked)
+								// herons need to be separated by parts, there's already a heron in this part
+								tryagain = true;
+							else
+								heronparts.Add(part);
+						}
+					}
+
 					if (tryagain)
 					{
 						problemchild = i;
 						break;
 					}
 				}
+
 
 				if (tryagain)
 				// something is wrong, roll a new random recruit for the problem child
@@ -4402,6 +4421,13 @@ namespace FE10Randomizer_v0._1
 					zuData[k] = zuData[k].Split(';')[0];
 				}
 
+				if (character.Name == "soren")
+				{
+					string test = character.Name;
+					ymufolder = "mage3_s";
+					ymupalette = "mage3_s";
+				}
+
 				string palettefile = dataLocation + "\\ymu\\" + ymufolder + "\\" + ymupalette + ".tpl";
 				if (!File.Exists(palettefile))
 				{
@@ -4778,7 +4804,7 @@ namespace FE10Randomizer_v0._1
 					writer.WriteLine(alllines[k]);
 				writer.Close();
 
-				// animation file changes
+				// animation (battle) file changes
 				#region
 				string sourcePath, targetPath, sourcefile, targetfile;
 				for (int i = 1; i < lines.Length; i++)
@@ -4793,10 +4819,11 @@ namespace FE10Randomizer_v0._1
 					string movefromzu = split[6];
 					string movefromfile = split[7];
 					// ymu animation files to move
-					string movetoymu = split[10];
-					string movetoymu2 = split[11];
-					string ymufiles2move = split[12];
-					string movefromymu = split[13];
+					// OUTDATED - USES SEPARATE CSV NOW
+					//string movetoymu = split[10];
+					//string movetoymu2 = split[11];
+					//string ymufiles2move = split[12];
+					//string movefromymu = split[13];
 
 					// move animation files accordingly
 					if (movefromzu != "")
@@ -4848,6 +4875,7 @@ namespace FE10Randomizer_v0._1
 							}
 						}
 					}
+					/*
 					if (movefromymu != "")
 					{
 						for (int twice = 0; twice < 2; twice++)
@@ -4871,6 +4899,7 @@ namespace FE10Randomizer_v0._1
 							}
 						}
 					}
+					*/
 				}
 				// move files for soren's class specifically
 				sourcePath = dataLocation + "\\zu\\pknSt\\sw.pak";
@@ -4920,6 +4949,33 @@ namespace FE10Randomizer_v0._1
 				System.IO.File.Copy(sourcePath, targetPath, true);
 				targetPath = dataLocation + "\\zu\\priSo\\ms.pak";
 				System.IO.File.Copy(sourcePath, targetPath, true);
+				#endregion
+
+				// animation (ymu) file changes
+				#region
+				System.IO.StreamReader readthis = new System.IO.StreamReader(file + "\\assets\\ClassPatch_AnimFiles.csv");
+				string[] eachline = readthis.ReadToEnd().Split(new string[1] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+				readthis.Close();
+
+				for (int i = 1; i < eachline.Length; i++)
+				{
+					string[] cell = eachline[i].Split(',');
+					string sfolder = cell[2];
+					string sfile = cell[3];
+					string dfolder = cell[4];
+					string dfile = cell[5];
+
+					string totalsource = dataLocation + "\\ymu\\" + sfolder + "\\" + sfile;
+					string totaldest = dataLocation + "\\ymu\\" + dfolder + "\\" + dfile;
+
+					if (File.Exists(totalsource))
+						System.IO.File.Copy(totalsource, totaldest, true);
+					else
+					{
+						string test = "oops";
+					}
+				}
+
 				#endregion
 			}
 		}
@@ -4980,6 +5036,9 @@ namespace FE10Randomizer_v0._1
 				string JID = split[2];
 				string[] weapons = new string[4] { split[3], split[4], split[5], "" };
 				int chapindex = -1;
+
+				if (JID != "" & id >= 0)
+					characters[id].JID = JID;
 
 				if (characters[id].Chapter != "0")
 				{
@@ -5438,10 +5497,15 @@ namespace FE10Randomizer_v0._1
 				{
 					if (cbxRandClassBases.Checked)
 					{
+						int[] initialbases = new int[bases.Length];
+
 						for (int j = 0; j < 8; j++)
 						{
 							if (bases[j] > 127)
 								bases[j] -= 256;
+
+							initialbases[j] = bases[j];
+
 							int minbase = bases[j] - Convert.ToInt32(numericClassBaseDev.Value);
 							int maxbase = bases[j] + Convert.ToInt32(numericClassBaseDev.Value);
 							// prevent class bases from being less than zero
@@ -5459,6 +5523,16 @@ namespace FE10Randomizer_v0._1
 							bases[j] = randstat;
 
 						}
+
+						// make sure the proper str/mag is larger
+						if (initialbases[1] > initialbases[2] & bases[1] < bases[2] |
+							initialbases[1] < initialbases[2] & bases[1] > bases[2])
+						{
+							int temp = bases[1];
+							bases[1] = bases[2];
+							bases[2] = temp;
+						}
+
 						ClassData.Write(JIDs[i], "Bases", bases);
 					}
 					else if (cbxShuffleClassBases.Checked)
@@ -5504,6 +5578,15 @@ namespace FE10Randomizer_v0._1
 						for (int x = 0; x < newstats.Length; x++)
 							if (newstats[x] > 127)
 								newstats[x] = 127;
+
+						// make sure the proper str/mag is larger
+						if (bases[1] > bases[2] & newstats[1] < newstats[2] |
+							bases[1] < bases[2] & newstats[1] > newstats[2])
+						{
+							int temp = newstats[1];
+							newstats[1] = newstats[2];
+							newstats[2] = temp;
+						}
 
 						// write
 						ClassData.Write(JIDs[i], "Bases", newstats);
@@ -8102,7 +8185,7 @@ namespace FE10Randomizer_v0._1
 				string[] dudes = new string[4] { "JID_BRAVE", "JID_ROGUE", "JID_LIGHTMAGE", "JID_LIGHTSAGE" };
 				for (int i = 0; i < dudes.Length; i++)
 				{
-					// remove sealsteal
+					// remove event class change
 					List<string> newskills = new List<string>();
 					string[] skills = ClassData.ReadStringArray(dudes[i], "Skills");
 					for (int j = 0; j < skills.Length; j++)
@@ -8686,6 +8769,7 @@ namespace FE10Randomizer_v0._1
 
 			int rafielchar = -1, leannechar = -1, reysonchar = -1;
 			bool nailahbeorc = false, volugbeorc = false, vikabeorc = false, mwarimbeorc = false, nealuchibeorc = false, rafielbeorc = false, kurthbeorc = false;
+			bool skrimirbeorc = false, ranulfbeorc = false;
 			
 			for (int i = 0; i < characters.Length; i++)
 			{
@@ -8704,6 +8788,10 @@ namespace FE10Randomizer_v0._1
 					rafielbeorc = characters[i].NewRace == "B";
 				else if (characters[i].Name == "kurthnaga")
 					kurthbeorc = characters[i].NewRace == "B";
+				else if (characters[i].Name == "skrimir")
+					skrimirbeorc = characters[i].NewRace == "B";
+				else if (characters[i].Name == "ranulf")
+					ranulfbeorc = characters[i].NewRace == "B";
 
 				// get which PIDs were changed to herons
 				int newclass = characters[i].NewClass;
@@ -8779,8 +8867,16 @@ namespace FE10Randomizer_v0._1
 						if (scriptname.Contains("0109") & (nailahbeorc | volugbeorc | mwarimbeorc | vikabeorc) & templine.Contains("UnitTransform"))
 							saveline = false;
 
+						// 1-F volug
+						if (scriptname.Contains("0111") & (volugbeorc) & templine.Contains("UnitTransform"))
+							saveline = false;
+
 						// 2-P nealuchi
 						if (scriptname.Contains("0201") & (nealuchibeorc) & templine.Contains("UnitTransform"))
+							saveline = false;
+
+						// 3-2 ranulf, skrimir
+						if (scriptname.Contains("0303") & (ranulfbeorc | skrimirbeorc) & templine.Contains("UnitTransform"))
 							saveline = false;
 
 						// 3-6 volug doesnt get halfshift
@@ -8996,10 +9092,10 @@ namespace FE10Randomizer_v0._1
 					// win con changes to part 4
 					if (cbxWinCon.Checked)
 					{
-						if ((scriptname.Contains("0402") & templine.Contains("MS_0402_DIE")) |
-							(scriptname.Contains("0403") & templine.Contains("MS_0403_DIE")) |
-							(scriptname.Contains("0404") & templine.Contains("MS_0404_DIE")) |
-							(scriptname.Contains("0407a") & templine.Contains("MS_0407a_DIE_L")) )
+						if ((scriptname.Contains("0402") & templine.Contains("\"MS_0402_DIE\"")) |
+							(scriptname.Contains("0403") & templine.Contains("\"MS_0403_DIE\"")) |
+							(scriptname.Contains("0404") & templine.Contains("\"MS_0404_DIE\"")) |
+							(scriptname.Contains("0407a") & templine.Contains("\"MS_0407a_DIE_L\"")) )
 						{
 							outscriptlines.Add(templine);
 							outscriptlines.Add("    set(\"gf_complete\");");
@@ -9011,8 +9107,9 @@ namespace FE10Randomizer_v0._1
 						{
 							outscriptlines.Add("callback[0x5](5, 2, 13, \"烽P上右\") {");
 							outscriptlines.Add("set(\"gf_complete\");");
-							outscriptlines.Add("}");
-							y += 3;
+							//outscriptlines.Add("}");
+							y += 4;
+							templine = filelines[y];
 						}
 					}
 
@@ -9791,7 +9888,7 @@ namespace FE10Randomizer_v0._1
 																radioMages0, radioMages1, radioMages2, radioMages3, radioMages4, radioMages5};
 
 			// convert choices into strings
-			string settingstring = "3.4.1,";
+			string settingstring = "3.4.2,";
 			for (int i = 0; i < numericUpDowns.Length; i++)
 			{
 				settingstring += numericUpDowns[i].Value.ToString() + ",";
@@ -9830,9 +9927,9 @@ namespace FE10Randomizer_v0._1
 			// add hyperlinks
 			if (cbxTowerUnits.Checked)
 				outlogtext += "<a href=\"#tower\">Tower Units</a>\n";
-			if (cbxRandWeap.Checked)
+			if (cbxRandWeap.Checked | cbxWeapPatch.Checked)
 				outlogtext += "<a href=\"#weapons\">Weapon Stats</a>\n";
-			if (cbxRandClassBases.Checked | cbxShuffleClassBases.Checked | cbxRandMove.Checked)
+			if (cbxRandClassBases.Checked | cbxShuffleClassBases.Checked | cbxRandMove.Checked | cbxClassPatch.Checked)
 				outlogtext += "<a href=\"#class\">Class Bases</a>\n";
 			if (cbxStatCaps.Checked | cbxStatCapDev.Checked | cbxStatCapFlat.Checked)
 				outlogtext += "<a href=\"#caps\">Stat Caps</a>\n";
@@ -10076,7 +10173,7 @@ namespace FE10Randomizer_v0._1
 			}
 
 
-			if (cbxRandWeap.Checked)
+			if (cbxRandWeap.Checked | cbxWeapPatch.Checked)
 			{
 				// read from file
 				System.IO.StreamReader dataReader2 = new System.IO.StreamReader(file + "\\assets\\weaponlist.txt");
@@ -10110,7 +10207,7 @@ namespace FE10Randomizer_v0._1
 			dataReader.Close();
 
 			// class bases
-			if (cbxRandClassBases.Checked | cbxShuffleClassBases.Checked | cbxRandMove.Checked)
+			if (cbxRandClassBases.Checked | cbxShuffleClassBases.Checked | cbxRandMove.Checked | cbxClassPatch.Checked)
 			{
 				outlogtext += "<br><hr><br><h2 id=\"class\">Class Bases</h2>";
 

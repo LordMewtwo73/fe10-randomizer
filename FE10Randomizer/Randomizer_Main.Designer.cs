@@ -5837,7 +5837,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "Randomizer_Main";
-			this.Text = "LordMewtwo\'s FE10 Randomizer v3.4.1 - 09/08/2023";
+			this.Text = "LordMewtwo\'s FE10 Randomizer v3.4.2 - 03/05/2024";
 			((System.ComponentModel.ISupportInitialize)(this.numericGrowth)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericHP)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericSPD)).EndInit();
