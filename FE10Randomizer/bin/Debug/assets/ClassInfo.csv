@@ -127,3 +127,4 @@ ID,Name,JID,playable tier,playable weapon,playable classtype,beorc/laguz,animati
 125,windspirit,JID_SPIRIT_W,x,X;X;X,X,B,x,3;4,W;W,M
 126,firespirit,JID_SPIRIT_F,x,X;X;X,X,B,x,3;4,F;F,M
 127,thunderspirit,JID_SPIRIT_S,x,X;X;X,X,B,x,3;4,T;T,M
+128,order incarnate,JID_GODDESS,c;d,D;M;M,M,B,74;74,4,D;M,M

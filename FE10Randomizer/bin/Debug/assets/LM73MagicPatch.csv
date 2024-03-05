@@ -1,4 +1,4 @@
-Name,new name,e_common name loc,new descrip,e_common descrip loc,Rank,Mt,Hit,Crit,Wt,Rng min,Rng max,Uses,Cost per Use,Attributes,Effectiveness,Bonuses,PAL_e_common name loc,PAL_e_common descrip loc
+Name,new name,UNUSED,new descrip,UNUSED,Rank,Mt,Hit,Crit,Wt,Rng min,Rng max,Uses,Cost per Use,Attributes,Effectiveness,Bonuses,UNUSED,UNUSED
 IID_FIRE,,0,,0,E,6,80,5,3,1,2,50,17,,SFXC_BEAST,,0,0
 IID_ELFIRE,Smelt,8204,Mid-level fire magic.;Effective: #P036 #P038,46236,D,8,75,0,5,1,2,40,34,,SFXC_BEAST;SFXC_ARMOR,,8248,49436
 IID_GIGAFIRE,,0,,0,B,13,80,0,6,1,2,30,100,,SFXC_BEAST,,0,0
@@ -19,7 +19,7 @@ IID_TORNADO, ,0,Extremely powerful wind magic.;Effective: #P037,47480,S,13,115,5
 IID_REXCALIBUR,,0,,0,*,16,100,10,11,2,3,50,300,,SFXC_FLY,0;0;0;0;3;0;0;0;0;0;0;0,0,0
 IID_BLIZZARD,,0,,0,C,9,80,0,17,3,12,5,400,longfar,SFXC_FLY,,0,0
 IID_LIGHT,,0,,0,E,4,100,5,1,1,2,50,16,,,,0,0
-IID_ELLIGHT,Cleanse,8384,Magic created by the senators of Begnion.;Effective: #P034,47780,D,6,95,5,3,1,2,40,32,,SFXC_ALIZE,,8428,51076
+IID_ELLIGHT,Cleanse,8384,Magic created by the senators of Begnion.;Effective against Laguz.,47780,D,6,95,5,3,1,2,40,32,,SFXC_ALIZE,,8428,51076
 IID_SHINE,Aura,8392,High-level light magic.;Effective: #P017,47860,B,9,90,10,5,1,2,35,95,,SFXC_MAGE,,8436,51156
 IID_RESIRE,,0,,0,S,8,85,0,7,1,2,20,210,resire,,,0,0
 IID_VALAURA,,0,Powerful light magic. Its wielder can;hit twice in a single turn.,48036,S,7,95,0,12,1,2,30,225,twice,,,0,0

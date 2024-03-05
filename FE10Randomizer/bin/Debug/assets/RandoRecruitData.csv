@@ -76,12 +76,12 @@ ludveck,axarmor,29,30,31,31,11
 septimus,lncarmor,17,18,19,19,15
 valtome,priest,57,58,59,59,14
 numida,priest,57,58,59,59,14
-izuka,druid,0,62,63,63,13
+izuka,druid,999,62,63,63,13
 hetzel,priest,57,58,59,59,14
 levail,soldier,11,12,13,13,16
 lekain,priest,57,58,59,59,16
 zelgius,swdarmor,8,9,10,10,20
 dheginsea,blackdrag,999,98,103,98,40
 sephiran,chancellor,999,999,66,66,20
-blackknight,blackknight,999,999,999,999,20
-ashera,goddess,999,999,999,999,20
+blackknight,blackknight,999,999,124,124,20
+ashera,goddess,999,999,128,128,20

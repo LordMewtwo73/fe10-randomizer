@@ -1,0 +1,338 @@
+class,animation type,copyfolder,copyfile,pastefolder,pastefile
+dread fighter,magic,mage2_t_p,mag_1.ga,sworder2_z,mag_2.ga
+dread fighter,magic,mage2_t_p,mag2_1.ga,sworder2_z,mag2_1.ga
+yasha,magic,mage3_p,mag_1.ga,sworder3_z,mag_2.ga
+yasha,magic,mage3_p,mag2_1.ga,sworder3_z,mag2_1.ga
+yasha,magic,mage3_p,arc_1.ga,sworder3_z,arc_2.ga
+yasha_s,magic,mage3_p,mag_1.ga,sworder3_s,mag_2.ga
+yasha_s,magic,mage3_p,mag2_1.ga,sworder3_s,mag2_1.ga
+yasha_s,magic,mage3_p,arc_1.ga,sworder3_s,arc_2.ga
+lancer,magic,priest2_f,mag_1.ga,soldier2_f,mag_1.ga
+lancer,magic,priest2_f,mag2_1.ga,soldier2_f,mag2_1.ga
+holy lancer,magic,priest3_f,mag_1.ga,soldier3_f,mag_1.ga
+holy lancer,magic,priest3_f,mag2_1.ga,soldier3_f,mag2_1.ga
+holy lancer,magic,priest3_f,arc_1.ga,soldier3_f,arc_2.ga
+brave,bow,archer3_c,wait_2.ga,fighter3_b,wait_5.ga
+brave,bow,archer3_c,move_2.ga,fighter3_b,move_5.ga
+brave,bow,archer3_c,twait_2.ga,fighter3_b,twait_5.ga
+brave,bow,archer3_c,atk_1.ga,fighter3_b,atk_4.ga
+brave,bow,archer3_c,atk2_1.ga,fighter3_b,atk2_4.ga
+brave,bow,archer3_c,atku_1.ga,fighter3_b,atku_3.ga
+brave,bow,archer3_c,atk2u_1.ga,fighter3_b,atk2u_3.ga
+brave,bow,archer3_c,atkd_1.ga,fighter3_b,atkd_3.ga
+brave,bow,archer3_c,atk2d_1.ga,fighter3_b,atk2d_3.ga
+brave,bow,archer3_c,arc_1.ga,fighter3_b,arc_2.ga
+brave,bow,archer3_c,tack_2.ga,fighter3_b,tack_5.ga
+brave,bow,archer3_c,avoid_2.ga,fighter3_b,avoid_5.ga
+brave,bow,archer3_c,poise_2.ga,fighter3_b,poise_5.ga
+brave,bow,archer3_c,damage_2.ga,fighter3_b,damage_5.ga
+brave,bow,archer3_c,dead_2.ga,fighter3_b,dead_5.ga
+brave,bow,archer3_c,up_2.ga,fighter3_b,up_5.ga
+brave,bow,archer3_c,down_2.ga,fighter3_b,down_5.ga
+brave_n,bow,archer3_c,wait_2.ga,fighter3_n,wait_5.ga
+brave_n,bow,archer3_c,move_2.ga,fighter3_n,move_5.ga
+brave_n,bow,archer3_c,twait_2.ga,fighter3_n,twait_5.ga
+brave_n,bow,archer3_c,atk_1.ga,fighter3_n,atk_4.ga
+brave_n,bow,archer3_c,atk2_1.ga,fighter3_n,atk2_4.ga
+brave_n,bow,archer3_c,atku_1.ga,fighter3_n,atku_3.ga
+brave_n,bow,archer3_c,atk2u_1.ga,fighter3_n,atk2u_3.ga
+brave_n,bow,archer3_c,atkd_1.ga,fighter3_n,atkd_3.ga
+brave_n,bow,archer3_c,atk2d_1.ga,fighter3_n,atk2d_3.ga
+brave_n,bow,archer3_c,arc_1.ga,fighter3_n,arc_2.ga
+brave_n,bow,archer3_c,tack_2.ga,fighter3_n,tack_5.ga
+brave_n,bow,archer3_c,avoid_2.ga,fighter3_n,avoid_5.ga
+brave_n,bow,archer3_c,poise_2.ga,fighter3_n,poise_5.ga
+brave_n,bow,archer3_c,damage_2.ga,fighter3_n,damage_5.ga
+brave_n,bow,archer3_c,dead_2.ga,fighter3_n,dead_5.ga
+brave_n,bow,archer3_c,up_2.ga,fighter3_n,up_5.ga
+brave_n,bow,archer3_c,down_2.ga,fighter3_n,down_5.ga
+trickster,staff,priest2_k,wait_2.ga,thief2_s,wait_2.ga
+trickster,staff,priest2_k,move_2.ga,thief2_s,move_2.ga
+trickster,staff,priest2_k,twait_2.ga,thief2_s,twait_2.ga
+trickster,staff,priest2_k,atk_1.ga,thief2_s,atk_2.ga
+trickster,staff,priest2_k,atk2_1.ga,thief2_s,atk2_2.ga
+trickster,staff,priest2_k,rod_2.ga,thief2_s,rod_1.ga
+trickster,staff,priest2_k,tack_2.ga,thief2_s,tack_2.ga
+trickster,staff,priest2_k,avoid_2.ga,thief2_s,avoid_2.ga
+trickster,staff,priest2_k,poise_2.ga,thief2_s,poise_2.ga
+trickster,staff,priest2_k,damage_2.ga,thief2_s,damage_2.ga
+trickster,staff,priest2_k,dead_2.ga,thief2_s,dead_2.ga
+trickster,staff,priest2_k,up_2.ga,thief2_s,up_2.ga
+trickster,staff,priest2_k,down_2.ga,thief2_s,down_2.ga
+trickster,staff,priest2_k,flip_1.ga,thief2_s,flip_2.ga
+trickster,staff,priest2_k,flip2_1.ga,thief2_s,flip2_2.ga
+lightning thief,staff,priest3_k,wait_2.ga,thief3_s,wait_2.ga
+lightning thief,staff,priest3_k,move_2.ga,thief3_s,move_2.ga
+lightning thief,staff,priest3_k,twait_2.ga,thief3_s,twait_2.ga
+lightning thief,staff,priest3_k,atk_1.ga,thief3_s,atk_2.ga
+lightning thief,staff,priest3_k,atk2_1.ga,thief3_s,atk2_2.ga
+lightning thief,staff,priest3_k,rod_1.ga,thief3_s,rod_1.ga
+lightning thief,staff,priest3_k,tack_2.ga,thief3_s,tack_2.ga
+lightning thief,staff,priest3_k,avoid_2.ga,thief3_s,avoid_2.ga
+lightning thief,staff,priest3_k,poise_2.ga,thief3_s,poise_2.ga
+lightning thief,staff,priest3_k,damage_2.ga,thief3_s,damage_2.ga
+lightning thief,staff,priest3_k,dead_2.ga,thief3_s,dead_2.ga
+lightning thief,staff,priest3_k,up_2.ga,thief3_s,up_2.ga
+lightning thief,staff,priest3_k,down_2.ga,thief3_s,down_2.ga
+lightning thief,staff,priest3_k,flip_1.ga,thief3_s,flip_2.ga
+lightning thief,staff,priest3_k,flip2_1.ga,thief3_s,flip2_2.ga
+lightning thief,magic,priest3_k,mag_1.ga,thief3_s,mag_2.ga
+lightning thief,magic,priest3_k,mag2_1.ga,thief3_s,mag2_2.ga
+lightning thief,magic,priest3_k,arc_1.ga,thief3_s,arc_2.ga
+assassin,bow,archer3_c,wait_2.ga,thief3_v,wait_2.ga
+assassin,bow,archer3_c,move_2.ga,thief3_v,move_2.ga
+assassin,bow,archer3_c,twait_2.ga,thief3_v,twait_2.ga
+assassin,bow,archer3_c,atk_1.ga,thief3_v,atk_2.ga
+assassin,bow,archer3_c,atk2_1.ga,thief3_v,atk2_2.ga
+assassin,bow,archer3_c,atku_1.ga,thief3_v,atku_1.ga
+assassin,bow,archer3_c,atk2u_1.ga,thief3_v,atk2u_1.ga
+assassin,bow,archer3_c,atkd_1.ga,thief3_v,atkd_1.ga
+assassin,bow,archer3_c,atk2d_1.ga,thief3_v,atk2d_1.ga
+assassin,bow,archer3_c,arc_1.ga,thief3_v,arc_2.ga
+assassin,bow,archer3_c,tack_2.ga,thief3_v,tack_2.ga
+assassin,bow,archer3_c,avoid_2.ga,thief3_v,avoid_2.ga
+assassin,bow,archer3_c,poise_2.ga,thief3_v,poise_2.ga
+assassin,bow,archer3_c,damage_2.ga,thief3_v,damage_2.ga
+assassin,bow,archer3_c,dead_2.ga,thief3_v,dead_2.ga
+assassin,bow,archer3_c,up_2.ga,thief3_v,up_2.ga
+assassin,bow,archer3_c,down_2.ga,thief3_v,down_2.ga
+bartendress,sword,cleric,move_2.ga,mage2_f_c,move_2.ga
+bartendress,sword,cleric,twait_2.ga,mage2_f_c,twait_2.ga
+bartendress,sword,cleric,atk_1.ga,mage2_f_c,atk_1.ga
+bartendress,sword,cleric,atk2_1.ga,mage2_f_c,atk2_1.ga
+bartendress,sword,cleric,mag_1.ga,mage2_f_c,mag_2.ga
+bartendress,sword,cleric,avoid_2.ga,mage2_f_c,avoid_2.ga
+bartendress,sword,cleric,poise_2.ga,mage2_f_c,poise_2.ga
+bartendress,sword,cleric,damage_2.ga,mage2_f_c,damage_2.ga
+bartendress,sword,cleric,dead_2.ga,mage2_f_c,dead_2.ga
+bartendress,sword,cleric,up_2.ga,mage2_f_c,up_2.ga
+bartendress,sword,cleric,down_2.ga,mage2_f_c,down_2.ga
+bartendress,sword,cleric,flip_1.ga,mage2_f_c,flip_1.ga
+bartendress,sword,cleric,flip2_1.ga,mage2_f_c,flip2_1.ga
+bartendress,sword,cleric,evt1_1.ga,mage2_f_c,evt1_1.ga
+enchantress,sword,sworder3_w,move_2.ga,mage3_c,move_3.ga
+enchantress,sword,sworder3_w,atk_1.ga,mage3_c,atk_2.ga
+enchantress,sword,sworder3_w,atk2_1.ga,mage3_c,atk2_2.ga
+enchantress,sword,sworder3_w,mag_1.ga,mage3_c,mag_2.ga
+enchantress,sword,sworder3_w,arc_1.ga,mage3_c,arc_2.ga
+enchantress,sword,sworder3_w,arc2_1.ga,mage3_c,arc2_1.ga
+enchantress,sword,sworder3_w,arc3_1.ga,mage3_c,arc3_1.ga
+enchantress,sword,sworder3_w,arc4_1.ga,mage3_c,arc4_1.ga
+enchantress,sword,sworder3_w,arc5_1.ga,mage3_c,arc5_1.ga
+enchantress,sword,sworder3_w,avoid_2.ga,mage3_c,avoid_3.ga
+enchantress,sword,sworder3_w,poise_2.ga,mage3_c,poise_3.ga
+enchantress,sword,sworder3_w,damage_2.ga,mage3_c,damage_3.ga
+enchantress,sword,sworder3_w,dead_2.ga,mage3_c,dead_3.ga
+enchantress,sword,sworder3_w,up_2.ga,mage3_c,up_3.ga
+enchantress,sword,sworder3_w,down_2.ga,mage3_c,down_3.ga
+enchantress,sword,sworder3_w,flip_1.ga,mage3_c,flip_2.ga
+enchantress,sword,sworder3_w,flip2_1.ga,mage3_c,flip2_2.ga
+thunder kn,magic,mage1_t,mag_1.ga,knight1_sp,mag_1.ga
+thunder kn,magic,mage1_t,mag2_1.ga,knight1_sp,mag2_1.ga
+thunder pal,magic,mage2_t,mag_1.ga,knight2_f,mag_1.ga
+thunder pal,magic,mage2_t,mag2_1.ga,knight2_f,mag2_1.ga
+thunder pal_o,magic,mage2_t,mag_1.ga,knight2_o,mag_1.ga
+thunder pal_o,magic,mage2_t,mag2_1.ga,knight2_o,mag2_1.ga
+platinum kn,magic,mage3_e,mag_1.ga,knight3_f,mag_1.ga
+platinum kn,magic,mage3_e,mag2_1.ga,knight3_f,mag2_1.ga
+platinum kn,magic,mage3_e,arc_1.ga,knight3_f,arc_3.ga
+platinum kn_o,magic,mage3_e,mag_1.ga,knight3_o,mag_1.ga
+platinum kn_o,magic,mage3_e,mag2_1.ga,knight3_o,mag2_1.ga
+platinum kn_o,magic,mage3_e,arc_1.ga,knight3_o,arc_3.ga
+fire pal,magic,mage2_f,mag_1.ga,knight2_ax_k,mag_1.ga
+fire pal,magic,mage2_f,mag2_1.ga,knight2_ax_k,mag2_1.ga
+copper kn,magic,mage3_t,mag_1.ga,knight3_k,mag_2.ga
+copper kn,magic,mage3_t,mag2_1.ga,knight3_k,mag2_1.ga
+copper kn,magic,mage3_t,arc_1.ga,knight3_k,arc_3.ga
+queen,magic,mage3_s,mag_1.ga,erincia_p,mag_2.ga
+queen,magic,mage3_s,mag2_1.ga,erincia_p,mag2_1.ga
+queen,magic,mage3_s,arc_1.ga,erincia_p,arc_2.ga
+malig kn,magic,mage1_f,mag_1.ga,d_knight1_j,mag_1.ga
+malig kn,magic,mage1_f,mag2_1.ga,d_knight1_j,mag2_1.ga
+malig master,magic,mage2_t_p,mag_1.ga,d_knight2_j,mag_1.ga
+malig master,magic,mage2_t_p,mag2_1.ga,d_knight2_j,mag2_1.ga
+malig lord,magic,mage3_p,mag_1.ga,d_knight3_j,mag_1.ga
+malig lord,magic,mage3_p,mag2_1.ga,d_knight3_j,mag2_1.ga
+malig lord,magic,mage3_p,arc_1.ga,d_knight3_j,arc_3.ga
+war monk,axe,fighter2_n,wait_2.ga,priest2_k,wait_3.ga
+war monk,axe,fighter2_n,move_2.ga,priest2_k,move_3.ga
+war monk,axe,fighter2_n,twait_2.ga,priest2_k,twait_3.ga
+war monk,axe,fighter2_n,atk_1.ga,priest2_k,atk_2.ga
+war monk,axe,fighter2_n,atk2_1.ga,priest2_k,atk2_2.ga
+war monk,axe,fighter2_n,tack_2.ga,priest2_k,tack_3.ga
+war monk,axe,fighter2_n,avoid_2.ga,priest2_k,avoid_3.ga
+war monk,axe,fighter2_n,poise_2.ga,priest2_k,poise_3.ga
+war monk,axe,fighter2_n,damage_2.ga,priest2_k,damage_3.ga
+war monk,axe,fighter2_n,dead_2.ga,priest2_k,dead_3.ga
+war monk,axe,fighter2_n,up_2.ga,priest2_k,up_3.ga
+war monk,axe,fighter2_n,down_2.ga,priest2_k,down_3.ga
+war monk,axe,fighter2_n,flip_1.ga,priest2_k,flip_2.ga
+war monk,axe,fighter2_n,flip2_1.ga,priest2_k,flip2_2.ga
+war monk,handaxe,fighter2_n,wait_3.ga,priest2_k,wait_4.ga
+war monk,handaxe,fighter2_n,move_3.ga,priest2_k,move_4.ga
+war monk,handaxe,fighter2_n,twait_3.ga,priest2_k,twait_4.ga
+war monk,handaxe,fighter2_n,atk_2.ga,priest2_k,atk_3.ga
+war monk,handaxe,fighter2_n,atk2_2.ga,priest2_k,atk2_3.ga
+war monk,handaxe,fighter2_n,atku_1.ga,priest2_k,atku_1.ga
+war monk,handaxe,fighter2_n,atk2u_1.ga,priest2_k,atk2u_1.ga
+war monk,handaxe,fighter2_n,atkd_1.ga,priest2_k,atkd_1.ga
+war monk,handaxe,fighter2_n,atk2d_1.ga,priest2_k,atk2d_1.ga
+war monk,handaxe,fighter2_n,tack_3.ga,priest2_k,tack_4.ga
+war monk,handaxe,fighter2_n,avoid_3.ga,priest2_k,avoid_4.ga
+war monk,handaxe,fighter2_n,poise_3.ga,priest2_k,poise_4.ga
+war monk,handaxe,fighter2_n,damage_3.ga,priest2_k,damage_4.ga
+war monk,handaxe,fighter2_n,dead_3.ga,priest2_k,dead_4.ga
+war monk,handaxe,fighter2_n,up_3.ga,priest2_k,up_4.ga
+war monk,handaxe,fighter2_n,down_3.ga,priest2_k,down_4.ga
+crusader,axe,fighter3_n,wait_2.ga,priest3_k,wait_3.ga
+crusader,axe,fighter3_n,move_2.ga,priest3_k,move_3.ga
+crusader,axe,fighter3_n,twait_2.ga,priest3_k,twait_3.ga
+crusader,axe,fighter3_n,atk_1.ga,priest3_k,atk_2.ga
+crusader,axe,fighter3_n,atk2_1.ga,priest3_k,atk2_2.ga
+crusader,axe,fighter3_n,arc_1.ga,priest3_k,arc_2.ga
+crusader,axe,fighter3_n,tack_2.ga,priest3_k,tack_3.ga
+crusader,axe,fighter3_n,avoid_2.ga,priest3_k,avoid_3.ga
+crusader,axe,fighter3_n,poise_2.ga,priest3_k,poise_3.ga
+crusader,axe,fighter3_n,damage_2.ga,priest3_k,damage_3.ga
+crusader,axe,fighter3_n,dead_2.ga,priest3_k,dead_3.ga
+crusader,axe,fighter3_n,up_2.ga,priest3_k,up_3.ga
+crusader,axe,fighter3_n,down_2.ga,priest3_k,down_3.ga
+crusader,axe,fighter3_n,flip_1.ga,priest3_k,flip_2.ga
+crusader,axe,fighter3_n,flip2_1.ga,priest3_k,flip2_2.ga
+crusader,handaxe,fighter3_n,wait_3.ga,priest3_k,wait_4.ga
+crusader,handaxe,fighter3_n,move_3.ga,priest3_k,move_4.ga
+crusader,handaxe,fighter3_n,twait_3.ga,priest3_k,twait_4.ga
+crusader,handaxe,fighter3_n,atk_2.ga,priest3_k,atk_3.ga
+crusader,handaxe,fighter3_n,atk2_2.ga,priest3_k,atk2_3.ga
+crusader,handaxe,fighter3_n,atku_1.ga,priest3_k,atku_1.ga
+crusader,handaxe,fighter3_n,atk2u_1.ga,priest3_k,atk2u_1.ga
+crusader,handaxe,fighter3_n,atkd_1.ga,priest3_k,atkd_1.ga
+crusader,handaxe,fighter3_n,atk2d_1.ga,priest3_k,atk2d_1.ga
+crusader,handaxe,fighter3_n,tack_3.ga,priest3_k,tack_4.ga
+crusader,handaxe,fighter3_n,avoid_3.ga,priest3_k,avoid_4.ga
+crusader,handaxe,fighter3_n,poise_3.ga,priest3_k,poise_4.ga
+crusader,handaxe,fighter3_n,damage_3.ga,priest3_k,damage_4.ga
+crusader,handaxe,fighter3_n,dead_3.ga,priest3_k,dead_4.ga
+crusader,handaxe,fighter3_n,up_3.ga,priest3_k,up_4.ga
+crusader,handaxe,fighter3_n,down_3.ga,priest3_k,down_4.ga
+crusader,sword,sworder3_e,move_2.ga,priest3_k,move_5.ga
+crusader,sword,sworder3_e,atk_1.ga,priest3_k,atk_4.ga
+crusader,sword,sworder3_e,atk2_1.ga,priest3_k,atk2_4.ga
+crusader,sword,sworder3_e,mag_1.ga,priest3_k,mag_2.ga
+crusader,sword,sworder3_e,arc_1.ga,priest3_k,arc_3.ga
+crusader,sword,sworder3_e,arc2_1.ga,priest3_k,arc2_1.ga
+crusader,sword,sworder3_e,arc3_1.ga,priest3_k,arc3_1.ga
+crusader,sword,sworder3_e,arc4_1.ga,priest3_k,arc4_1.ga
+crusader,sword,sworder3_e,arc5_1.ga,priest3_k,arc5_1.ga
+crusader,sword,sworder3_e,avoid_2.ga,priest3_k,avoid_5.ga
+crusader,sword,sworder3_e,poise_2.ga,priest3_k,poise_5.ga
+crusader,sword,sworder3_e,damage_2.ga,priest3_k,damage_5.ga
+crusader,sword,sworder3_e,dead_2.ga,priest3_k,dead_5.ga
+crusader,sword,sworder3_e,up_2.ga,priest3_k,up_5.ga
+crusader,sword,sworder3_e,down_2.ga,priest3_k,down_5.ga
+crusader,sword,sworder3_e,flip_1.ga,priest3_k,flip_3.ga
+crusader,sword,sworder3_e,flip2_1.ga,priest3_k,flip2_3.ga
+crusader_o,axe,fighter3_n,wait_2.ga,priest3_o,wait_3.ga
+crusader_o,axe,fighter3_n,move_2.ga,priest3_o,move_3.ga
+crusader_o,axe,fighter3_n,twait_2.ga,priest3_o,twait_3.ga
+crusader_o,axe,fighter3_n,atk_1.ga,priest3_o,atk_2.ga
+crusader_o,axe,fighter3_n,atk2_1.ga,priest3_o,atk2_2.ga
+crusader_o,axe,fighter3_n,arc_1.ga,priest3_o,arc_2.ga
+crusader_o,axe,fighter3_n,tack_2.ga,priest3_o,tack_3.ga
+crusader_o,axe,fighter3_n,avoid_2.ga,priest3_o,avoid_3.ga
+crusader_o,axe,fighter3_n,poise_2.ga,priest3_o,poise_3.ga
+crusader_o,axe,fighter3_n,damage_2.ga,priest3_o,damage_3.ga
+crusader_o,axe,fighter3_n,dead_2.ga,priest3_o,dead_3.ga
+crusader_o,axe,fighter3_n,up_2.ga,priest3_o,up_3.ga
+crusader_o,axe,fighter3_n,down_2.ga,priest3_o,down_3.ga
+crusader_o,axe,fighter3_n,flip_1.ga,priest3_o,flip_2.ga
+crusader_o,axe,fighter3_n,flip2_1.ga,priest3_o,flip2_2.ga
+crusader_o,handaxe,fighter3_n,wait_3.ga,priest3_o,wait_4.ga
+crusader_o,handaxe,fighter3_n,move_3.ga,priest3_o,move_4.ga
+crusader_o,handaxe,fighter3_n,twait_3.ga,priest3_o,twait_4.ga
+crusader_o,handaxe,fighter3_n,atk_2.ga,priest3_o,atk_3.ga
+crusader_o,handaxe,fighter3_n,atk2_2.ga,priest3_o,atk2_3.ga
+crusader_o,handaxe,fighter3_n,atku_1.ga,priest3_o,atku_1.ga
+crusader_o,handaxe,fighter3_n,atk2u_1.ga,priest3_o,atk2u_1.ga
+crusader_o,handaxe,fighter3_n,atkd_1.ga,priest3_o,atkd_1.ga
+crusader_o,handaxe,fighter3_n,atk2d_1.ga,priest3_o,atk2d_1.ga
+crusader_o,handaxe,fighter3_n,tack_3.ga,priest3_o,tack_4.ga
+crusader_o,handaxe,fighter3_n,avoid_3.ga,priest3_o,avoid_4.ga
+crusader_o,handaxe,fighter3_n,poise_3.ga,priest3_o,poise_4.ga
+crusader_o,handaxe,fighter3_n,damage_3.ga,priest3_o,damage_4.ga
+crusader_o,handaxe,fighter3_n,dead_3.ga,priest3_o,dead_4.ga
+crusader_o,handaxe,fighter3_n,up_3.ga,priest3_o,up_4.ga
+crusader_o,handaxe,fighter3_n,down_3.ga,priest3_o,down_4.ga
+crusader_o,sword,sworder3_e,move_2.ga,priest3_o,move_5.ga
+crusader_o,sword,sworder3_e,atk_1.ga,priest3_o,atk_4.ga
+crusader_o,sword,sworder3_e,atk2_1.ga,priest3_o,atk2_4.ga
+crusader_o,sword,sworder3_e,mag_1.ga,priest3_o,mag_2.ga
+crusader_o,sword,sworder3_e,arc_1.ga,priest3_o,arc_3.ga
+crusader_o,sword,sworder3_e,arc2_1.ga,priest3_o,arc2_1.ga
+crusader_o,sword,sworder3_e,arc3_1.ga,priest3_o,arc3_1.ga
+crusader_o,sword,sworder3_e,arc4_1.ga,priest3_o,arc4_1.ga
+crusader_o,sword,sworder3_e,arc5_1.ga,priest3_o,arc5_1.ga
+crusader_o,sword,sworder3_e,avoid_2.ga,priest3_o,avoid_5.ga
+crusader_o,sword,sworder3_e,poise_2.ga,priest3_o,poise_5.ga
+crusader_o,sword,sworder3_e,damage_2.ga,priest3_o,damage_5.ga
+crusader_o,sword,sworder3_e,dead_2.ga,priest3_o,dead_5.ga
+crusader_o,sword,sworder3_e,up_2.ga,priest3_o,up_5.ga
+crusader_o,sword,sworder3_e,down_2.ga,priest3_o,down_5.ga
+crusader_o,sword,sworder3_e,flip_1.ga,priest3_o,flip_3.ga
+crusader_o,sword,sworder3_e,flip2_1.ga,priest3_o,flip2_3.ga
+cleric,magic,priest2_f,mag_1.ga,cleric,mag_2.ga
+cleric,magic,priest2_f,mag2_1.ga,cleric,mag2_1.ga
+valkyrie,magic,priest3_f,mag_1.ga,cleric2,mag_2.ga
+valkyrie,magic,priest3_f,mag2_1.ga,cleric2,mag2_1.ga
+valkyrie,magic,priest3_f,arc_1.ga,cleric2,arc_2.ga
+son of ashnard,texture,d_knight3_h,pack.cmp,mage3_s,pack.cmp
+son of ashnard,sword,erincia_p,wait_2.ga,mage3_s,wait_3.ga
+son of ashnard,sword,erincia_p,move_2.ga,mage3_s,move_3.ga
+son of ashnard,sword,erincia_p,twait_2.ga,mage3_s,twait_3.ga
+son of ashnard,sword,erincia_p,atk_1.ga,mage3_s,atk_2.ga
+son of ashnard,sword,erincia_p,atk2_1.ga,mage3_s,atk2_2.ga
+son of ashnard,sword,erincia_p,mag_1.ga,mage3_s,mag_2.ga
+son of ashnard,sword,erincia_p,arc_1.ga,mage3_s,arc_2.ga
+son of ashnard,sword,erincia_p,avoid_2.ga,mage3_s,avoid_3.ga
+son of ashnard,sword,erincia_p,poise_2.ga,mage3_s,poise_3.ga
+son of ashnard,sword,erincia_p,damage_2.ga,mage3_s,damage_3.ga
+son of ashnard,sword,erincia_p,dead_2.ga,mage3_s,dead_3.ga
+son of ashnard,sword,erincia_p,flip_1.ga,mage3_s,flip_2.ga
+son of ashnard,sword,erincia_p,flip2_1.ga,mage3_s,flip2_2.ga
+son of ashnard,staff,erincia_p,wait_3.ga,mage3_s,wait_2.ga
+son of ashnard,staff,erincia_p,move_3.ga,mage3_s,move_2.ga
+son of ashnard,staff,erincia_p,twait_3.ga,mage3_s,twait_2.ga
+son of ashnard,staff,erincia_p,atk_2.ga,mage3_s,atk_1.ga
+son of ashnard,staff,erincia_p,atk2_2.ga,mage3_s,atk2_1.ga
+son of ashnard,staff,erincia_p,rod_1.ga,mage3_s,rod_1.ga
+son of ashnard,staff,erincia_p,avoid_3.ga,mage3_s,avoid_2.ga
+son of ashnard,staff,erincia_p,poise_3.ga,mage3_s,poise_2.ga
+son of ashnard,staff,erincia_p,dead_3.ga,mage3_s,dead_2.ga
+son of ashnard,staff,erincia_p,flip_2.ga,mage3_s,flip_1.ga
+son of ashnard,staff,erincia_p,flip2_2.ga,mage3_s,flip2_1.ga
+son of ashnard,axe,d_knight3_h,wait_1.ga,mage3_s,wait_1.ga
+son of ashnard,axe,d_knight3_h,move_1.ga,mage3_s,move_1.ga
+son of ashnard,axe,d_knight3_h,twait_1.ga,mage3_s,twait_1.ga
+son of ashnard,axe,d_knight3_h,atk_3.ga,mage3_s,atk_3.ga
+son of ashnard,axe,d_knight3_h,atk2_3.ga,mage3_s,atk2_3.ga
+son of ashnard,axe,d_knight3_h,arc_2.ga,mage3_s,arc_3.ga
+son of ashnard,axe,d_knight3_h,avoid_1.ga,mage3_s,avoid_1.ga
+son of ashnard,axe,d_knight3_h,poise_1.ga,mage3_s,poise_1.ga
+son of ashnard,axe,d_knight3_h,damage_1.ga,mage3_s,damage_1.ga
+son of ashnard,axe,d_knight3_h,dead_1.ga,mage3_s,dead_1.ga
+son of ashnard,axe,d_knight3_h,flip_2.ga,mage3_s,flip_3.ga
+son of ashnard,axe,d_knight3_h,flip2_2.ga,mage3_s,flip2_3.ga
+son of ashnard,axe,d_knight3_h,evt11_1.ga,mage3_s,evt11_1.ga
+son of ashnard,handaxe,d_knight3_h,wait_4.ga,mage3_s,wait_4.ga
+son of ashnard,handaxe,d_knight3_h,move_4.ga,mage3_s,move_4.ga
+son of ashnard,handaxe,d_knight3_h,twait_4.ga,mage3_s,twait_4.ga
+son of ashnard,handaxe,d_knight3_h,atk_4.ga,mage3_s,atk_4.ga
+son of ashnard,handaxe,d_knight3_h,atk2_4.ga,mage3_s,atk2_4.ga
+son of ashnard,handaxe,d_knight3_h,atku_2.ga,mage3_s,atku_1.ga
+son of ashnard,handaxe,d_knight3_h,atk2u_2.ga,mage3_s,atk2u_1.ga
+son of ashnard,handaxe,d_knight3_h,atkd_2.ga,mage3_s,atkd_1.ga
+son of ashnard,handaxe,d_knight3_h,atk2d_2.ga,mage3_s,atk2d_1.ga
+son of ashnard,handaxe,d_knight3_h,avoid_4.ga,mage3_s,avoid_4.ga
+son of ashnard,handaxe,d_knight3_h,poise_4.ga,mage3_s,poise_4.ga
+son of ashnard,handaxe,d_knight3_h,damage_4.ga,mage3_s,damage_4.ga
+son of ashnard,handaxe,d_knight3_h,dead_4.ga,mage3_s,dead_4.ga
